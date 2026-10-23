@@ -42,6 +42,28 @@ figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .field-hint { color: var(--muted); font-size: 12px; font-weight: 400; }
 .form-error { margin: -8px 0 0; color: #a33a2b; font-size: 14px; }
 .form-note { margin-top: 24px; color: var(--muted); font-size: 14px; }
+.wide-page { max-width: 760px; }
+.wordbook-form, .practice-setup { display: grid; gap: 20px; margin-top: 28px; }
+.wordbook-list { display: grid; gap: 12px; }
+.wordbook { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; background: white; cursor: pointer; }
+.wordbook .field-hint { grid-column: 2; }
+.practice-setup fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
+.practice-setup legend, .practice-setup label { font-size: 14px; font-weight: 600; }
+.practice-setup input[type="number"] { display: block; margin-top: 6px; width: 120px; font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; }
+.choice { display: flex; gap: 10px; align-items: center; font-weight: 400; }
+.practice { margin-top: 32px; }
+.prompt { font-size: 24px; line-height: 1.5; margin: 0 0 20px; }
+#answer-form { display: grid; gap: 16px; }
+#answer-area { display: grid; gap: 10px; }
+#answer-area .option { padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: white; cursor: pointer; }
+#answer-area input[name="answer"]:not([type]) { font: inherit; font-size: 20px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; max-width: 360px; }
+#answer-form .button, #next, .practice-setup .button { justify-self: start; border: 0; cursor: pointer; }
+.button:disabled { opacity: .6; cursor: progress; }
+.feedback { margin: 20px 0; padding: 14px 16px; border-radius: 8px; background: white; border: 1px solid var(--line); }
+.feedback p { margin: 4px 0; }
+.verdict { font-weight: 700; }
+.verdict.correct { color: var(--green); }
+.verdict.wrong { color: #a33a2b; }
 footer { padding-block: 24px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); }
 @media (max-width: 600px) {
   .site-header, main, footer { width: calc(100% - 36px); }

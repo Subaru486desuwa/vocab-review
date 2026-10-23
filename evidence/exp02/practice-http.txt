@@ -1,0 +1,29 @@
+# executed_at_utc=2026-10-23T14:06:57Z base=http://127.0.0.1:5000 演示学习者 demo；内容为项目自编演示 v1
+## 1. demo 登录
+HTTP 302
+## 2. 选择六级演示词表（PUT /api/v1/me/wordbooks）
+HTTP 200 {"wordbooks": [{"code": "cet6-demo", "exam_type": "cet6", "id": 4, "name": "六级演示词表", "version": "v1"}]}
+## 3. 创建 3 题辨义练习（POST /api/v1/practice/sessions），未作答时不含答案
+HTTP 201 {"id": 5, "status": "active", "total": 3, "answered": 0}
+响应不含 answers/option_id/accepted
+## 4. 第 1 题正确答案
+HTTP 200 {"is_correct": true, "error_type": null, "replayed": false, "correct_answer": {"option_id": "b", "text": "好处；益处"}}
+## 5. 第 2 题错误答案
+HTTP 200 {"is_correct": false, "error_type": "meaning", "replayed": false}
+## 6. 第 3 题空答案
+HTTP 200 {"is_correct": false, "error_type": "unanswered", "session_status": "completed"}
+## 7. 第 1 题相同答案重放
+HTTP 200 {"is_correct": true, "replayed": true}
+## 8. 第 1 题换答案
+HTTP 409 {"code": "ALREADY_SUBMITTED", "message": "本题已提交其他答案；如需重练请开始新的练习"}
+## 9. 另一用户访问 demo 的练习与题目
+HTTP 404 {"code": "NOT_FOUND", "message": "练习不存在"}
+HTTP 404 {"code": "NOT_FOUND", "message": "题目不存在"}
+## 10. MySQL：本次练习的作答与学习状态
+attempt	13	1	-	review_rules_v1
+attempt	14	0	meaning	review_rules_v1
+attempt	15	0	unanswered	review_rules_v1
+state	90	2	1	1	1	1440
+state	95	2	0	0	0	10
+state	107	1	0	0	0	10
+session	completed	1

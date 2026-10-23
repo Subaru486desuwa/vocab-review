@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}词汇诊断与个性化复习{% endblock %}</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
 </head>
 <body>
@@ -12,6 +13,8 @@
     <nav class="site-nav" aria-label="账户">
       {% set user = current_user() %}
       {% if user %}
+        <a href="{{ url_for('learning.wordbooks_page') }}">目标词表</a>
+        <a href="{{ url_for('learning.practice_page') }}">练习</a>
         <a href="{{ url_for('learning.dashboard') }}">{{ user.username }}</a>
         <form method="post" action="{{ url_for('auth.logout') }}">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -25,5 +28,6 @@
   </header>
   <main>{% block content %}{% endblock %}</main>
   <footer>Flask · MySQL · 机器学习 · 深度学习</footer>
+  {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}练习 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page wide-page">
+  <p class="eyebrow">练习</p>
+  <h1>开始一组练习</h1>
+  <form id="start-form" class="practice-setup">
+    <fieldset>
+      <legend>题型</legend>
+      {% set labels = {"recognition": "辨义：看词选释义", "spelling": "拼写：看释义写单词", "context": "语境：为句子选词"} %}
+      {% for skill in skill_types %}
+        <label class="choice"><input type="radio" name="skill_type" value="{{ skill }}" {% if loop.first %}checked{% endif %}> {{ labels[skill] }}</label>
+      {% endfor %}
+    </fieldset>
+    <label>题数
+      <input type="number" name="count" min="1" max="20" value="{{ default_count }}" required>
+    </label>
+    <button class="button" type="submit">开始练习</button>
+  </form>
+  <div id="practice" class="practice" hidden>
+    <p id="progress" class="eyebrow"></p>
+    <h2 id="prompt" class="prompt"></h2>
+    <form id="answer-form">
+      <div id="answer-area"></div>
+      <button id="submit-answer" class="button" type="submit">提交</button>
+    </form>
+    <div id="feedback" class="feedback" role="status" hidden></div>
+    <button id="next" class="button" type="button" hidden>下一题</button>
+  </div>
+  <div id="summary" class="practice" hidden></div>
+  <p id="practice-error" class="form-error" role="alert"></p>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/practice.js') }}"></script>{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}目标词表 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page wide-page">
+  <p class="eyebrow">目标词表</p>
+  <h1>选择考试目标</h1>
+  <p class="lead">可以同时选择多个词表，共有的词条只练一次。更换目标不会删除已有的作答记录。</p>
+  <form id="wordbook-form" class="wordbook-form">
+    <div id="wordbook-list" class="wordbook-list" aria-live="polite"><p class="form-note">正在加载…</p></div>
+    <button class="button" type="submit">保存目标</button>
+    <p id="wordbook-status" class="form-note" role="status"></p>
+  </form>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/wordbooks.js') }}"></script>{% endblock %}

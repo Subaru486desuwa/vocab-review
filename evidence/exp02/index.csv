@@ -7,3 +7,6 @@ validation.txt,S2/T02/T03,"docker compose run --rm web sh -c 'python -m compilea
 import-demo.txt,S2/T12,"docker compose run --rm web flask db upgrade; flask import-content data/demo/v1 [--dry-run]; flask seed-demo-user",2026-10-23T13:41:48Z,演示库迁移 0002、预检、提交与重复导入（全部未变）；内容为项目自编演示 v1，待人工校对（#7）
 admin-import-403.txt,T03,"curl POST /api/v1/admin/import（未登录；学习者 demo 登录后）",2026-10-23T13:42:17Z,未登录 401、普通用户导入 403；demo 密码来自本地 .env 未记录
 validation-content-import.txt,S2/T03/T10/T11/T12,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T13:42:58Z,67 项通过，含测试库上的导入预检、回滚、题目版本、停用与管理接口
+practice-http.txt,S2/T04/T05/T06/T07,bash evidence/exp02/practice-http.sh,2026-10-23T14:06:57Z,demo 选择六级目标、组卷不含答案、正确/错误/空答案、重放、换答案 409、他人访问 404 及 MySQL 作答与学习状态；学习状态累计了同一脚本此前两次试运行的作答
+practice-http.sh,S2,bash evidence/exp02/practice-http.sh,2026-10-23T14:06:57Z,生成 practice-http.txt 的脚本；每次运行新建一个练习与一个 peer_ 演示账户
+validation-practice.txt,S2/T04—T08/T10,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T14:08:07Z,107 项通过，含并发同答案、注入异常回滚、越权与题目版本测试；前端脚本仅做 node --check，浏览器验收见 #8
