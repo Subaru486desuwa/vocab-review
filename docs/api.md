@@ -1,6 +1,6 @@
 # 页面与接口契约
 
-当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`/dashboard`（占位概览）、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me` 与 `POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI）。其余为完整首版的待实现契约，不是当前可调用的接口。
+当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`/dashboard`（占位概览）、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），以及 `/wordbooks`、`/practice` 页面和目标词表、练习、作答接口。复习与统计接口待实现。其余为完整首版的待实现契约，不是当前可调用的接口。
 
 ## 页面
 
@@ -23,11 +23,11 @@
 | POST /auth/login | username, password, CSRF | 参数化 SQL 查用户，应用层校验哈希；错误密码、不存在或停用用户统一 401 INVALID_CREDENTIALS；成功后清理旧会话并设置身份，`next` 只接受站内路径 |
 | POST /auth/logout | CSRF | 清空会话；GET 返回 405，不改变登录状态 |
 | GET /api/v1/me | 会话 | 当前用户 id、username、role、display_timezone；未登录 401 |
-| GET /api/v1/wordbooks | 可选 exam_type,page | 启用词表、来源、版本、分页及总数 |
-| PUT /api/v1/me/wordbooks | wordbook_ids | 验证全部目标后一次提交；撤销目标不删除历史 |
-| POST /api/v1/practice/sessions | 目标词表、题型、count | 校验目标并取题，保存快照并返回 session_id |
-| GET /api/v1/practice/sessions/{id} | 路径 ID | 仅本人可读；未作答不返回标准答案 |
-| POST /api/v1/practice/items/{id}/answer | answer,CSRF | 服务端判分、幂等重试和单一写事务 |
+| GET /api/v1/wordbooks | 可选 exam_type,page | 启用词表、来源、版本、启用词条数、是否已选；每页 20，返回 items/page/page_size/total |
+| PUT /api/v1/me/wordbooks | wordbook_ids | 验证全部目标后一次提交，任一无效 422 且 fields.wordbook_ids 列出无效 id；空列表清空目标；撤销目标不删除历史 |
+| POST /api/v1/practice/sessions | skill_type, count=1—20（默认 10）, 可选 wordbook_ids（须为已选目标） | 未选目标 422 NO_TARGET，无可出题 422 NO_QUESTIONS；按 到期复习 > 未到期错题 > 未测试 > 其他 取题，同级随机，每个词义一题，只取启用词条/词义与已发布题目；保存目标快照，201 返回练习 |
+| GET /api/v1/practice/sessions/{id} | 路径 ID | 仅本人可读，否则 404；返回 items（题干、选项）与已作答项的 result；未作答项不含答案与判分规则 |
+| POST /api/v1/practice/items/{id}/answer | answer（选项 id 或拼写文本）,CSRF | 服务端判分、幂等重试和单一写事务；非本人 404；格式不合法 422 INVALID_ANSWER；返回 is_correct、error_type、correct_answer、replayed、session_status |
 | GET /api/v1/me/review | 可选目标、题型 | 到期与错题清单；未到期明确时间 |
 | GET /api/v1/me/stats | 可选目标、题型 | 真实记录的统计；注明粒度、窗口和分母 |
 | POST /api/v1/ml/recall | delta_seconds,history_seen,history_correct,CSRF | manual_lab；status、expected_recall、特征/模型版本、model_time_ms |
@@ -36,7 +36,7 @@
 
 所有修改操作校验 CSRF。密码使用 Werkzeug 专用哈希与校验函数，不使用裸 SHA-256。SQL 参数化；按请求管理连接并正确释放，写操作显式提交或回滚。
 
-JSON 响应统一包含 `data`、`error`、`request_id`，`error` 为 `{code, message}`，字段校验失败另含 `fields`；响应头 `X-Request-ID` 与 `request_id` 一致。`/api/` 路径或 JSON 请求返回 JSON，表单请求返回页面（状态码相同）。已用错误码：BAD_REQUEST、UNAUTHENTICATED、INVALID_CREDENTIALS、FORBIDDEN、CSRF_FAILED、USERNAME_TAKEN、VALIDATION_FAILED、PAYLOAD_TOO_LARGE（请求体上限 2 MiB）、IMPORT_INVALID。状态码：400 格式错误；401 未登录；403 权限/CSRF；404 不存在或不归本人的练习；409 重复冲突；413 超大载荷；422 字段语义/token 上限；503 模型或推理留证不可用。错误不回显连接细节或密钥。
+JSON 响应统一包含 `data`、`error`、`request_id`，`error` 为 `{code, message}`，字段校验失败另含 `fields`；响应头 `X-Request-ID` 与 `request_id` 一致。`/api/` 路径或 JSON 请求返回 JSON，表单请求返回页面（状态码相同）。已用错误码：BAD_REQUEST、UNAUTHENTICATED、INVALID_CREDENTIALS、FORBIDDEN、CSRF_FAILED、USERNAME_TAKEN、VALIDATION_FAILED、PAYLOAD_TOO_LARGE（请求体上限 2 MiB）、IMPORT_INVALID、NO_TARGET、NO_QUESTIONS、INVALID_ANSWER、ALREADY_SUBMITTED、SESSION_CLOSED、NOT_FOUND。状态码：400 格式错误；401 未登录；403 权限/CSRF；404 不存在或不归本人的练习；409 重复冲突；413 超大载荷；422 字段语义/token 上限；503 模型或推理留证不可用。错误不回显连接细节或密钥。
 
 ## 作答提交事务
 
@@ -47,7 +47,7 @@ JSON 响应统一包含 `data`、`error`、`request_id`，`error` 为 `{code, me
 5. 创建或锁定 learning_state 后分配服务端提交时间；写 attempts 与 review_rule_version，并更新学习状态、题目时间和练习完成状态。
 6. 一并提交；任一步失败全部回滚。行锁与唯一约束共同处理并发，不能只在 Python 先查后插。重练创建新 session_item。
 
-recognition 提交选项 ID。context 为客观选择或明确可接受答案的填空。spelling 默认清理首尾空白，大小写、英美拼写和词形按题目版本的答案与策略处理，不统一词干化。
+recognition 提交选项 ID；空字符串为合法提交，判为 unanswered。context 为客观选择或明确可接受答案的填空。spelling 默认清理首尾空白，大小写、英美拼写和词形按题目版本的答案与策略处理，不统一词干化。
 
 error_type 为 spelling、meaning、context、unanswered、unknown；只记录题型和答案能支持的错误类别，不从字符差异推断认知原因。
 

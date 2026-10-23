@@ -59,7 +59,7 @@ class AppSmokeTests(unittest.TestCase):
                 self.assertIn('name="csrf_token"', response.get_data(as_text=True))
 
     def test_unimplemented_business_routes_are_not_fake_successes(self):
-        for path in ("/practice", "/review", "/api/v1/wordbooks"):
+        for path in ("/review", "/api/v1/me/review", "/api/v1/me/stats"):
             with self.subTest(path=path):
                 self.assertEqual(self.client.get(path).status_code, 404)
 
