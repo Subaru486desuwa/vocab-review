@@ -1,0 +1,4 @@
+UTC=2026-10-23T12:21:31Z
+GET / status=200 content_type=text/html; charset=utf-8
+GET /lab/hello status=200 content_type=text/html; charset=utf-8
+GET /static/images/learning-loop.svg status=200 content_type=image/svg+xml; charset=utf-8

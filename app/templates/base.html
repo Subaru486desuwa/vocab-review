@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}词汇诊断与个性化复习{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('index') }}">词汇研习室 <span>VOCAB REVIEW</span></a>
+    <span class="course-label">Python Web 课程项目</span>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer>Flask · MySQL · 机器学习 · 深度学习</footer>
+</body>
+</html>

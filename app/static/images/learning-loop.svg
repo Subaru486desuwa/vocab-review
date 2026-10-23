@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" role="img" aria-labelledby="title desc">
+  <title id="title">词汇学习闭环</title>
+  <desc id="desc">选择目标词表，完成练习，保存作答，再安排复习。</desc>
+  <rect width="960" height="300" rx="12" fill="#edf2e9"/>
+  <g font-family="sans-serif" fill="#205d49">
+    <text x="48" y="48" font-size="12" letter-spacing="3">THE LEARNING LOOP</text>
+    <g fill="#fff" stroke="#c8d8c9"><rect x="48" y="92" width="183" height="132" rx="10"/><rect x="275" y="92" width="183" height="132" rx="10"/><rect x="502" y="92" width="183" height="132" rx="10"/><rect x="729" y="92" width="183" height="132" rx="10"/></g>
+    <g font-size="12"><text x="68" y="121">01</text><text x="295" y="121">02</text><text x="522" y="121">03</text><text x="749" y="121">04</text></g>
+    <g font-size="22" font-weight="600"><text x="68" y="164">选择目标</text><text x="295" y="164">完成练习</text><text x="522" y="164">保存作答</text><text x="749" y="164">安排复习</text></g>
+    <g font-size="12" fill="#66716e"><text x="68" y="193">词表与目标</text><text x="295" y="193">词义与题型</text><text x="522" y="193">事实与历史</text><text x="749" y="193">规则与计划</text></g>
+    <g stroke="#7c9b84" stroke-width="2" fill="none"><path d="M242 158h22m-6-5 6 5-6 5"/><path d="M469 158h22m-6-5 6 5-6 5"/><path d="M696 158h22m-6-5 6 5-6 5"/></g>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+file,requirement,command,executed_at_utc,notes
+environment.txt,E1/S0,python --version; pip freeze; flask --app app:create_app routes,2026-10-23T12:18:49.780346+00:00,Osaka Linux ARM64，基础 Web 依赖与路由
+validation.txt,S0/T01,python -m compileall -q app tests; python -m unittest discover -s tests -v; python -m pip check,2026-10-23T12:18:50.495351+00:00,6 项基础入口检查；不含 MySQL 或模型验证
+startup.txt,E1,flask --app app:create_app run --host 127.0.0.1 --port 5087,2026-10-23T12:21:31.376422+00:00,临时开发服务器，不是公网部署
+http.txt,T01,curl --fail --silent --show-error --output /dev/null --write-out status/content_type http://127.0.0.1:5087/{path},2026-10-23T12:21:31.376422+00:00,首页、演示页、静态图实际 HTTP 检查
+home.png,T01,Chrome: GET http://127.0.0.1:5087/; screenshot,2026-10-23T12:20:40+00:00,Mac Chrome 视口截图，不含地址栏
+hello.png,T01,Chrome: click 查看 Flask 基础演示; screenshot,2026-10-23T12:20:47+00:00,文字与静态图片实际呈现，不含地址栏
+browser-acceptance.txt,T01,Chrome: 首页 → 演示页 → 返回首页,2026-10-23T12:21:33.367377+00:00,导航与可见状态记录

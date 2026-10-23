@@ -1,0 +1,22 @@
+UTC=2026-10-23T12:18:49Z
+
+$ python -m compileall -q app tests
+COMPILE_EXIT=0
+
+$ python -m unittest discover -s tests -v
+test_hello_renders_text_and_static_image (test_app.AppSmokeTests.test_hello_renders_text_and_static_image) ... ok
+test_home_links_to_lab_and_marks_business_as_planned (test_app.AppSmokeTests.test_home_links_to_lab_and_marks_business_as_planned) ... ok
+test_missing_database_and_models_do_not_block_basic_page (test_app.AppSmokeTests.test_missing_database_and_models_do_not_block_basic_page) ... ok
+test_security_config_uses_environment_and_does_not_enable_debug (test_app.AppSmokeTests.test_security_config_uses_environment_and_does_not_enable_debug) ... ok
+test_static_image_is_served (test_app.AppSmokeTests.test_static_image_is_served) ... ok
+test_unimplemented_business_routes_are_not_fake_successes (test_app.AppSmokeTests.test_unimplemented_business_routes_are_not_fake_successes) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.033s
+
+OK
+TEST_EXIT=0
+
+$ python -m pip check
+No broken requirements found.
+DEPENDENCY_CHECK_EXIT=0
