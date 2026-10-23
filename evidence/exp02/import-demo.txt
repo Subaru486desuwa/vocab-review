@@ -1,0 +1,33 @@
+# executed_at_utc=2026-10-23T13:41:48Z
+$ flask db upgrade
+目标库：vocab_review@db:3306
+已执行：0002_example_key
+$ flask import-content data/demo/v1 --dry-run
+目标库：vocab_review@db:3306
+wordbooks：新增 3，更新 0，未变 0
+words：新增 70，更新 0，未变 0
+senses：新增 79，更新 0，未变 0
+memberships：新增 90，更新 0，未变 0
+examples：新增 79，更新 0，未变 0
+questions：新增 237，更新 0，未变 0，停用旧版本 0
+预检通过，未写入。
+$ flask import-content data/demo/v1
+目标库：vocab_review@db:3306
+wordbooks：新增 3，更新 0，未变 0
+words：新增 70，更新 0，未变 0
+senses：新增 79，更新 0，未变 0
+memberships：新增 90，更新 0，未变 0
+examples：新增 79，更新 0，未变 0
+questions：新增 237，更新 0，未变 0，停用旧版本 0
+已提交。
+$ flask import-content data/demo/v1   # 重复导入
+目标库：vocab_review@db:3306
+wordbooks：新增 0，更新 0，未变 3
+words：新增 0，更新 0，未变 70
+senses：新增 0，更新 0，未变 79
+memberships：新增 0，更新 0，未变 90
+examples：新增 0，更新 0，未变 79
+questions：新增 0，更新 0，未变 237，停用旧版本 0
+已提交。
+$ flask seed-demo-user
+已创建演示账户：demo

@@ -1,6 +1,6 @@
 # 页面与接口契约
 
-当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`/dashboard`（占位概览）、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout` 与 `GET /api/v1/me`。其余为完整首版的待实现契约，不是当前可调用的接口。
+当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`/dashboard`（占位概览）、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me` 与 `POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI）。其余为完整首版的待实现契约，不是当前可调用的接口。
 
 ## 页面
 
@@ -32,11 +32,11 @@
 | GET /api/v1/me/stats | 可选目标、题型 | 真实记录的统计；注明粒度、窗口和分母 |
 | POST /api/v1/ml/recall | delta_seconds,history_seen,history_correct,CSRF | manual_lab；status、expected_recall、特征/模型版本、model_time_ms |
 | POST /api/v1/examples/search | 英语 text,top_k=1—10,可选目标词表 | 例句 ID、正文、目标词义、cosine_similarity、模型/语料版本 |
-| POST /api/v1/admin/import | 约定 CSV 内容，管理员及 CSRF | 先预检后显式提交；行级错误或摘要；单批事务失败回滚 |
+| POST /api/v1/admin/import | multipart，字段名为 wordbooks、words、senses、memberships、examples、questions，可选 dry_run=1；管理员及 CSRF | 格式见 [内容包格式](content-format.md)；先预检后显式提交，成功返回 dry_run 与各文件计数；预检失败 422 IMPORT_INVALID，`error.rows` 为至多 200 条 {file, line, field, message}；未知字段 400；单批事务失败回滚 |
 
 所有修改操作校验 CSRF。密码使用 Werkzeug 专用哈希与校验函数，不使用裸 SHA-256。SQL 参数化；按请求管理连接并正确释放，写操作显式提交或回滚。
 
-JSON 响应统一包含 `data`、`error`、`request_id`，`error` 为 `{code, message}`，字段校验失败另含 `fields`；响应头 `X-Request-ID` 与 `request_id` 一致。`/api/` 路径或 JSON 请求返回 JSON，表单请求返回页面（状态码相同）。已用错误码：BAD_REQUEST、UNAUTHENTICATED、INVALID_CREDENTIALS、FORBIDDEN、CSRF_FAILED、USERNAME_TAKEN、VALIDATION_FAILED、PAYLOAD_TOO_LARGE（请求体上限 2 MiB）。状态码：400 格式错误；401 未登录；403 权限/CSRF；404 不存在或不归本人的练习；409 重复冲突；413 超大载荷；422 字段语义/token 上限；503 模型或推理留证不可用。错误不回显连接细节或密钥。
+JSON 响应统一包含 `data`、`error`、`request_id`，`error` 为 `{code, message}`，字段校验失败另含 `fields`；响应头 `X-Request-ID` 与 `request_id` 一致。`/api/` 路径或 JSON 请求返回 JSON，表单请求返回页面（状态码相同）。已用错误码：BAD_REQUEST、UNAUTHENTICATED、INVALID_CREDENTIALS、FORBIDDEN、CSRF_FAILED、USERNAME_TAKEN、VALIDATION_FAILED、PAYLOAD_TOO_LARGE（请求体上限 2 MiB）、IMPORT_INVALID。状态码：400 格式错误；401 未登录；403 权限/CSRF；404 不存在或不归本人的练习；409 重复冲突；413 超大载荷；422 字段语义/token 上限；503 模型或推理留证不可用。错误不回显连接细节或密钥。
 
 ## 作答提交事务
 

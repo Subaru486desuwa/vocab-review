@@ -6,6 +6,7 @@ from flask_wtf.csrf import CSRFProtect
 
 from app import cli, clock
 from app.blueprints import responses
+from app.blueprints.admin import bp as admin_bp
 from app.blueprints.auth import bp as auth_bp
 from app.blueprints.lab import bp as lab_bp
 from app.blueprints.learning import bp as learning_bp
@@ -44,6 +45,7 @@ def create_app(test_config=None):
     app.register_blueprint(lab_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(learning_bp)
+    app.register_blueprint(admin_bp)
 
     @app.get("/")
     def index():

@@ -1,0 +1,7 @@
+# executed_at_utc=2026-10-23T13:42:17Z 演示学习者 demo（seed-demo-user 创建，密码来自本地 .env，未记录）
+## 未登录 POST /api/v1/admin/import
+{'code': 'UNAUTHENTICATED', 'message': '请先登录'}
+HTTP 401
+## 学习者 demo 登录后 POST /api/v1/admin/import
+{'code': 'FORBIDDEN', 'message': '没有执行该操作的权限'}
+HTTP 403

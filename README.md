@@ -2,7 +2,7 @@
 
 面向六级、考研和雅思的 Python Web 课程项目。以统一词库连接三类目标词表，记录辨义、拼写和语境练习，再生成可解释的复习计划。
 
-**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出与 `flask create-admin`，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；目标词表、练习、复习、内容导入、ML 和 DL 后续实现。仓库保持 **private**。
+**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；目标词表、练习、复习、ML 和 DL 后续实现。仓库保持 **private**。
 
 ## 先运行基础页面
 
@@ -40,7 +40,17 @@ ssh -N -L 5000:127.0.0.1:5000 osaka
 docker compose run --rm web flask create-admin
 ```
 
-当前未实现 `import-content`，不应运行该命令。真实配置只放本地 `.env` 或环境变量。
+导入演示内容并创建演示学习者（密码取自 `.env` 的 `DEMO_USER_PASSWORD`）：
+
+```bash
+docker compose run --rm web flask import-content data/demo/v1
+```
+
+```bash
+docker compose run --rm web flask seed-demo-user
+```
+
+`import-content` 先整批预检，有错误时逐行报告且不写入；加 `--dry-run` 只报告变化。格式见 [内容包格式](docs/content-format.md)。真实配置只放本地 `.env` 或环境变量。
 
 ## 从哪里继续开发
 
@@ -52,6 +62,7 @@ docker compose run --rm web flask create-admin
 | [接口契约](docs/api.md) | 页面、JSON 接口、状态码、幂等提交 |
 | [模型契约](docs/models.md) | 共享特征、离线评价、索引版本与留证 |
 | [实施与验收](docs/acceptance.md) | S0—S5、T01—T14、M01—M06 |
+| [内容包格式](docs/content-format.md) | 导入文件、预检规则与题目版本 |
 | [术语表](GLOSSARY.md) | 词条、词义、题型、作答与学习状态 |
 | [开发规范](docs/development.md) | 分支与提交、合并前检查、Docker、代码约定、日程 |
 
@@ -60,7 +71,7 @@ app/          Flask 应用、路由、业务、SQL 查询、模板与静态资�
 ml/           离线训练、特征构建、模型评价
 artifacts/    本地模型与向量；二进制制品不进入 Git
 sql/          按序迁移（已有 0001 建表）与演示种子（后续实现）
-data/demo/    演示词库与来源（后续准备）
+data/demo/    演示内容源表、生成脚本与 v1 内容包（待人工校对）
 tests/        实际入口与回归检查
 evidence/     四次实验的真实截图、日志和评价索引
 docs/         架构、契约、验收与 ADR
