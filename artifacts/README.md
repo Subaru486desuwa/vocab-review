@@ -1,3 +1,3 @@
 # 本地模型制品
 
-后续分别在本地 `artifacts/ml/`、`artifacts/dl/` 准备可信模型、向量、例句 ID 映射和真实版本清单。目录内制品被 Git 忽略，不上传权重或向量。模型来源与完整性验证属于制品加载契约，详见 `docs/models.md`。当前无模型制品。
+本地 `artifacts/ml/` 存放实验三制品（由 `python -m ml.train_recall` 生成）；`artifacts/dl/` 后续存放模型、向量与例句 ID 映射。目录内制品被 Git 忽略，不上传权重或向量。模型来源与完整性验证属于制品加载契约，详见 `docs/models.md`。

@@ -1,1 +1,12 @@
 file,requirement,command,executed_at_utc,notes
+data_manifest.json,E3/M03,docker compose run --rm web python -m ml.prepare_recall_data,2026-10-23T14:45:00Z,来源与许可、原始 SHA-256、英语过滤、8 条检查规则与剔除数、5% 用户抽样（种子 42）、时间切分切点与各集合哈希；下载于 2026-10-23T14:31:44Z，MD5 与 Dataverse 一致
+manifest.json,E3/M02,docker compose run --rm web python -m ml.train_recall,2026-10-23T14:46:14Z,制品 recall_rf v1 的 SHA-256、特征版本、训练配置（未调参）、数据哈希、环境版本与参考预测；模型文件本身不进 Git
+metrics.json,E3/M03,docker compose run --rm web python -m ml.train_recall,2026-10-23T14:46:14Z,validation/test 的模型与两种基线 MAE/RMSE、子群、误差最大样例、特征重要性。首次训练运行在导出后核对处中止（多线程预测末位浮点不一致），改为单线程预测后以相同配置与种子重训，该中止运行的结果未保存或使用
+evaluation.md,E3/M03,docker compose run --rm web python -m ml.train_recall,2026-10-23T14:46:14Z,由 metrics.json 自动生成的评价报告
+consistency.txt,E3/M02,python3 比对 manifest.reference_predictions 与 latency.json,2026-10-23T19:49:15Z,4 个参考输入的 Web 输出与离线值逐位一致
+latency.py,E3,python3 evidence/exp03/latency.py,2026-10-23T19:49:15Z,独立 HTTP 客户端耗时测量脚本
+latency.json,E3,python3 evidence/exp03/latency.py,2026-10-23T19:49:15Z,web 重启后首次请求（含校验与加载）与预热后 30 次顺序请求的 HTTP、processing、model 耗时 p50/p95，0 失败
+inference-events.txt,E3/M06,docker compose exec db mysql: model_versions 与 inference_events,2026-10-23T19:49:30Z,登记的模型版本与推理事件（输入、输出、版本、状态、耗时、request_id）
+lab-http.txt,E3/T13,curl 与 docker compose run web python（ML_MODEL_DIR=/nonexistent）,2026-10-23T19:50:10Z,实验页可用状态、冷启动 null、非法输入 422；模型目录缺失时 503、实验页显示不可用、练习照常作答、失败事件 model_version_id 为空（该段用测试客户端并关闭 CSRF）
+environment.txt,E3,uname; lscpu; pip freeze,2026-10-23T19:50:24Z,Osaka Neoverse-N1 2 核、11 GiB，CPU 推理；Python 与库版本；本地数据与制品文件
+validation.txt,S3,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo ml && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T19:53:52Z,140 项通过，含特征、数据处理、训练制品、加载校验、推理接口、留证与 T13 测试

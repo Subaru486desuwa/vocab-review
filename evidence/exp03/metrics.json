@@ -1,0 +1,301 @@
+{
+  "train_rows": 176832,
+  "train_label_mean": 0.895839,
+  "fit_seconds": 32.8,
+  "validation": {
+    "rows": 37867,
+    "time_range_utc": [
+      "2013-03-09T01:53:20Z",
+      "2013-03-10T22:41:57Z"
+    ],
+    "overall": {
+      "model": {
+        "mae": 0.182031,
+        "rmse": 0.283216
+      },
+      "baseline_train_label_mean": {
+        "mae": 0.19604,
+        "rmse": 0.307499
+      },
+      "baseline_smoothed_accuracy": {
+        "mae": 0.236821,
+        "rmse": 0.306941
+      }
+    },
+    "subgroups": {
+      "history_seen<=3": {
+        "rows": 7868,
+        "model": {
+          "mae": 0.171008,
+          "rmse": 0.266481
+        },
+        "baseline_train_label_mean": {
+          "mae": 0.174281,
+          "rmse": 0.267185
+        },
+        "baseline_smoothed_accuracy": {
+          "mae": 0.291841,
+          "rmse": 0.327932
+        }
+      },
+      "delta>30d": {
+        "rows": 2417,
+        "model": {
+          "mae": 0.191991,
+          "rmse": 0.287854
+        },
+        "baseline_train_label_mean": {
+          "mae": 0.184284,
+          "rmse": 0.289047
+        },
+        "baseline_smoothed_accuracy": {
+          "mae": 0.242896,
+          "rmse": 0.311956
+        }
+      }
+    },
+    "largest_errors": [
+      {
+        "lexeme_string": "she/prpers<prn><subj><p3><f><sg>",
+        "delta_days": 0.0,
+        "history_seen": 897,
+        "history_correct": 866,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9877
+      },
+      {
+        "lexeme_string": "horses/horse<n><pl>",
+        "delta_days": 0.0,
+        "history_seen": 209,
+        "history_correct": 201,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9755
+      },
+      {
+        "lexeme_string": "woman/woman<n><sg>",
+        "delta_days": 0.0,
+        "history_seen": 228,
+        "history_correct": 220,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9732
+      },
+      {
+        "lexeme_string": "a/a<det><ind><sg>",
+        "delta_days": 0.0,
+        "history_seen": 29,
+        "history_correct": 29,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9703
+      },
+      {
+        "lexeme_string": "water/water<n><sg>",
+        "delta_days": 0.01,
+        "history_seen": 48,
+        "history_correct": 47,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9693
+      },
+      {
+        "lexeme_string": "boys/boy<n><pl>",
+        "delta_days": 0.0,
+        "history_seen": 3,
+        "history_correct": 3,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9673
+      },
+      {
+        "lexeme_string": "my/my<det><pos><sp>",
+        "delta_days": 0.0,
+        "history_seen": 64,
+        "history_correct": 61,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.967
+      },
+      {
+        "lexeme_string": "they/prpers<prn><subj><p3><mf><pl>",
+        "delta_days": 0.01,
+        "history_seen": 485,
+        "history_correct": 468,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9664
+      },
+      {
+        "lexeme_string": "eat/eat<vblex><pres>",
+        "delta_days": 0.0,
+        "history_seen": 73,
+        "history_correct": 73,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9663
+      },
+      {
+        "lexeme_string": "an/a<det><ind><sg>",
+        "delta_days": 0.0,
+        "history_seen": 28,
+        "history_correct": 28,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9652
+      }
+    ]
+  },
+  "test": {
+    "rows": 37888,
+    "time_range_utc": [
+      "2013-03-10T22:42:15Z",
+      "2013-03-12T16:13:17Z"
+    ],
+    "overall": {
+      "model": {
+        "mae": 0.169456,
+        "rmse": 0.266237
+      },
+      "baseline_train_label_mean": {
+        "mae": 0.177831,
+        "rmse": 0.277384
+      },
+      "baseline_smoothed_accuracy": {
+        "mae": 0.232062,
+        "rmse": 0.296642
+      }
+    },
+    "subgroups": {
+      "history_seen<=3": {
+        "rows": 8912,
+        "model": {
+          "mae": 0.169258,
+          "rmse": 0.263729
+        },
+        "baseline_train_label_mean": {
+          "mae": 0.171814,
+          "rmse": 0.263997
+        },
+        "baseline_smoothed_accuracy": {
+          "mae": 0.292823,
+          "rmse": 0.329149
+        }
+      },
+      "delta>30d": {
+        "rows": 2925,
+        "model": {
+          "mae": 0.195711,
+          "rmse": 0.291531
+        },
+        "baseline_train_label_mean": {
+          "mae": 0.184156,
+          "rmse": 0.289632
+        },
+        "baseline_smoothed_accuracy": {
+          "mae": 0.249372,
+          "rmse": 0.315724
+        }
+      }
+    },
+    "largest_errors": [
+      {
+        "lexeme_string": "am/be<vbser><pri><p1><sg>",
+        "delta_days": 0.01,
+        "history_seen": 298,
+        "history_correct": 291,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9816
+      },
+      {
+        "lexeme_string": "dogs/dog<n><pl>",
+        "delta_days": 0.01,
+        "history_seen": 745,
+        "history_correct": 717,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.975
+      },
+      {
+        "lexeme_string": "is/be<vbser><pri><p3><sg>",
+        "delta_days": 0.0,
+        "history_seen": 27,
+        "history_correct": 27,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9698
+      },
+      {
+        "lexeme_string": "woman/woman<n><sg>",
+        "delta_days": 0.01,
+        "history_seen": 259,
+        "history_correct": 249,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9667
+      },
+      {
+        "lexeme_string": "eats/eat<vblex><pri><p3><sg>",
+        "delta_days": 0.01,
+        "history_seen": 100,
+        "history_correct": 95,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9637
+      },
+      {
+        "lexeme_string": "skirts/skirt<n><pl>",
+        "delta_days": 0.0,
+        "history_seen": 140,
+        "history_correct": 136,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9623
+      },
+      {
+        "lexeme_string": "we/prpers<prn><subj><p1><mf><pl>",
+        "delta_days": 0.0,
+        "history_seen": 19,
+        "history_correct": 19,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9621
+      },
+      {
+        "lexeme_string": "does/do<vbdo><pri><p3><sg>",
+        "delta_days": 0.01,
+        "history_seen": 24,
+        "history_correct": 24,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9615
+      },
+      {
+        "lexeme_string": "is/be<vbser><pri><p3><sg>",
+        "delta_days": 0.0,
+        "history_seen": 221,
+        "history_correct": 209,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9609
+      },
+      {
+        "lexeme_string": "bear/bear<n><sg>",
+        "delta_days": 0.0,
+        "history_seen": 22,
+        "history_correct": 22,
+        "session_seen": 1,
+        "p_recall": 0.0,
+        "prediction": 0.9584
+      }
+    ]
+  },
+  "feature_importances": {
+    "log_delta_days": 0.2976,
+    "log_seen": 0.2869,
+    "log_correct": 0.0575,
+    "smoothed_accuracy": 0.358
+  }
+}

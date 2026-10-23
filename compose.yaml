@@ -20,7 +20,10 @@ services:
       start_period: 30s
 
   web:
-    build: .
+    build:
+      context: .
+      args:
+        WITH_ML: "${WITH_ML:-1}"
     env_file: .env
     environment:
       DB_HOST: db
