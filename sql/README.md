@@ -1,3 +1,3 @@
 # 数据库脚本位置
 
-后续提供 schema.sql、按序 migrations/ 和演示种子；目标为 MySQL 8.x、InnoDB、utf8mb4，数据字典见 `docs/data-model.md`。建库和迁移只能针对指定环境，测试使用独立数据库。当前未实现脚本或建库 CLI。
+`migrations/NNNN_<描述>.sql` 按编号由 `flask db upgrade` 执行，版本写入 `schema_migrations`；数据字典见 `docs/data-model.md`。已合并的迁移不再修改，变更追加新文件。每条语句以行尾分号结束，不写存储过程。MySQL DDL 会隐式提交，迁移中途失败时需修正后手动清理目标库。演示种子随内容导入切片提供。

@@ -1,6 +1,6 @@
 # 数据模型
 
-以下为待实现的 MySQL 数据字典；当前未创建数据库。使用 InnoDB、utf8mb4；除注明的复合键外主键为 BIGINT。时间保存为 UTC DATETIME(6)，展示和日统计按用户时区转换。所有外键类型一致并建索引，默认限制删除。
+以下为 MySQL 数据字典，由 `sql/migrations/0001_initial_schema.sql` 创建；`schema_migrations` 记录已执行迁移，属于基础设施表，不计入 14 张业务表。使用 InnoDB、utf8mb4；除注明的复合键外主键为 BIGINT。时间保存为 UTC DATETIME(6)，展示和日统计按用户时区转换。所有外键类型一致并建索引，默认限制删除。
 
 ![14 张表的关系与基数](images/data-model.svg)
 
@@ -29,6 +29,15 @@
 | inference_events | id, request_id, user_id, model_version_id, kind, source_type, input_json, output_json, status, model_time_ms, processing_time_ms, created_at | 模型加载失败允许 model_version_id 为 NULL；禁止存密码/会话密钥 |
 
 `attempts` 保存事实，`learning_state` 保存投影；模型输出不改写二者。source_type 区分 manual_lab、source_test、user_history；个人日志适配未实现，不生成虚构的 user_history 效果记录。
+
+## 迁移中确定的取值
+
+- 枚举型字段用 VARCHAR 加 CHECK：questions.status=published/retired；model_versions.status=active/retired；inference_events.source_type=manual_lab/source_test/user_history。
+- attempts：正确时 error_type 为 NULL，错误时必须给出 error_type。
+- learning_state：0≤correct_streak≤correct_count≤seen_count，interval_stage 为 0—3。
+- inference_events.user_id 可为 NULL，供无登录用户的 source_test 记录使用。
+- username_norm、lemma_norm、sense_key、logical_key 等标识列使用 utf8mb4_bin，规范化由应用完成，避免排序规则把重音或大小写不同的值视为重复。
+- 时间列没有数据库默认值，统一由应用 clock 写入 UTC。
 
 ## 索引与历史
 

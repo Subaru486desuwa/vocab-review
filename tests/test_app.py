@@ -21,7 +21,7 @@ class AppSmokeTests(unittest.TestCase):
         response = self.client.get("/lab/hello")
         self.assertEqual(response.status_code, 200)
         self.assertIn("Hello Flask", response.get_data(as_text=True))
-        self.assertIn('/static/images/learning-loop.svg', response.get_data(as_text=True))
+        self.assertIn("/static/images/learning-loop.svg", response.get_data(as_text=True))
 
     def test_static_image_is_served(self):
         response = self.client.get("/static/images/learning-loop.svg")
@@ -31,7 +31,9 @@ class AppSmokeTests(unittest.TestCase):
         response.close()
 
     def test_missing_database_and_models_do_not_block_basic_page(self):
-        with patch.dict(os.environ, {"DB_HOST": "unavailable.invalid", "ML_MODEL_DIR": "/missing/ml", "DL_MODEL_DIR": "/missing/dl"}):
+        with patch.dict(
+            os.environ, {"DB_HOST": "unavailable.invalid", "ML_MODEL_DIR": "/missing/ml", "DL_MODEL_DIR": "/missing/dl"}
+        ):
             client = create_app({"TESTING": True}).test_client()
             self.assertEqual(client.get("/lab/hello").status_code, 200)
 
