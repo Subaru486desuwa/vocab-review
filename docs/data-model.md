@@ -2,24 +2,7 @@
 
 以下为待实现的 MySQL 数据字典；当前未创建数据库。使用 InnoDB、utf8mb4；除注明的复合键外主键为 BIGINT。时间保存为 UTC DATETIME(6)，展示和日统计按用户时区转换。所有外键类型一致并建索引，默认限制删除。
 
-```mermaid
-erDiagram
-  users ||--o{ user_wordbooks : selects
-  wordbooks ||--o{ user_wordbooks : selected_by
-  wordbooks ||--o{ wordbook_words : contains
-  words ||--o{ wordbook_words : belongs_to
-  words ||--o{ word_senses : has
-  word_senses ||--o{ examples : illustrated_by
-  word_senses ||--o{ questions : examined_by
-  users ||--o{ practice_sessions : starts
-  practice_sessions ||--o{ session_items : contains
-  questions ||--o{ session_items : version_used_by
-  session_items ||--o| attempts : answered_once
-  users ||--o{ learning_state : owns
-  word_senses ||--o{ learning_state : tracked_by
-  users ||--o{ inference_events : invokes
-  model_versions o|--o{ inference_events : identifies
-```
+![14 张表的关系与基数](images/data-model.svg)
 
 ## 账户与内容
 

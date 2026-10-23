@@ -2,21 +2,9 @@
 
 采用模块化单体：页面、学习业务与模型推理位于同一 Python 应用，按职责组织，而非拆为独立微服务。课程要求能够直接展示路由、SQL、事务和模型加载过程。
 
-```mermaid
-flowchart TD
-  browser[浏览器：Jinja + 少量 JavaScript] --> routes[Flask Blueprints：会话 / 校验 / CSRF / 响应]
-  routes --> learning[学习逻辑：词表 / 练习 / 判分 / 复习 / 统计]
-  routes --> ml[ML 推理：共享特征 + 回归模型]
-  routes --> dl[DL 推理：英语编码 + 例句检索]
-  learning --> repositories[Repositories：参数化 SQL]
-  ml --> repositories
-  dl --> repositories
-  repositories --> mysql[(MySQL：内容 / 作答 / 状态 / 推理事件)]
-  ml --> ml_artifacts[本地受信任 ML 制品与 manifest]
-  dl --> dl_artifacts[本地模型 / 向量 / 例句 ID 映射]
-  offline[离线脚本：训练 / 评价 / 索引构建] --> ml_artifacts
-  offline --> dl_artifacts
-```
+![系统组件及主要数据依赖](images/architecture.png)
+
+图源：交接报告 v1.0，图 1。图中的模型模块位于同一 Flask 应用内。
 
 ## 职责与依赖
 

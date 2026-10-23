@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1090" role="img" aria-labelledby="title desc">
+<title id="title">词汇系统数据关系图</title><desc id="desc">14 张表按内容与目标、练习与学习状态、模型与推理事件分区展示。箭头从被引用实体指向引用实体，边标签给出基数。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#62796b"/></marker></defs>
+<rect width="1240" height="1090" fill="#f7f8f3"/>
+<g font-family="sans-serif" fill="#172a2a">
+<text x="40" y="42" font-size="24" font-weight="700">数据关系 · 首版 14 张表</text>
+<text x="40" y="70" font-size="14" fill="#66716e">箭头：被引用实体 → 引用实体；边标签：父端基数 : 子端基数。相同名称表示同一张表。</text>
+<rect x="20" y="94" width="1200" height="300" rx="14" fill="#fff" stroke="#dce2d9"/>
+<text x="40" y="128" font-size="17" font-weight="700">01  内容与目标</text>
+<rect x="40" y="158" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="155" y="185" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">users</text>
+<text x="155" y="207" text-anchor="middle" font-size="12" fill="#66716e">账户</text>
+<rect x="340" y="158" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="455" y="185" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">user_wordbooks</text>
+<text x="455" y="207" text-anchor="middle" font-size="12" fill="#66716e">用户目标关联</text>
+<rect x="640" y="158" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="755" y="185" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">wordbooks</text>
+<text x="755" y="207" text-anchor="middle" font-size="12" fill="#66716e">来源与版本</text>
+<rect x="940" y="158" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="1055" y="185" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">wordbook_words</text>
+<text x="1055" y="207" text-anchor="middle" font-size="12" fill="#66716e">词表收录关系</text>
+<rect x="940" y="302" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="1055" y="329" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">words</text>
+<text x="1055" y="351" text-anchor="middle" font-size="12" fill="#66716e">规范化词条</text>
+<rect x="640" y="302" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="755" y="329" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">word_senses</text>
+<text x="755" y="351" text-anchor="middle" font-size="12" fill="#66716e">稳定词义</text>
+<rect x="340" y="302" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="455" y="329" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">examples</text>
+<text x="455" y="351" text-anchor="middle" font-size="12" fill="#66716e">例句与正文版本</text>
+<path d="M270 190H340" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="305" y="180" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M640 190H570" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="605" y="180" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M870 190H940" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="905" y="180" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M1055 302V222" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="1100" y="269" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M940 334H870" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="905" y="324" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M640 334H570" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="605" y="324" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<rect x="20" y="414" width="1200" height="390" rx="14" fill="#fff" stroke="#dce2d9"/>
+<text x="40" y="448" font-size="17" font-weight="700">02  练习与学习状态</text>
+<rect x="40" y="478" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="155" y="505" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">users</text>
+<text x="155" y="527" text-anchor="middle" font-size="12" fill="#66716e">同一账户</text>
+<rect x="340" y="478" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="455" y="505" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">practice_sessions</text>
+<text x="455" y="527" text-anchor="middle" font-size="12" fill="#66716e">创建时的目标快照</text>
+<rect x="640" y="478" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="755" y="505" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">session_items</text>
+<text x="755" y="527" text-anchor="middle" font-size="12" fill="#66716e">固定题目版本实例</text>
+<rect x="940" y="478" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="1055" y="505" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">attempts</text>
+<text x="1055" y="527" text-anchor="middle" font-size="12" fill="#66716e">一次有效作答</text>
+<rect x="40" y="664" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="155" y="691" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">word_senses</text>
+<text x="155" y="713" text-anchor="middle" font-size="12" fill="#66716e">同一词义</text>
+<rect x="340" y="664" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="455" y="691" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">questions</text>
+<text x="455" y="713" text-anchor="middle" font-size="12" fill="#66716e">不可变题目版本</text>
+<rect x="640" y="664" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="755" y="691" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">learning_state</text>
+<text x="755" y="713" text-anchor="middle" font-size="12" fill="#66716e">唯一：用户 × 词义 × 题型</text>
+<path d="M270 510H340" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="305" y="500" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M570 510H640" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="605" y="500" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M870 510H940" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="905" y="500" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..1</text>
+<path d="M270 696H340" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="305" y="686" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M570 696H600V595H755V542" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="675" y="585" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M155 542V602H755V664" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="450" y="592" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M155 728V765H755V728" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="455" y="755" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<rect x="20" y="824" width="1200" height="210" rx="14" fill="#fff" stroke="#dce2d9"/>
+<text x="40" y="858" font-size="17" font-weight="700">03  模型与推理事件</text>
+<rect x="40" y="910" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="155" y="937" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">users</text>
+<text x="155" y="959" text-anchor="middle" font-size="12" fill="#66716e">调用者</text>
+<rect x="505" y="910" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="620" y="937" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">inference_events</text>
+<text x="620" y="959" text-anchor="middle" font-size="12" fill="#66716e">输入 / 输出 / 状态 / 耗时</text>
+<rect x="940" y="910" width="230" height="64" rx="8" fill="#edf2e9" stroke="#c8d8c9"/>
+<text x="1055" y="937" text-anchor="middle" font-family="monospace" font-size="16" font-weight="600">model_versions</text>
+<text x="1055" y="959" text-anchor="middle" font-size="12" fill="#66716e">可信制品与契约版本</text>
+<path d="M270 942H505" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="390" y="932" text-anchor="middle" font-size="11" fill="#4b6254">1 : 0..n</text>
+<path d="M940 942H735" fill="none" stroke="#62796b" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="835" y="932" text-anchor="middle" font-size="11" fill="#4b6254">0..1 : 0..n</text>
+<text x="40" y="1066" font-size="13" fill="#66716e">作答事实可重建学习状态；模型输出单独留证，不覆盖作答事实。字段、外键与唯一约束以数据字典为准。</text></g></svg>
