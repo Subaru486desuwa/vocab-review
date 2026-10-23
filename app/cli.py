@@ -5,8 +5,8 @@ from flask import current_app
 from flask.cli import AppGroup, with_appcontext
 
 from app import clock
-from app.repositories import db, migrations
-from app.services import accounts, content_import
+from app.repositories import db, migrations, users
+from app.services import accounts, content_import, learning_state
 
 db_cli = AppGroup("db", help="数据库迁移。")
 
@@ -88,8 +88,43 @@ def seed_demo_user_command(username):
     click.echo(f"已创建演示账户：{user['username']}")
 
 
+@click.command("rebuild-learning-state")
+@click.option("--username", help="只核对该用户。")
+@click.option("--apply", "apply_changes", is_flag=True, help="把不一致的学习状态改写为重放结果。")
+@with_appcontext
+def rebuild_learning_state_command(username, apply_changes):
+    """按作答事实重放 review_rules，与 learning_state 比对；有差异且未加 --apply 时退出码为 1。"""
+    conn = db.get_db()
+    user_id = None
+    if username:
+        with db.transaction(conn):
+            user = users.find_by_username_norm(conn, accounts.normalize_username(username))
+        if user is None:
+            raise click.ClickException(f"用户不存在：{username}")
+        user_id = user["id"]
+    try:
+        diffs, checked = learning_state.compare(conn, user_id)
+        if diffs and apply_changes:
+            diffs = learning_state.rebuild(conn, user_id)
+    except learning_state.UnknownRuleVersion as exc:
+        raise click.ClickException(f"未知复习规则版本：{exc.args[0]}") from exc
+    if not diffs:
+        click.echo(f"学习状态与作答记录一致：核对 {checked} 组（用户, 词义, 题型）。")
+        return
+    click.echo(f"发现 {len(diffs)} 条不一致：")
+    for diff in diffs:
+        user, sense, skill = diff["key"]
+        detail = "；".join(f"{field} 存储 {old} / 重建 {new}" for field, (old, new) in diff["changed"].items())
+        click.echo(f"  user={user} sense={sense} skill={skill}：{detail}")
+    if apply_changes:
+        click.echo(f"已按作答记录重建 {len(diffs)} 条学习状态。")
+        return
+    raise click.exceptions.Exit(1)
+
+
 def init_app(app):
     app.cli.add_command(db_cli)
     app.cli.add_command(create_admin_command)
     app.cli.add_command(import_content_command)
     app.cli.add_command(seed_demo_user_command)
+    app.cli.add_command(rebuild_learning_state_command)

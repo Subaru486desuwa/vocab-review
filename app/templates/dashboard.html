@@ -4,13 +4,39 @@
 <section class="auth-page wide-page">
   <p class="eyebrow">概览</p>
   <h1>你好，{{ user.username }}</h1>
-  {% if targets %}
-    <p class="lead">当前目标：{% for b in targets %}{{ b.name }}（{{ b.version }}）{% if not loop.last %}、{% endif %}{% endfor %}</p>
-    <a class="button" href="{{ url_for('learning.practice_page') }}">开始练习</a>
+  {% if summary %}
+    <p class="lead">当前目标：{% for b in summary.scope.wordbooks %}{{ b.name }}（{{ b.version }}）{% if not loop.last %}、{% endif %}{% endfor %}</p>
+    <div class="actions">
+      <a class="button" href="{{ url_for('learning.practice_page') }}">开始练习</a>
+      <a class="text-link" href="{{ url_for('learning.review_page') }}">查看复习计划 →</a>
+    </div>
+    <dl class="stat-grid">
+      <div><dt>词条</dt><dd>{{ summary.words.practiced }} / {{ summary.words.total }}</dd><p>已练习 / 目标内词条</p></div>
+      <div><dt>未测试</dt><dd>{{ summary["items"].untested }}</dd><p>共 {{ summary["items"].total }} 个词义 × 题型</p></div>
+      <div><dt>待复习</dt><dd>{{ summary["items"].due }}</dd><p>另有 {{ summary["items"].wrong_pending }} 个错题未到期</p></div>
+      <div><dt>近期作答稳定</dt><dd>{{ summary["items"].recently_consistent }}</dd><p>最近三次正确且跨度 ≥ 24 小时</p></div>
+      <div><dt>作答正确比例</dt><dd>{% if summary.attempts.all_time.accuracy is none %}—{% else %}{{ "%.0f"|format(summary.attempts.all_time.accuracy * 100) }}%{% endif %}</dd><p>{{ summary.attempts.all_time.correct }} / {{ summary.attempts.all_time.count }} 次作答</p></div>
+    </dl>
+    <table class="data-table">
+      <caption>按题型（分母为该题型的词义 × 题型组合）</caption>
+      <thead><tr><th scope="col">题型</th><th scope="col">已测试</th><th scope="col">未测试</th><th scope="col">待复习</th><th scope="col">作答（正确 / 总数）</th></tr></thead>
+      <tbody>
+        {% for skill, part in summary.by_skill.items() %}
+          <tr><th scope="row">{{ skill_names[skill] }}</th><td>{{ part["items"].tested }}</td><td>{{ part["items"].untested }}</td><td>{{ part["items"].due }}</td><td>{{ part.attempts.all_time.correct }} / {{ part.attempts.all_time.count }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <table class="data-table">
+      <caption>按词表（多个目标的共有词条在合计中只计一次：合计 {{ summary.words.total }}）</caption>
+      <thead><tr><th scope="col">词表</th><th scope="col">词条</th><th scope="col">已练习</th></tr></thead>
+      <tbody>
+        {% for b in summary.by_wordbook %}<tr><th scope="row">{{ b.name }}</th><td>{{ b.words_total }}</td><td>{{ b.words_practiced }}</td></tr>{% endfor %}
+      </tbody>
+    </table>
+    <p class="form-note">统计只来自真实作答记录；没有作答的词义显示为未测试，不代表“不会”。</p>
   {% else %}
     <p class="lead">还没有选择目标词表。先选择一个或多个考试目标，再开始练习。</p>
     <a class="button" href="{{ url_for('learning.wordbooks_page') }}">选择目标词表</a>
   {% endif %}
-  <p class="form-note">复习计划与统计将在后续切片接入。</p>
 </section>
 {% endblock %}

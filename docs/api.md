@@ -1,6 +1,6 @@
 # 页面与接口契约
 
-当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`/dashboard`（占位概览）、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），以及 `/wordbooks`、`/practice` 页面和目标词表、练习、作答接口。复习与统计接口待实现。其余为完整首版的待实现契约，不是当前可调用的接口。
+当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`/dashboard`（占位概览）、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），以及 `/wordbooks`、`/practice`、`/review`、`/dashboard` 页面和目标词表、练习、作答、复习、统计接口。ML、DL 实验与管理页面待实现。其余为完整首版的待实现契约，不是当前可调用的接口。
 
 ## 页面
 
@@ -28,8 +28,8 @@
 | POST /api/v1/practice/sessions | skill_type, count=1—20（默认 10）, 可选 wordbook_ids（须为已选目标） | 未选目标 422 NO_TARGET，无可出题 422 NO_QUESTIONS；按 到期复习 > 未到期错题 > 未测试 > 其他 取题，同级随机，每个词义一题，只取启用词条/词义与已发布题目；保存目标快照，201 返回练习 |
 | GET /api/v1/practice/sessions/{id} | 路径 ID | 仅本人可读，否则 404；返回 items（题干、选项）与已作答项的 result；未作答项不含答案与判分规则 |
 | POST /api/v1/practice/items/{id}/answer | answer（选项 id 或拼写文本）,CSRF | 服务端判分、幂等重试和单一写事务；非本人 404；格式不合法 422 INVALID_ANSWER；返回 is_correct、error_type、correct_answer、replayed、session_status |
-| GET /api/v1/me/review | 可选目标、题型 | 到期与错题清单；未到期明确时间 |
-| GET /api/v1/me/stats | 可选目标、题型 | 真实记录的统计；注明粒度、窗口和分母 |
+| GET /api/v1/me/review | 可选 wordbook_id（须为已选目标）、skill_type | 默认范围为全部已选目标；未选目标 422 NO_TARGET。返回 due（next_review_at ≤ 当前）与 wrong_pending（最近一次答错且未到期，附 seconds_until_due），以及 next_due_at；未作答过的词义不出现 |
+| GET /api/v1/me/stats | 可选 wordbook_id、skill_type | 只来自真实作答与学习状态：words（目标并集按词条去重的总数与已练习数）、items（有已发布题目的词义 × 题型：total/tested/untested/due/wrong_pending/recently_consistent）、attempts（all_time 与 last_7_days 的次数、正确数、accuracy，无作答为 null）、by_skill、by_wordbook，并附 granularity 说明 |
 | POST /api/v1/ml/recall | delta_seconds,history_seen,history_correct,CSRF | manual_lab；status、expected_recall、特征/模型版本、model_time_ms |
 | POST /api/v1/examples/search | 英语 text,top_k=1—10,可选目标词表 | 例句 ID、正文、目标词义、cosine_similarity、模型/语料版本 |
 | POST /api/v1/admin/import | multipart，字段名为 wordbooks、words、senses、memberships、examples、questions，可选 dry_run=1；管理员及 CSRF | 格式见 [内容包格式](content-format.md)；先预检后显式提交，成功返回 dry_run 与各文件计数；预检失败 422 IMPORT_INVALID，`error.rows` 为至多 200 条 {file, line, field, message}；未知字段 400；单批事务失败回滚 |

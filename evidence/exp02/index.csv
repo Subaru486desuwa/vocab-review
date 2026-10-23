@@ -10,3 +10,6 @@ validation-content-import.txt,S2/T03/T10/T11/T12,"docker compose run --rm web sh
 practice-http.txt,S2/T04/T05/T06/T07,bash evidence/exp02/practice-http.sh,2026-10-23T14:06:57Z,demo 选择六级目标、组卷不含答案、正确/错误/空答案、重放、换答案 409、他人访问 404 及 MySQL 作答与学习状态；学习状态累计了同一脚本此前两次试运行的作答
 practice-http.sh,S2,bash evidence/exp02/practice-http.sh,2026-10-23T14:06:57Z,生成 practice-http.txt 的脚本；每次运行新建一个练习与一个 peer_ 演示账户
 validation-practice.txt,S2/T04—T08/T10,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T14:08:07Z,107 项通过，含并发同答案、注入异常回滚、越权与题目版本测试；前端脚本仅做 node --check，浏览器验收见 #8
+review-path.txt,S2/T09/T14/答辩路径,bash evidence/exp02/review-path.sh,2026-10-23T14:21:49Z,demo：六级目标 → 含 2 道错题的练习 → 复习计划（错题约 10 分钟后到期）→ 增加雅思（合计词条去重为 50）→ 单看雅思复用共有词作答 → rebuild-learning-state 核对一致；统计含此前留证运行的作答
+review-path.sh,S2,bash evidence/exp02/review-path.sh,2026-10-23T14:21:49Z,生成 review-path.txt 的脚本；每次运行新建一组练习
+validation-review.txt,S2/T09/T14,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T14:23:21Z,116 项通过，含复习清单、统计分母、近期作答稳定、多目标去重与重建测试

@@ -15,6 +15,7 @@
       {% if user %}
         <a href="{{ url_for('learning.wordbooks_page') }}">目标词表</a>
         <a href="{{ url_for('learning.practice_page') }}">练习</a>
+        <a href="{{ url_for('learning.review_page') }}">复习</a>
         <a href="{{ url_for('learning.dashboard') }}">{{ user.username }}</a>
         <form method="post" action="{{ url_for('auth.logout') }}">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">

@@ -2,7 +2,7 @@
 
 面向六级、考研和雅思的 Python Web 课程项目。以统一词库连接三类目标词表，记录辨义、拼写和语境练习，再生成可解释的复习计划。
 
-**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容、目标词表选择、三类题型练习与服务端判分，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；复习计划与统计、ML 和 DL 后续实现。仓库保持 **private**。
+**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容、目标词表选择、三类题型练习与服务端判分、复习计划与统计、学习状态重建核对，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；ML 和 DL 后续实现。仓库保持 **private**。
 
 ## 先运行基础页面
 
@@ -48,6 +48,12 @@ docker compose run --rm web flask import-content data/demo/v1
 
 ```bash
 docker compose run --rm web flask seed-demo-user
+```
+
+核对学习状态投影与作答记录（加 `--apply` 修复差异）：
+
+```bash
+docker compose run --rm web flask rebuild-learning-state
 ```
 
 `import-content` 先整批预检，有错误时逐行报告且不写入；加 `--dry-run` 只报告变化。格式见 [内容包格式](docs/content-format.md)。真实配置只放本地 `.env` 或环境变量。
