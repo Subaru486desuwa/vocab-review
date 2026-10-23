@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}无法完成请求 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page">
+  <h1>无法完成请求</h1>
+  <p class="lead">{{ message }}</p>
+  <a class="text-link" href="{{ url_for('index') }}">← 返回首页</a>
+</section>
+{% endblock %}

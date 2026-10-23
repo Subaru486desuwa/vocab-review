@@ -20,7 +20,7 @@
 | `sql/` | 建表、顺序迁移、演示种子 | 重置真实用户数据库 |
 | `evidence/` | 真实运行材料及索引 | 预填成功结果或虚构模型指标 |
 
-当前只注册 lab Blueprint 和首页；其余职责已定，业务入口后续实现。直接依赖先收敛到 Flask、PyMySQL、Flask-WTF 与 dotenv；算法依赖在相应阶段验证并锁定。
+当前注册首页、lab、auth（账户、会话、`login_required`/`role_required`）与 learning（占位概览）；`app/blueprints/responses.py` 统一 JSON 外壳、request_id 与错误处理。其余职责已定，业务入口后续实现。直接依赖先收敛到 Flask、PyMySQL、Flask-WTF 与 dotenv；算法依赖在相应阶段验证并锁定。
 
 ## 三个必须守住的契约
 
@@ -36,7 +36,7 @@
 
 数据库为 MySQL 8.4（Docker `db` 服务）、InnoDB、utf8mb4，会话时区 UTC。演示库与测试库分开，各用只授权本库的账户；演示账户没有 DROP 权限。配置项及空值说明见 `.env.example`。应用读取 Web 与 DB 配置；连接按请求创建，事务由 `app/repositories/db.py` 的 `transaction()` 显式提交或回滚，业务时间统一取自可注入的 `app/clock.py`。模型配置项在对应能力实现时接入。
 
-`SECRET_KEY`、数据库密码不进入 Git 或截图。Cookie 使用 HttpOnly、SameSite=Lax；APP_ENV=production 时启用 Secure，需配合 HTTPS。当前两个 GET 页面无需会话密钥；引入账户前必须验证密钥配置。写接口使用 CSRF，Jinja 保持自动转义。
+`SECRET_KEY`、数据库密码不进入 Git 或截图。Cookie 使用 HttpOnly、SameSite=Lax；APP_ENV=production 时启用 Secure，需配合 HTTPS。未设置 `SECRET_KEY` 时应用拒绝启动，只有测试配置使用临时密钥。登录时先清空旧会话再写入身份；会话只保存 user_id，每次请求从数据库确认用户仍启用。写接口使用 CSRF，Jinja 保持自动转义。
 
 ## 文件与大数据
 

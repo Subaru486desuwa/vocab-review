@@ -1,1 +1,6 @@
 file,requirement,command,executed_at_utc,notes
+schema.txt,E2/S2,"docker compose exec db mysql: SELECT ... FROM schema_migrations; SHOW CREATE TABLE users",2026-10-23T13:25:01Z,演示库 vocab_review，0001 迁移与 users 建表 SQL
+password-hash.txt,E2/T02,"docker compose exec db mysql: SELECT 哈希算法前缀与长度 FROM users",2026-10-23T13:25:01Z,只存 Werkzeug scrypt 哈希；不导出完整哈希；demo_e2 为演示账户
+auth-http.txt,E2/T02/T03,evidence/exp02/auth-http.sh,2026-10-23T13:24:47Z,注册、正确/错误密码、不存在用户、退出后 401、重复注册 409、缺 CSRF 403；演示密码随机生成且未记录
+auth-http.sh,E2,bash evidence/exp02/auth-http.sh,2026-10-23T13:24:47Z,生成 auth-http.txt 的 curl 脚本；对已运行的 docker compose web 执行
+validation.txt,S2/T02/T03,"docker compose run --rm web sh -c 'python -m compileall -q app tests && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T13:24:33Z,45 项通过，含测试库上的账户、会话、CSRF 与 create-admin 测试

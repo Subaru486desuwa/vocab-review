@@ -1,0 +1,21 @@
+# executed_at_utc=2026-10-23T13:25:01Z 库=vocab_review 账户=vocab_app（docker compose exec db mysql）
+## SELECT version, applied_at FROM schema_migrations
++---------------------+----------------------------+
+| version             | applied_at                 |
++---------------------+----------------------------+
+| 0001_initial_schema | 2026-10-23 13:15:18.537869 |
++---------------------+----------------------------+
+## SHOW CREATE TABLE users
+CREATE TABLE `users` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL,
+  `username_norm` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `role` varchar(16) NOT NULL DEFAULT 'learner',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `display_timezone` varchar(64) NOT NULL DEFAULT 'Asia/Shanghai',
+  `created_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_users_username_norm` (`username_norm`),
+  CONSTRAINT `ck_users_role` CHECK ((`role` in (_utf8mb4'learner',_utf8mb4'admin')))
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}登录 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page">
+  <p class="eyebrow">账户</p>
+  <h1>登录</h1>
+  <form class="auth-form" method="post" action="{{ url_for('auth.login') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="next" value="{{ next or '' }}">
+    <label>用户名
+      <input name="username" value="{{ username or '' }}" autocomplete="username" required maxlength="32">
+    </label>
+    <label>密码
+      <input type="password" name="password" autocomplete="current-password" required>
+    </label>
+    {% if error %}<p class="form-error" role="alert">{{ error }}</p>{% endif %}
+    <button class="button" type="submit">登录</button>
+  </form>
+  <p class="form-note">还没有账户？<a class="text-link" href="{{ url_for('auth.register_page') }}">注册</a></p>
+</section>
+{% endblock %}

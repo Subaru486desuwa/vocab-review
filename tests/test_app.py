@@ -46,8 +46,20 @@ class AppSmokeTests(unittest.TestCase):
         self.assertEqual(app.config["SESSION_COOKIE_SAMESITE"], "Lax")
         self.assertFalse(app.debug)
 
+    def test_missing_secret_key_refuses_to_start(self):
+        with patch.dict(os.environ, {"APP_ENV": "development", "SECRET_KEY": ""}):
+            with self.assertRaisesRegex(RuntimeError, "SECRET_KEY"):
+                create_app()
+
+    def test_auth_pages_render_without_database(self):
+        for path in ("/login", "/register"):
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 200)
+                self.assertIn('name="csrf_token"', response.get_data(as_text=True))
+
     def test_unimplemented_business_routes_are_not_fake_successes(self):
-        for path in ("/login", "/practice", "/api/v1/wordbooks"):
+        for path in ("/practice", "/review", "/api/v1/wordbooks"):
             with self.subTest(path=path):
                 self.assertEqual(self.client.get(path).status_code, 404)
 

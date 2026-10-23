@@ -70,7 +70,7 @@ def db_conn(db_config, migrated_db):
 
 @pytest.fixture
 def db_app(db_config, migrated_db):
-    app = create_app({"TESTING": True, **db_config})
+    app = create_app({"TESTING": True, "SECRET_KEY": "test-secret", "WTF_CSRF_ENABLED": False, **db_config})
     yield app
     conn = db.connect(db_config)
     _reset(conn, keep=("schema_migrations",))
@@ -80,3 +80,8 @@ def db_app(db_config, migrated_db):
 @pytest.fixture
 def table_names():
     return _tables
+
+
+@pytest.fixture
+def client(db_app):
+    return db_app.test_client()
