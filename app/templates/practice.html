@@ -9,7 +9,7 @@
       <legend>题型</legend>
       {% set labels = {"recognition": "辨义：看词选释义", "spelling": "拼写：看释义写单词", "context": "语境：为句子选词"} %}
       {% for skill in skill_types %}
-        <label class="choice"><input type="radio" name="skill_type" value="{{ skill }}" {% if loop.first %}checked{% endif %}> {{ labels[skill] }}</label>
+        <label class="choice"><input type="radio" name="skill_type" value="{{ skill }}" {% if skill == chosen_skill or (chosen_skill not in skill_types and loop.first) %}checked{% endif %}> {{ labels[skill] }}</label>
       {% endfor %}
     </fieldset>
     <label>题数

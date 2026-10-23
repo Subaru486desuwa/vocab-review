@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}复习计划 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page wide-page">
+  <p class="eyebrow">复习计划</p>
+  <h1>复习计划</h1>
+  {% if data is none %}
+    <p class="lead">还没有选择目标词表。</p>
+    <a class="button" href="{{ url_for('learning.wordbooks_page') }}">选择目标词表</a>
+  {% else %}
+    <p class="lead">按 review_rules_v1 安排：答错 10 分钟后复习，答对后间隔依次为 1、3、7、14 天。</p>
+    <h2>已到期（{{ data.due|length }}）</h2>
+    {% if data.due %}
+      <ul class="review-list">
+        {% for e in data.due %}
+          <li><strong>{{ e.lemma }}</strong> <span class="field-hint">{{ e.part_of_speech }} {{ e.definition_zh }}</span>
+            <span class="status">{{ skill_names[e.skill_type] }} · 正确 {{ e.correct_count }} / {{ e.seen_count }}</span>
+            <a class="text-link" href="{{ url_for('learning.practice_page', skill_type=e.skill_type) }}">复习</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="form-note">现在没有到期的内容。{% if data.next_due_at %}下一项到期时间：{{ data.next_due_at }}（UTC）{% endif %}</p>
+    {% endif %}
+    <h2>未到期的错题（{{ data.wrong_pending|length }}）</h2>
+    {% if data.wrong_pending %}
+      <ul class="review-list">
+        {% for e in data.wrong_pending %}
+          <li><strong>{{ e.lemma }}</strong> <span class="field-hint">{{ e.part_of_speech }} {{ e.definition_zh }}</span>
+            <span class="status">{{ skill_names[e.skill_type] }} · {{ e.until }}到期</span></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="form-note">没有未到期的错题。</p>
+    {% endif %}
+  {% endif %}
+</section>
+{% endblock %}

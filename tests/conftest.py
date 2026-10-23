@@ -5,6 +5,8 @@ import pytest
 from app import create_app
 from app.clock import utc_now
 from app.repositories import db, migrations
+from app.services.content_import import import_content, read_directory
+from tests.helpers import DEMO, NOW, login_as, select
 
 
 def _test_db_config():
@@ -85,3 +87,17 @@ def table_names():
 @pytest.fixture
 def client(db_app):
     return db_app.test_client()
+
+
+@pytest.fixture
+def demo(db_app):
+    with db_app.app_context():
+        import_content(db.get_db(), read_directory(DEMO), NOW)
+    return db_app
+
+
+@pytest.fixture
+def learner(demo, db_config):
+    client = login_as(demo, "alice")
+    select(client, db_config, "cet6-demo")
+    return client

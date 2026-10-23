@@ -4,10 +4,11 @@ from app import clock
 from app.blueprints.auth import current_user, login_required
 from app.blueprints.responses import api_error, api_ok
 from app.repositories import db
-from app.repositories import wordbooks as wordbook_repo
-from app.services import grading, practice
+from app.services import grading, practice, progress
 
 bp = Blueprint("learning", __name__)
+
+SKILL_NAMES = {"recognition": "辨义", "spelling": "拼写", "context": "语境"}
 
 
 def _user_id():
@@ -28,12 +29,42 @@ def _invalid(exc):
 # ---- 页面 ----
 
 
+def _scope_args():
+    wordbook_id = request.args.get("wordbook_id")
+    if wordbook_id is not None:
+        wordbook_id = int(wordbook_id) if wordbook_id.isdigit() else -1
+    return {"wordbook_id": wordbook_id, "skill_type": request.args.get("skill_type") or None}
+
+
+def _until(seconds):
+    if seconds < 3600:
+        return f"约 {max(1, round(seconds / 60))} 分钟后"
+    if seconds < 86400:
+        return f"约 {round(seconds / 3600)} 小时后"
+    return f"约 {round(seconds / 86400)} 天后"
+
+
 @bp.get("/dashboard")
 @login_required
 def dashboard():
-    with db.transaction() as conn:
-        targets = wordbook_repo.selected(conn, _user_id())
-    return render_template("dashboard.html", user=current_user(), targets=targets)
+    try:
+        summary = progress.stats(db.get_db(), _user_id(), clock.now())
+    except practice.NoTarget:
+        summary = None
+    return render_template("dashboard.html", user=current_user(), summary=summary, skill_names=SKILL_NAMES)
+
+
+@bp.get("/review")
+@login_required
+def review_page():
+    try:
+        data = progress.review_list(db.get_db(), _user_id(), clock.now())
+    except practice.NoTarget:
+        data = None
+    if data:
+        for entry in data["wrong_pending"]:
+            entry["until"] = _until(entry["seconds_until_due"])
+    return render_template("review.html", data=data, skill_names=SKILL_NAMES)
 
 
 @bp.get("/wordbooks")
@@ -45,7 +76,12 @@ def wordbooks_page():
 @bp.get("/practice")
 @login_required
 def practice_page():
-    return render_template("practice.html", skill_types=practice.SKILL_TYPES, default_count=practice.DEFAULT_COUNT)
+    return render_template(
+        "practice.html",
+        skill_types=practice.SKILL_TYPES,
+        default_count=practice.DEFAULT_COUNT,
+        chosen_skill=request.args.get("skill_type"),
+    )
 
 
 # ---- JSON ----
@@ -97,6 +133,28 @@ def create_session():
     except practice.NoQuestions:
         return api_error("NO_QUESTIONS", "所选词表中没有该题型的可用题目", 422)
     return api_ok(session, 201)
+
+
+@bp.get("/api/v1/me/review")
+@login_required
+def review_api():
+    try:
+        return api_ok(progress.review_list(db.get_db(), _user_id(), clock.now(), **_scope_args()))
+    except practice.InvalidRequest as exc:
+        return _invalid(exc)
+    except practice.NoTarget:
+        return api_error("NO_TARGET", "请先选择目标词表", 422)
+
+
+@bp.get("/api/v1/me/stats")
+@login_required
+def stats_api():
+    try:
+        return api_ok(progress.stats(db.get_db(), _user_id(), clock.now(), **_scope_args()))
+    except practice.InvalidRequest as exc:
+        return _invalid(exc)
+    except practice.NoTarget:
+        return api_error("NO_TARGET", "请先选择目标词表", 422)
 
 
 @bp.get("/api/v1/practice/sessions/<int:session_id>")
