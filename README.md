@@ -41,6 +41,7 @@ ssh -N -L 5000:127.0.0.1:5000 osaka
 | [模型契约](docs/models.md) | 共享特征、离线评价、索引版本与留证 |
 | [实施与验收](docs/acceptance.md) | S0—S5、T01—T14、M01—M06 |
 | [术语表](GLOSSARY.md) | 词条、词义、题型、作答与学习状态 |
+| [开发规范](docs/development.md) | 分支与提交、合并前检查、Docker、代码约定、日程 |
 
 ```text
 app/          Flask 应用、路由、业务、SQL 查询、模板与静态资源
