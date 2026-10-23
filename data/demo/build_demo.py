@@ -116,8 +116,35 @@ def _write_csv(path, header, rows):
         writer.writerows(rows)
 
 
-def build(out_dir, entries_path=HERE / "source" / "entries.csv"):
+def load_extra_examples(path, entries):
+    """每个词义的补充例句（DL 语料）；必须对应 entries.csv 中已有的词义，且用 [...] 标出目标词。"""
+    known = {(e["lemma_norm"], e["sense_key"]) for e in entries}
+    extra = {}
+    with open(path, encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            key = (normalize(row["lemma"]), row["sense_key"])
+            if key not in known or len(TARGET.findall(row["example_en"])) != 1:
+                raise ValueError(f"补充例句无效：{row}")
+            extra.setdefault(key, []).append(row)
+    return extra
+
+
+def _example_rows(entries, extra):
+    rows = []
+    for e in entries:
+        sentences = [(e["example_en"], e["example_zh"])]
+        sentences += [(x["example_en"], x["example_zh"]) for x in extra.get((e["lemma_norm"], e["sense_key"]), [])]
+        for n, (text, translation) in enumerate(sentences, start=1):
+            key = f"{e['lemma_norm']}-{e['sense_key']}-{n}"
+            rows.append(
+                (key, e["lemma_norm"], e["sense_key"], TARGET.sub(r"\1", text), translation, SOURCE, CONTENT_VERSION, 1)
+            )
+    return rows
+
+
+def build(out_dir, entries_path=HERE / "source" / "entries.csv", extra_path=HERE / "source" / "extra_examples.csv"):
     entries = load_entries(entries_path)
+    extra = load_extra_examples(extra_path, entries)
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     _write_csv(
@@ -162,19 +189,7 @@ def build(out_dir, entries_path=HERE / "source" / "entries.csv"):
             "content_version",
             "is_active",
         ],
-        [
-            (
-                f"{e['lemma_norm']}-{e['sense_key']}-1",
-                e["lemma_norm"],
-                e["sense_key"],
-                TARGET.sub(r"\1", e["example_en"]),
-                e["example_zh"],
-                SOURCE,
-                CONTENT_VERSION,
-                1,
-            )
-            for e in entries
-        ],
+        _example_rows(entries, extra),
     )
     with open(out / "questions.jsonl", "w", encoding="utf-8") as f:
         for q in build_questions(entries):

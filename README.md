@@ -2,7 +2,7 @@
 
 面向六级、考研和雅思的 Python Web 课程项目。以统一词库连接三类目标词表，记录辨义、拼写和语境练习，再生成可解释的复习计划。
 
-**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容、目标词表选择、三类题型练习与服务端判分、复习计划与统计、学习状态重建核对，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；实验三 ML（`/lab/ml`）；DL 后续实现。仓库保持 **private**。
+**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容、目标词表选择、三类题型练习与服务端判分、复习计划与统计、学习状态重建核对，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；实验三 ML（`/lab/ml`）与实验四 DL（`/examples`）；分级背单词等平台功能后续实现（#17）。仓库保持 **private**。
 
 ## 先运行基础页面
 
@@ -56,6 +56,20 @@ docker compose run --rm web flask seed-demo-user
 docker compose run --rm web flask register-model artifacts/ml
 ```
 
+实验四先下载固定 revision 的编码器（约 88 MB，需联网），再按当前例句构建索引；例句变化后需重新构建：
+
+```bash
+docker compose run --rm -e HF_HUB_OFFLINE=0 web python -m ml.download_encoder
+```
+
+```bash
+docker compose run --rm web flask build-example-index
+```
+
+```bash
+docker compose run --rm web flask evaluate-example-search
+```
+
 核对学习状态投影与作答记录（加 `--apply` 修复差异）：
 
 ```bash
@@ -99,7 +113,7 @@ docker compose run --rm web sh -c 'python -m compileall -q app tests && ruff che
 
 标记为 `db` 的测试使用 `TEST_DB_*` 指定的独立测试库，每次运行先清空再迁移；库名必须以 `_test` 结尾。未配置测试库时这些测试显示为跳过，不算通过；已配置但无法连接时报错。当前检查覆盖基础页面、安全配置、迁移、约束、连接生命周期与事务回滚；业务与模型测试随对应切片加入。
 
-`requirements.in` 是 Web 直接依赖，`requirements.lock.txt` 是实际安装版本；`requirements-dev.in`/`requirements-dev.lock.txt` 另含 pytest 与 ruff；`requirements-ml.in`/`requirements-ml.lock.txt` 是实验三依赖。镜像默认都安装，`WITH_ML=0 docker compose build` 构建不含模型依赖的镜像，此时实验页显示不可用，其余功能照常。算法依赖将在模型阶段独立验证后加入，不在基础页面启动时下载或训练模型。
+`requirements.in` 是 Web 直接依赖，`requirements.lock.txt` 是实际安装版本；`requirements-dev.in`/`requirements-dev.lock.txt` 另含 pytest 与 ruff；`requirements-ml.*` 与 `requirements-dl.*`（torch 取 CPU 源）分别是实验三、四依赖。镜像默认都安装，`WITH_ML=0 WITH_DL=0 docker compose build` 构建不含模型依赖的镜像，此时实验页显示不可用，其余功能照常。算法依赖将在模型阶段独立验证后加入，不在基础页面启动时下载或训练模型。
 
 ## 资料与协作
 

@@ -54,3 +54,13 @@ def test_choice_questions_are_well_formed():
             assert answer == definitions[(q["lemma_norm"], q["sense_key"])]
         else:
             assert "____" in q["prompt"] and answer.lower() == q["lemma_norm"]
+
+
+def test_every_sense_has_two_examples_marked_by_key():
+    examples = _rows("examples.csv")
+    per_sense = Counter((r["lemma_norm"], r["sense_key"]) for r in examples)
+    assert len(examples) == 2 * len(_rows("senses.csv")) and set(per_sense.values()) == {2}
+    assert all(
+        r["example_key"] == f"{r['lemma_norm']}-{r['sense_key']}-{n}" for r in examples for n in [r["example_key"][-1]]
+    )
+    assert len({r["text_en"] for r in examples}) == len(examples)

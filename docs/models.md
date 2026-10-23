@@ -1,6 +1,6 @@
 # 模型与评价契约
 
-Web 仅加载受信任本地制品并推理，训练和向量构建离线进行。ML 部分已实现并完成一次真实训练与评价（结果见 `evidence/exp03/`）；DL 部分尚未实现。
+Web 仅加载受信任本地制品并推理，训练和向量构建离线进行。ML 与 DL 部分均已实现，并完成真实训练/索引构建与评价（结果见 `evidence/exp03/`、`evidence/exp04/`）；DL 评价查询目前为 AI 草拟标注，待人工确认（#7）。
 
 ## ML：预期练习正确比例
 
@@ -37,11 +37,13 @@ delta_seconds 为非负有限数值；计数为非负整数，history_correct≤
 
 ## DL：英语语境例句检索
 
-首版模型为 sentence-transformers/all-MiniLM-L6-v2，实施时固定实际 revision，并本地保存权重、分词器和配置。目标向量为 384 维；查询和语料均为英语。默认 256 word pieces 的长度约束在编码前核对，超限返回 422，不静默截断。中文页面不代表支持中文语义检索。
+首版模型为 sentence-transformers/all-MiniLM-L6-v2，固定 revision `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`（Apache-2.0）；`python -m ml.download_encoder` 只下载 safetensors 权重、分词器与配置到 `artifacts/dl/encoder/` 并核对 SHA-256。web 容器设置 `HF_HUB_OFFLINE=1`，只从本地加载。目标向量为 384 维；查询和语料均为英语。默认 256 word pieces 的长度约束在编码前核对，超限返回 422，不静默截断。中文页面不代表支持中文语义检索。
 
 例句经人工校对，保存稳定 ID、目标词义、来源与正文版本。按稳定 ID 编码，向量保存为 L2 归一化 float32，绑定模型 revision、语料哈希与 ID 映射。每个推理进程加载一次模型和索引；查询同样归一化，取相似结果后回查 MySQL 的有效内容。top_k 限 1—10，可按目标词表过滤。
 
 模型、向量和语料版本不一致则 503，普通词典查询继续可用，不用关键词结果冒充 DL。cosine_similarity 只表示语义相关程度。
+
+实现：`flask build-example-index` 从 MySQL 读取启用例句（词条、词义也须启用），编码前用分词器核对长度，写出 `artifacts/dl/index/`（vectors.npy、ids.json、index_manifest.json），并在 `model_versions` 登记编码器（kind=dl、version=revision、artifact_sha256=权重哈希）。Web 每个进程加载一次编码器；索引清单变化时重新载入索引；每次检索都用当前启用例句重算语料指纹（例句 id、example_key、content_version、正文哈希），与索引不一致即 503，直到重建。未设相似度阈值。`flask evaluate-example-search` 用同一编码函数与索引计算句向量与 TF-IDF（stop_words=english、sublinear_tf）指标。
 
 ### 独立检索评价
 

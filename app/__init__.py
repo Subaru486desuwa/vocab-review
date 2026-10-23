@@ -8,6 +8,7 @@ from app import cli, clock
 from app.blueprints import responses
 from app.blueprints.admin import bp as admin_bp
 from app.blueprints.auth import bp as auth_bp
+from app.blueprints.examples import bp as examples_bp
 from app.blueprints.lab import bp as lab_bp
 from app.blueprints.learning import bp as learning_bp
 from app.blueprints.ml_lab import bp as ml_lab_bp
@@ -31,6 +32,7 @@ def create_app(test_config=None):
         DB_PASSWORD=os.environ.get("DB_PASSWORD"),
         CLOCK=clock.utc_now,
         ML_MODEL_DIR=os.environ.get("ML_MODEL_DIR", "artifacts/ml"),
+        DL_MODEL_DIR=os.environ.get("DL_MODEL_DIR", "artifacts/dl"),
         MAX_CONTENT_LENGTH=2 * 1024 * 1024,
     )
     if test_config is not None:
@@ -49,6 +51,7 @@ def create_app(test_config=None):
     app.register_blueprint(learning_bp)
     app.register_blueprint(admin_bp)
     app.register_blueprint(ml_lab_bp)
+    app.register_blueprint(examples_bp)
 
     @app.get("/")
     def index():
