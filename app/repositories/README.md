@@ -1,3 +1,3 @@
 # SQL 数据访问
 
-后续集中 PyMySQL 参数化查询、连接生命周期和行锁。写入由调用方显式提交或回滚，不在单条查询方法中隐式提交。数据字典见 `docs/data-model.md`；当前没有数据库连接实现。
+集中 PyMySQL 参数化查询、连接生命周期和行锁。`db.py` 按请求创建连接（autocommit 关闭、DictCursor、UTC 会话），`transaction()` 供 service 划定事务；查询函数接收 `conn`，不自行提交。`migrations.py` 执行 `sql/migrations/`。数据字典见 `docs/data-model.md`。

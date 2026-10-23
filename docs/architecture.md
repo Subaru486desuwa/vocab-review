@@ -32,9 +32,9 @@
 
 ## 运行与配置
 
-开发在 Osaka Linux ARM64；Mac 浏览器经 SSH 隧道验收。普通演示先用 CPU；本次未运行训练、深度推理或 CUDA 验证。首版不要求公网部署，Flask 开发服务器只用于本地/隧道演示。
+开发在 Osaka Linux ARM64，Web 与 MySQL 由 Docker Compose 运行；Mac 浏览器经 SSH 隧道验收。普通演示先用 CPU；本次未运行训练、深度推理或 CUDA 验证。首版不要求公网部署，Flask 开发服务器只用于本地/隧道演示。
 
-数据库目标为 MySQL 8.x、InnoDB、utf8mb4。未来测试使用独立测试库；生产/演示配置和测试配置分开。配置项及空值说明见 `.env.example`。当前应用只消费 Web 配置；DB 和模型项在对应能力实现时接入。
+数据库为 MySQL 8.4（Docker `db` 服务）、InnoDB、utf8mb4，会话时区 UTC。演示库与测试库分开，各用只授权本库的账户；演示账户没有 DROP 权限。配置项及空值说明见 `.env.example`。应用读取 Web 与 DB 配置；连接按请求创建，事务由 `app/repositories/db.py` 的 `transaction()` 显式提交或回滚，业务时间统一取自可注入的 `app/clock.py`。模型配置项在对应能力实现时接入。
 
 `SECRET_KEY`、数据库密码不进入 Git 或截图。Cookie 使用 HttpOnly、SameSite=Lax；APP_ENV=production 时启用 Secure，需配合 HTTPS。当前两个 GET 页面无需会话密钥；引入账户前必须验证密钥配置。写接口使用 CSRF，Jinja 保持自动转义。
 
