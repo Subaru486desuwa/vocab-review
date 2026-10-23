@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}实验三 · 机器学习 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page wide-page">
+  <p class="eyebrow">实验三 / 机器学习</p>
+  <h1>预期练习正确比例</h1>
+  <p class="lead">随机森林回归在 Duolingo 公开学习记录上训练，估计一次练习内正确回忆的比例。它不是掌握度、考试分数，也不改写本系统的作答记录和复习安排。</p>
+  {% if status == "available" %}
+    <p class="verdict correct">模型可用：{{ manifest.model_code }} {{ manifest.version }} · {{ manifest.feature_schema_version }} · 训练于 {{ manifest.trained_at_utc }}</p>
+    <table class="data-table">
+      <caption>离线逐记录误差（越小越好；数字来自制品清单）</caption>
+      <thead><tr><th scope="col">集合</th><th scope="col">方法</th><th scope="col">MAE</th><th scope="col">RMSE</th></tr></thead>
+      <tbody>
+        {% set names = {"model": "随机森林", "baseline_train_label_mean": "训练集标签均值", "baseline_smoothed_accuracy": "平滑历史正确率"} %}
+        {% for split, methods in manifest.metrics_summary.items() %}{% for method, m in methods.items() %}
+          <tr><td>{{ split }}</td><td>{{ names[method] }}</td><td>{{ m.mae }}</td><td>{{ m.rmse }}</td></tr>
+        {% endfor %}{% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="verdict wrong" role="status">模型不可用：{{ reason }}</p>
+    <p class="form-note">练习、复习等基础学习功能不受影响。</p>
+  {% endif %}
+  <form id="recall-form" class="practice-setup">
+    <label>距上次练习的间隔（秒）<input type="number" name="delta_seconds" min="0" step="1" value="86400" required></label>
+    <label>历史出现次数<input type="number" name="history_seen" min="0" step="1" value="5" required></label>
+    <label>历史正确次数<input type="number" name="history_correct" min="0" step="1" value="4" required></label>
+    <button class="button" type="submit" {% if status != "available" %}disabled{% endif %}>估计</button>
+  </form>
+  <div id="recall-result" class="feedback" role="status" hidden></div>
+  <p class="form-note">输入来源记为 manual_lab；每次估计的输入、输出、模型版本与耗时都写入 MySQL 的 inference_events。</p>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/ml_lab.js') }}"></script>{% endblock %}

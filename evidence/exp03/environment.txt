@@ -1,0 +1,31 @@
+# executed_at_utc=2026-10-23T19:50:24Z
+## 宿主
+Linux 7.0.0-1013-oracle aarch64
+Architecture:                            aarch64
+CPU(s):                                  2
+Model name:                              Neoverse-N1
+               total        used        free      shared  buff/cache   available
+Mem:            11Gi       2.9Gi       5.0Gi        24Mi       4.3Gi       8.8Gi
+## web 容器
+Python 3.12.15
+Flask==3.1.3
+joblib==1.6.0
+numpy==2.5.4
+pandas==2.3.3
+PyMySQL==1.2.3
+scikit-learn==1.9.1
+scipy==1.18.1
+## 数据与制品（本地，不进 Git）
+-rw-rw-r-- 1 ubuntu ubuntu 379004009 Oct 23 14:31 data/raw/settles.acl16.learning_traces.13m.csv.gz
+
+artifacts/ml/:
+-rw-r--r-- 1 ubuntu ubuntu    3417 Oct 23 14:46 evaluation.md
+-rw-r--r-- 1 ubuntu ubuntu    3419 Oct 23 14:46 manifest.json
+-rw-r--r-- 1 ubuntu ubuntu    7284 Oct 23 14:46 metrics.json
+-rw-r--r-- 1 ubuntu ubuntu 8322211 Oct 23 14:46 model.joblib
+
+data/processed/recall_v1/:
+-rw-r--r-- 1 ubuntu ubuntu    2824 Oct 23 14:45 data_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu  390927 Oct 23 14:45 test.csv.gz
+-rw-r--r-- 1 ubuntu ubuntu 1782818 Oct 23 14:45 train.csv.gz
+-rw-r--r-- 1 ubuntu ubuntu  396562 Oct 23 14:45 validation.csv.gz

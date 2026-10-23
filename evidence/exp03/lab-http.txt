@@ -1,0 +1,15 @@
+# executed_at_utc=2026-10-23T19:49:53Z 演示学习者 demo，密码来自本地 .env 未记录
+## /lab/ml 页面
+模型可用：recall_rf v1 · recall_features_v1 · 训练于 2026-10-23T14:46:14Z
+## 冷启动（history_seen=0）
+200 {'status': 'cold_start', 'expected_recall': None, 'model_time_ms': None}
+## 非法输入（history_correct > history_seen）
+422 {'code': 'VALIDATION_FAILED', 'fields': {'history_correct': 'history_correct 不能大于 history_seen'}, 'message': '参数校验失败'}
+## 非法输入（delta_seconds 为负）
+422 {'code': 'VALIDATION_FAILED', 'fields': {'delta_seconds': 'delta_seconds 必须是非负有限数值'}, 'message': '参数校验失败'}
+## T13：模型目录缺失时（2026-10-23T19:50:10Z，同一演示库，Flask 测试客户端，ML_MODEL_DIR=/nonexistent，测试客户端关闭 CSRF）
+登录 302
+POST /api/v1/ml/recall 503 {'code': 'MODEL_UNAVAILABLE', 'message': '模型不可用：缺少模型清单 /nonexistent/manifest.json'}
+GET /lab/ml 含“模型不可用”: True
+练习作答 200 {'is_correct': False, 'error_type': 'spelling', 'session_status': 'completed'}
+最新推理事件 {'status': 'model_unavailable', 'model_version_id': None, 'reason': '缺少模型清单 /nonexistent/manifest.json'}

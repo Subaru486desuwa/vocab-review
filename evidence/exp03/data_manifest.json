@@ -1,0 +1,98 @@
+{
+  "dataset": "recall_v1",
+  "generated_at_utc": "2026-10-23T14:45:10Z",
+  "source": {
+    "name": "Duolingo halflife-regression learning traces",
+    "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/N8XJME",
+    "referenced_by": "https://github.com/duolingo/halflife-regression",
+    "license": "CC BY-NC 4.0",
+    "citation": "Settles & Meeder (2016), A Trainable Spaced Repetition Model for Language Learning, ACL.",
+    "file": "settles.acl16.learning_traces.13m.csv.gz",
+    "bytes": 379004009,
+    "sha256": "26cf9b33f2e9b2e8aa9a8f262a017b30699ca2f625c56a12ce699d4ea7076873"
+  },
+  "filters": {
+    "learning_language": "en",
+    "p_recall_tolerance": 1e-06
+  },
+  "rows": {
+    "raw": 12854226,
+    "english": 5014791,
+    "after_checks": 5014779,
+    "sampled": 252587
+  },
+  "checks_failed": {
+    "missing_value": 0,
+    "history_seen_not_positive": 0,
+    "delta_negative": 0,
+    "session_seen_not_positive": 0,
+    "history_correct_out_of_range": 0,
+    "session_correct_out_of_range": 0,
+    "p_recall_out_of_range": 0,
+    "p_recall_mismatch": 0,
+    "exact_duplicate": 12,
+    "removed_total": 12
+  },
+  "sampling": {
+    "unit": "user_id",
+    "rate": 0.05,
+    "seed": 42,
+    "users_total": 43805,
+    "users_sampled": 2190
+  },
+  "split": {
+    "method": "global_timestamp",
+    "fractions": [
+      0.7,
+      0.15,
+      0.15
+    ],
+    "train_max_timestamp": 1362793961,
+    "validation_max_timestamp": 1362955317,
+    "files": {
+      "train": {
+        "file": "train.csv.gz",
+        "sha256": "7bca584893a39a4e500867172b79bbc3cda0612f8e173536797b3a8765933abc",
+        "rows": 176832,
+        "fraction": 0.7001,
+        "users": 1726,
+        "time_range_utc": [
+          "2013-02-28T20:15:25Z",
+          "2013-03-09T01:52:41Z"
+        ],
+        "label_mean": 0.895839
+      },
+      "validation": {
+        "file": "validation.csv.gz",
+        "sha256": "e8d88261edf28c8579c95b9c79295b33b756f6c45dfad5db82f1836e86344641",
+        "rows": 37867,
+        "fraction": 0.1499,
+        "users": 555,
+        "time_range_utc": [
+          "2013-03-09T01:53:20Z",
+          "2013-03-10T22:41:57Z"
+        ],
+        "label_mean": 0.869198
+      },
+      "test": {
+        "file": "test.csv.gz",
+        "sha256": "5704e271e0459a3a535c83fd80de3251bb2a45959434ff8533f944b63aa70188",
+        "rows": 37888,
+        "fraction": 0.15,
+        "users": 625,
+        "time_range_utc": [
+          "2013-03-10T22:42:15Z",
+          "2013-03-12T16:13:17Z"
+        ],
+        "label_mean": 0.891605
+      }
+    }
+  },
+  "label": "p_recall：该次练习内正确回忆的比例（session_correct / session_seen）",
+  "environment": {
+    "python": "3.12.15",
+    "pandas": "2.3.3",
+    "numpy": "2.5.4",
+    "platform": "Linux-7.0.0-1013-oracle-aarch64-with-glibc2.41"
+  }
+}

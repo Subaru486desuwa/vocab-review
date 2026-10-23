@@ -1,0 +1,135 @@
+{
+  "kind": "ml",
+  "model_code": "recall_rf",
+  "version": "v1",
+  "task": "预测 Duolingo 源任务的 p_recall（一次练习内正确回忆比例），输出字段 expected_recall",
+  "feature_schema_version": "recall_features_v1",
+  "feature_names": [
+    "log_delta_days",
+    "log_seen",
+    "log_correct",
+    "smoothed_accuracy"
+  ],
+  "artifact": {
+    "file": "model.joblib",
+    "sha256": "e079db503b5632dfeb04510ea34c4f1aeef3f7068a80b83022451a531003b8b4",
+    "bytes": 8322211
+  },
+  "train_config": {
+    "estimator": "RandomForestRegressor",
+    "n_estimators": 200,
+    "max_depth": 12,
+    "min_samples_leaf": 10,
+    "random_state": 42,
+    "n_jobs": -1,
+    "tuning": "未做超参搜索：使用 docs/models.md 记录的起点参数"
+  },
+  "data": {
+    "dataset": "recall_v1",
+    "data_manifest_sha256": "e4332f9dea23b55f9d38d9d8c87a0ea98d9483796fd0184fbd19c9b33629f51e",
+    "source_sha256": "26cf9b33f2e9b2e8aa9a8f262a017b30699ca2f625c56a12ce699d4ea7076873",
+    "source_license": "CC BY-NC 4.0",
+    "sampling": {
+      "unit": "user_id",
+      "rate": 0.05,
+      "seed": 42,
+      "users_total": 43805,
+      "users_sampled": 2190
+    },
+    "split": {
+      "method": "global_timestamp",
+      "fractions": [
+        0.7,
+        0.15,
+        0.15
+      ],
+      "train_max_timestamp": 1362793961,
+      "validation_max_timestamp": 1362955317
+    },
+    "split_files": {
+      "train": {
+        "sha256": "7bca584893a39a4e500867172b79bbc3cda0612f8e173536797b3a8765933abc",
+        "rows": 176832
+      },
+      "validation": {
+        "sha256": "e8d88261edf28c8579c95b9c79295b33b756f6c45dfad5db82f1836e86344641",
+        "rows": 37867
+      },
+      "test": {
+        "sha256": "5704e271e0459a3a535c83fd80de3251bb2a45959434ff8533f944b63aa70188",
+        "rows": 37888
+      }
+    }
+  },
+  "metrics_summary": {
+    "validation": {
+      "model": {
+        "mae": 0.182031,
+        "rmse": 0.283216
+      },
+      "baseline_train_label_mean": {
+        "mae": 0.19604,
+        "rmse": 0.307499
+      },
+      "baseline_smoothed_accuracy": {
+        "mae": 0.236821,
+        "rmse": 0.306941
+      }
+    },
+    "test": {
+      "model": {
+        "mae": 0.169456,
+        "rmse": 0.266237
+      },
+      "baseline_train_label_mean": {
+        "mae": 0.177831,
+        "rmse": 0.277384
+      },
+      "baseline_smoothed_accuracy": {
+        "mae": 0.232062,
+        "rmse": 0.296642
+      }
+    }
+  },
+  "reference_predictions": [
+    {
+      "delta_seconds": 3600,
+      "history_seen": 1,
+      "history_correct": 1,
+      "expected_recall": 0.9150933290693518
+    },
+    {
+      "delta_seconds": 86400,
+      "history_seen": 5,
+      "history_correct": 4,
+      "expected_recall": 0.8847907382677153
+    },
+    {
+      "delta_seconds": 604800,
+      "history_seen": 50,
+      "history_correct": 45,
+      "expected_recall": 0.889874322402172
+    },
+    {
+      "delta_seconds": 2592000,
+      "history_seen": 20,
+      "history_correct": 10,
+      "expected_recall": 0.6060591774922313
+    },
+    {
+      "delta_seconds": 0,
+      "history_seen": 3,
+      "history_correct": 0,
+      "expected_recall": 0.7426983192773302
+    }
+  ],
+  "environment": {
+    "python": "3.12.15",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.4",
+    "joblib": "1.6.0",
+    "pandas": "2.3.3",
+    "platform": "Linux-7.0.0-1013-oracle-aarch64-with-glibc2.41"
+  },
+  "trained_at_utc": "2026-10-23T14:46:14Z"
+}

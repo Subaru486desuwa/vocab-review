@@ -1,0 +1,5 @@
+# 实验三：离线训练与 Web 推理共用；镜像以 WITH_ML=1 构建时安装。
+numpy>=2,<3
+pandas>=2.2,<3
+scikit-learn>=1.5,<2
+joblib>=1.4,<2

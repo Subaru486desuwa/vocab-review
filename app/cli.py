@@ -1,4 +1,6 @@
+import json
 import os
+from pathlib import Path
 
 import click
 from flask import current_app
@@ -6,7 +8,8 @@ from flask.cli import AppGroup, with_appcontext
 
 from app import clock
 from app.repositories import db, migrations, users
-from app.services import accounts, content_import, learning_state
+from app.repositories import models as model_repo
+from app.services import accounts, content_import, learning_state, recall_model
 
 db_cli = AppGroup("db", help="数据库迁移。")
 
@@ -122,9 +125,45 @@ def rebuild_learning_state_command(username, apply_changes):
     raise click.exceptions.Exit(1)
 
 
+@click.command("register-model")
+@click.argument("directory", type=click.Path(file_okay=False))
+@with_appcontext
+def register_model_command(directory):
+    """校验模型目录的清单与制品哈希，并登记到 model_versions；Web 只加载已登记的制品。"""
+    try:
+        manifest = recall_model.read_manifest(directory)
+        recall_model.verify_artifact(directory, manifest)
+    except recall_model.ModelUnavailable as exc:
+        raise click.ClickException(str(exc)) from exc
+    sha = manifest["artifact"]["sha256"]
+    with db.transaction() as conn:
+        row = model_repo.find_model_version(conn, manifest["model_code"], manifest["version"])
+        if row is not None:
+            if row["artifact_sha256"] != sha:
+                raise click.ClickException(
+                    f"{manifest['model_code']} {manifest['version']} 已登记为其他制品；新制品须使用新版本号"
+                )
+            click.echo(f"已登记：{manifest['model_code']} {manifest['version']}（id={row['id']}），未修改。")
+            return
+        model_id = model_repo.insert_model_version(
+            conn,
+            kind=manifest["kind"],
+            model_code=manifest["model_code"],
+            version=manifest["version"],
+            artifact_sha256=sha,
+            feature_schema_version=manifest["feature_schema_version"],
+            metadata_json=json.dumps(manifest, ensure_ascii=False),
+        )
+    click.echo(
+        f"已登记 {manifest['model_code']} {manifest['version']}（id={model_id}），"
+        f"制品 {Path(directory) / manifest['artifact']['file']}"
+    )
+
+
 def init_app(app):
     app.cli.add_command(db_cli)
     app.cli.add_command(create_admin_command)
     app.cli.add_command(import_content_command)
     app.cli.add_command(seed_demo_user_command)
     app.cli.add_command(rebuild_learning_state_command)
+    app.cli.add_command(register_model_command)

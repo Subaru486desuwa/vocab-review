@@ -1,12 +1,12 @@
 # 模型与评价契约
 
-Web 仅加载受信任本地制品并推理，训练和向量构建离线进行。当前尚未安装算法依赖、训练模型、构建索引或测量模型效果。
+Web 仅加载受信任本地制品并推理，训练和向量构建离线进行。ML 部分已实现并完成一次真实训练与评价（结果见 `evidence/exp03/`）；DL 部分尚未实现。
 
 ## ML：预期练习正确比例
 
 使用 RandomForestRegressor 预测 Duolingo 源任务的 p_recall，字段名 expected_recall。标签表示一次练习内正确回忆比例，可为小数；不解释为掌握度、考试分数或严格校准的单次正确概率。
 
-训练和推理共享 `build_recall_features()`；recall_features_v1 固定列顺序：
+训练和推理共享 `ml/features.py` 的 `build_recall_features()`（输入秒，输出 (n, 4) 数组）；recall_features_v1 固定列顺序：
 
 | 特征 | 变换 |
 | --- | --- |
@@ -29,7 +29,11 @@ delta_seconds 为非负有限数值；计数为非负整数，history_correct≤
 - 对照训练集标签均值与平滑历史正确率，报告逐记录 MAE/RMSE、样本数、时间范围及高误差/稀疏/长间隔样例。时间切分不自动证明新用户泛化。
 - 同一制品核对离线与 Web 输出一致；模型无改善时保留规则复习并照实报告。
 
-交付 model.joblib、训练配置、共享特征、依赖锁、数据清单、评价和 manifest.json；记录真实制品 SHA-256、模型/特征版本、时间切分、数据哈希和 Python/scikit-learn/NumPy/joblib 版本。只加载来源可信且校验通过的本项目制品；缺失或版本不符返回 503。
+实现：`python -m ml.prepare_recall_data` 生成 `data/processed/recall_v1/`（英语过滤、规则检查、按用户 5% 抽样、时间切分、data_manifest.json）；`python -m ml.train_recall` 训练并写出 `artifacts/ml/` 的 model.joblib、manifest.json、metrics.json、evaluation.md。导出前把预测改为单线程，使离线与 Web 输出逐位一致；manifest 保存一组参考输入的预测供核对。
+
+交付 model.joblib、训练配置、共享特征、依赖锁（`requirements-ml.lock.txt`）、数据清单、评价和 manifest.json；记录真实制品 SHA-256、模型/特征版本、时间切分、数据哈希和 Python/scikit-learn/NumPy/joblib 版本。只加载来源可信且校验通过的本项目制品；缺失或版本不符返回 503。
+
+加载流程（`app/services/recall_model.py`）：读取 `ML_MODEL_DIR/manifest.json` → 核对 kind、特征版本、scikit-learn 版本与制品 SHA-256 → 核对 `model_versions` 中已登记且 active 的同一版本与哈希（`flask register-model artifacts/ml` 登记；同一版本号不能登记不同制品）→ `joblib.load`。每个进程成功后缓存，失败不缓存。哈希校验必须在加载前完成：被篡改的压缩制品可使 `joblib.load` 长时间卡住。
 
 ## DL：英语语境例句检索
 
