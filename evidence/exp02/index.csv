@@ -4,3 +4,6 @@ password-hash.txt,E2/T02,"docker compose exec db mysql: SELECT 哈希算法前�
 auth-http.txt,E2/T02/T03,evidence/exp02/auth-http.sh,2026-10-23T13:24:47Z,注册、正确/错误密码、不存在用户、退出后 401、重复注册 409、缺 CSRF 403；演示密码随机生成且未记录
 auth-http.sh,E2,bash evidence/exp02/auth-http.sh,2026-10-23T13:24:47Z,生成 auth-http.txt 的 curl 脚本；对已运行的 docker compose web 执行
 validation.txt,S2/T02/T03,"docker compose run --rm web sh -c 'python -m compileall -q app tests && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T13:24:33Z,45 项通过，含测试库上的账户、会话、CSRF 与 create-admin 测试
+import-demo.txt,S2/T12,"docker compose run --rm web flask db upgrade; flask import-content data/demo/v1 [--dry-run]; flask seed-demo-user",2026-10-23T13:41:48Z,演示库迁移 0002、预检、提交与重复导入（全部未变）；内容为项目自编演示 v1，待人工校对（#7）
+admin-import-403.txt,T03,"curl POST /api/v1/admin/import（未登录；学习者 demo 登录后）",2026-10-23T13:42:17Z,未登录 401、普通用户导入 403；demo 密码来自本地 .env 未记录
+validation-content-import.txt,S2/T03/T10/T11/T12,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T13:42:58Z,67 项通过，含测试库上的导入预检、回滚、题目版本、停用与管理接口

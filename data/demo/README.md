@@ -1,11 +1,15 @@
 # 演示内容包
 
-后续准备 UTF-8 的 words.csv、senses.csv、wordbooks.csv、memberships.csv、examples.csv 与 questions.jsonl。词表记录来源、版本与使用说明；建议首批 200—500 个校对词条，包含三考试共有词与新增词，不宣称完整考纲覆盖。
+`v1/` 是可直接导入的演示内容：六级、考研、雅思三个演示词表，各 30 个词条，其中 10 个三表共有；共 70 个词条、79 个词义（9 个多义词按词义分别出题）、79 条例句、237 道题（每个词义各一道辨义、语境、拼写题）。格式与导入规则见 `docs/content-format.md`。
 
-- words：language, lemma, lemma_norm, phonetic。
-- senses：lemma_norm, sense_key, part_of_speech, definition_zh。
-- wordbooks：code, version, exam_type, source；memberships 连接词表与 lemma_norm。
-- examples：lemma_norm, sense_key, text_en, source, content_version。
-- questions：logical_key, version, lemma_norm, sense_key, skill_type, prompt, options, answers, grading_policy。
+来源标注为“项目自编演示 v1（AI 起草，待人工校对）”，不代表任何官方考纲或完整词表。人工校对在 #7 进行，通过后更新来源说明。
 
-预检检查重复键、悬空词义、缺失词条、空答案和非法考试类型；全部通过后单批事务提交，失败回滚。固定 Unicode、首尾空白、英语大小写策略并保留原始显示形式；短语、专名和变体显式处理，不使用不可追踪的模糊去重。当前无内容数据或导入实现。
+- `source/entries.csv` 是唯一的编辑入口：每行一个词义，`example_en` 中用 `[...]` 标出目标词，`books` 列出所属词表，`spelling_variants` 用 `|` 分隔可接受的拼写变体。
+- `build_demo.py` 由它生成 `v1/`；干扰项按题目键固定随机，同一输入总得到同一输出。修改后重新运行 `python data/demo/build_demo.py`，测试会检查 `v1/` 与源表一致。
+- 辨义题干扰项取同词性、其他词条的释义；语境题干扰项取同词性的其他词条，空格前为 a/an 时只取首字母元音性一致的词。语义上是否可能同样成立需要人工确认。
+
+导入演示库：
+
+```bash
+docker compose run --rm web flask import-content data/demo/v1
+```

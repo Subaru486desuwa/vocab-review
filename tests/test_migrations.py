@@ -27,7 +27,8 @@ def test_initial_migration_creates_each_business_table_once():
 
 @pytest.mark.db
 def test_fresh_database_gets_all_tables(migrated_db, db_conn, table_names):
-    assert migrated_db == ["0001_initial_schema"]
+    assert migrated_db == [p.stem for p in sorted(migrations.MIGRATIONS_DIR.glob("*.sql"))]
+    assert migrated_db[:2] == ["0001_initial_schema", "0002_example_key"]
     assert set(table_names(db_conn)) == BUSINESS_TABLES | {"schema_migrations"}
 
 
