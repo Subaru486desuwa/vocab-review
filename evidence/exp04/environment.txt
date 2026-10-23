@@ -1,0 +1,16 @@
+# executed_at_utc=2026-10-23T20:19:10Z
+Linux 7.0.0-1013-oracle aarch64
+CPU(s):                                  2
+Model name:                              Neoverse-N1
+Python 3.12.15
+huggingface_hub==2.3.0
+numpy==2.5.4
+safetensors==0.8.0
+scikit-learn==1.9.1
+sentence-transformers==5.7.0
+tokenizers==0.23.3
+torch==2.14.1+cpu
+transformers==5.20.2
+torch threads 2 cuda False
+88M	artifacts/dl/encoder
+264K	artifacts/dl/index

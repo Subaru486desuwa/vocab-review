@@ -8,8 +8,9 @@ from flask.cli import AppGroup, with_appcontext
 
 from app import clock
 from app.repositories import db, migrations, users
+from app.repositories import examples as examples_repo
 from app.repositories import models as model_repo
-from app.services import accounts, content_import, learning_state, recall_model
+from app.services import accounts, content_import, example_search, learning_state, recall_model
 
 db_cli = AppGroup("db", help="数据库迁移。")
 
@@ -160,6 +161,73 @@ def register_model_command(directory):
     )
 
 
+def _dl_dir():
+    path = Path(current_app.config["DL_MODEL_DIR"])
+    return path if path.is_absolute() else Path(current_app.root_path).parent / path
+
+
+@click.command("build-example-index")
+@with_appcontext
+def build_example_index_command():
+    """按当前启用例句离线构建向量索引，并登记编码器；例句变化后需重新执行。"""
+    from ml import example_index
+
+    with db.transaction() as conn:
+        rows = examples_repo.active_examples(conn)
+    try:
+        manifest = example_index.build(_dl_dir(), rows)
+        encoder = json.loads((_dl_dir() / "encoder" / example_index.ENCODER_MANIFEST).read_text(encoding="utf-8"))
+        with db.transaction() as conn:
+            model_id, created = example_search.register_encoder(conn, encoder, manifest, example_index.WEIGHTS)
+    except (example_index.IndexUnavailable, example_index.TextTooLong, example_search.SearchUnavailable) as exc:
+        raise click.ClickException(str(exc)) from exc
+    click.echo(
+        f"已构建索引：{manifest['count']} 条例句，{manifest['dimensions']} 维 {manifest['dtype']}，"
+        f"语料指纹 {manifest['corpus_fingerprint'][:16]}"
+    )
+    click.echo(
+        f"编码器 {example_search.MODEL_CODE} @ {encoder['revision']}："
+        f"{'已登记' if created else '沿用已登记'}（id={model_id}）"
+    )
+
+
+@click.command("evaluate-example-search")
+@click.option("--queries", default="data/demo/eval/example_queries.jsonl", show_default=True)
+@click.option("--out", default=None, help="输出目录，默认 DL_MODEL_DIR/eval。")
+@with_appcontext
+def evaluate_example_search_command(queries, out):
+    """用当前索引在 dev/test 查询上评价句向量检索与 TF-IDF，写出 metrics.json 与 evaluation.md。"""
+    from ml import evaluate_examples, example_index
+
+    try:
+        model, encoder = example_index.load_encoder(_dl_dir())
+        vectors, ids, index_manifest = example_index.load_index(_dl_dir(), encoder)
+    except example_index.IndexUnavailable as exc:
+        raise click.ClickException(str(exc)) from exc
+    with db.transaction() as conn:
+        rows = examples_repo.active_examples(conn)
+    if example_index.corpus_fingerprint(rows) != index_manifest["corpus_fingerprint"]:
+        raise click.ClickException("启用例句已变化，索引已过期；请先执行 flask build-example-index")
+    loaded = evaluate_examples.load_queries(queries, {item["example_key"] for item in ids})
+    statuses = sorted({q.get("annotation", "unknown") for q in loaded})
+    status = "人工确认" if statuses == ["human_reviewed"] else "AI 草拟、待人工确认（#7），不是独立人工标注"
+    result = evaluate_examples.run(model, vectors, ids, rows, loaded, example_index.encode)
+    out_dir = Path(out) if out else _dl_dir() / "eval"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    payload = {"annotation_status": status, "queries_file": queries, "index": index_manifest, "result": result}
+    (out_dir / "metrics.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (out_dir / "evaluation.md").write_text(
+        evaluate_examples.render_report(result, index_manifest, status), encoding="utf-8"
+    )
+    for split, methods in result.items():
+        for method, m in methods.items():
+            click.echo(
+                f"{split} {method}: Recall@3 {m['recall_at_3']} MRR@3 {m['mrr_at_3']}"
+                f"（{m['with_relevant']} 条有相关项）"
+            )
+    click.echo(f"标注状态：{status}；结果写入 {out_dir}")
+
+
 def init_app(app):
     app.cli.add_command(db_cli)
     app.cli.add_command(create_admin_command)
@@ -167,3 +235,5 @@ def init_app(app):
     app.cli.add_command(seed_demo_user_command)
     app.cli.add_command(rebuild_learning_state_command)
     app.cli.add_command(register_model_command)
+    app.cli.add_command(build_example_index_command)
+    app.cli.add_command(evaluate_example_search_command)

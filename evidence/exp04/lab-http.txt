@@ -1,0 +1,20 @@
+# executed_at_utc=2026-10-23T20:18:50Z 演示学习者 demo，密码来自本地 .env 未记录
+## /examples 页面
+检索可用：all-MiniLM-L6-v2 @ 1110a243fdf4 · 语料 158 条 · 索引构建于 2026-10-23T20:13:01Z
+## 检索（top_k=3）
+HTTP 200 [('bank-2-1', 0.644641), ('scatter-1-1', 0.368972), ('bank-2-2', 0.317981)]
+## 限定雅思词表（wordbook_id=6）
+HTTP 200 [('facility-1-2', 0.432492), ('accommodation-1-2', 0.387711), ('accommodation-1-1', 0.333464)]
+## 中文查询
+HTTP 422 {'code': 'VALIDATION_FAILED', 'fields': {'text': '只支持英语查询；中文页面不代表支持中文语义检索'}, 'message': '参数校验失败'}
+## 超过 256 word pieces（600 字符）
+HTTP 422 {'code': 'VALIDATION_FAILED', 'fields': {'text': '文本有 302 个 word piece，超过上限 256；不截断，请缩短'}, 'message': '参数校验失败'}
+## M04：停用例句 bank-2-1 后，旧索引被拒绝
+HTTP 503 {'code': 'MODEL_UNAVAILABLE', 'message': '例句检索不可用：启用例句已变化，索引已过期；请执行 flask build-example-index'}
+## 恢复启用后语料指纹重新一致，检索恢复（未重建索引）
+HTTP 200 [('bank-2-1', 0.644641), ('scatter-1-1', 0.368972), ('bank-2-2', 0.317981)]
+## T13：编码器与索引目录缺失时（2026-10-23T20:18:51Z，同一演示库，Flask 测试客户端，DL_MODEL_DIR=/nonexistent，测试客户端关闭 CSRF）
+登录 302
+POST /api/v1/examples/search 503 {'code': 'MODEL_UNAVAILABLE', 'message': '例句检索不可用：缺少编码器清单 /nonexistent/encoder/encoder_manifest.json'}
+GET /examples 含“检索不可用”: True
+练习作答 200 {'is_correct': False, 'error_type': 'unanswered', 'session_status': 'completed'}

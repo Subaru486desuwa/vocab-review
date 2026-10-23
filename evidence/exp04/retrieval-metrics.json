@@ -1,0 +1,1796 @@
+{
+  "annotation_status": "AI 草拟、待人工确认（#7），不是独立人工标注",
+  "queries_file": "data/demo/eval/example_queries.jsonl",
+  "index": {
+    "encoder": {
+      "repo": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "weights_sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+    },
+    "max_seq_length": 256,
+    "dimensions": 384,
+    "dtype": "float32",
+    "normalized": "L2",
+    "count": 158,
+    "corpus_fingerprint": "b1cd848eac8e5521bf79abae72b5a044582ab43d1295a6bd81c597532f115da6",
+    "vectors_sha256": "5bdd4284294b1b2e0c17fa348ebcb5797eb1558c0727ee4373bcf00510d76593",
+    "ids_sha256": "e3d7af80f7af977ff7dae4b63fb74d0cd2191da1ddd4e4cd823eccc4bcc3a50b",
+    "built_at_utc": "2026-10-23T20:13:01Z"
+  },
+  "result": {
+    "dev": {
+      "sentence_embedding": {
+        "queries": 10,
+        "with_relevant": 8,
+        "recall_at_3": 0.6875,
+        "mrr_at_3": 0.7917,
+        "by_type": {
+          "paraphrase": {
+            "queries": 5,
+            "recall_at_3": 0.5,
+            "mrr_at_3": 0.6667
+          },
+          "polysemy": {
+            "queries": 3,
+            "recall_at_3": 1.0,
+            "mrr_at_3": 1.0
+          }
+        },
+        "no_relevant": {
+          "queries": 2,
+          "top1_scores": [
+            0.1687,
+            0.2476
+          ]
+        },
+        "per_query": [
+          {
+            "query_id": "d01",
+            "type": "paraphrase",
+            "text": "They gave up the plan halfway because it was too risky.",
+            "top3": [
+              {
+                "example_key": "benefit-1-1",
+                "score": 0.4911
+              },
+              {
+                "example_key": "fundamental-1-2",
+                "score": 0.4622
+              },
+              {
+                "example_key": "ambiguous-1-1",
+                "score": 0.4322
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "d02",
+            "type": "paraphrase",
+            "text": "a place where people can stay when they travel",
+            "top3": [
+              {
+                "example_key": "benefit-1-2",
+                "score": 0.4459
+              },
+              {
+                "example_key": "facility-1-2",
+                "score": 0.3732
+              },
+              {
+                "example_key": "accommodation-1-2",
+                "score": 0.3668
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 0.3333
+          },
+          {
+            "query_id": "d03",
+            "type": "paraphrase",
+            "text": "the money students pay to study at a college",
+            "top3": [
+              {
+                "example_key": "tuition-1-1",
+                "score": 0.6645
+              },
+              {
+                "example_key": "tuition-1-2",
+                "score": 0.4976
+              },
+              {
+                "example_key": "allocate-1-1",
+                "score": 0.4944
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d04",
+            "type": "paraphrase",
+            "text": "Prices keep going down every month.",
+            "top3": [
+              {
+                "example_key": "decline-1-1",
+                "score": 0.5091
+              },
+              {
+                "example_key": "neighbourhood-1-2",
+                "score": 0.3699
+              },
+              {
+                "example_key": "significant-1-2",
+                "score": 0.3684
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d05",
+            "type": "polysemy",
+            "text": "She said no politely to the party invitation.",
+            "top3": [
+              {
+                "example_key": "decline-2-1",
+                "score": 0.565
+              },
+              {
+                "example_key": "reluctant-1-1",
+                "score": 0.4489
+              },
+              {
+                "example_key": "decline-2-2",
+                "score": 0.419
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d06",
+            "type": "paraphrase",
+            "text": "a person who works at the same company as you",
+            "top3": [
+              {
+                "example_key": "colleague-1-1",
+                "score": 0.4207
+              },
+              {
+                "example_key": "bank-1-2",
+                "score": 0.2991
+              },
+              {
+                "example_key": "graduate-2-2",
+                "score": 0.2873
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d07",
+            "type": "polysemy",
+            "text": "We sat on the grass beside the river and watched the water.",
+            "top3": [
+              {
+                "example_key": "bank-2-1",
+                "score": 0.6298
+              },
+              {
+                "example_key": "scatter-1-1",
+                "score": 0.3928
+              },
+              {
+                "example_key": "bank-2-2",
+                "score": 0.3366
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d08",
+            "type": "polysemy",
+            "text": "I need to open a savings account for my salary.",
+            "top3": [
+              {
+                "example_key": "bank-1-1",
+                "score": 0.6887
+              },
+              {
+                "example_key": "withdraw-1-1",
+                "score": 0.3122
+              },
+              {
+                "example_key": "bank-1-2",
+                "score": 0.2868
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d09",
+            "type": "no_relevant",
+            "text": "How do I bake a chocolate cake?",
+            "top3": [
+              {
+                "example_key": "commute-1-2",
+                "score": 0.1687
+              },
+              {
+                "example_key": "fair-2-2",
+                "score": 0.1635
+              },
+              {
+                "example_key": "conceive-1-2",
+                "score": 0.1545
+              }
+            ]
+          },
+          {
+            "query_id": "d10",
+            "type": "no_relevant",
+            "text": "The football match ended in a draw.",
+            "top3": [
+              {
+                "example_key": "compromise-1-1",
+                "score": 0.2476
+              },
+              {
+                "example_key": "yield-2-2",
+                "score": 0.2309
+              },
+              {
+                "example_key": "schedule-1-2",
+                "score": 0.223
+              }
+            ]
+          }
+        ]
+      },
+      "tfidf": {
+        "queries": 10,
+        "with_relevant": 8,
+        "recall_at_3": 0.3125,
+        "mrr_at_3": 0.4792,
+        "by_type": {
+          "paraphrase": {
+            "queries": 5,
+            "recall_at_3": 0.2,
+            "mrr_at_3": 0.1667
+          },
+          "polysemy": {
+            "queries": 3,
+            "recall_at_3": 0.5,
+            "mrr_at_3": 1.0
+          }
+        },
+        "no_relevant": {
+          "queries": 2,
+          "top1_scores": [
+            0.0,
+            0.0
+          ]
+        },
+        "per_query": [
+          {
+            "query_id": "d01",
+            "type": "paraphrase",
+            "text": "They gave up the plan halfway because it was too risky.",
+            "top3": [
+              {
+                "example_key": "benefit-1-1",
+                "score": 0.3426
+              },
+              {
+                "example_key": "fair-1-2",
+                "score": 0.3044
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 0.3333
+          },
+          {
+            "query_id": "d02",
+            "type": "paraphrase",
+            "text": "a place where people can stay when they travel",
+            "top3": [
+              {
+                "example_key": "itinerary-1-1",
+                "score": 0.3181
+              },
+              {
+                "example_key": "fair-1-1",
+                "score": 0.2882
+              },
+              {
+                "example_key": "commute-1-1",
+                "score": 0.2644
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "d03",
+            "type": "paraphrase",
+            "text": "the money students pay to study at a college",
+            "top3": [
+              {
+                "example_key": "graduate-1-2",
+                "score": 0.4777
+              },
+              {
+                "example_key": "tuition-1-1",
+                "score": 0.4207
+              },
+              {
+                "example_key": "withdraw-1-1",
+                "score": 0.244
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 0.5
+          },
+          {
+            "query_id": "d04",
+            "type": "paraphrase",
+            "text": "Prices keep going down every month.",
+            "top3": [
+              {
+                "example_key": "issue-2-1",
+                "score": 0.5032
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "d05",
+            "type": "polysemy",
+            "text": "She said no politely to the party invitation.",
+            "top3": [
+              {
+                "example_key": "decline-2-1",
+                "score": 0.6099
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d06",
+            "type": "paraphrase",
+            "text": "a person who works at the same company as you",
+            "top3": [
+              {
+                "example_key": "withdraw-1-2",
+                "score": 0.4091
+              },
+              {
+                "example_key": "bank-1-2",
+                "score": 0.3246
+              },
+              {
+                "example_key": "evidence-1-1",
+                "score": 0.3072
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "d07",
+            "type": "polysemy",
+            "text": "We sat on the grass beside the river and watched the water.",
+            "top3": [
+              {
+                "example_key": "bank-2-1",
+                "score": 0.4564
+              },
+              {
+                "example_key": "access-1-2",
+                "score": 0.3259
+              },
+              {
+                "example_key": "inevitable-1-2",
+                "score": 0.2986
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d08",
+            "type": "polysemy",
+            "text": "I need to open a savings account for my salary.",
+            "top3": [
+              {
+                "example_key": "bank-1-1",
+                "score": 0.9064
+              },
+              {
+                "example_key": "facility-1-1",
+                "score": 0.2638
+              },
+              {
+                "example_key": "approach-1-1",
+                "score": 0.2287
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "d09",
+            "type": "no_relevant",
+            "text": "How do I bake a chocolate cake?",
+            "top3": [
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "maintain-1-1",
+                "score": 0.0
+              }
+            ]
+          },
+          {
+            "query_id": "d10",
+            "type": "no_relevant",
+            "text": "The football match ended in a draw.",
+            "top3": [
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "maintain-1-1",
+                "score": 0.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "test": {
+      "sentence_embedding": {
+        "queries": 30,
+        "with_relevant": 27,
+        "recall_at_3": 0.6296,
+        "mrr_at_3": 0.9074,
+        "by_type": {
+          "paraphrase": {
+            "queries": 18,
+            "recall_at_3": 0.6389,
+            "mrr_at_3": 0.9167
+          },
+          "polysemy": {
+            "queries": 9,
+            "recall_at_3": 0.6111,
+            "mrr_at_3": 0.8889
+          }
+        },
+        "no_relevant": {
+          "queries": 3,
+          "top1_scores": [
+            0.3062,
+            0.2815,
+            0.1639
+          ]
+        },
+        "per_query": [
+          {
+            "query_id": "t01",
+            "type": "paraphrase",
+            "text": "You must hand in the essay before Friday at midnight.",
+            "top3": [
+              {
+                "example_key": "coherent-1-1",
+                "score": 0.4681
+              },
+              {
+                "example_key": "deadline-1-1",
+                "score": 0.4317
+              },
+              {
+                "example_key": "colleague-1-2",
+                "score": 0.3363
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 0.5
+          },
+          {
+            "query_id": "t02",
+            "type": "paraphrase",
+            "text": "Cars and factories make the air dirty.",
+            "top3": [
+              {
+                "example_key": "pollution-1-1",
+                "score": 0.6029
+              },
+              {
+                "example_key": "accumulate-1-2",
+                "score": 0.4375
+              },
+              {
+                "example_key": "pollution-1-2",
+                "score": 0.4353
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t03",
+            "type": "paraphrase",
+            "text": "Animals lose their natural home when trees are cut down.",
+            "top3": [
+              {
+                "example_key": "habitat-1-1",
+                "score": 0.7412
+              },
+              {
+                "example_key": "decline-1-2",
+                "score": 0.4417
+              },
+              {
+                "example_key": "habitat-1-2",
+                "score": 0.3416
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t04",
+            "type": "paraphrase",
+            "text": "the plan for our trip, day by day",
+            "top3": [
+              {
+                "example_key": "itinerary-1-1",
+                "score": 0.5523
+              },
+              {
+                "example_key": "benefit-1-1",
+                "score": 0.4754
+              },
+              {
+                "example_key": "itinerary-1-2",
+                "score": 0.3625
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t05",
+            "type": "paraphrase",
+            "text": "Glass cups break easily, so be careful with them.",
+            "top3": [
+              {
+                "example_key": "fragile-1-1",
+                "score": 0.4917
+              },
+              {
+                "example_key": "recycle-1-1",
+                "score": 0.3727
+              },
+              {
+                "example_key": "environment-1-2",
+                "score": 0.2358
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t06",
+            "type": "paraphrase",
+            "text": "His words could mean two different things.",
+            "top3": [
+              {
+                "example_key": "ambiguous-1-2",
+                "score": 0.3899
+              },
+              {
+                "example_key": "implication-1-2",
+                "score": 0.38
+              },
+              {
+                "example_key": "distinguish-1-1",
+                "score": 0.314
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t07",
+            "type": "paraphrase",
+            "text": "Both groups gave up something to reach an agreement.",
+            "top3": [
+              {
+                "example_key": "compromise-1-1",
+                "score": 0.5559
+              },
+              {
+                "example_key": "compromise-1-2",
+                "score": 0.5501
+              },
+              {
+                "example_key": "obscure-1-2",
+                "score": 0.5345
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t08",
+            "type": "paraphrase",
+            "text": "We did not expect so many people to come.",
+            "top3": [
+              {
+                "example_key": "anticipate-1-1",
+                "score": 0.591
+              },
+              {
+                "example_key": "decline-2-1",
+                "score": 0.3937
+              },
+              {
+                "example_key": "inevitable-1-2",
+                "score": 0.3356
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t09",
+            "type": "paraphrase",
+            "text": "She did it on purpose, not by accident.",
+            "top3": [
+              {
+                "example_key": "deliberate-1-1",
+                "score": 0.6172
+              },
+              {
+                "example_key": "reluctant-1-1",
+                "score": 0.3681
+              },
+              {
+                "example_key": "consequence-1-1",
+                "score": 0.3591
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t10",
+            "type": "paraphrase",
+            "text": "Getting rid of extra steps makes the process faster.",
+            "top3": [
+              {
+                "example_key": "eliminate-1-1",
+                "score": 0.6105
+              },
+              {
+                "example_key": "yield-1-1",
+                "score": 0.5424
+              },
+              {
+                "example_key": "benefit-1-1",
+                "score": 0.471
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t11",
+            "type": "polysemy",
+            "text": "What do you do when you are not busy at work?",
+            "top3": [
+              {
+                "example_key": "spare-1-1",
+                "score": 0.4981
+              },
+              {
+                "example_key": "colleague-1-1",
+                "score": 0.3313
+              },
+              {
+                "example_key": "deadline-1-2",
+                "score": 0.3098
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t12",
+            "type": "polysemy",
+            "text": "Could you give me a little of your time today?",
+            "top3": [
+              {
+                "example_key": "spare-2-1",
+                "score": 0.6011
+              },
+              {
+                "example_key": "spare-1-1",
+                "score": 0.3176
+              },
+              {
+                "example_key": "approach-2-1",
+                "score": 0.2787
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t13",
+            "type": "paraphrase",
+            "text": "The government shared the budget among different schools.",
+            "top3": [
+              {
+                "example_key": "allocate-1-1",
+                "score": 0.5125
+              },
+              {
+                "example_key": "tuition-1-1",
+                "score": 0.3566
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.3349
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t14",
+            "type": "polysemy",
+            "text": "Don't think something is true just because you believe it.",
+            "top3": [
+              {
+                "example_key": "skeptical-1-1",
+                "score": 0.3971
+              },
+              {
+                "example_key": "assume-1-1",
+                "score": 0.364
+              },
+              {
+                "example_key": "assume-1-2",
+                "score": 0.3229
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 0.5
+          },
+          {
+            "query_id": "t15",
+            "type": "polysemy",
+            "text": "She took charge of the new office as its manager.",
+            "top3": [
+              {
+                "example_key": "assume-2-1",
+                "score": 0.6423
+              },
+              {
+                "example_key": "bank-1-2",
+                "score": 0.4272
+              },
+              {
+                "example_key": "volunteer-1-1",
+                "score": 0.3939
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t16",
+            "type": "paraphrase",
+            "text": "The new law led to strong public disagreement.",
+            "top3": [
+              {
+                "example_key": "controversy-1-1",
+                "score": 0.6438
+              },
+              {
+                "example_key": "compromise-1-1",
+                "score": 0.4174
+              },
+              {
+                "example_key": "issue-2-1",
+                "score": 0.369
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t17",
+            "type": "paraphrase",
+            "text": "Newspapers made the danger sound much bigger than it was.",
+            "top3": [
+              {
+                "example_key": "exaggerate-1-1",
+                "score": 0.7166
+              },
+              {
+                "example_key": "deliberate-1-1",
+                "score": 0.4444
+              },
+              {
+                "example_key": "pollution-1-2",
+                "score": 0.3826
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t18",
+            "type": "paraphrase",
+            "text": "Lower prices encourage people to buy more.",
+            "top3": [
+              {
+                "example_key": "decline-1-1",
+                "score": 0.5768
+              },
+              {
+                "example_key": "reluctant-1-2",
+                "score": 0.5419
+              },
+              {
+                "example_key": "significant-1-2",
+                "score": 0.5336
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t19",
+            "type": "paraphrase",
+            "text": "Some ads try to control how we feel.",
+            "top3": [
+              {
+                "example_key": "manipulate-1-1",
+                "score": 0.8431
+              },
+              {
+                "example_key": "justify-1-1",
+                "score": 0.315
+              },
+              {
+                "example_key": "significant-1-2",
+                "score": 0.2887
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t20",
+            "type": "paraphrase",
+            "text": "Many scientists doubt that the claim is true.",
+            "top3": [
+              {
+                "example_key": "skeptical-1-1",
+                "score": 0.69
+              },
+              {
+                "example_key": "assume-1-2",
+                "score": 0.3604
+              },
+              {
+                "example_key": "controversy-1-1",
+                "score": 0.3365
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t21",
+            "type": "paraphrase",
+            "text": "Repeated criticism slowly weakens confidence.",
+            "top3": [
+              {
+                "example_key": "undermine-1-1",
+                "score": 0.7035
+              },
+              {
+                "example_key": "notion-1-2",
+                "score": 0.4198
+              },
+              {
+                "example_key": "undermine-1-2",
+                "score": 0.3746
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t22",
+            "type": "polysemy",
+            "text": "The workers refused to give in to pressure from their boss.",
+            "top3": [
+              {
+                "example_key": "yield-2-1",
+                "score": 0.6569
+              },
+              {
+                "example_key": "compromise-1-2",
+                "score": 0.3559
+              },
+              {
+                "example_key": "decline-2-2",
+                "score": 0.3529
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t23",
+            "type": "polysemy",
+            "text": "This field produces a lot of rice each year.",
+            "top3": [
+              {
+                "example_key": "yield-1-2",
+                "score": 0.4477
+              },
+              {
+                "example_key": "accumulate-1-1",
+                "score": 0.3369
+              },
+              {
+                "example_key": "recycle-1-2",
+                "score": 0.3149
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t24",
+            "type": "polysemy",
+            "text": "Everyone deserves equal treatment, whatever they look like.",
+            "top3": [
+              {
+                "example_key": "fair-1-1",
+                "score": 0.4721
+              },
+              {
+                "example_key": "assume-1-1",
+                "score": 0.3469
+              },
+              {
+                "example_key": "fair-1-2",
+                "score": 0.3001
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t25",
+            "type": "polysemy",
+            "text": "There were games and food stalls at the summer market in the park.",
+            "top3": [
+              {
+                "example_key": "neighbourhood-1-2",
+                "score": 0.3672
+              },
+              {
+                "example_key": "fair-2-2",
+                "score": 0.3306
+              },
+              {
+                "example_key": "incentive-1-2",
+                "score": 0.3084
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 0.5
+          },
+          {
+            "query_id": "t26",
+            "type": "polysemy",
+            "text": "The school will announce new exam rules next week.",
+            "top3": [
+              {
+                "example_key": "issue-2-1",
+                "score": 0.5515
+              },
+              {
+                "example_key": "deadline-1-1",
+                "score": 0.3869
+              },
+              {
+                "example_key": "tuition-1-2",
+                "score": 0.36
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t27",
+            "type": "paraphrase",
+            "text": "I travel to work by train every morning.",
+            "top3": [
+              {
+                "example_key": "commute-1-1",
+                "score": 0.5709
+              },
+              {
+                "example_key": "commute-1-2",
+                "score": 0.4329
+              },
+              {
+                "example_key": "spare-1-1",
+                "score": 0.4079
+              }
+            ],
+            "recall_at_3": 1.0,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t28",
+            "type": "no_relevant",
+            "text": "My cat likes sleeping in the sun.",
+            "top3": [
+              {
+                "example_key": "contribute-1-2",
+                "score": 0.3062
+              },
+              {
+                "example_key": "crucial-1-1",
+                "score": 0.2918
+              },
+              {
+                "example_key": "commute-1-2",
+                "score": 0.2567
+              }
+            ]
+          },
+          {
+            "query_id": "t29",
+            "type": "no_relevant",
+            "text": "What is the capital city of Australia?",
+            "top3": [
+              {
+                "example_key": "accommodation-1-2",
+                "score": 0.2815
+              },
+              {
+                "example_key": "bank-1-2",
+                "score": 0.2736
+              },
+              {
+                "example_key": "benefit-1-2",
+                "score": 0.2344
+              }
+            ]
+          },
+          {
+            "query_id": "t30",
+            "type": "no_relevant",
+            "text": "He plays the violin in an orchestra.",
+            "top3": [
+              {
+                "example_key": "assume-2-2",
+                "score": 0.1639
+              },
+              {
+                "example_key": "graduate-2-2",
+                "score": 0.1589
+              },
+              {
+                "example_key": "distinguish-1-1",
+                "score": 0.1584
+              }
+            ]
+          }
+        ]
+      },
+      "tfidf": {
+        "queries": 30,
+        "with_relevant": 27,
+        "recall_at_3": 0.3148,
+        "mrr_at_3": 0.5617,
+        "by_type": {
+          "paraphrase": {
+            "queries": 18,
+            "recall_at_3": 0.3889,
+            "mrr_at_3": 0.713
+          },
+          "polysemy": {
+            "queries": 9,
+            "recall_at_3": 0.1667,
+            "mrr_at_3": 0.2593
+          }
+        },
+        "no_relevant": {
+          "queries": 3,
+          "top1_scores": [
+            0.5355,
+            0.4943,
+            0.0
+          ]
+        },
+        "per_query": [
+          {
+            "query_id": "t01",
+            "type": "paraphrase",
+            "text": "You must hand in the essay before Friday at midnight.",
+            "top3": [
+              {
+                "example_key": "deadline-1-1",
+                "score": 0.4185
+              },
+              {
+                "example_key": "coherent-1-1",
+                "score": 0.3393
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t02",
+            "type": "paraphrase",
+            "text": "Cars and factories make the air dirty.",
+            "top3": [
+              {
+                "example_key": "compromise-1-2",
+                "score": 0.4185
+              },
+              {
+                "example_key": "pollution-1-1",
+                "score": 0.3345
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 0.5
+          },
+          {
+            "query_id": "t03",
+            "type": "paraphrase",
+            "text": "Animals lose their natural home when trees are cut down.",
+            "top3": [
+              {
+                "example_key": "habitat-1-1",
+                "score": 0.4133
+              },
+              {
+                "example_key": "recycle-1-1",
+                "score": 0.234
+              },
+              {
+                "example_key": "spare-1-2",
+                "score": 0.2309
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t04",
+            "type": "paraphrase",
+            "text": "the plan for our trip, day by day",
+            "top3": [
+              {
+                "example_key": "persist-1-1",
+                "score": 0.3562
+              },
+              {
+                "example_key": "commute-1-1",
+                "score": 0.3425
+              },
+              {
+                "example_key": "benefit-1-1",
+                "score": 0.2296
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t05",
+            "type": "paraphrase",
+            "text": "Glass cups break easily, so be careful with them.",
+            "top3": [
+              {
+                "example_key": "evidence-1-2",
+                "score": 0.4461
+              },
+              {
+                "example_key": "recycle-1-1",
+                "score": 0.2938
+              },
+              {
+                "example_key": "fragile-1-1",
+                "score": 0.2627
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 0.3333
+          },
+          {
+            "query_id": "t06",
+            "type": "paraphrase",
+            "text": "His words could mean two different things.",
+            "top3": [
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "maintain-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t07",
+            "type": "paraphrase",
+            "text": "Both groups gave up something to reach an agreement.",
+            "top3": [
+              {
+                "example_key": "obscure-1-2",
+                "score": 0.3417
+              },
+              {
+                "example_key": "fair-1-2",
+                "score": 0.2485
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.2099
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t08",
+            "type": "paraphrase",
+            "text": "We did not expect so many people to come.",
+            "top3": [
+              {
+                "example_key": "anticipate-1-1",
+                "score": 0.3546
+              },
+              {
+                "example_key": "fair-1-1",
+                "score": 0.2882
+              },
+              {
+                "example_key": "commute-1-1",
+                "score": 0.2644
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t09",
+            "type": "paraphrase",
+            "text": "She did it on purpose, not by accident.",
+            "top3": [
+              {
+                "example_key": "deliberate-1-1",
+                "score": 0.3345
+              },
+              {
+                "example_key": "anticipate-1-1",
+                "score": 0.3258
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t10",
+            "type": "paraphrase",
+            "text": "Getting rid of extra steps makes the process faster.",
+            "top3": [
+              {
+                "example_key": "eliminate-1-1",
+                "score": 0.4359
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t11",
+            "type": "polysemy",
+            "text": "What do you do when you are not busy at work?",
+            "top3": [
+              {
+                "example_key": "decline-2-1",
+                "score": 0.6099
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t12",
+            "type": "polysemy",
+            "text": "Could you give me a little of your time today?",
+            "top3": [
+              {
+                "example_key": "evidence-1-1",
+                "score": 0.3872
+              },
+              {
+                "example_key": "inevitable-1-2",
+                "score": 0.343
+              },
+              {
+                "example_key": "spare-1-1",
+                "score": 0.3105
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t13",
+            "type": "paraphrase",
+            "text": "The government shared the budget among different schools.",
+            "top3": [
+              {
+                "example_key": "issue-2-1",
+                "score": 0.4652
+              },
+              {
+                "example_key": "yield-2-1",
+                "score": 0.4458
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t14",
+            "type": "polysemy",
+            "text": "Don't think something is true just because you believe it.",
+            "top3": [
+              {
+                "example_key": "assume-1-1",
+                "score": 0.6099
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t15",
+            "type": "polysemy",
+            "text": "She took charge of the new office as its manager.",
+            "top3": [
+              {
+                "example_key": "allocate-1-2",
+                "score": 0.4294
+              },
+              {
+                "example_key": "hypothesis-1-2",
+                "score": 0.1975
+              },
+              {
+                "example_key": "assume-2-1",
+                "score": 0.1951
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 0.3333
+          },
+          {
+            "query_id": "t16",
+            "type": "paraphrase",
+            "text": "The new law led to strong public disagreement.",
+            "top3": [
+              {
+                "example_key": "controversy-1-1",
+                "score": 0.433
+              },
+              {
+                "example_key": "facility-1-1",
+                "score": 0.4024
+              },
+              {
+                "example_key": "yield-2-1",
+                "score": 0.2486
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t17",
+            "type": "paraphrase",
+            "text": "Newspapers made the danger sound much bigger than it was.",
+            "top3": [
+              {
+                "example_key": "exaggerate-1-1",
+                "score": 0.6418
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t18",
+            "type": "paraphrase",
+            "text": "Lower prices encourage people to buy more.",
+            "top3": [
+              {
+                "example_key": "incentive-1-1",
+                "score": 0.3493
+              },
+              {
+                "example_key": "fair-1-1",
+                "score": 0.2882
+              },
+              {
+                "example_key": "commute-1-1",
+                "score": 0.2644
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t19",
+            "type": "paraphrase",
+            "text": "Some ads try to control how we feel.",
+            "top3": [
+              {
+                "example_key": "manipulate-1-1",
+                "score": 0.48
+              },
+              {
+                "example_key": "anticipate-1-2",
+                "score": 0.4328
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t20",
+            "type": "paraphrase",
+            "text": "Many scientists doubt that the claim is true.",
+            "top3": [
+              {
+                "example_key": "skeptical-1-1",
+                "score": 0.3841
+              },
+              {
+                "example_key": "conceive-1-2",
+                "score": 0.3072
+              },
+              {
+                "example_key": "behaviour-1-2",
+                "score": 0.2752
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t21",
+            "type": "paraphrase",
+            "text": "Repeated criticism slowly weakens confidence.",
+            "top3": [
+              {
+                "example_key": "undermine-1-1",
+                "score": 0.6418
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t22",
+            "type": "polysemy",
+            "text": "The workers refused to give in to pressure from their boss.",
+            "top3": [
+              {
+                "example_key": "yield-2-1",
+                "score": 0.5567
+              },
+              {
+                "example_key": "issue-1-2",
+                "score": 0.2485
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t23",
+            "type": "polysemy",
+            "text": "This field produces a lot of rice each year.",
+            "top3": [
+              {
+                "example_key": "accumulate-1-1",
+                "score": 0.3383
+              },
+              {
+                "example_key": "tuition-1-2",
+                "score": 0.3053
+              },
+              {
+                "example_key": "assume-2-2",
+                "score": 0.3051
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t24",
+            "type": "polysemy",
+            "text": "Everyone deserves equal treatment, whatever they look like.",
+            "top3": [
+              {
+                "example_key": "spare-1-1",
+                "score": 0.4726
+              },
+              {
+                "example_key": "preliminary-1-1",
+                "score": 0.3786
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t25",
+            "type": "polysemy",
+            "text": "There were games and food stalls at the summer market in the park.",
+            "top3": [
+              {
+                "example_key": "graduate-1-1",
+                "score": 0.3225
+              },
+              {
+                "example_key": "recycle-1-2",
+                "score": 0.3058
+              },
+              {
+                "example_key": "neighbourhood-1-2",
+                "score": 0.2941
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t26",
+            "type": "polysemy",
+            "text": "The school will announce new exam rules next week.",
+            "top3": [
+              {
+                "example_key": "curriculum-1-1",
+                "score": 0.27
+              },
+              {
+                "example_key": "analyse-1-1",
+                "score": 0.2641
+              },
+              {
+                "example_key": "preliminary-1-2",
+                "score": 0.2641
+              }
+            ],
+            "recall_at_3": 0.0,
+            "rr_at_3": 0.0
+          },
+          {
+            "query_id": "t27",
+            "type": "paraphrase",
+            "text": "I travel to work by train every morning.",
+            "top3": [
+              {
+                "example_key": "commute-1-1",
+                "score": 0.3134
+              },
+              {
+                "example_key": "itinerary-1-1",
+                "score": 0.3035
+              },
+              {
+                "example_key": "schedule-1-2",
+                "score": 0.2938
+              }
+            ],
+            "recall_at_3": 0.5,
+            "rr_at_3": 1.0
+          },
+          {
+            "query_id": "t28",
+            "type": "no_relevant",
+            "text": "My cat likes sleeping in the sun.",
+            "top3": [
+              {
+                "example_key": "emerge-1-2",
+                "score": 0.5355
+              },
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              }
+            ]
+          },
+          {
+            "query_id": "t29",
+            "type": "no_relevant",
+            "text": "What is the capital city of Australia?",
+            "top3": [
+              {
+                "example_key": "bank-1-2",
+                "score": 0.4943
+              },
+              {
+                "example_key": "commute-1-1",
+                "score": 0.4349
+              },
+              {
+                "example_key": "benefit-1-2",
+                "score": 0.4121
+              }
+            ]
+          },
+          {
+            "query_id": "t30",
+            "type": "no_relevant",
+            "text": "He plays the violin in an orchestra.",
+            "top3": [
+              {
+                "example_key": "abandon-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "access-1-1",
+                "score": 0.0
+              },
+              {
+                "example_key": "maintain-1-1",
+                "score": 0.0
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

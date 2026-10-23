@@ -1,0 +1,95 @@
+{
+  "executed_at_utc": "2026-10-23T20:18:21Z",
+  "first_request": {
+    "http_ms": 7403.935,
+    "processing_time_ms": 7376.828,
+    "model_time_ms": 263.075,
+    "note": "web 进程重启后的第一次请求，processing_time_ms 含模型校验与加载"
+  },
+  "warm": {
+    "requests": 30,
+    "failures": 0,
+    "http_ms": {
+      "p50": 51.172,
+      "p95": 55.123,
+      "max": 56.314
+    },
+    "processing_time_ms": {
+      "p50": 25.497,
+      "p95": 29.982,
+      "max": 30.621
+    },
+    "model_time_ms": {
+      "p50": 21.463,
+      "p95": 26.111,
+      "max": 26.734
+    }
+  },
+  "request_ids": [
+    "4f0b6c8eff2441289fe8878487b44591",
+    "f33a2361bebf4ec29f4b51cf8f5a5416",
+    "725b5c3e05b443009631fbb0a991d1d1",
+    "8dcfcb7be6d443edb7cfcc5dd1f31ec7",
+    "86f047fe9fb64d5794fd7f430baedbfa",
+    "27dc9ede7a25403a8c7809d28eba7779",
+    "589534c371cf4df19fa19dcf809a6c7a",
+    "56c394511e4a4bb58d8d6ac2bad17e85",
+    "f1066335d41041f3a393180a15f8f23a",
+    "01f778b953394a7796e73120ee455c49",
+    "cd4f394f04c7453f8201f4561b9d3737",
+    "f577fefef14e4955bdec50a2a18de72d",
+    "4fa53c056bf1418799bbc80fa7e42db3",
+    "3097fef2e625473c85b5232d51e181b0",
+    "bbb192de553b4ac18f17221b0881bed7",
+    "70ddfb4d0a2a4ba8ad1692fa39f33200",
+    "362557d1abcd4c86a67f72e27cf8594b",
+    "ef49102a55864672808524fa2424b6d1",
+    "807c7b07aa794a4298943edff1070833",
+    "6aab707488a44beebf6e5185335fff6e",
+    "49ea9545de1245e7a9e4b3f022619e25",
+    "404e129cb3804b109f166ad73ef85d10",
+    "798a180d94e9490895fa6cf83d06083c",
+    "3c5b34906c5d43309f7f262a0878e7e8",
+    "1cd7db3c86944de8ad4b50306fb866c9",
+    "6a070f0afda94eb2b61bf72c68fa2b02",
+    "31e4491172264b57abfd9394cd73cb00",
+    "0bc68372631c4b6da85118a277f339f0",
+    "cca944ca06a64bda9c30c0576c977f6c",
+    "3f24be96482847e098b1a498a5f4f915",
+    "8403954f6f1b42b79d910d350a02e59e"
+  ],
+  "top1": [
+    [
+      "Cars and factories make the air dirty.",
+      "pollution-1-1",
+      0.602868
+    ],
+    [
+      "I need to open a savings account.",
+      "bank-1-1",
+      0.792718
+    ],
+    [
+      "She said no politely to the invitation.",
+      "decline-2-1",
+      0.631715
+    ],
+    [
+      "We sat on the grass beside the river.",
+      "bank-2-1",
+      0.644641
+    ],
+    [
+      "the money students pay to study at a college",
+      "tuition-1-1",
+      0.664513
+    ]
+  ],
+  "versions": {
+    "corpus_count": 158,
+    "corpus_fingerprint": "b1cd848eac8e5521bf79abae72b5a044582ab43d1295a6bd81c597532f115da6",
+    "index_built_at_utc": "2026-10-23T20:13:01Z",
+    "model_code": "all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  }
+}

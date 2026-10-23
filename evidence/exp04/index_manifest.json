@@ -1,0 +1,16 @@
+{
+  "encoder": {
+    "repo": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "weights_sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+  },
+  "max_seq_length": 256,
+  "dimensions": 384,
+  "dtype": "float32",
+  "normalized": "L2",
+  "count": 158,
+  "corpus_fingerprint": "b1cd848eac8e5521bf79abae72b5a044582ab43d1295a6bd81c597532f115da6",
+  "vectors_sha256": "5bdd4284294b1b2e0c17fa348ebcb5797eb1558c0727ee4373bcf00510d76593",
+  "ids_sha256": "e3d7af80f7af977ff7dae4b63fb74d0cd2191da1ddd4e4cd823eccc4bcc3a50b",
+  "built_at_utc": "2026-10-23T20:13:01Z"
+}

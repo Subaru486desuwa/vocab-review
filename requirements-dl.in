@@ -1,0 +1,3 @@
+# 实验四：例句向量编码与检索；镜像以 WITH_DL=1 构建时安装。torch 取自 CPU 源（见 requirements-dl.lock.txt 首行）。
+torch>=2.4,<3
+sentence-transformers>=3,<6

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}实验四 · 例句检索 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page wide-page">
+  <p class="eyebrow">实验四 / 深度学习</p>
+  <h1>英语语境例句检索</h1>
+  <p class="lead">用本地句向量编码器把英语句子转成向量，找出语义最接近的已校对例句。相似度只表示语义相关程度，不是答案置信度或语法评分；只支持英语查询。</p>
+  {% if status == "available" %}
+    <p class="verdict correct">检索可用：{{ info.model_code }} @ {{ info.revision[:12] }} · 语料 {{ info.corpus_count }} 条 · 索引构建于 {{ info.index_built_at_utc }}</p>
+  {% else %}
+    <p class="verdict wrong" role="status">检索不可用：{{ reason }}</p>
+    <p class="form-note">练习、复习等基础学习功能不受影响。</p>
+  {% endif %}
+  <form id="search-form" class="practice-setup">
+    <label>英语句子或描述<input name="text" maxlength="1000" required value="We sat on the grass beside the river." style="width:100%"></label>
+    <label>返回条数<input type="number" name="top_k" min="1" max="10" value="5" required></label>
+    <label>限定词表
+      <select name="wordbook_id">
+        <option value="">全部启用例句</option>
+        {% for b in wordbooks %}<option value="{{ b.id }}">{{ b.name }}（{{ b.version }}）</option>{% endfor %}
+      </select>
+    </label>
+    <button class="button" type="submit" {% if status != "available" %}disabled{% endif %}>检索</button>
+  </form>
+  <div id="search-result" class="feedback" role="status" hidden></div>
+  <p class="form-note">每次检索的输入、结果、模型与语料版本和耗时都写入 MySQL 的 inference_events（kind=dl）。</p>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/examples.js') }}"></script>{% endblock %}

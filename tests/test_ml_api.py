@@ -180,7 +180,8 @@ def test_practice_works_while_model_is_missing(demo, db_config, tmp_path):
 def test_app_starts_without_model_dependencies():
     code = (
         "import sys; from app import create_app; create_app({'TESTING': True}).test_client().get('/');"
-        "print(sorted(m for m in ('numpy', 'sklearn', 'joblib', 'pandas') if m in sys.modules))"
+        "heavy = ('numpy', 'sklearn', 'joblib', 'pandas', 'torch', 'sentence_transformers');"
+        "print(sorted(m for m in heavy if m in sys.modules))"
     )
     out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True).stdout
     assert out.strip() == "[]"

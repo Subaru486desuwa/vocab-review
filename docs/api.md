@@ -1,6 +1,6 @@
 # 页面与接口契约
 
-当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`/dashboard`（占位概览）、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），以及 `/wordbooks`、`/practice`、`/review`、`/dashboard` 页面和目标词表、练习、作答、复习、统计接口。以及 `/lab/ml` 与 `POST /api/v1/ml/recall`。DL 实验与管理页面待实现。其余为完整首版的待实现契约，不是当前可调用的接口。
+当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`/dashboard`（占位概览）、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），以及 `/wordbooks`、`/practice`、`/review`、`/dashboard` 页面和目标词表、练习、作答、复习、统计接口。以及 `/lab/ml`、`POST /api/v1/ml/recall`、`/examples` 与 `POST /api/v1/examples/search`。管理页面待实现。其余为完整首版的待实现契约，不是当前可调用的接口。
 
 ## 页面
 
@@ -31,7 +31,7 @@
 | GET /api/v1/me/review | 可选 wordbook_id（须为已选目标）、skill_type | 默认范围为全部已选目标；未选目标 422 NO_TARGET。返回 due（next_review_at ≤ 当前）与 wrong_pending（最近一次答错且未到期，附 seconds_until_due），以及 next_due_at；未作答过的词义不出现 |
 | GET /api/v1/me/stats | 可选 wordbook_id、skill_type | 只来自真实作答与学习状态：words（目标并集按词条去重的总数与已练习数）、items（有已发布题目的词义 × 题型：total/tested/untested/due/wrong_pending/recently_consistent）、attempts（all_time 与 last_7_days 的次数、正确数、accuracy，无作答为 null）、by_skill、by_wordbook，并附 granularity 说明 |
 | POST /api/v1/ml/recall | delta_seconds,history_seen,history_correct,CSRF | 需登录；manual_lab；返回 status（ok/cold_start）、expected_recall（冷启动为 null）、features、model（model_code/version/feature_schema_version）、model_time_ms、processing_time_ms；非法输入 422；模型不可用 503 MODEL_UNAVAILABLE 并记录 status=model_unavailable 的事件；留证失败 503 INFERENCE_LOG_FAILED |
-| POST /api/v1/examples/search | 英语 text,top_k=1—10,可选目标词表 | 例句 ID、正文、目标词义、cosine_similarity、模型/语料版本 |
+| POST /api/v1/examples/search | 英语 text（≤1000 字符、≤256 word pieces）,top_k=1—10（默认 5）,可选 wordbook_id,CSRF | 需登录；返回 results（example_id、example_key、正文、译文、目标词义、cosine_similarity）、versions（编码器 revision、语料指纹与条数、索引构建时间）、model_time_ms、processing_time_ms；中文或超长 422 不截断；编码器/索引不可用或语料已变化 503 MODEL_UNAVAILABLE；留证失败 503 INFERENCE_LOG_FAILED |
 | POST /api/v1/admin/import | multipart，字段名为 wordbooks、words、senses、memberships、examples、questions，可选 dry_run=1；管理员及 CSRF | 格式见 [内容包格式](content-format.md)；先预检后显式提交，成功返回 dry_run 与各文件计数；预检失败 422 IMPORT_INVALID，`error.rows` 为至多 200 条 {file, line, field, message}；未知字段 400；单批事务失败回滚 |
 
 所有修改操作校验 CSRF。密码使用 Werkzeug 专用哈希与校验函数，不使用裸 SHA-256。SQL 参数化；按请求管理连接并正确释放，写操作显式提交或回滚。
