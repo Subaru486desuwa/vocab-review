@@ -1,0 +1,59 @@
+All checks passed!
+40 files already formatted
+============================= test session starts ==============================
+platform linux -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0 -- /usr/local/bin/python3.12
+rootdir: /app
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 45 items
+
+tests/test_app.py::AppSmokeTests::test_auth_pages_render_without_database 
+tests/test_app.py::AppSmokeTests::test_auth_pages_render_without_database PASSED [  2%]
+tests/test_app.py::AppSmokeTests::test_hello_renders_text_and_static_image PASSED [  4%]
+tests/test_app.py::AppSmokeTests::test_home_links_to_lab_and_marks_business_as_planned PASSED [  6%]
+tests/test_app.py::AppSmokeTests::test_missing_database_and_models_do_not_block_basic_page PASSED [  8%]
+tests/test_app.py::AppSmokeTests::test_missing_secret_key_refuses_to_start PASSED [ 11%]
+tests/test_app.py::AppSmokeTests::test_security_config_uses_environment_and_does_not_enable_debug PASSED [ 13%]
+tests/test_app.py::AppSmokeTests::test_static_image_is_served PASSED     [ 15%]
+tests/test_app.py::AppSmokeTests::test_unimplemented_business_routes_are_not_fake_successes 
+tests/test_app.py::AppSmokeTests::test_unimplemented_business_routes_are_not_fake_successes PASSED [ 17%]
+tests/test_auth.py::test_register_creates_learner_with_password_hash PASSED [ 20%]
+tests/test_auth.py::test_register_rejects_case_insensitive_duplicate PASSED [ 22%]
+tests/test_auth.py::test_register_rejects_invalid_fields[ab-correct horse] PASSED [ 24%]
+tests/test_auth.py::test_register_rejects_invalid_fields[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-correct horse] PASSED [ 26%]
+tests/test_auth.py::test_register_rejects_invalid_fields[bad name-correct horse] PASSED [ 28%]
+tests/test_auth.py::test_register_rejects_invalid_fields[a' OR '1'='1-correct horse] PASSED [ 31%]
+tests/test_auth.py::test_register_rejects_invalid_fields[bob-short] PASSED [ 33%]
+tests/test_auth.py::test_login_with_correct_password_sets_identity PASSED [ 35%]
+tests/test_auth.py::test_wrong_password_and_unknown_user_get_the_same_answer[alice-wrong password] PASSED [ 37%]
+tests/test_auth.py::test_wrong_password_and_unknown_user_get_the_same_answer[nobody-correct horse] PASSED [ 40%]
+tests/test_auth.py::test_inactive_user_cannot_log_in PASSED              [ 42%]
+tests/test_auth.py::test_login_replaces_previous_session PASSED          [ 44%]
+tests/test_auth.py::test_login_redirect_stays_on_site[//evil.example/x] PASSED [ 46%]
+tests/test_auth.py::test_login_redirect_stays_on_site[https://evil.example/] PASSED [ 48%]
+tests/test_auth.py::test_login_redirect_stays_on_site[/dashboard] PASSED [ 51%]
+tests/test_auth.py::test_logout_requires_post PASSED                     [ 53%]
+tests/test_auth.py::test_logged_out_api_gets_401_json_and_page_redirects PASSED [ 55%]
+tests/test_auth.py::test_learner_gets_403_on_admin_route PASSED          [ 57%]
+tests/test_auth.py::test_json_login_uses_envelope PASSED                 [ 60%]
+tests/test_auth.py::test_post_without_csrf_token_is_rejected PASSED      [ 62%]
+tests/test_auth.py::test_page_form_carries_csrf_token PASSED             [ 64%]
+tests/test_auth.py::test_create_admin_command PASSED                     [ 66%]
+tests/test_db.py::test_connect_requires_explicit_target PASSED           [ 68%]
+tests/test_db.py::test_clock_can_be_fixed_through_config PASSED          [ 71%]
+tests/test_db.py::test_transaction_commits_on_success PASSED             [ 73%]
+tests/test_db.py::test_transaction_rolls_back_on_error PASSED            [ 75%]
+tests/test_db.py::test_uncommitted_work_is_discarded_at_teardown PASSED  [ 77%]
+tests/test_db.py::test_request_reuses_one_connection_and_closes_it PASSED [ 80%]
+tests/test_migrations.py::test_split_statements_ignores_comment_lines_and_blank_tail PASSED [ 82%]
+tests/test_migrations.py::test_initial_migration_creates_each_business_table_once PASSED [ 84%]
+tests/test_migrations.py::test_fresh_database_gets_all_tables PASSED     [ 86%]
+tests/test_migrations.py::test_upgrade_is_idempotent PASSED              [ 88%]
+tests/test_migrations.py::test_username_norm_is_unique PASSED            [ 91%]
+tests/test_migrations.py::test_lemma_norm_distinguishes_accents PASSED   [ 93%]
+tests/test_migrations.py::test_users_reject_invalid_values[role-root] PASSED [ 95%]
+tests/test_migrations.py::test_users_reject_invalid_values[display_timezone-None] PASSED [ 97%]
+tests/test_migrations.py::test_learning_state_counts_are_checked PASSED  [100%]
+
+==================== 45 passed, 5 subtests passed in 19.92s ====================
+No broken requirements found.

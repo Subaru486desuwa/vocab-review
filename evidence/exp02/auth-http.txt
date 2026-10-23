@@ -1,0 +1,28 @@
+# executed_at_utc=2026-10-23T13:24:47Z base=http://127.0.0.1:5000 user=demo_e2（演示账户）
+## 1. 注册 demo_e2（表单 POST /auth/register，含 CSRF）
+HTTP 302 Location=http://127.0.0.1:5000/dashboard
+## 2. 已登录访问 /api/v1/me
+HTTP 200 Location=
+{"data": {"display_timezone": "Asia/Shanghai", "id": 1, "role": "learner", "username": "demo_e2"}, "error": null, "request_id": "…"}
+## 3. 退出（POST /auth/logout）
+HTTP 302 Location=http://127.0.0.1:5000/
+## 4. 退出后访问 /api/v1/me
+HTTP 401 Location=
+{'code': 'UNAUTHENTICATED', 'message': '请先登录'}
+## 5. 错误密码登录
+HTTP 401 Location=
+用户名或密码错误
+## 6. 不存在的用户登录
+HTTP 401 Location=
+用户名或密码错误
+## 7. 正确密码登录（用户名大写，验证规范化）
+HTTP 302 Location=http://127.0.0.1:5000/dashboard
+## 8. 重复注册（不区分大小写）
+HTTP 409 Location=
+用户名已被使用
+## 9. 缺少 CSRF 的登录请求
+HTTP 403 Location=
+{'code': 'CSRF_FAILED', 'message': 'CSRF 校验失败，请刷新页面后重试'}
+## 10. GET /auth/logout 不改变登录状态
+HTTP 405 Location=
+HTTP 200 Location=

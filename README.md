@@ -2,7 +2,7 @@
 
 面向六级、考研和雅思的 Python Web 课程项目。以统一词库连接三类目标词表，记录辨义、拼写和语境练习，再生成可解释的复习计划。
 
-**当前可运行：首页、`/lab/hello`、静态图片，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；账户、学习业务、内容导入、ML 和 DL 后续实现。仓库保持 **private**。
+**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出与 `flask create-admin`，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；目标词表、练习、复习、内容导入、ML 和 DL 后续实现。仓库保持 **private**。
 
 ## 先运行基础页面
 
@@ -34,7 +34,13 @@ ssh -N -L 5000:127.0.0.1:5000 osaka
 
 备选 venv 方式：`python3 -m venv .venv`、`source .venv/bin/activate`、`python -m pip install -r requirements-dev.lock.txt` 后运行 `flask --app app:create_app run --host 127.0.0.1 --port 5000`。Docker 的 `db` 端口不对宿主机开放，venv 方式需要自备 MySQL 并修改 `DB_HOST`/`DB_PORT`。Windows 尚未验证。
 
-当前未实现 `import-content` 或 `create-admin`，不应运行这些命令。真实配置只放本地 `.env` 或环境变量。
+应用要求 `SECRET_KEY`，未设置时拒绝启动。管理员只能用命令创建，密码在终端隐藏输入：
+
+```bash
+docker compose run --rm web flask create-admin
+```
+
+当前未实现 `import-content`，不应运行该命令。真实配置只放本地 `.env` 或环境变量。
 
 ## 从哪里继续开发
 

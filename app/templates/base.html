@@ -9,7 +9,19 @@
 <body>
   <header class="site-header">
     <a class="brand" href="{{ url_for('index') }}">词汇研习室 <span>VOCAB REVIEW</span></a>
-    <span class="course-label">Python Web 课程项目</span>
+    <nav class="site-nav" aria-label="账户">
+      {% set user = current_user() %}
+      {% if user %}
+        <a href="{{ url_for('learning.dashboard') }}">{{ user.username }}</a>
+        <form method="post" action="{{ url_for('auth.logout') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button type="submit" class="link-button">退出</button>
+        </form>
+      {% else %}
+        <a href="{{ url_for('auth.login_page') }}">登录</a>
+        <a href="{{ url_for('auth.register_page') }}">注册</a>
+      {% endif %}
+    </nav>
   </header>
   <main>{% block content %}{% endblock %}</main>
   <footer>Flask · MySQL · 机器学习 · 深度学习</footer>

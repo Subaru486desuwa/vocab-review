@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}注册 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page">
+  <p class="eyebrow">账户</p>
+  <h1>注册</h1>
+  <form class="auth-form" method="post" action="{{ url_for('auth.register') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label>用户名
+      <input name="username" value="{{ username or '' }}" autocomplete="username" required
+             minlength="3" maxlength="32" pattern="[A-Za-z0-9_]+" aria-describedby="username-hint">
+      <span id="username-hint" class="field-hint">3—32 位字母、数字或下划线，不区分大小写</span>
+    </label>
+    {% if errors and errors.username %}<p class="form-error" role="alert">{{ errors.username }}</p>{% endif %}
+    <label>密码
+      <input type="password" name="password" autocomplete="new-password" required minlength="8" maxlength="128">
+      <span class="field-hint">至少 8 位</span>
+    </label>
+    {% if errors and errors.password %}<p class="form-error" role="alert">{{ errors.password }}</p>{% endif %}
+    <button class="button" type="submit">注册并登录</button>
+  </form>
+  <p class="form-note">已有账户？<a class="text-link" href="{{ url_for('auth.login_page') }}">登录</a></p>
+</section>
+{% endblock %}
