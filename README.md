@@ -24,7 +24,7 @@ docker compose up -d --build
 docker compose run --rm web flask db upgrade
 ```
 
-在浏览器打开 `http://127.0.0.1:5000/`，点击“查看 Flask 基础演示”。若从 Mac 浏览器查看 Osaka 上的页面，先在 Mac 建立隧道：
+在浏览器打开 `http://127.0.0.1:5000/`，在“课程实验”中进入“Web 框架”即为 `/lab/hello`。若从 Mac 浏览器查看 Osaka 上的页面，先在 Mac 建立隧道：
 
 ```bash
 ssh -N -L 5000:127.0.0.1:5000 osaka
