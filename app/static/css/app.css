@@ -1,5 +1,7 @@
 :root { color-scheme: light; --ink: #172a2a; --muted: #66716e; --paper: #f7f8f3; --line: #dce2d9; --green: #205d49; }
 * { box-sizing: border-box; }
+/* 作者样式里的 display 会盖过 hidden 属性，脚本依赖 hidden 切换显示。 */
+[hidden] { display: none !important; }
 body { margin: 0; color: var(--ink); background: var(--paper); font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
 a { color: inherit; }
 a:focus-visible { outline: 3px solid #b47c23; outline-offset: 5px; }
@@ -49,6 +51,7 @@ figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .wordbook .field-hint { grid-column: 2; }
 .practice-setup fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
 .practice-setup legend, .practice-setup label { font-size: 14px; font-weight: 600; }
+.practice-setup input:not([type]), .practice-setup select { display: block; margin-top: 6px; width: 100%; max-width: 640px; font: inherit; font-weight: 400; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: white; }
 .practice-setup input[type="number"] { display: block; margin-top: 6px; width: 120px; font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; }
 .choice { display: flex; gap: 10px; align-items: center; font-weight: 400; }
 .practice { margin-top: 32px; }

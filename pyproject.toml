@@ -11,3 +11,7 @@ extend-exclude = [".venv"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# 报告生成脚本主要是成段的中文正文与 XML 片段，不按 120 列折行。
+"docs/reports/*.py" = ["E501"]
