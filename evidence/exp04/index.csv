@@ -1,12 +1,12 @@
 file,requirement,command,executed_at_utc,notes
 encoder_manifest.json,E4/M04,docker compose run --rm -e HF_HUB_OFFLINE=0 web python -m ml.download_encoder,2026-10-23T20:09:14Z,sentence-transformers/all-MiniLM-L6-v2 固定 revision 1110a243…、Apache-2.0、各文件字节数与 SHA-256；权重与 Hugging Face LFS 记录一致；权重本身不进 Git
-index_manifest.json,E4/M04,docker compose run --rm web flask build-example-index,2026-10-23T20:13:01Z,158 条启用例句、384 维 float32 L2 归一化、语料指纹、向量与 id 文件哈希、编码器 revision 与权重哈希
-example_queries.jsonl,E4/M05,data/demo/eval/example_queries.jsonl,2026-10-23T20:11:51Z,dev 10 / test 30 条英语查询（近义改写、多义词、无相关例句）；AI 起草，待人工确认（#7），不是独立人工标注
-retrieval-metrics.json,E4/M05,docker compose run --rm web flask evaluate-example-search,2026-10-24T14:41:54Z,句向量与 TF-IDF 的 Recall@3、MRR@3、按类型结果、无相关项最高分与逐条前三项；同分按 example_key 排序后重跑（相对 10/23 只有 12 条查询的 0 分并列项顺序变化，汇总指标不变）；标注状态为 AI 草拟
-evaluation.md,E4/M05,docker compose run --rm web flask evaluate-example-search,2026-10-24T14:41:54Z,由 retrieval-metrics 自动生成的评价报告与错误分析
+index_manifest.json,E4/M04,docker compose run --rm web flask build-example-index,2026-10-24T17:00:16Z,v2 内容导入后重建：158 条启用例句、384 维 float32 L2 归一化、语料指纹、向量与 id 文件哈希、编码器 revision 与权重哈希
+example_queries.jsonl,E4/M05,data/demo/eval/example_queries.jsonl,2026-10-24T17:00:28Z,dev 10 / test 30 条英语查询（近义改写、多义词、无相关例句）；AI 起草并经 AI 复核（ai_reviewed），移出 4 条、补充 1 条相关标注，不是独立人工标注
+retrieval-metrics.json,E4/M05,docker compose run --rm web flask evaluate-example-search,2026-10-24T17:00:28Z,句向量与 TF-IDF 的 Recall@3、MRR@3、按类型结果、无相关项最高分与逐条前三项；v2 内容与 AI 复核标注下重跑；标注状态为 AI 起草并经 AI 复核
+evaluation.md,E4/M05,docker compose run --rm web flask evaluate-example-search,2026-10-24T17:00:28Z,由 retrieval-metrics 自动生成的评价报告与错误分析
 latency.py,E4,python3 evidence/exp04/latency.py,2026-10-23T20:18:21Z,独立 HTTP 客户端耗时测量脚本
-latency.json,E4,python3 evidence/exp04/latency.py,2026-10-23T20:18:21Z,web 重启后首次请求（含 torch 导入、校验与加载）与预热后 30 次顺序请求的 p50/p95，0 失败，附各查询第一名
-lab-http.txt,E4/M04/M05/T13,curl 与 docker compose run web python（DL_MODEL_DIR=/nonexistent）,2026-10-23T20:18:50Z,页面可用状态、检索与词表过滤、中文查询与超过 256 word pieces 时 422（不截断）、停用例句后拒绝旧索引并在恢复后可用、目录缺失时 503 且练习照常（该段用测试客户端并关闭 CSRF）
-inference-events.txt,E4/M06,docker compose exec db mysql: model_versions 与 inference_events,2026-10-23T20:19:00Z,两类模型登记与 dl 推理事件（输入、前一名结果、语料指纹、状态、耗时、request_id）
+latency.json,E4,python3 evidence/exp04/latency.py > evidence/exp04/latency.json,2026-10-24T17:01:28Z,v2 语料索引；web 重启后首次请求（含 torch 导入、校验与加载）与预热后 30 次顺序请求的 p50/p95，0 失败，附各查询第一名
+lab-http.txt,E4/M04/M05/T13,curl 与 docker compose run web python（DL_MODEL_DIR=/nonexistent）,2026-10-23T20:18:50Z,页面可用状态、检索与词表过滤、中文查询与超过 256 word pieces 时 422（不截断）、停用例句后拒绝旧索引并在恢复后可用、目录缺失时 503 且练习照常（该段用测试客户端并关闭 CSRF）；基于 10/23 的 v1 语料与索引（指纹 b1cd848e…），v2 修订前
+inference-events.txt,E4/M06,docker compose exec db mysql: model_versions 与 inference_events,2026-10-23T20:19:00Z,两类模型登记与 dl 推理事件（输入、前一名结果、语料指纹、状态、耗时、request_id）；v2 修订前的推理记录
 environment.txt,E4,uname; lscpu; pip freeze,2026-10-23T20:19:10Z,Neoverse-N1 2 核 CPU 推理，torch 2.14.1+cpu、sentence-transformers 5.7.0 等版本，本地制品大小
 validation.txt,S4,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo ml && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T20:24:15Z,161 项通过，含检索、词表过滤、长度上限、索引过期与篡改、未登记编码器、留证失败、评价指标与 T13

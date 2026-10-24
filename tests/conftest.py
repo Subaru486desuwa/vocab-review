@@ -6,7 +6,7 @@ from app import create_app
 from app.clock import utc_now
 from app.repositories import db, migrations
 from app.services.content_import import import_content, read_directory
-from tests.helpers import DEMO, NOW, login_as, select
+from tests.helpers import DEMO_PACKS, NOW, login_as, select
 
 
 def _test_db_config():
@@ -92,7 +92,8 @@ def client(db_app):
 @pytest.fixture
 def demo(db_app):
     with db_app.app_context():
-        import_content(db.get_db(), read_directory(DEMO), NOW)
+        for pack in DEMO_PACKS:
+            import_content(db.get_db(), read_directory(pack), NOW)
     return db_app
 
 

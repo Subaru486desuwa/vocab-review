@@ -194,7 +194,7 @@ def test_evaluation_command_labels_annotation_status(dl_app, tmp_path):
     result = dl_app.test_cli_runner().invoke(args=["evaluate-example-search", "--out", str(tmp_path / "eval")])
     assert result.exit_code == 0, result.output
     metrics = json.loads((tmp_path / "eval" / "metrics.json").read_text(encoding="utf-8"))
-    assert metrics["annotation_status"].startswith("AI 草拟")
+    assert metrics["annotation_status"] == "AI 起草并经 AI 复核，不是独立人工标注"
     test = metrics["result"]["test"]
     assert test["sentence_embedding"]["with_relevant"] == 27 and test["tfidf"]["no_relevant"]["queries"] == 3
     assert "TF-IDF" in (tmp_path / "eval" / "evaluation.md").read_text(encoding="utf-8")

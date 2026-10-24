@@ -79,6 +79,7 @@ run flask db upgrade
 
 step "5. 导入演示内容与演示学习者"
 run flask import-content data/demo/v1 | tail -n 3
+run flask import-content data/demo/v2 | tail -n 3
 run flask seed-demo-user
 
 step "6. 公开页面与静态图片（T01）"

@@ -67,6 +67,19 @@ def test_demo_pack_imports_and_reimport_is_idempotent(db_conn):
     assert count(db_conn, "words") == 70
 
 
+def test_demo_v2_adds_question_versions_over_v1(db_conn):
+    import_content(db_conn, read_directory(DEMO), NOW)
+    v1_questions = {q["id"] for q in _questions(db_conn)}
+    summary = import_content(db_conn, read_directory(DEMO.parent / "v2"), NOW)
+    lines = (DEMO.parent / "v2" / "questions.jsonl").read_text(encoding="utf-8").splitlines()
+    bumped = sum(1 for line in lines if '"version": 2' in line)
+    assert summary["questions"] == {"inserted": bumped, "updated": 0, "unchanged": 237 - bumped, "retired": bumped}
+    assert (summary["senses"]["updated"], summary["examples"]["updated"]) == (1, 13)
+    assert count(db_conn, "questions", "status = 'published'") == 237
+    assert count(db_conn, "questions", "status = 'retired'") == bumped
+    assert v1_questions <= {q["id"] for q in _questions(db_conn)}  # 旧版本保留，历史练习仍可解释
+
+
 def test_dry_run_reports_without_writing(db_conn):
     summary = import_content(db_conn, mini_pack(), NOW, dry_run=True)
     assert summary["words"]["inserted"] == 1

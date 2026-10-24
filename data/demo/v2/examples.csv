@@ -1,0 +1,159 @@
+example_key,lemma_norm,sense_key,text_en,translation_zh,source,content_version,is_active
+abandon-1-1,abandon,1,Bad weather forced the climbers to abandon their attempt to reach the summit.,恶劣天气迫使登山者放弃了登顶的尝试。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+abandon-1-2,abandon,1,The family had to abandon their car in the deep snow.,一家人不得不把车丢弃在深雪里。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+access-1-1,access,1,Every student should have access to the library after class.,每个学生课后都应该能使用图书馆。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+access-1-2,access,1,Many villages still have no access to clean water.,许多村庄仍然无法获得干净的水。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+maintain-1-1,maintain,1,It is not easy to maintain a healthy diet during exam season.,考试季保持健康饮食并不容易。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+maintain-1-2,maintain,1,The two countries want to maintain good relations.,两国希望保持良好关系。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+significant-1-1,significant,1,There has been a significant increase in online shopping.,网购出现了显著增长。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+significant-1-2,significant,1,The new policy had a significant effect on local businesses.,新政策对当地企业产生了显著影响。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+approach-1-1,approach,1,We need a fresh approach to the problem of traffic jams.,我们需要用新方法解决交通拥堵问题。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+approach-1-2,approach,1,Her approach to teaching grammar is practical and clear.,她教语法的方法实用而清晰。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+approach-2-1,approach,2,Please slow down as you approach the school gate.,接近校门时请减速。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+approach-2-2,approach,2,A stranger began to approach us in the dark street.,一个陌生人在黑暗的街上开始向我们走近。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+issue-1-1,issue,1,Climate change is a global issue that no country can ignore.,气候变化是任何国家都不能忽视的全球问题。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+issue-1-2,issue,1,Housing costs are the main issue for young workers.,住房成本是年轻工人面临的主要问题。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+issue-2-1,issue,2,The government will issue new guidelines next month.,政府下个月将发布新指南。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+issue-2-2,issue,2,The bank will issue new cards to all customers.,银行将向所有客户发放新卡。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+evidence-1-1,evidence,1,There is little evidence that the drug works.,几乎没有证据表明这种药有效。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+evidence-1-2,evidence,1,The police found no evidence of a break-in.,警方没有发现闯入的证据。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+contribute-1-1,contribute,1,Everyone in the team is expected to contribute ideas.,团队中每个人都应贡献想法。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+contribute-1-2,contribute,1,Regular exercise can contribute to better sleep.,规律锻炼有助于改善睡眠。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+benefit-1-1,benefit,1,One benefit of living in the city is easy transport.,住在城市的一个好处是交通便利。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+benefit-1-2,benefit,1,The main benefit of the plan is that it saves time.,这个计划的主要好处是节省时间。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+crucial-1-1,crucial,1,Sleep is crucial for memory and learning.,睡眠对记忆和学习至关重要。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+crucial-1-2,crucial,1,Good communication is crucial in a crisis.,危机中良好的沟通至关重要。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+ambiguous-1-1,ambiguous,1,The instructions were so ambiguous that nobody knew what to do.,说明含糊不清，没人知道该做什么。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+ambiguous-1-2,ambiguous,1,"His answer was ambiguous, so we asked him again.",他的回答模棱两可，所以我们又问了一遍。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+anticipate-1-1,anticipate,1,We did not anticipate such a large crowd at the concert.,我们没料到音乐会有这么多人。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+anticipate-1-2,anticipate,1,Engineers try to anticipate problems before they happen.,工程师努力在问题发生前预见它们。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+compromise-1-1,compromise,1,"After hours of debate, the two sides reached a compromise.",经过数小时辩论，双方达成了妥协。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+compromise-1-2,compromise,1,Neither side was willing to make a compromise.,双方都不愿意妥协。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+consequence-1-1,consequence,1,Rising sea levels are one consequence of global warming.,海平面上升是全球变暖的后果之一。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+consequence-1-2,consequence,1,Losing the job was a direct consequence of his carelessness.,丢掉工作是他粗心大意的直接后果。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+deliberate-1-1,deliberate,1,It was not an accident but a deliberate attempt to mislead the public.,这不是意外，而是蓄意误导公众。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+deliberate-1-2,deliberate,1,He told a deliberate lie to protect his friend.,他为了保护朋友故意撒了谎。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+eliminate-1-1,eliminate,1,The new design aims to eliminate unnecessary steps.,新设计旨在消除不必要的步骤。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+eliminate-1-2,eliminate,1,Washing your hands helps eliminate harmful germs.,洗手有助于消除有害细菌。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+emerge-1-1,emerge,1,New problems may emerge as the project grows.,随着项目发展可能出现新问题。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+emerge-1-2,emerge,1,The sun began to emerge from behind the clouds.,太阳开始从云后露出来。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+fragile-1-1,fragile,1,Please handle the box carefully; the glass inside is fragile.,请小心搬运箱子，里面的玻璃易碎。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+fragile-1-2,fragile,1,"After the illness, her health remained fragile.",病后她的身体仍然虚弱。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+inevitable-1-1,inevitable,1,Some mistakes are inevitable when you learn a new language.,学习新语言时有些错误是不可避免的。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+inevitable-1-2,inevitable,1,"With so little rain, a water shortage seemed inevitable.",降雨这么少，缺水似乎不可避免。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+intensify-1-1,intensify,1,The storm is expected to intensify overnight.,预计风暴将在夜间加剧。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+intensify-1-2,intensify,1,The police decided to intensify their search.,警方决定加强搜寻。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+notion-1-1,notion,1,The notion that money brings happiness is too simple.,金钱带来幸福的观念过于简单。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+notion-1-2,notion,1,Some people reject the notion that failure is useful.,有些人不接受失败有益这一观念。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+obscure-1-1,obscure,1,The meaning of the old poem remains obscure to most readers.,这首古诗的含义对大多数读者仍然模糊难懂。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+obscure-1-2,obscure,1,The details of the agreement are still obscure.,协议细节仍不清楚。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+persist-1-1,persist,1,"If you persist in practising every day, you will improve.",如果你坚持每天练习，就会进步。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+persist-1-2,persist,1,Doctors warned that the symptoms may persist for weeks.,医生警告症状可能持续数周。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+reluctant-1-1,reluctant,1,She was reluctant to share her notes with others.,她不愿意和别人分享笔记。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+reluctant-1-2,reluctant,1,Many shoppers are reluctant to pay more for green products.,许多顾客不愿为环保产品多付钱。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+scatter-1-1,scatter,1,The wind began to scatter the leaves across the yard.,风开始把树叶吹散到院子各处。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+scatter-1-2,scatter,1,The children began to scatter when the rain started.,下雨时孩子们开始四散跑开。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+vulnerable-1-1,vulnerable,1,Young children are especially vulnerable to the flu.,幼儿特别容易感染流感。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+vulnerable-1-2,vulnerable,1,Old computer systems are vulnerable to attacks.,旧计算机系统容易受到攻击。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+withdraw-1-1,withdraw,1,You can withdraw money from the machine at any time.,你可以随时从机器上取钱。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+withdraw-1-2,withdraw,1,The company decided to withdraw its offer.,公司决定撤回报价。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+bank-1-1,bank,1,I need to go to the bank to open an account.,我得去银行开个账户。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+bank-1-2,bank,1,She works at a bank in the city centre.,她在市中心的一家银行工作。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+bank-2-1,bank,2,We had a picnic on the bank of the river.,我们在河岸上野餐。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+bank-2-2,bank,2,The boat was tied to the bank near the bridge.,船系在桥附近的岸边。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+fair-1-1,fair,1,It is not fair to judge people by their looks.,以貌取人是不公平的。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+fair-1-2,fair,1,The teacher gave every student a fair chance to speak.,老师给每个学生公平的发言机会。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+fair-2-1,fair,2,The town holds a book fair every spring.,镇上每年春天举办书展。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+fair-2-2,fair,2,We bought fresh honey at the village fair.,我们在村里的集市上买了新鲜蜂蜜。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+spare-1-1,spare,1,What do you like to do in your spare time?,你空闲时喜欢做什么？,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+spare-1-2,spare,1,Always carry a spare key in case you lose yours.,总要带一把备用钥匙，以防丢了自己的。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+spare-2-1,spare,2,Could you spare a few minutes to help me?,你能抽出几分钟帮我吗？,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+spare-2-2,spare,2,I cannot spare the time to watch the whole film.,我抽不出时间看完整部电影。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+accumulate-1-1,accumulate,1,It takes years to accumulate enough experience in this field.,在这个领域积累足够经验需要数年。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+accumulate-1-2,accumulate,1,Dust tends to accumulate under the bed.,灰尘容易积在床下。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+allocate-1-1,allocate,1,The manager will allocate tasks to each member.,经理会给每个成员分配任务。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+allocate-1-2,allocate,1,The school decided to allocate more money to science teaching.,学校决定为科学教学拨出更多资金。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+assume-1-1,assume,1,Don't assume that everyone agrees with you.,不要假定每个人都同意你。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+assume-1-2,assume,1,We should not assume that the data is correct.,我们不应假定数据是正确的。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+assume-2-1,assume,2,She will assume responsibility for the new department.,她将负责新部门。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+assume-2-2,assume,2,He will assume the role of team leader next year.,他明年将担任团队负责人。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+coherent-1-1,coherent,1,A good essay presents a coherent argument.,好文章提出连贯的论证。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+coherent-1-2,coherent,1,The report lacks a coherent structure.,这份报告缺乏条理清楚的结构。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+conceive-1-1,conceive,1,It is hard to conceive of a world without the internet.,很难想象没有互联网的世界。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+conceive-1-2,conceive,1,Scientists conceive an idea first and then test it.,科学家先构想一个想法，然后加以检验。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+controversy-1-1,controversy,1,The new law caused great controversy among scientists.,新法律在科学家中引起了巨大争议。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+controversy-1-2,controversy,1,The decision to close the library caused controversy.,关闭图书馆的决定引发了争议。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+decline-1-1,decline,1,Sales began to decline after the price increase.,涨价后销量开始下降。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+decline-1-2,decline,1,The number of birds in the area continues to decline.,该地区鸟类数量持续减少。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+decline-2-1,decline,2,He had to decline the invitation because he was busy.,他因为忙不得不谢绝邀请。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+decline-2-2,decline,2,She chose to decline the job offer from the bank.,她选择婉拒那家银行的工作邀请。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+diminish-1-1,diminish,1,Nothing could diminish her enthusiasm for research.,没有什么能减弱她对研究的热情。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+diminish-1-2,diminish,1,The pain will diminish after a few days.,几天后疼痛会减轻。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+distinguish-1-1,distinguish,1,Can you distinguish between the two sounds?,你能区分这两个声音吗？,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+distinguish-1-2,distinguish,1,It is hard to distinguish the twins from each other.,很难区分这对双胞胎。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+exaggerate-1-1,exaggerate,1,"To sell more copies, some newspapers exaggerate small dangers.",为了多卖报纸，有些报纸会夸大小风险。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+exaggerate-1-2,exaggerate,1,Please do not exaggerate the size of the problem.,请不要夸大问题的严重性。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+fundamental-1-1,fundamental,1,Freedom of speech is a fundamental right.,言论自由是一项基本权利。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+fundamental-1-2,fundamental,1,There is a fundamental difference between the two plans.,两个计划之间存在根本差异。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+hypothesis-1-1,hypothesis,1,The experiment was designed to test a hypothesis about memory.,该实验旨在检验一个关于记忆的假说。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+hypothesis-1-2,hypothesis,1,Their hypothesis was supported by the new data.,他们的假说得到了新数据的支持。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+implication-1-1,implication,1,What is the implication of these results for teachers?,这些结果对教师意味着什么？,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+implication-1-2,implication,1,The implication of his remark was that we had failed.,他话里的意思是我们失败了。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+incentive-1-1,incentive,1,Lower taxes give companies an incentive to invest.,降低税收给企业投资的动力。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+incentive-1-2,incentive,1,Free meals are an incentive for students to attend.,免费餐是吸引学生参加的激励。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+justify-1-1,justify,1,How can you justify spending so much on a phone?,你如何证明在手机上花这么多钱是合理的？,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+justify-1-2,justify,1,The results justify the time we spent on the project.,结果证明我们在项目上花的时间是值得的。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+manipulate-1-1,manipulate,1,Some advertisements try to manipulate our emotions.,有些广告试图操纵我们的情绪。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+manipulate-1-2,manipulate,1,He was accused of trying to manipulate the election results.,他被指控试图操纵选举结果。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+preliminary-1-1,preliminary,1,The preliminary results look promising.,初步结果看起来很有希望。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+preliminary-1-2,preliminary,1,A preliminary report will be ready next week.,一份初步报告下周就绪。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+skeptical-1-1,skeptical,1,Many experts remain skeptical about the claim.,许多专家对这一说法仍持怀疑态度。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+skeptical-1-2,skeptical,1,I am skeptical about promises of quick weight loss.,我对快速减肥的承诺持怀疑态度。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+undermine-1-1,undermine,1,Constant criticism can undermine a child's confidence.,不断的批评会削弱孩子的自信。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+undermine-1-2,undermine,1,Rumours can undermine trust within a team.,谣言会削弱团队内部的信任。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+yield-1-1,yield,1,This method can yield better results in less time.,这种方法能在更短时间内产生更好的结果。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+yield-1-2,yield,1,The new farming method may yield larger harvests.,新的耕作方法可能带来更大的收成。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+yield-2-1,yield,2,The government refused to yield to public pressure.,政府拒绝向公众压力让步。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+yield-2-2,yield,2,"After a long argument, he decided to yield.",经过长时间争论，他决定让步。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+accommodation-1-1,accommodation,1,The university helps new students find accommodation near campus.,大学帮助新生在校园附近找到住处。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+accommodation-1-2,accommodation,1,The price includes flights and accommodation.,价格包括机票和住宿。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+analyse-1-1,analyse,1,Students learn to analyse poems in this course.,学生在这门课上学习分析诗歌。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+analyse-1-2,analyse,1,Researchers will analyse the data next week.,研究人员将在下周分析数据。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+behaviour-1-1,behaviour,1,The teacher praised the children for their good behaviour.,老师表扬了孩子们的良好表现。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+behaviour-1-2,behaviour,1,Scientists study the behaviour of bees in winter.,科学家研究蜜蜂冬季的行为。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+colleague-1-1,colleague,1,I often have lunch with a colleague from the marketing team.,我常和市场部的一位同事吃午饭。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+colleague-1-2,colleague,1,My colleague helped me finish the report.,我的同事帮我完成了报告。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+commute-1-1,commute,1,Many people commute to the city by train every day.,许多人每天乘火车通勤进城。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+commute-1-2,commute,1,I commute by bike when the weather is good.,天气好时我骑车通勤。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+curriculum-1-1,curriculum,1,Coding has become part of the school curriculum.,编程已经成为学校课程的一部分。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+curriculum-1-2,curriculum,1,The new curriculum includes more science lessons.,新课程包含更多科学课。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+deadline-1-1,deadline,1,The deadline for the application is next Friday.,申请截止日期是下周五。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+deadline-1-2,deadline,1,We worked late to meet the deadline.,我们加班到很晚以赶上截止日期。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+environment-1-1,environment,1,We should protect the environment for future generations.,我们应为子孙后代保护环境。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+environment-1-2,environment,1,Plastic waste is harmful to the environment.,塑料垃圾对环境有害。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+facility-1-1,facility,1,The new sports facility is open to the public.,新的体育设施向公众开放。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+facility-1-2,facility,1,The hotel has a laundry facility for guests.,酒店为客人提供洗衣设施。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+graduate-1-1,graduate,1,She plans to graduate from university next summer.,她计划明年夏天大学毕业。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+graduate-1-2,graduate,1,Most students graduate after four years of study.,大多数学生学习四年后毕业。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+graduate-2-1,graduate,2,Every graduate of the program receives a certificate.,该项目的每位毕业生都会获得证书。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+graduate-2-2,graduate,2,He is a recent graduate looking for his first job.,他是一名正在找第一份工作的应届毕业生。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+habitat-1-1,habitat,1,Cutting down forests destroys the natural habitat of many animals.,砍伐森林破坏了许多动物的自然栖息地。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+habitat-1-2,habitat,1,Wetlands provide a habitat for many birds.,湿地为许多鸟类提供栖息地。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+itinerary-1-1,itinerary,1,Our travel agent sent us a detailed itinerary for the trip.,旅行社给我们发来了详细的行程。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+itinerary-1-2,itinerary,1,The itinerary includes three days in Rome.,行程包括在罗马的三天。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+landscape-1-1,landscape,1,The mountain landscape attracts thousands of hikers.,山地风景吸引了成千上万的徒步者。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+landscape-1-2,landscape,1,The landscape changes completely in winter.,冬天景色完全改变。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+neighbourhood-1-1,neighbourhood,1,It is a quiet neighbourhood with many parks.,这是个有很多公园的安静街区。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+neighbourhood-1-2,neighbourhood,1,Our neighbourhood has a small weekly market.,我们街区每周有个小市场。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+pollution-1-1,pollution,1,Air pollution is a serious problem in big cities.,空气污染是大城市的严重问题。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+pollution-1-2,pollution,1,Noise pollution can affect people's health.,噪音污染会影响人们的健康。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+recycle-1-1,recycle,1,"We recycle paper, glass and plastic at home.",我们在家回收纸、玻璃和塑料。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+recycle-1-2,recycle,1,Many cities now recycle food waste.,许多城市现在回收利用厨余垃圾。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+schedule-1-1,schedule,1,Let me check my schedule before I agree to the meeting.,同意开会前我先查看一下日程。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+schedule-1-2,schedule,1,The conference schedule is on the website.,会议日程已发布在网站上。,项目自编演示 v1（AI 起草，待人工校对）,demo-v2,1
+tuition-1-1,tuition,1,Many students take part-time jobs to pay their tuition.,许多学生做兼职来支付学费。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+tuition-1-2,tuition,1,The university plans to raise tuition next year.,大学计划明年提高学费。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+volunteer-1-1,volunteer,1,She works as a volunteer at the local hospital.,她在当地医院当志愿者。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+volunteer-1-2,volunteer,1,Every volunteer received a free T-shirt.,每位志愿者都得到了一件免费 T 恤。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+organise-1-1,organise,1,The students will organise a charity concert.,学生们将组织一场慈善音乐会。,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1
+organise-1-2,organise,1,Can you help me organise my notes?,你能帮我整理笔记吗？,项目自编演示 v1（AI 起草，待人工校对）,demo-v1,1

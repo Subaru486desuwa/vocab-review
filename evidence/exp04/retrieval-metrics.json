@@ -1,5 +1,5 @@
 {
-  "annotation_status": "AI 草拟、待人工确认（#7），不是独立人工标注",
+  "annotation_status": "AI 起草并经 AI 复核，不是独立人工标注",
   "queries_file": "data/demo/eval/example_queries.jsonl",
   "index": {
     "encoder": {
@@ -12,10 +12,10 @@
     "dtype": "float32",
     "normalized": "L2",
     "count": 158,
-    "corpus_fingerprint": "b1cd848eac8e5521bf79abae72b5a044582ab43d1295a6bd81c597532f115da6",
-    "vectors_sha256": "5bdd4284294b1b2e0c17fa348ebcb5797eb1558c0727ee4373bcf00510d76593",
-    "ids_sha256": "e3d7af80f7af977ff7dae4b63fb74d0cd2191da1ddd4e4cd823eccc4bcc3a50b",
-    "built_at_utc": "2026-10-23T20:13:01Z"
+    "corpus_fingerprint": "5d7dcbadcb029b7cb919bed2338ab49c0d5b8009b636b3d4bfab5cc94091c4aa",
+    "vectors_sha256": "577228068642da995e936dd753ec2a898cd281eeaad69c28cb982c7b9061495d",
+    "ids_sha256": "56dab8b22e23ded47a2e3bffa0a6c9d09ca0546b0894aa46fe25ae0fe9ff7dc4",
+    "built_at_utc": "2026-10-24T17:00:16Z"
   },
   "result": {
     "dev": {
@@ -50,7 +50,7 @@
             "text": "They gave up the plan halfway because it was too risky.",
             "top3": [
               {
-                "example_key": "benefit-1-1",
+                "example_key": "benefit-1-2",
                 "score": 0.4911
               },
               {
@@ -71,7 +71,7 @@
             "text": "a place where people can stay when they travel",
             "top3": [
               {
-                "example_key": "benefit-1-2",
+                "example_key": "benefit-1-1",
                 "score": 0.4459
               },
               {
@@ -100,7 +100,7 @@
                 "score": 0.4976
               },
               {
-                "example_key": "allocate-1-1",
+                "example_key": "allocate-1-2",
                 "score": 0.4944
               }
             ],
@@ -121,7 +121,7 @@
                 "score": 0.3699
               },
               {
-                "example_key": "significant-1-2",
+                "example_key": "significant-1-1",
                 "score": 0.3684
               }
             ],
@@ -245,8 +245,8 @@
                 "score": 0.2309
               },
               {
-                "example_key": "schedule-1-2",
-                "score": 0.223
+                "example_key": "evidence-1-2",
+                "score": 0.1972
               }
             ]
           }
@@ -255,12 +255,12 @@
       "tfidf": {
         "queries": 10,
         "with_relevant": 8,
-        "recall_at_3": 0.3125,
+        "recall_at_3": 0.375,
         "mrr_at_3": 0.4792,
         "by_type": {
           "paraphrase": {
             "queries": 5,
-            "recall_at_3": 0.2,
+            "recall_at_3": 0.3,
             "mrr_at_3": 0.1667
           },
           "polysemy": {
@@ -283,7 +283,7 @@
             "text": "They gave up the plan halfway because it was too risky.",
             "top3": [
               {
-                "example_key": "benefit-1-1",
+                "example_key": "benefit-1-2",
                 "score": 0.3426
               },
               {
@@ -295,7 +295,7 @@
                 "score": 0.0
               }
             ],
-            "recall_at_3": 0.5,
+            "recall_at_3": 1.0,
             "rr_at_3": 0.3333
           },
           {
@@ -313,7 +313,7 @@
               },
               {
                 "example_key": "commute-1-1",
-                "score": 0.2644
+                "score": 0.2598
               }
             ],
             "recall_at_3": 0.0,
@@ -490,18 +490,18 @@
       "sentence_embedding": {
         "queries": 30,
         "with_relevant": 27,
-        "recall_at_3": 0.6296,
-        "mrr_at_3": 0.9074,
+        "recall_at_3": 0.6914,
+        "mrr_at_3": 0.9259,
         "by_type": {
           "paraphrase": {
             "queries": 18,
-            "recall_at_3": 0.6389,
+            "recall_at_3": 0.6667,
             "mrr_at_3": 0.9167
           },
           "polysemy": {
             "queries": 9,
-            "recall_at_3": 0.6111,
-            "mrr_at_3": 0.8889
+            "recall_at_3": 0.7407,
+            "mrr_at_3": 0.9444
           }
         },
         "no_relevant": {
@@ -586,7 +586,7 @@
                 "score": 0.5523
               },
               {
-                "example_key": "benefit-1-1",
+                "example_key": "benefit-1-2",
                 "score": 0.4754
               },
               {
@@ -615,7 +615,7 @@
                 "score": 0.2358
               }
             ],
-            "recall_at_3": 0.5,
+            "recall_at_3": 1.0,
             "rr_at_3": 1.0
           },
           {
@@ -695,7 +695,7 @@
                 "score": 0.3681
               },
               {
-                "example_key": "consequence-1-1",
+                "example_key": "consequence-1-2",
                 "score": 0.3591
               }
             ],
@@ -716,7 +716,7 @@
                 "score": 0.5424
               },
               {
-                "example_key": "benefit-1-1",
+                "example_key": "benefit-1-2",
                 "score": 0.471
               }
             ],
@@ -741,7 +741,7 @@
                 "score": 0.3098
               }
             ],
-            "recall_at_3": 0.5,
+            "recall_at_3": 1.0,
             "rr_at_3": 1.0
           },
           {
@@ -771,7 +771,7 @@
             "text": "The government shared the budget among different schools.",
             "top3": [
               {
-                "example_key": "allocate-1-1",
+                "example_key": "allocate-1-2",
                 "score": 0.5125
               },
               {
@@ -856,7 +856,7 @@
             "top3": [
               {
                 "example_key": "exaggerate-1-1",
-                "score": 0.7166
+                "score": 0.7252
               },
               {
                 "example_key": "deliberate-1-1",
@@ -884,7 +884,7 @@
                 "score": 0.5419
               },
               {
-                "example_key": "significant-1-2",
+                "example_key": "significant-1-1",
                 "score": 0.5336
               }
             ],
@@ -905,7 +905,7 @@
                 "score": 0.315
               },
               {
-                "example_key": "significant-1-2",
+                "example_key": "significant-1-1",
                 "score": 0.2887
               }
             ],
@@ -1035,8 +1035,8 @@
                 "score": 0.3084
               }
             ],
-            "recall_at_3": 0.5,
-            "rr_at_3": 0.5
+            "recall_at_3": 0.6667,
+            "rr_at_3": 1.0
           },
           {
             "query_id": "t26",
@@ -1056,7 +1056,7 @@
                 "score": 0.36
               }
             ],
-            "recall_at_3": 0.5,
+            "recall_at_3": 1.0,
             "rr_at_3": 1.0
           },
           {
@@ -1113,7 +1113,7 @@
                 "score": 0.2736
               },
               {
-                "example_key": "benefit-1-2",
+                "example_key": "benefit-1-1",
                 "score": 0.2344
               }
             ]
@@ -1142,18 +1142,18 @@
       "tfidf": {
         "queries": 30,
         "with_relevant": 27,
-        "recall_at_3": 0.3148,
-        "mrr_at_3": 0.5617,
+        "recall_at_3": 0.3457,
+        "mrr_at_3": 0.5741,
         "by_type": {
           "paraphrase": {
             "queries": 18,
-            "recall_at_3": 0.3889,
+            "recall_at_3": 0.4167,
             "mrr_at_3": 0.713
           },
           "polysemy": {
             "queries": 9,
-            "recall_at_3": 0.1667,
-            "mrr_at_3": 0.2593
+            "recall_at_3": 0.2037,
+            "mrr_at_3": 0.2963
           }
         },
         "no_relevant": {
@@ -1239,10 +1239,10 @@
               },
               {
                 "example_key": "commute-1-1",
-                "score": 0.3425
+                "score": 0.3365
               },
               {
-                "example_key": "benefit-1-1",
+                "example_key": "benefit-1-2",
                 "score": 0.2296
               }
             ],
@@ -1267,7 +1267,7 @@
                 "score": 0.2627
               }
             ],
-            "recall_at_3": 0.5,
+            "recall_at_3": 1.0,
             "rr_at_3": 0.3333
           },
           {
@@ -1327,7 +1327,7 @@
               },
               {
                 "example_key": "commute-1-1",
-                "score": 0.2644
+                "score": 0.2598
               }
             ],
             "recall_at_3": 0.5,
@@ -1465,7 +1465,7 @@
             "text": "She took charge of the new office as its manager.",
             "top3": [
               {
-                "example_key": "allocate-1-2",
+                "example_key": "allocate-1-1",
                 "score": 0.4294
               },
               {
@@ -1508,7 +1508,7 @@
             "top3": [
               {
                 "example_key": "exaggerate-1-1",
-                "score": 0.6418
+                "score": 0.4185
               },
               {
                 "example_key": "abandon-1-1",
@@ -1537,7 +1537,7 @@
               },
               {
                 "example_key": "commute-1-1",
-                "score": 0.2644
+                "score": 0.2598
               }
             ],
             "recall_at_3": 0.5,
@@ -1684,11 +1684,11 @@
               },
               {
                 "example_key": "neighbourhood-1-2",
-                "score": 0.2941
+                "score": 0.2998
               }
             ],
-            "recall_at_3": 0.0,
-            "rr_at_3": 0.0
+            "recall_at_3": 0.3333,
+            "rr_at_3": 0.3333
           },
           {
             "query_id": "t26",
@@ -1700,7 +1700,7 @@
                 "score": 0.27
               },
               {
-                "example_key": "analyse-1-1",
+                "example_key": "analyse-1-2",
                 "score": 0.2641
               },
               {
@@ -1718,15 +1718,15 @@
             "top3": [
               {
                 "example_key": "commute-1-1",
-                "score": 0.3134
+                "score": 0.3468
               },
               {
                 "example_key": "itinerary-1-1",
-                "score": 0.3035
+                "score": 0.2922
               },
               {
-                "example_key": "schedule-1-2",
-                "score": 0.2938
+                "example_key": "abandon-1-1",
+                "score": 0.0
               }
             ],
             "recall_at_3": 0.5,
@@ -1762,10 +1762,10 @@
               },
               {
                 "example_key": "commute-1-1",
-                "score": 0.4349
+                "score": 0.4272
               },
               {
-                "example_key": "benefit-1-2",
+                "example_key": "benefit-1-1",
                 "score": 0.4121
               }
             ]
