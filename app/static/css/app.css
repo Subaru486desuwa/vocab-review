@@ -74,6 +74,14 @@ figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .stat-grid dd { margin: 4px 0; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .stat-grid p { margin: 0; color: var(--muted); font-size: 12px; }
 .today-tasks { display: grid; gap: 28px; margin: 8px 0 24px; }
+.about { margin-top: 32px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 12px; }
+.about summary { cursor: pointer; width: fit-content; }
+.about p { margin: 8px 0 0; max-width: 680px; }
+.about .data-table { margin: 12px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; padding-block: 0 48px; }
+.features div { padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: white; }
+.features p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+a.status { text-decoration: none; }
 .today-task { display: grid; gap: 12px; justify-items: start; }
 .today-task .button { border: 0; cursor: pointer; }
 .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-variant-numeric: tabular-nums; }

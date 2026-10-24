@@ -1,19 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
+{% set user = current_user() %}
 <section class="hero">
-  <p class="eyebrow">六级 / 考研 / 雅思</p>
+  <p class="eyebrow">六级 · 考研 · 雅思</p>
   <h1>词汇诊断<br>与个性化复习</h1>
-  <p class="lead">保存每次作答，让下一次复习有据可循。</p>
-  <a class="button" href="{{ url_for('lab.hello') }}">查看 Flask 基础演示 <span aria-hidden="true">↗</span></a>
+  <p class="lead">一个词库覆盖三类考试，按你的作答安排每天的复习。</p>
+  <div class="actions">
+    {% if user %}
+      <a class="button" href="{{ url_for('learning.today_page') }}">进入今日任务</a>
+      <a class="text-link" href="{{ url_for('learning.dashboard') }}">学习概览 →</a>
+    {% else %}
+      <a class="button" href="{{ url_for('auth.register_page') }}">注册开始学习</a>
+      <a class="text-link" href="{{ url_for('auth.login_page') }}">已有账户，登录 →</a>
+    {% endif %}
+  </div>
 </section>
-<section class="roadmap" aria-labelledby="roadmap-title">
-  <h2 id="roadmap-title">从网站基础，到模型实验</h2>
-  <p class="section-note">学习闭环与四个实验已可用；分级背单词等平台功能后续实现。</p>
+<section class="features" aria-label="核心功能">
+  <div><h3>今日任务</h3><p>先复习到期内容，再学 10 个新词义。</p></div>
+  <div><h3>三类练习</h3><p>辨义、拼写、语境，提交即判分。</p></div>
+  <div><h3>复习计划</h3><p>错题 10 分钟后回来，答对后间隔逐步拉长。</p></div>
+  <div><h3>学习概览</h3><p>按考试目标和题型查看进度。</p></div>
+</section>
+<section class="roadmap" aria-labelledby="labs-title">
+  <h2 id="labs-title">课程实验</h2>
   <ol>
-    <li><span class="step">01</span><div><h3>Web 框架</h3><p>应用工厂、模板与静态图片</p></div><span class="status ready">可访问</span></li>
-    <li><span class="step">02</span><div><h3>学习与复习</h3><p>账户、MySQL、三类练习与规则复习</p></div><span class="status ready">可访问</span></li>
-    <li><span class="step">03</span><div><h3>机器学习实验</h3><p>预期练习正确比例回归</p></div><span class="status ready">可访问</span></li>
-    <li><span class="step">04</span><div><h3>深度学习实验</h3><p>英语语境例句检索</p></div><span class="status ready">可访问</span></li>
+    <li><span class="step">01</span><div><h3>Web 框架</h3><p>应用工厂、模板与静态图片</p></div><a class="status ready" href="{{ url_for('lab.hello') }}">进入</a></li>
+    <li><span class="step">02</span><div><h3>页面与 MySQL</h3><p>账户、练习、复习与统计</p></div><a class="status ready" href="{{ url_for('learning.dashboard') }}">进入</a></li>
+    <li><span class="step">03</span><div><h3>机器学习</h3><p>预期练习正确比例</p></div><a class="status ready" href="{{ url_for('ml_lab.page') }}">进入</a></li>
+    <li><span class="step">04</span><div><h3>深度学习</h3><p>英语语境例句检索</p></div><a class="status ready" href="{{ url_for('examples.page') }}">进入</a></li>
   </ol>
 </section>
 {% endblock %}

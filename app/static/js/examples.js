@@ -34,7 +34,7 @@
           line(`${r.sense.lemma}（${r.sense.part_of_speech}）${r.sense.definition_zh} · ${r.translation_zh || ""}`),
         );
       }
-      box.append(line(`模型计算 ${d.model_time_ms} ms · 处理 ${d.processing_time_ms} ms · request_id ${payload.request_id}`, "form-note"));
+      box.append(line(`模型计算 ${d.model_time_ms} ms`, "form-note"));
     }
     box.hidden = false;
   });

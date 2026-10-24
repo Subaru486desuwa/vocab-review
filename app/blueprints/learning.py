@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import Blueprint, abort, render_template, request
 
 from app import clock
@@ -74,6 +76,9 @@ def review_page():
     if data:
         for entry in data["wrong_pending"]:
             entry["until"] = _until(entry["seconds_until_due"])
+        if data["next_due_at"]:
+            next_at = datetime.fromisoformat(data["next_due_at"].removesuffix("Z"))
+            data["next_due_in"] = _until((next_at - clock.now()).total_seconds())
     return render_template("review.html", data=data, skill_names=SKILL_NAMES)
 
 

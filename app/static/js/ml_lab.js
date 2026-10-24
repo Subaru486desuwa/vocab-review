@@ -4,9 +4,10 @@
   const form = document.getElementById("recall-form");
   const box = document.getElementById("recall-result");
 
-  function line(text) {
+  function line(text, className) {
     const p = document.createElement("p");
     p.textContent = text;
+    if (className) p.className = className;
     return p;
   }
 
@@ -24,13 +25,12 @@
     if (!response.ok) {
       box.append(line(`无法估计：${payload.error.message}`));
     } else if (payload.data.status === "cold_start") {
-      box.append(line("冷启动：没有历史作答，不给出估计（expected_recall = null）。"));
+      box.append(line("没有历史作答，暂不估计。"));
     } else {
       const d = payload.data;
       box.append(
-        line(`expected_recall = ${d.expected_recall.toFixed(4)}`),
-        line(`模型 ${d.model.model_code} ${d.model.version} · ${d.model.feature_schema_version}`),
-        line(`模型计算 ${d.model_time_ms} ms · 处理 ${d.processing_time_ms} ms · request_id ${payload.request_id}`),
+        line(`预期正确比例 ${(d.expected_recall * 100).toFixed(1)}%`, "verdict correct"),
+        line(`${d.model.model_code} ${d.model.version} · 模型计算 ${d.model_time_ms} ms`, "form-note"),
       );
     }
     box.hidden = false;

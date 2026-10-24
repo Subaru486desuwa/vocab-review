@@ -4,11 +4,12 @@
 <section class="auth-page wide-page">
   <p class="eyebrow">实验三 / 机器学习</p>
   <h1>预期练习正确比例</h1>
-  <p class="lead">随机森林回归在 Duolingo 公开学习记录上训练，估计一次练习内正确回忆的比例。它不是掌握度、考试分数，也不改写本系统的作答记录和复习安排。</p>
+  <p class="lead">输入练习间隔和历史作答，估计这次练习的正确回忆比例。</p>
   {% if status == "available" %}
-    <p class="verdict correct">模型可用：{{ manifest.model_code }} {{ manifest.version }} · {{ manifest.feature_schema_version }} · 训练于 {{ manifest.trained_at_utc }}</p>
+    <p class="verdict correct">模型可用 · {{ manifest.model_code }} {{ manifest.version }}</p>
+    <details class="about">
+    <summary>离线评测（MAE / RMSE，越小越好）</summary>
     <table class="data-table">
-      <caption>离线逐记录误差（越小越好；数字来自制品清单）</caption>
       <thead><tr><th scope="col">集合</th><th scope="col">方法</th><th scope="col">MAE</th><th scope="col">RMSE</th></tr></thead>
       <tbody>
         {% set names = {"model": "随机森林", "baseline_train_label_mean": "训练集标签均值", "baseline_smoothed_accuracy": "平滑历史正确率"} %}
@@ -17,6 +18,8 @@
         {% endfor %}{% endfor %}
       </tbody>
     </table>
+    <p>特征 {{ manifest.feature_schema_version }} · 训练于 {{ manifest.trained_at_utc }}</p>
+    </details>
   {% else %}
     <p class="verdict wrong" role="status">模型不可用：{{ reason }}</p>
     <p class="form-note">练习、复习等基础学习功能不受影响。</p>
@@ -28,7 +31,10 @@
     <button class="button" type="submit" {% if status != "available" %}disabled{% endif %}>估计</button>
   </form>
   <div id="recall-result" class="feedback" role="status" hidden></div>
-  <p class="form-note">输入来源记为 manual_lab；每次估计的输入、输出、模型版本与耗时都写入 MySQL 的 inference_events。</p>
+  <details class="about">
+    <summary>说明</summary>
+    <p>随机森林回归在 Duolingo 公开学习记录上训练。输出是一次练习内正确回忆的比例估计，不是掌握度或考试分数，也不改写作答记录和复习安排；没有历史作答时不给估计。每次估计的输入、输出、模型版本与耗时写入 MySQL 的 inference_events（来源 manual_lab）。</p>
+  </details>
 </section>
 {% endblock %}
 {% block scripts %}<script src="{{ url_for('static', filename='js/ml_lab.js') }}"></script>{% endblock %}

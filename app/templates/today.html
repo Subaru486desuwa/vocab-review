@@ -5,14 +5,11 @@
   <p class="eyebrow">今日{% if plan %} · {{ plan.date }}{% endif %}</p>
   <h1>今日任务</h1>
   {% if plan %}
-    <p class="lead">
-      {% if plan.completed %}今天的任务已完成。答错的词义到期后会重新出现在这里。
-      {% else %}先复习已到期的内容，再学今日新词义。{% endif %}
-    </p>
+    <p class="lead">{% if plan.completed %}今天的任务已完成。{% else %}先复习，再学新词。{% endif %}</p>
     <dl class="stat-grid">
-      <div><dt>连续学习</dt><dd>{{ plan.streak.days }} 天</dd><p>{% if plan.streak.active_today %}今天已作答{% else %}今天还没有作答{% endif %}</p></div>
-      <div><dt>今日新词义</dt><dd>{{ plan.new_senses.done }} / {{ plan.new_senses.target }}</dd><p>目标内还有 {{ plan.new_senses.available }} 个未作答词义</p></div>
-      <div><dt>待复习</dt><dd>{{ plan.review.due }}</dd><p>已到复习时间的词义 × 题型</p></div>
+      <div><dt>连续学习</dt><dd>{{ plan.streak.days }} 天</dd><p>{% if plan.streak.active_today %}今天已练习{% else %}今天还没练习{% endif %}</p></div>
+      <div><dt>今日新词义</dt><dd>{{ plan.new_senses.done }} / {{ plan.new_senses.target }}</dd><p>还有 {{ plan.new_senses.available }} 个可学</p></div>
+      <div><dt>待复习</dt><dd>{{ plan.review.due }}</dd></div>
     </dl>
     <div class="today-tasks">
       <div class="today-task">
@@ -24,7 +21,7 @@
             {% endfor %}
           </div>
         {% else %}
-          <p class="form-note">现在没有到期的复习。</p>
+          <p class="form-note">暂无到期内容。</p>
         {% endif %}
       </div>
       <div class="today-task">
@@ -39,9 +36,12 @@
       </div>
     </div>
     <p id="today-error" class="form-error" role="alert"></p>
-    <p class="form-note">“今天”按 {{ plan.timezone }} 时区计算。今日新词义是今天首次作答的词义，答错也计入；连续学习天数只看每天是否有作答。</p>
+    <details class="about">
+      <summary>说明</summary>
+      <p>“今天”按 {{ plan.timezone }} 时区计算。今日新词义是今天首次作答的词义，答错也计入；连续学习天数只看每天是否有作答。答错的词义 10 分钟后到期，届时会重新出现在复习里。</p>
+    </details>
   {% else %}
-    <p class="lead">还没有选择目标词表。先选择一个或多个考试目标，再开始今日任务。</p>
+    <p class="lead">先选择考试目标，再开始今日任务。</p>
     <a class="button" href="{{ url_for('learning.wordbooks_page') }}">选择目标词表</a>
   {% endif %}
 </section>
