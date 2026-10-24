@@ -3,7 +3,7 @@
 # 在仓库根目录、docker compose 运行时执行；密码取自本地 .env，不输出。
 set -euo pipefail
 set -a; . ./.env; set +a
-B=http://127.0.0.1:5000
+B=${BASE_URL:-http://127.0.0.1:5000}
 J=$(mktemp)
 sql() { docker compose exec -T -e MYSQL_PWD="$DB_PASSWORD" db mysql -u"$DB_USER" "$DB_NAME" -N -e "$1"; }
 tok() { curl -s -b "$J" -c "$J" "$B$1" | grep -o 'name="csrf-token" content="[^"]*"' | head -1 | sed 's/.*content="//;s/"$//'; }

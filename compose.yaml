@@ -35,7 +35,7 @@ services:
     # 以宿主用户运行，挂载目录中生成的文件归属不变。
     user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
     ports:
-      - "127.0.0.1:5000:5000"
+      - "127.0.0.1:${WEB_PORT:-5000}:5000"
     volumes:
       - .:/app
     depends_on:

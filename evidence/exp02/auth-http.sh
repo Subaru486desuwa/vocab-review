@@ -1,7 +1,7 @@
 #!/bin/bash
 # 实验二 HTTP 留证：演示账户 demo_e2，密码随机生成且不记录。
 set -euo pipefail
-B=http://127.0.0.1:5000
+B=${BASE_URL:-http://127.0.0.1:5000}
 J=$(mktemp); PW=$(python3 -c 'import secrets; print(secrets.token_urlsafe(12))')
 token() { curl -s -b "$J" -c "$J" "$B$1" | grep -o 'name="csrf_token" value="[^"]*"' | head -1 | sed 's/.*value="//;s/"$//'; }
 show() { echo "## $1"; }
