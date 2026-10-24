@@ -4,7 +4,7 @@
 set -euo pipefail
 set -a; . ./.env; set +a
 B=${BASE_URL:-http://127.0.0.1:5000}
-U=demo_t$(date -u +%m%d%H%M)
+U=demo_t$(date -u +%m%d%H%M%S)
 J=$(mktemp); PW=$(python3 -c 'import secrets; print(secrets.token_urlsafe(12))')
 sql() { docker compose exec -T -e MYSQL_PWD="$DB_PASSWORD" db mysql -u"$DB_USER" "$DB_NAME" -N -e "$1"; }
 form_tok() { curl -s -b "$J" -c "$J" "$B$1" | grep -o 'name="csrf_token" value="[^"]*"' | head -1 | sed 's/.*value="//;s/"$//'; }
