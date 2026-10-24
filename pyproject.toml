@@ -7,7 +7,8 @@ addopts = "-p no:cacheprovider"
 [tool.ruff]
 line-length = 120
 target-version = "py312"
-extend-exclude = [".venv"]
+# 模型制品与原始数据不进 Git；非 Git 副本（如 scripts/handoff_check.sh）中 ruff 不读 .gitignore，需显式排除。
+extend-exclude = [".venv", "artifacts", "data/raw", "data/processed"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]

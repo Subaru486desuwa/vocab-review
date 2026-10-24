@@ -124,7 +124,7 @@ def search(conn, loaded, text, top_k=5, wordbook_id=None):
     except example_index.TextTooLong as exc:
         raise InvalidQuery({"text": str(exc)}) from exc
     by_id = {r["id"]: r for r in rows}
-    ranked = sorted(range(len(loaded.ids)), key=lambda i: -float(scores[i]))
+    ranked = example_index.rank(scores, [item["example_key"] for item in loaded.ids])
     results = []
     for i in ranked:
         row = by_id[loaded.ids[i]["example_id"]]

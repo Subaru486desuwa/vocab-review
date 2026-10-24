@@ -2,7 +2,7 @@
 
 面向六级、考研和雅思的 Python Web 课程项目。以统一词库连接三类目标词表，记录辨义、拼写和语境练习，再生成可解释的复习计划。
 
-**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容、目标词表选择、三类题型练习与服务端判分、复习计划与统计、学习状态重建核对，以及 Docker 中的 MySQL 与 14 张业务表迁移。** 已整理完整首版架构与契约；实验三 ML（`/lab/ml`）与实验四 DL（`/examples`）；分级背单词等平台功能后续实现（#17）。仓库保持 **private**。
+**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容、目标词表选择、三类题型练习与服务端判分、复习计划与统计、学习状态重建核对、实验三 ML（`/lab/ml`）与实验四 DL（`/examples`），以及 Docker 中的 MySQL 与 14 张业务表迁移。** 干净环境启动、SQL 导出与备份恢复已脚本化（见“交接、导出与备份”），答辩步骤见 [演示脚本](docs/demo.md)；分级背单词等平台功能后续实现（#17）。仓库保持 **private**。
 
 ## 先运行基础页面
 
@@ -78,6 +78,34 @@ docker compose run --rm web flask rebuild-learning-state
 
 `import-content` 先整批预检，有错误时逐行报告且不写入；加 `--dry-run` 只报告变化。格式见 [内容包格式](docs/content-format.md)。真实配置只放本地 `.env` 或环境变量。
 
+## 交接、导出与备份
+
+从干净副本全新启动并逐项检查（构建、迁移、导入、公开页面、答辩路径、无模型时 T13、登记模型后推理、完整检查、导出与恢复），结束后删除临时项目与数据卷；使用 5001 端口，不影响正在运行的演示环境：
+
+```bash
+scripts/handoff_check.sh
+```
+
+导出全部表结构与内容表数据（不含账户、练习、作答、学习状态与推理事件）到 `sql/export/vocab_review_content.sql`，可直接导入空库：
+
+```bash
+scripts/db_export.sh
+```
+
+完整备份（含账户哈希与学习记录）写到被 Git 忽略的 `backups/`，文件权限 600：
+
+```bash
+scripts/db_backup.sh
+```
+
+恢复到指定库；库不存在时创建，同名表被替换。恢复到演示库 `vocab_review` 会覆盖当前数据，先另做一次备份，恢复后运行 `flask rebuild-learning-state` 核对：
+
+```bash
+scripts/db_restore.sh backups/vocab_review-20261024T000000Z.sql vocab_review_restore
+```
+
+三个数据库脚本在 `db` 容器内以 root 执行，密码经容器环境变量传入，不出现在命令行或日志中。
+
 ## 从哪里继续开发
 
 | 文档 | 用途 |
@@ -88,6 +116,7 @@ docker compose run --rm web flask rebuild-learning-state
 | [接口契约](docs/api.md) | 页面、JSON 接口、状态码、幂等提交 |
 | [模型契约](docs/models.md) | 共享特征、离线评价、索引版本与留证 |
 | [实施与验收](docs/acceptance.md) | S0—S5、T01—T14、M01—M06 |
+| [演示脚本](docs/demo.md) | 答辩路径、演示前检查与追问依据 |
 | [内容包格式](docs/content-format.md) | 导入文件、预检规则与题目版本 |
 | [术语表](GLOSSARY.md) | 词条、词义、题型、作答与学习状态 |
 | [开发规范](docs/development.md) | 分支与提交、合并前检查、Docker、代码约定、日程 |
@@ -96,7 +125,8 @@ docker compose run --rm web flask rebuild-learning-state
 app/          Flask 应用、路由、业务、SQL 查询、模板与静态资源
 ml/           离线训练、特征构建、模型评价
 artifacts/    本地模型与向量；二进制制品不进入 Git
-sql/          按序迁移（已有 0001 建表）与演示种子（后续实现）
+sql/          按序迁移与内容导出（sql/export/）
+scripts/      干净环境验收、SQL 导出、备份与恢复
 data/demo/    演示内容源表、生成脚本与 v1 内容包（待人工校对）
 tests/        实际入口与回归检查
 evidence/     四次实验的真实截图、日志和评价索引
@@ -111,7 +141,7 @@ docs/         架构、契约、验收与 ADR
 docker compose run --rm web sh -c 'python -m compileall -q app tests && ruff check . && ruff format --check . && pytest -v && pip check'
 ```
 
-标记为 `db` 的测试使用 `TEST_DB_*` 指定的独立测试库，每次运行先清空再迁移；库名必须以 `_test` 结尾。未配置测试库时这些测试显示为跳过，不算通过；已配置但无法连接时报错。当前检查覆盖基础页面、安全配置、迁移、约束、连接生命周期与事务回滚；业务与模型测试随对应切片加入。
+标记为 `db` 的测试使用 `TEST_DB_*` 指定的独立测试库，每次运行先清空再迁移；库名必须以 `_test` 结尾。未配置测试库时这些测试显示为跳过，不算通过；已配置但无法连接时报错。检查覆盖基础页面、安全配置、迁移与约束、账户、导入、练习与作答事务、复习与统计、实验三与实验四。
 
 `requirements.in` 是 Web 直接依赖，`requirements.lock.txt` 是实际安装版本；`requirements-dev.in`/`requirements-dev.lock.txt` 另含 pytest 与 ruff；`requirements-ml.*` 与 `requirements-dl.*`（torch 取 CPU 源）分别是实验三、四依赖。镜像默认都安装，`WITH_ML=0 WITH_DL=0 docker compose build` 构建不含模型依赖的镜像，此时实验页显示不可用，其余功能照常。算法依赖将在模型阶段独立验证后加入，不在基础页面启动时下载或训练模型。
 

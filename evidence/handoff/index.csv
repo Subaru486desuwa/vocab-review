@@ -1,0 +1,2 @@
+file,requirement,command,executed_at_utc,notes
+clean-env.txt,S5/T01/T13/M02/M04/M06,scripts/handoff_check.sh,2026-10-24T14:45:19Z,对 commit cd061fb 运行；从受 Git 管理文件的干净副本、独立 compose 项目与全新数据卷启动：迁移、导入、公开页面、答辩路径、无模型时 503 且练习照常、登记模型与建索引后推理、实验四评价复现（汇总指标与逐条前三项均与 evidence/exp04 完全一致）、完整检查 162 passed 无跳过、SQL 导出导入空库、备份恢复逐表一致；凭据随机生成且未输出，结束后删除项目与数据卷

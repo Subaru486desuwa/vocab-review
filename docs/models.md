@@ -39,7 +39,7 @@ delta_seconds 为非负有限数值；计数为非负整数，history_correct≤
 
 首版模型为 sentence-transformers/all-MiniLM-L6-v2，固定 revision `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`（Apache-2.0）；`python -m ml.download_encoder` 只下载 safetensors 权重、分词器与配置到 `artifacts/dl/encoder/` 并核对 SHA-256。web 容器设置 `HF_HUB_OFFLINE=1`，只从本地加载。目标向量为 384 维；查询和语料均为英语。默认 256 word pieces 的长度约束在编码前核对，超限返回 422，不静默截断。中文页面不代表支持中文语义检索。
 
-例句经人工校对，保存稳定 ID、目标词义、来源与正文版本。按稳定 ID 编码，向量保存为 L2 归一化 float32，绑定模型 revision、语料哈希与 ID 映射。每个推理进程加载一次模型和索引；查询同样归一化，取相似结果后回查 MySQL 的有效内容。top_k 限 1—10，可按目标词表过滤。
+例句经人工校对，保存稳定 ID、目标词义、来源与正文版本。按稳定 ID 编码，向量保存为 L2 归一化 float32，绑定模型 revision、语料哈希与 ID 映射。每个推理进程加载一次模型和索引；查询同样归一化，按相似度降序取结果、同分按 example_key 升序（Web 与离线评价共用 `ml.example_index.rank`，换库后例句 id 不同排名也不变），再回查 MySQL 的有效内容。top_k 限 1—10，可按目标词表过滤。
 
 模型、向量和语料版本不一致则 503，普通词典查询继续可用，不用关键词结果冒充 DL。cosine_similarity 只表示语义相关程度。
 

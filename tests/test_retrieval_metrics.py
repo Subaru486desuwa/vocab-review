@@ -4,6 +4,7 @@ import numpy as np
 import pytest
 
 from ml.evaluate_examples import evaluate, load_queries
+from ml.example_index import rank
 
 KEYS = ["a-1-1", "a-1-2", "b-1-1", "b-1-2"]
 
@@ -25,6 +26,16 @@ def test_recall_and_mrr_at_3():
     assert (result["with_relevant"], result["recall_at_3"], result["mrr_at_3"]) == (2, 0.5, round((1 + 1 / 3) / 2, 4))
     assert result["no_relevant"] == {"queries": 1, "top1_scores": [0.4]}
     assert result["by_type"]["polysemy"]["mrr_at_3"] == 0.3333
+
+
+def test_tied_scores_rank_by_example_key_regardless_of_corpus_order():
+    # 同分时按 example_key 排序：换库后例句 id 与向量顺序不同，排名也不变。
+    scores = np.array([0.0, 0.5, 0.0, 0.0])
+    for keys in (["b-1-2", "c-1-1", "a-1-2", "a-1-1"], ["a-1-1", "c-1-1", "a-1-2", "b-1-2"]):
+        assert [keys[i] for i in rank(scores, keys)] == ["c-1-1", "a-1-1", "a-1-2", "b-1-2"]
+    query = [{"query_id": "q1", "type": "no_relevant", "text": "x", "relevant": []}]
+    top3 = evaluate(np.array([[0.0, 0.0, 0.5, 0.0]]), ["b-1-2", "a-1-2", "b-1-1", "a-1-1"], query)["per_query"]
+    assert [r["example_key"] for r in top3[0]["top3"]] == ["b-1-1", "a-1-1", "a-1-2"]
 
 
 @pytest.mark.parametrize(
