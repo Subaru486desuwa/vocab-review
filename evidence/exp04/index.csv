@@ -2,8 +2,8 @@ file,requirement,command,executed_at_utc,notes
 encoder_manifest.json,E4/M04,docker compose run --rm -e HF_HUB_OFFLINE=0 web python -m ml.download_encoder,2026-10-23T20:09:14Z,sentence-transformers/all-MiniLM-L6-v2 固定 revision 1110a243…、Apache-2.0、各文件字节数与 SHA-256；权重与 Hugging Face LFS 记录一致；权重本身不进 Git
 index_manifest.json,E4/M04,docker compose run --rm web flask build-example-index,2026-10-23T20:13:01Z,158 条启用例句、384 维 float32 L2 归一化、语料指纹、向量与 id 文件哈希、编码器 revision 与权重哈希
 example_queries.jsonl,E4/M05,data/demo/eval/example_queries.jsonl,2026-10-23T20:11:51Z,dev 10 / test 30 条英语查询（近义改写、多义词、无相关例句）；AI 起草，待人工确认（#7），不是独立人工标注
-retrieval-metrics.json,E4/M05,docker compose run --rm web flask evaluate-example-search,2026-10-23T20:13:39Z,句向量与 TF-IDF 的 Recall@3、MRR@3、按类型结果、无相关项最高分与逐条前三项；标注状态为 AI 草拟
-evaluation.md,E4/M05,docker compose run --rm web flask evaluate-example-search,2026-10-23T20:13:39Z,由 retrieval-metrics 自动生成的评价报告与错误分析
+retrieval-metrics.json,E4/M05,docker compose run --rm web flask evaluate-example-search,2026-10-24T14:41:54Z,句向量与 TF-IDF 的 Recall@3、MRR@3、按类型结果、无相关项最高分与逐条前三项；同分按 example_key 排序后重跑（相对 10/23 只有 12 条查询的 0 分并列项顺序变化，汇总指标不变）；标注状态为 AI 草拟
+evaluation.md,E4/M05,docker compose run --rm web flask evaluate-example-search,2026-10-24T14:41:54Z,由 retrieval-metrics 自动生成的评价报告与错误分析
 latency.py,E4,python3 evidence/exp04/latency.py,2026-10-23T20:18:21Z,独立 HTTP 客户端耗时测量脚本
 latency.json,E4,python3 evidence/exp04/latency.py,2026-10-23T20:18:21Z,web 重启后首次请求（含 torch 导入、校验与加载）与预热后 30 次顺序请求的 p50/p95，0 失败，附各查询第一名
 lab-http.txt,E4/M04/M05/T13,curl 与 docker compose run web python（DL_MODEL_DIR=/nonexistent）,2026-10-23T20:18:50Z,页面可用状态、检索与词表过滤、中文查询与超过 256 word pieces 时 422（不截断）、停用例句后拒绝旧索引并在恢复后可用、目录缺失时 503 且练习照常（该段用测试客户端并关闭 CSRF）

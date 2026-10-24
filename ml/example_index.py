@@ -38,6 +38,11 @@ def sha256_file(path):
     return digest.hexdigest()
 
 
+def rank(scores, keys):
+    """按分数降序返回下标，同分按 example_key 升序；与例句 id 和向量顺序无关，评价与 Web 共用。"""
+    return np.lexsort((np.asarray(keys), -np.asarray(scores, dtype=np.float64)))
+
+
 def corpus_fingerprint(rows):
     """rows 含 id、example_key、content_version、text_en；与顺序无关。"""
     lines = sorted(

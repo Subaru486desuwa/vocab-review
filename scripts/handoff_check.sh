@@ -113,27 +113,17 @@ api POST /api/v1/ml/recall '{"delta_seconds":86400,"history_seen":0,"history_cor
 api POST /api/v1/examples/search '{"text":"I need to open a savings account.","top_k":3}' \
   | python3 -c 'import sys,json; raw=sys.stdin.read().rstrip("\n"); body,code=raw.rsplit("\n",1); d=json.loads(body)["data"]
 print("HTTP", code, [(r["example_key"], round(r["cosine_similarity"],3)) for r in d["results"]]); sys.exit(0 if code=="200" else 1)'
-echo "实验四评价重跑（语料指纹含数据库 id，换库后不同；评价按 example_key 引用例句，指标应与 evidence/exp04 一致）："
+echo "实验四评价重跑（语料指纹含数据库 id，换库后不同；评价按 example_key 引用例句、同分按 example_key 排序，结果应与 evidence/exp04 完全一致）："
 run flask evaluate-example-search --out artifacts/dl/eval-handoff | tail -n 1
 python3 - "$SRC/evidence/exp04/retrieval-metrics.json" artifacts/dl/eval-handoff/metrics.json <<'PY'
 import json, sys
 old, new = (json.load(open(p, encoding="utf-8"))["result"] for p in sys.argv[1:])
-diffs, ties = [], 0
-for split in old:
-    for method in old[split]:
-        a, b = old[split][method], new[split][method]
-        if {k: v for k, v in a.items() if k != "per_query"} != {k: v for k, v in b.items() if k != "per_query"}:
-            diffs.append(f"{split} {method} 汇总指标")
-        for qa, qb in zip(a["per_query"], b["per_query"]):
-            same_scores = [r["score"] for r in qa["top3"]] == [r["score"] for r in qb["top3"]]
-            if {k: v for k, v in qa.items() if k != "top3"} != {k: v for k, v in qb.items() if k != "top3"} or not same_scores:
-                diffs.append(f"{split} {method} {qa['query_id']}")
-            elif qa["top3"] != qb["top3"]:
-                ties += 1
-if diffs:
-    print("!! 与 evidence/exp04 不一致：", "、".join(diffs))
+diffs = [f"{s} {m} {qa['query_id']}" for s in old for m in old[s]
+         for qa, qb in zip(old[s][m]["per_query"], new[s][m]["per_query"]) if qa != qb]
+if old != new:
+    print("!! 与 evidence/exp04 不一致：", "、".join(diffs) or "汇总指标")
     sys.exit(1)
-print(f"汇总指标与逐条命中、分数均与 evidence/exp04 一致；{ties} 条查询仅同分并列项顺序不同（并列时按例句 id 排序，换库后 id 不同）")
+print("汇总指标与逐条前三项（含分数与顺序）均与 evidence/exp04 一致")
 PY
 echo "推理事件（MySQL，M06）："
 sql "SELECT kind, source_type, status, COUNT(*) FROM inference_events GROUP BY kind, source_type, status ORDER BY kind, source_type, status"

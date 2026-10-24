@@ -9,6 +9,8 @@ from pathlib import Path
 
 import numpy as np
 
+from ml.example_index import rank
+
 K = 3
 SPLITS = ("dev", "test")
 TYPES = ("paraphrase", "polysemy", "no_relevant")
@@ -48,7 +50,7 @@ def tfidf_scores(corpus_texts, query_texts):
 
 
 def _per_query(scores, keys, query):
-    order = np.argsort(-scores, kind="stable")[:K]
+    order = rank(scores, keys)[:K]
     top = [keys[i] for i in order]
     relevant = set(query["relevant"])
     result = {

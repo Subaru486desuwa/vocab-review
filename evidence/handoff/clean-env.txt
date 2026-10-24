@@ -1,4 +1,4 @@
-# executed_at_utc=2026-10-24T14:24:52Z commit=4401235 project=vocab-review-handoff base=http://127.0.0.1:5001
+# executed_at_utc=2026-10-24T14:45:19Z commit=cd061fb project=vocab-review-handoff base=http://127.0.0.1:5001
 
 ## 1. 复制受 Git 管理的文件到临时目录（等同干净克隆，不含 .env、artifacts/、data/raw/）
 文件数 205；artifacts/：README.md；data/raw 存在：否
@@ -44,11 +44,12 @@ APP_ENV SECRET_KEY DB_HOST DB_PORT DB_NAME DB_USER DB_PASSWORD TEST_DB_NAME TEST
 
 #11 exporting to image
 #11 exporting layers
-#11 exporting layers 0.3s done
-#11 exporting manifest sha256:cea0b505567e1e05a58b54c584480d96e3f073c86a9f79f953596c314c382c91 0.0s done
-#11 exporting config sha256:a405c887c8e2a6a69303ff21bcd1f47fc2ddffe706732acc1abc5f3ea5439ae6 0.0s done
-#11 exporting attestation manifest sha256:2424103b6f4ad5c15f66f684fc5abf9571e6a450a823a64695e65f17d7ea2ab0 0.0s done
-#11 exporting manifest list sha256:6552a47cd73bf5669b0f0a9a190ca3c2a199b24bdebc51517c249c0d0623d13b 0.0s done
+#11 exporting layers 0.2s done
+#11 exporting manifest sha256:684ddd14b0c4c550526cff802414db9cf3f1ccea7347a9ce83a8db110eeb6b5e
+#11 exporting manifest sha256:684ddd14b0c4c550526cff802414db9cf3f1ccea7347a9ce83a8db110eeb6b5e 0.0s done
+#11 exporting config sha256:1398c3adfcb3fad9b903f6447e33c7e2c2b94d47fe69f041e0f23f52c4c90539 0.0s done
+#11 exporting attestation manifest sha256:38309c487966885f6605a171839cc558ba80592b6181b97113b0dd8d09625065 0.0s done
+#11 exporting manifest list sha256:2bf50d02d5cb471dd9193658c91476f56d7cf35946922b256ab87caded40fe68 0.0s done
 #11 naming to docker.io/library/vocab-review-handoff-web:latest done
 #11 unpacking to docker.io/library/vocab-review-handoff-web:latest 0.1s done
 #11 DONE 0.4s
@@ -83,24 +84,24 @@ HTTP 302
 ## 2. 只选六级目标
 ['cet6-demo']
 ## 3. 5 题辨义练习：前 2 题故意答错，其余答对
-benefit 错误(meaning) → active
-fair 错误(meaning) → active
-ambiguous 正确 → active
-compromise 正确 → active
-significant 正确 → completed
+approach 错误(meaning) → active
+issue 错误(meaning) → active
+fair 正确 → active
+fragile 正确 → active
+benefit 正确 → completed
 ## 4. 复习计划（GET /api/v1/me/review）
-已到期 0 ；未到期错题 2 ；下一项到期 2026-10-24T14:35:20.600490Z
-  错题 benefit recognition 约 10 分钟后到期
-  错题 fair recognition 约 10 分钟后到期
+已到期 0 ；未到期错题 2 ；下一项到期 2026-10-24T14:55:47.344159Z
+  错题 approach recognition 约 10 分钟后到期
+  错题 issue recognition 约 10 分钟后到期
 ## 5. 六级目标统计（GET /api/v1/me/stats）
 词条 已练习/总数 5 / 30 ；词义×题型 已测试/未测试/总数 5 100 105 ；作答 {'accuracy': 0.6, 'correct': 3, 'count': 5}
 ## 6. 增加雅思目标（六级 + 雅思）
 ['cet6-demo', 'ielts-demo']
 合计词条（共有词只计一次） 50
    cet6-demo 词条 30 已练习 5
-   ielts-demo 词条 30 已练习 2
+   ielts-demo 词条 30 已练习 3
 ## 7. 只看雅思词表：共有词条在六级目标下的作答被复用
-雅思 已练习词条 2 / 30 ；作答 {'accuracy': 0.5, 'correct': 1, 'count': 2} ；未测试 97
+雅思 已练习词条 3 / 30 ；作答 {'accuracy': 0.3333, 'correct': 1, 'count': 3} ；未测试 96
 ## 8. 页面
 /dashboard HTTP 200
 /review HTTP 200
@@ -122,9 +123,9 @@ GET /examples → 检索不可用：缺少编码器清单 /app/artifacts/dl/enco
 HTTP 200 {"status": "ok", "expected_recall": 0.8847907382677153}
 HTTP 200 {"status": "cold_start", "expected_recall": null}
 HTTP 200 [('bank-1-1', 0.793), ('withdraw-1-1', 0.354), ('issue-2-2', 0.337)]
-实验四评价重跑（语料指纹含数据库 id，换库后不同；评价按 example_key 引用例句，指标应与 evidence/exp04 一致）：
+实验四评价重跑（语料指纹含数据库 id，换库后不同；评价按 example_key 引用例句、同分按 example_key 排序，结果应与 evidence/exp04 完全一致）：
 标注状态：AI 草拟、待人工确认（#7），不是独立人工标注；结果写入 artifacts/dl/eval-handoff
-汇总指标与逐条命中、分数均与 evidence/exp04 一致；13 条查询仅同分并列项顺序不同（并列时按例句 id 排序，换库后 id 不同）
+汇总指标与逐条前三项（含分数与顺序）均与 evidence/exp04 一致
 推理事件（MySQL，M06）：
 dl	manual_lab	model_unavailable	1
 dl	manual_lab	ok	1
@@ -137,19 +138,19 @@ All checks passed!
 86 files already formatted
 ..................................................................... [ 42%]
 ........................................................................ [ 87%]
-....................                                                     [100%]
-161 passed, 3 subtests passed in 123.45s (0:02:03)
+.....................                                                    [100%]
+162 passed, 3 subtests passed in 120.65s (0:02:00)
 No broken requirements found.
 
 ## 11. SQL 导出可导入空库（测试账户，最小权限）
-已导出：/tmp/tmp.T96C9H1sO0/export.sql（639 行数据）
+已导出：/tmp/tmp.CIxfB8JGjK/export.sql（639 行数据）
 目标库：vocab_review_test@db:3306
 没有待执行的迁移。
 内容表行数一致：examples 158 questions 237 word_senses 79 wordbooks 3 words 70 
 个人记录表在导出中为空：attempts 0 inference_events 0 learning_state 0 users 0 
 
 ## 12. 完整备份 → 恢复到临时库 → 逐表核对行数
-备份文件 vocab_review-20261024T142832Z.sql，137918 字节，权限 600
+备份文件 vocab_review-20261024T144855Z.sql，137919 字节，权限 600
 已恢复到 vocab_review_restore：15 张表
 15 张表逐表行数一致：attempts 5 examples 158 inference_events 5 learning_state 5 model_versions 2 practice_sessions 2 questions 237 schema_migrations 2 session_items 6 user_wordbooks 2 users 1 word_senses 79 wordbook_words 90 wordbooks 3 words 70 
 学习状态与作答记录一致：核对 5 组（用户, 词义, 题型）。
