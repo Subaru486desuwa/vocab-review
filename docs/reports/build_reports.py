@@ -162,6 +162,7 @@ def report2():
     hash_row = [r for r in read("evidence/exp02/password-hash.txt").splitlines() if "demo_e2" in r][0]
     hash_cells = [c.strip() for c in hash_row.strip("|").split("|")]
     review = read("evidence/exp02/review-path.txt")
+    today = read("evidence/exp02/today-http.txt")
     s5 = [
         ("h", "1. 数据库设计"),
         (
@@ -199,7 +200,8 @@ def report2():
         (
             "p",
             "功能扩展：在登录的基础上，系统实现了注册、退出和完整的背单词学习闭环——选择目标词表、三类题型练习"
-            "（服务端判分，作答与学习状态在同一事务中提交）、复习计划与统计。下表摘自答辩路径实测（evidence/exp02/review-path.txt）：",
+            "（服务端判分，作答与学习状态在同一事务中提交）、复习计划与统计，以及汇总当天待复习、每日 10 个新词义与连续学习天数的今日任务。"
+            "下表摘自答辩路径与今日任务实测（evidence/exp02/review-path.txt、today-http.txt）：",
         ),
         (
             "table",
@@ -218,10 +220,19 @@ def report2():
                     + "（两个词表共 10 个共有词只计一次）",
                 ),
                 ("学习状态重建核对", re.search(r"学习状态与作答记录一致.*", review).group(0)),
+                (
+                    "今日任务（新账户）",
+                    "新词义 0/10；完成 10 个新词义（2 题答错）后显示已完成，连续学习 "
+                    + re.search(r"连续学习 (\d+) 天", today).group(1)
+                    + " 天；再学新词时与已作答词义重叠 "
+                    + re.search(r"与已作答词义重叠：(\d+) 题", today).group(1)
+                    + " 题",
+                ),
             ],
         ),
         ("img", shot("e2_practice_feedback"), "图 3  练习页：提交后显示服务端判分结果"),
         ("img", shot("e2_review"), "图 4  复习计划：已到期与未到期错题"),
+        ("img", shot("e2_today"), "图 5  今日任务：连续学习天数、今日新词义进度与各题型待复习"),
         ("h", "4. 探讨分析"),
         (
             "p",

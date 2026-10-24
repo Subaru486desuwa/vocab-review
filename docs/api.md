@@ -1,6 +1,6 @@
 # 页面与接口契约
 
-当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），`/wordbooks`、`/practice`、`/review`、`/dashboard` 页面和目标词表、练习、作答、复习、统计接口，以及 `/lab/ml`、`POST /api/v1/ml/recall`、`/examples` 与 `POST /api/v1/examples/search`。管理导入页面按降级方案不做，下表中的 `/admin` 页面不是当前可访问的入口。
+当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），`/today`、`/wordbooks`、`/practice`、`/review`、`/dashboard` 页面和今日任务、目标词表、练习、作答、复习、统计接口，以及 `/lab/ml`、`POST /api/v1/ml/recall`、`/examples` 与 `POST /api/v1/examples/search`。管理导入页面按降级方案不做，下表中的 `/admin` 页面不是当前可访问的入口。
 
 ## 页面
 
@@ -8,6 +8,7 @@
 | --- | --- |
 | /lab/hello | 实验一文字与静态图片 |
 | /login, /register | 账户入口 |
+| /today | 今日任务：待复习、今日新词义、连续学习天数，一键开始练习 |
 | /dashboard, /wordbooks | 概览与目标选择 |
 | /practice, /review | 练习、错词与到期复习 |
 | /lab/ml | 回归实验、冷启动与不可用状态 |
@@ -25,9 +26,10 @@
 | GET /api/v1/me | 会话 | 当前用户 id、username、role、display_timezone；未登录 401 |
 | GET /api/v1/wordbooks | 可选 exam_type,page | 启用词表、来源、版本、启用词条数、是否已选；每页 20，返回 items/page/page_size/total |
 | PUT /api/v1/me/wordbooks | wordbook_ids | 验证全部目标后一次提交，任一无效 422 且 fields.wordbook_ids 列出无效 id；空列表清空目标；撤销目标不删除历史 |
-| POST /api/v1/practice/sessions | skill_type, count=1—20（默认 10）, 可选 wordbook_ids（须为已选目标） | 未选目标 422 NO_TARGET，无可出题 422 NO_QUESTIONS；按 到期复习 > 未到期错题 > 未测试 > 其他 取题，同级随机，每个词义一题，只取启用词条/词义与已发布题目；保存目标快照，201 返回练习 |
-| GET /api/v1/practice/sessions/{id} | 路径 ID | 仅本人可读，否则 404；返回 items（题干、选项）与已作答项的 result；未作答项不含答案与判分规则 |
+| POST /api/v1/practice/sessions | skill_type, count=1—20（默认 10）, 可选 wordbook_ids（须为已选目标）, 可选 focus | 未选目标 422 NO_TARGET，无可出题 422 NO_QUESTIONS；按 到期复习 > 未到期错题 > 未测试 > 其他 取题，同级随机，每个词义一题，只取启用词条/词义与已发布题目；`focus="new_senses"` 时只从任何题型都未作答的词义中随机取题，其他值 422 `fields.focus`；保存目标快照（含 focus），201 返回练习 |
+| GET /api/v1/practice/sessions/{id} | 路径 ID | 仅本人可读，否则 404；返回 focus（无则 null）与 items（题干、选项）与已作答项的 result；未作答项不含答案与判分规则 |
 | POST /api/v1/practice/items/{id}/answer | answer（选项 id 或拼写文本）,CSRF | 服务端判分、幂等重试和单一写事务；非本人 404；格式不合法 422 INVALID_ANSWER；返回 is_correct、error_type、correct_answer、replayed、session_status |
+| GET /api/v1/me/today | 会话 | 今日任务，范围为全部已选目标，未选目标 422 NO_TARGET。“今天”按用户 display_timezone 的自然日。返回 date、timezone、review（due 与 by_skill，口径同 /me/review 的 due）、new_senses（target=10；done 为首次作答在今天的词义数；available 为有已发布辨义题且任何题型都未作答的词义数；remaining=min(max(target−done,0),available)）、streak（days 与 active_today）、completed（due 为 0 且 remaining 为 0，查看时计算） |
 | GET /api/v1/me/review | 可选 wordbook_id（须为已选目标）、skill_type | 默认范围为全部已选目标；未选目标 422 NO_TARGET。返回 due（next_review_at ≤ 当前）与 wrong_pending（最近一次答错且未到期，附 seconds_until_due），以及 next_due_at；未作答过的词义不出现 |
 | GET /api/v1/me/stats | 可选 wordbook_id、skill_type | 只来自真实作答与学习状态：words（目标并集按词条去重的总数与已练习数）、items（有已发布题目的词义 × 题型：total/tested/untested/due/wrong_pending/recently_consistent）、attempts（all_time 与 last_7_days 的次数、正确数、accuracy，无作答为 null）、by_skill、by_wordbook，并附 granularity 说明 |
 | POST /api/v1/ml/recall | delta_seconds,history_seen,history_correct,CSRF | 需登录；manual_lab；返回 status（ok/cold_start）、expected_recall（冷启动为 null）、features、model（model_code/version/feature_schema_version）、model_time_ms、processing_time_ms；非法输入 422；模型不可用 503 MODEL_UNAVAILABLE 并记录 status=model_unavailable 的事件；留证失败 503 INFERENCE_LOG_FAILED |

@@ -5,12 +5,15 @@ import random
 
 from app.repositories import db
 from app.repositories import practice as repo
+from app.repositories import progress as progress_repo
 from app.repositories import wordbooks as wordbook_repo
 from app.services import grading, review_rules
 from app.services.content_import import EXAM_TYPES, SKILL_TYPES
 
 DEFAULT_COUNT = 10
 MAX_COUNT = 20
+# new_senses：只出任何题型都未作答的词义（今日新词义）。
+FOCUSES = ("new_senses",)
 PAGE_SIZE = 20
 
 
@@ -76,8 +79,11 @@ def _is_id(value):
 # ---- 组卷 ----
 
 
-def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None):
-    """按 到期复习 > 未到期错题 > 未测试 > 其他 的优先级组卷，同级随机，每个词义最多一题。"""
+def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None, focus=None):
+    """按 到期复习 > 未到期错题 > 未测试 > 其他 的优先级组卷，同级随机，每个词义最多一题。
+
+    focus="new_senses" 时只从任何题型都未作答的词义中随机取题。
+    """
     rng = rng or random.SystemRandom()
     fields = {}
     if skill_type not in SKILL_TYPES:
@@ -86,6 +92,8 @@ def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None
         fields["count"] = f"count 必须是 1—{MAX_COUNT} 的整数"
     if wordbook_ids is not None and (not isinstance(wordbook_ids, list) or not all(_is_id(i) for i in wordbook_ids)):
         fields["wordbook_ids"] = "wordbook_ids 必须是词表 id 列表"
+    if focus is not None and focus not in FOCUSES:
+        fields["focus"] = "focus 只能为 " + "/".join(FOCUSES)
     if fields:
         raise InvalidRequest(fields)
     with db.transaction(conn):
@@ -99,10 +107,17 @@ def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None
                 raise InvalidRequest({"wordbook_ids": not_selected or "至少选择一个目标词表"})
             selected = [b for b in selected if b["id"] in chosen_ids]
         senses = repo.candidate_senses(conn, [b["id"] for b in selected], skill_type)
+        if focus == "new_senses":
+            attempted = progress_repo.first_attempts(conn, user_id)
+            senses = [s for s in senses if s not in attempted]
         if not senses:
             raise NoQuestions
-        states = repo.learning_states(conn, user_id, skill_type, senses)
-        chosen = _prioritize(senses, states, now, count, rng)
+        if focus == "new_senses":
+            rng.shuffle(senses)
+            chosen = senses[:count]
+        else:
+            states = repo.learning_states(conn, user_id, skill_type, senses)
+            chosen = _prioritize(senses, states, now, count, rng)
         by_sense = {}
         for question in repo.published_questions(conn, chosen, skill_type):
             by_sense.setdefault(question["sense_id"], []).append(question["id"])
@@ -110,6 +125,7 @@ def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None
             "wordbooks": [{k: b[k] for k in ("id", "code", "version", "exam_type", "name")} for b in selected],
             "skill_type": skill_type,
             "count": count,
+            "focus": focus,
             "review_rule_version": review_rules.VERSION,
         }
         session_id = repo.insert_session(conn, user_id, json.dumps(snapshot, ensure_ascii=False), now)
@@ -149,6 +165,7 @@ def get_session(conn, user_id, session_id):
         "id": session["id"],
         "status": session["status"],
         "skill_type": snapshot["skill_type"],
+        "focus": snapshot.get("focus"),
         "wordbooks": snapshot["wordbooks"],
         "started_at": _iso(session["started_at"]),
         "finished_at": _iso(session["finished_at"]),

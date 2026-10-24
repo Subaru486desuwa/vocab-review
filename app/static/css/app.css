@@ -73,6 +73,9 @@ figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .stat-grid dt { color: var(--muted); font-size: 13px; }
 .stat-grid dd { margin: 4px 0; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .stat-grid p { margin: 0; color: var(--muted); font-size: 12px; }
+.today-tasks { display: grid; gap: 28px; margin: 8px 0 24px; }
+.today-task { display: grid; gap: 12px; justify-items: start; }
+.today-task .button { border: 0; cursor: pointer; }
 .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-variant-numeric: tabular-nums; }
 .data-table caption { text-align: left; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
 .data-table th, .data-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }

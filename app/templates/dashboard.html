@@ -7,7 +7,8 @@
   {% if summary %}
     <p class="lead">当前目标：{% for b in summary.scope.wordbooks %}{{ b.name }}（{{ b.version }}）{% if not loop.last %}、{% endif %}{% endfor %}</p>
     <div class="actions">
-      <a class="button" href="{{ url_for('learning.practice_page') }}">开始练习</a>
+      <a class="button" href="{{ url_for('learning.today_page') }}">今日任务</a>
+      <a class="text-link" href="{{ url_for('learning.practice_page') }}">自由练习 →</a>
       <a class="text-link" href="{{ url_for('learning.review_page') }}">查看复习计划 →</a>
     </div>
     <dl class="stat-grid">

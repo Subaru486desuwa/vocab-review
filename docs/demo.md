@@ -31,8 +31,8 @@ curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5000/lab/hello
 | 1 | 首页 → “查看 Flask 基础演示” | `/lab/hello` 文字与静态图片 | 实验一：应用工厂、蓝图路由、Jinja 模板、静态资源 |
 | 2 | `/register` 注册新账户并登录 | 跳转概览；统计全部为未测试 | 实验二：密码只存 Werkzeug 哈希；错误密码与不存在用户统一 401 |
 | 3 | `/wordbooks` 只选六级演示词表 | 词表来源、版本、词条数 | 目标词表只是关联；词条不等于覆盖其所有词义 |
-| 4 | `/practice` 辨义 5 题，故意答错前 2 题；再做 2 道拼写题 | 每题即时判分、错误类型与正确答案；重复点击提交不重复计数 | **规则结果**：服务端按固定题目版本判分；一个题目实例只有一条作答，同答案重试返回原结果、换答案 409 |
-| 5 | `/review` | 未到期错题及约多少分钟后到期 | **规则结果**：复习时间由作答记录按复习规则计算，可由 `flask rebuild-learning-state` 从作答事实重建核对 |
+| 4 | 导航“今日” → `/today` → “学今日新词（10 个）”，故意答错前 2 题；做完点“返回今日任务” | 新词义 0 / 10 → 10 / 10，显示已完成、连续学习 1 天；每题即时判分，重复点击提交不重复计数 | **规则结果**：今日新词义只出任何题型都未作答的词义，“今天”按用户时区；服务端按固定题目版本判分，同答案重试返回原结果、换答案 409 |
+| 5 | `/review` | 2 道错题约 10 分钟后到期；到期后今日任务出现“复习辨义（2）”并变回未完成 | **规则结果**：复习时间由作答记录按复习规则计算，可由 `flask rebuild-learning-state` 从作答事实重建核对 |
 | 6 | `/dashboard` → 回到 `/wordbooks` 增加雅思 → `/dashboard` | 合计词条中共有词只计一次；雅思下已练习的共有词条复用六级作答 | 切换目标不删除历史；未练习的词义、题型仍显示未测试，不推断掌握 |
 | 7 | `/lab/ml` 输入 间隔 1 天、历史 5 次、正确 4 次；再输入历史 0 次 | 预期练习正确比例与模型版本、耗时；历史 0 次显示冷启动、无估计值 | **模型输出**：随机森林估计一次练习内正确回忆比例，不是掌握度；test MAE 低于训练集均值基线（数字见 `evidence/exp03/evaluation.md`） |
 | 8 | `/examples` 输入 `I need to open a savings account.`；再输入 `We sat on the grass beside the river.` | 两次分别命中 bank 的“银行”与“河岸”词义例句，附余弦相似度与编码器版本 | **模型输出**：句向量相似度只表示语境相关程度；同一词条的多义能区分，TF-IDF 对照见 `evidence/exp04/evaluation.md`；标注状态如实说明（#7） |
@@ -48,6 +48,8 @@ set -a; . ./.env; set +a; docker compose exec -T -e MYSQL_PWD="$DB_PASSWORD" db 
 
 | 问题 | 回答依据 |
 | --- | --- |
+| 用户数据从哪来？ | 只来自用户在本系统的作答；今日任务让用户每天回来练习，数据随之积累。公开数据只用来训练实验三模型，不代表本系统用户；`GLOSSARY.md` 的今日任务、今日新词义、连续学习天数 |
+| 今日任务算不算掌握？ | 不算：新词义答错也计入，连续天数只看每天是否作答；完成状态查看时计算，错题到期后变回未完成（T15，`tests/test_today.py`） |
 | 双击或并发提交会不会重复计分？ | T06：作答表对题目实例唯一，作答与统计同一事务；`tests/test_practice.py::test_concurrent_identical_submissions_count_once` |
 | 写入中途出错会怎样？ | T08：注入异常后整笔回滚；`tests/test_practice.py::test_failure_before_state_update_rolls_back_everything` |
 | 题目改了旧练习还能解释吗？ | T10：题目版本不可原地修改，旧练习引用旧版本；`tests/test_practice.py::test_old_session_keeps_original_question_version` |
