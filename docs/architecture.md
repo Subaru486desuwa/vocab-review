@@ -20,7 +20,7 @@
 | `sql/` | 建表、顺序迁移、演示种子 | 重置真实用户数据库 |
 | `evidence/` | 真实运行材料及索引 | 预填成功结果或虚构模型指标 |
 
-当前注册首页、lab、auth（账户、会话、`login_required`/`role_required`）与 learning（概览与统计、目标词表、练习与作答、复习计划）、admin（内容导入接口）、ml_lab（实验三页面与推理接口）、examples（实验四例句检索）；`app/blueprints/responses.py` 统一 JSON 外壳、request_id 与错误处理。管理导入页面按降级方案只保留接口与 CLI。Web 直接依赖为 Flask、PyMySQL、Flask-WTF 与 dotenv；实验三、四的算法依赖分别锁定在 `requirements-ml.*`、`requirements-dl.*`。
+当前注册首页、lab、auth（账户、会话、`login_required`/`role_required`）与 learning（今日任务、概览与统计、目标词表、练习与作答、复习计划）、admin（内容导入接口）、ml_lab（实验三页面与推理接口）、examples（实验四例句检索）；`app/blueprints/responses.py` 统一 JSON 外壳、request_id 与错误处理。管理导入页面按降级方案只保留接口与 CLI。Web 直接依赖为 Flask、PyMySQL、Flask-WTF 与 dotenv；实验三、四的算法依赖分别锁定在 `requirements-ml.*`、`requirements-dl.*`。
 
 ## 三个必须守住的契约
 

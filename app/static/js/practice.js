@@ -96,11 +96,18 @@
     const line = document.createElement("p");
     line.className = "lead";
     line.textContent = `${skillNames[session.skill_type]}题 ${session.total} 道，答对 ${correct} 道。错题会在 10 分钟后进入复习。`;
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    const back = document.createElement("a");
+    back.className = "button";
+    back.href = "/today";
+    back.textContent = "返回今日任务";
     const again = document.createElement("a");
-    again.className = "button";
+    again.className = "text-link";
     again.href = "/practice";
-    again.textContent = "再练一组";
-    box.append(title, line, again);
+    again.textContent = "再练一组 →";
+    actions.append(back, again);
+    box.append(title, line, actions);
     box.hidden = false;
   }
 

@@ -104,3 +104,26 @@ def upsert_learning_state(conn, user_id, sense_id, skill_type, state):
                 state["next_review_at"],
             ),
         )
+
+
+def first_attempts(conn, user_id):
+    """用户在每个词义上的首次作答时间（任何题型）。"""
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT q.sense_id, MIN(a.submitted_at) AS first_at FROM attempts a"
+            " JOIN session_items i ON i.id = a.session_item_id JOIN practice_sessions p ON p.id = i.session_id"
+            " JOIN questions q ON q.id = i.question_id WHERE p.user_id = %s GROUP BY q.sense_id",
+            (user_id,),
+        )
+        return {row["sense_id"]: row["first_at"] for row in cur.fetchall()}
+
+
+def attempt_times(conn, user_id):
+    """用户全部作答的提交时间，供连续学习天数使用。"""
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT a.submitted_at FROM attempts a JOIN session_items i ON i.id = a.session_item_id"
+            " JOIN practice_sessions p ON p.id = i.session_id WHERE p.user_id = %s",
+            (user_id,),
+        )
+        return [row["submitted_at"] for row in cur.fetchall()]

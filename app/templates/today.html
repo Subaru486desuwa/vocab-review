@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}今日任务 · 词汇研习室{% endblock %}
+{% block content %}
+<section class="auth-page wide-page">
+  <p class="eyebrow">今日{% if plan %} · {{ plan.date }}{% endif %}</p>
+  <h1>今日任务</h1>
+  {% if plan %}
+    <p class="lead">
+      {% if plan.completed %}今天的任务已完成。答错的词义到期后会重新出现在这里。
+      {% else %}先复习已到期的内容，再学今日新词义。{% endif %}
+    </p>
+    <dl class="stat-grid">
+      <div><dt>连续学习</dt><dd>{{ plan.streak.days }} 天</dd><p>{% if plan.streak.active_today %}今天已作答{% else %}今天还没有作答{% endif %}</p></div>
+      <div><dt>今日新词义</dt><dd>{{ plan.new_senses.done }} / {{ plan.new_senses.target }}</dd><p>目标内还有 {{ plan.new_senses.available }} 个未作答词义</p></div>
+      <div><dt>待复习</dt><dd>{{ plan.review.due }}</dd><p>已到复习时间的词义 × 题型</p></div>
+    </dl>
+    <div class="today-tasks">
+      <div class="today-task">
+        <h2>复习</h2>
+        {% if plan.review.due %}
+          <div class="actions">
+            {% for skill, n in plan.review.by_skill.items() if n %}
+              <button class="button" type="button" data-skill="{{ skill }}" data-count="{{ [n, 20]|min }}">复习{{ skill_names[skill] }}（{{ n }}）</button>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="form-note">现在没有到期的复习。</p>
+        {% endif %}
+      </div>
+      <div class="today-task">
+        <h2>今日新词义</h2>
+        {% if plan.new_senses.remaining %}
+          <button class="button" type="button" data-skill="recognition" data-focus="new_senses" data-count="{{ plan.new_senses.remaining }}">学今日新词（{{ plan.new_senses.remaining }} 个）</button>
+        {% elif plan.new_senses.available %}
+          <p class="form-note">今天的 {{ plan.new_senses.target }} 个新词义已完成。</p>
+        {% else %}
+          <p class="form-note">目标词表中的词义都已练习过。</p>
+        {% endif %}
+      </div>
+    </div>
+    <p id="today-error" class="form-error" role="alert"></p>
+    <p class="form-note">“今天”按 {{ plan.timezone }} 时区计算。今日新词义是今天首次作答的词义，答错也计入；连续学习天数只看每天是否有作答。</p>
+  {% else %}
+    <p class="lead">还没有选择目标词表。先选择一个或多个考试目标，再开始今日任务。</p>
+    <a class="button" href="{{ url_for('learning.wordbooks_page') }}">选择目标词表</a>
+  {% endif %}
+</section>
+{% endblock %}
+{% block scripts %}{% if plan %}<script src="{{ url_for('static', filename='js/today.js') }}"></script>{% endif %}{% endblock %}

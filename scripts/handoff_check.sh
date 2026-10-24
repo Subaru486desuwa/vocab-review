@@ -92,6 +92,9 @@ expect /api/v1/me 401
 step "7. 答辩路径学习闭环（evidence/exp02/review-path.sh）"
 BASE_URL=$B bash evidence/exp02/review-path.sh | sed 1d
 
+step "7b. 今日任务（evidence/exp02/today-http.sh，T15）"
+BASE_URL=$B bash evidence/exp02/today-http.sh | sed 1d
+
 step "8. 未放入模型制品：模型页不可用，学习流程照常（T13）"
 T=$(tok /login); curl -s -o /dev/null -b "$J" -c "$J" -X POST --data-urlencode "csrf_token=$T" -d username=demo --data-urlencode "password=$DEMO_USER_PASSWORD" "$B/auth/login"
 expect /api/v1/me 200

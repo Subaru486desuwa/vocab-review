@@ -13,6 +13,7 @@
     <nav class="site-nav" aria-label="账户">
       {% set user = current_user() %}
       {% if user %}
+        <a href="{{ url_for('learning.today_page') }}">今日</a>
         <a href="{{ url_for('learning.wordbooks_page') }}">目标词表</a>
         <a href="{{ url_for('learning.practice_page') }}">练习</a>
         <a href="{{ url_for('learning.review_page') }}">复习</a>

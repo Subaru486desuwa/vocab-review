@@ -4,7 +4,7 @@ from app import clock
 from app.blueprints.auth import current_user, login_required
 from app.blueprints.responses import api_error, api_ok
 from app.repositories import db
-from app.services import grading, practice, progress
+from app.services import grading, practice, progress, today
 
 bp = Blueprint("learning", __name__)
 
@@ -52,6 +52,16 @@ def dashboard():
     except practice.NoTarget:
         summary = None
     return render_template("dashboard.html", user=current_user(), summary=summary, skill_names=SKILL_NAMES)
+
+
+@bp.get("/today")
+@login_required
+def today_page():
+    try:
+        plan = today.plan(db.get_db(), _user_id(), clock.now())
+    except practice.NoTarget:
+        plan = None
+    return render_template("today.html", plan=plan, skill_names=SKILL_NAMES)
 
 
 @bp.get("/review")
@@ -125,6 +135,7 @@ def create_session():
             body.get("count", practice.DEFAULT_COUNT),
             body.get("wordbook_ids"),
             clock.now(),
+            focus=body.get("focus"),
         )
     except practice.InvalidRequest as exc:
         return _invalid(exc)
@@ -133,6 +144,15 @@ def create_session():
     except practice.NoQuestions:
         return api_error("NO_QUESTIONS", "所选词表中没有该题型的可用题目", 422)
     return api_ok(session, 201)
+
+
+@bp.get("/api/v1/me/today")
+@login_required
+def today_api():
+    try:
+        return api_ok(today.plan(db.get_db(), _user_id(), clock.now()))
+    except practice.NoTarget:
+        return api_error("NO_TARGET", "请先选择目标词表", 422)
 
 
 @bp.get("/api/v1/me/review")

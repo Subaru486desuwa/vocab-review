@@ -42,6 +42,7 @@ await evaluate(fill("input[name=username]", "demo")); await evaluate(fill("input
 await submitAndWait("document.querySelector('form.auth-form').submit()"); await shot("e2_login_failed");
 await evaluate(fill("input[name=username]", "demo")); await evaluate(fill("input[name=password]", env.DEMO_USER_PASSWORD));
 await submitAndWait("document.querySelector('form.auth-form').submit()"); await shot("e2_dashboard");
+await go("/today"); await shot("e2_today");
 await go("/wordbooks"); await until("document.querySelectorAll('#wordbook-list input').length > 0"); await shot("e2_wordbooks");
 await go("/practice");
 await evaluate("document.querySelector('input[value=recognition]').checked = true"); await evaluate(fill("input[name=count]", "5"));
