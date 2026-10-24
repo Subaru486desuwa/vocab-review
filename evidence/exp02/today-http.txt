@@ -1,4 +1,4 @@
-# executed_at_utc=2026-10-24T15:32:08Z base=http://127.0.0.1:5000 user=demo_t10241532（演示账户）；内容为项目自编演示 v1
+# executed_at_utc=2026-10-24T19:40:23Z base=http://127.0.0.1:5000 user=demo_t1024194023（演示账户）；内容为项目自编演示 v1
 ## 1. 注册并登录（表单 POST /auth/register）
 HTTP 302
 ## 2. 未选目标时 GET /api/v1/me/today
@@ -6,21 +6,21 @@ HTTP 422 {"code": "NO_TARGET", "message": "请先选择目标词表"}
 ## 3. 只选六级目标
 HTTP 200 {"wordbooks": [{"code": "cet6-demo", "exam_type": "cet6", "id": 4, "nam
 ## 4. 今日任务（新账户）
-HTTP 200 {"completed": false, "date": "2026-10-24", "new_senses": {"available": 35, "done": 0, "remaining": 10, "target": 10}, "review": {"by_skill": {"context": 0, "recognition": 0, "spelling": 0}, "due": 0}, "streak": {"active_today": false, "days": 0}, "timezone": "Asia/Shanghai"}
+HTTP 200 {"completed": false, "date": "2026-10-25", "new_senses": {"available": 35, "done": 0, "remaining": 10, "target": 10}, "review": {"by_skill": {"context": 0, "recognition": 0, "spelling": 0}, "due": 0}, "streak": {"active_today": false, "days": 0}, "timezone": "Asia/Shanghai"}
 ## 5. 学今日新词：POST /api/v1/practice/sessions focus=new_senses count=10
-HTTP 201 {"id": 12, "focus": "new_senses", "skill_type": "recognition", "total": 10}
-HTTP 200 {"lemma": "withdraw", "is_correct": false, "session_status": "active"}
-HTTP 200 {"lemma": "anticipate", "is_correct": false, "session_status": "active"}
-HTTP 200 {"lemma": "spare", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "significant", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "ambiguous", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "consequence", "is_correct": true, "session_status": "active"}
+HTTP 201 {"id": 19, "focus": "new_senses", "skill_type": "recognition", "total": 10}
+HTTP 200 {"lemma": "ambiguous", "is_correct": false, "session_status": "active"}
+HTTP 200 {"lemma": "spare", "is_correct": false, "session_status": "active"}
+HTTP 200 {"lemma": "emerge", "is_correct": true, "session_status": "active"}
 HTTP 200 {"lemma": "fair", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "maintain", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "approach", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "benefit", "is_correct": true, "session_status": "active"}
 HTTP 200 {"lemma": "deliberate", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "approach", "is_correct": true, "session_status": "completed"}
+HTTP 200 {"lemma": "maintain", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "significant", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "spare", "is_correct": true, "session_status": "completed"}
 ## 6. 今日任务（10 个新词义已完成，2 个错题约 10 分钟后到期）
-HTTP 200 {"completed": true, "date": "2026-10-24", "new_senses": {"available": 25, "done": 10, "remaining": 0, "target": 10}, "review": {"by_skill": {"context": 0, "recognition": 0, "spelling": 0}, "due": 0}, "streak": {"active_today": true, "days": 1}, "timezone": "Asia/Shanghai"}
+HTTP 200 {"completed": true, "date": "2026-10-25", "new_senses": {"available": 25, "done": 10, "remaining": 0, "target": 10}, "review": {"by_skill": {"context": 0, "recognition": 0, "spelling": 0}, "due": 0}, "streak": {"active_today": true, "days": 1}, "timezone": "Asia/Shanghai"}
 ## 7. 再学新词：只出任何题型都未作答的词义
 题数 20 focus new_senses
 与已作答词义重叠：0 题
@@ -29,8 +29,10 @@ HTTP 422 {"code": "VALIDATION_FAILED", "fields": {"focus": "focus 只能为 new_
 ## 9. 页面
 /today HTTP 200
 连续学习 1 天
-今日新词义 10 / 10
+今日新词义 10 个
 待复习 0
+今日新词义：已达成目标 10 个
+今日新词义：再学 10 个
 概览页“今日任务”入口数 2
 ## 10. 从作答记录重建学习状态并核对
 学习状态与作答记录一致：核对 10 组（用户, 词义, 题型）。

@@ -54,6 +54,9 @@ def test_ten_new_senses_complete_the_day_until_a_wrong_answer_falls_due(demo, le
     }
     assert data["streak"] == {"days": 1, "active_today": True}
     assert data["review"]["due"] == 0 and data["completed"] is True
+    # 达成每日目标后仍可继续学新词义。
+    html = learner.get("/today").get_data(as_text=True)
+    assert "已达成目标 10 个" in html and 'data-focus="new_senses" data-count="10"' in html and "再学 10 个" in html
 
     at(demo, T0 + timedelta(minutes=11))
     data = today(learner).get_json()["data"]
@@ -86,6 +89,8 @@ def test_new_sense_practice_skips_senses_answered_in_any_skill(demo, learner, db
     assert (response.status_code, response.get_json()["error"]["code"]) == (422, "NO_QUESTIONS")
     data = today(learner).get_json()["data"]["new_senses"]
     assert (data["available"], data["remaining"]) == (0, 0)
+    html = learner.get("/today").get_data(as_text=True)
+    assert "都已练习过" in html and "再学" not in html
 
 
 def test_focus_is_validated_and_today_requires_target(demo, db_config):

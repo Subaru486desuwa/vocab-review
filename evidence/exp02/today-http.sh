@@ -41,6 +41,7 @@ echo "## 8. 非法 focus"; api POST /api/v1/practice/sessions '{"skill_type":"re
 echo "## 9. 页面"
 curl -s -o /tmp/today.html -w "/today HTTP %{http_code}\n" -b "$J" "$B/today"
 grep -o '连续学习</dt><dd>[^<]*\|今日新词义</dt><dd>[^<]*\|待复习</dt><dd>[^<]*' /tmp/today.html | sed 's/<\/dt><dd>/ /'
+grep -o '已达成目标 [0-9]* 个\|再学 [0-9]* 个' /tmp/today.html | sed 's/^/今日新词义：/'
 grep -c 'href="/today"' <(curl -s -b "$J" "$B/dashboard") | sed 's/^/概览页“今日任务”入口数 /'
 echo "## 10. 从作答记录重建学习状态并核对"
 docker compose run --rm web flask rebuild-learning-state --username "$U" 2>&1 | grep -v ' Container '
