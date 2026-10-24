@@ -8,7 +8,8 @@
     <p class="lead">{% if plan.completed %}今天的任务已完成。{% else %}先复习，再学新词。{% endif %}</p>
     <dl class="stat-grid">
       <div><dt>连续学习</dt><dd>{{ plan.streak.days }} 天</dd><p>{% if plan.streak.active_today %}今天已练习{% else %}今天还没练习{% endif %}</p></div>
-      <div><dt>今日新词义</dt><dd>{{ plan.new_senses.done }} / {{ plan.new_senses.target }}</dd><p>还有 {{ plan.new_senses.available }} 个可学</p></div>
+      {% set ns = plan.new_senses %}
+      <div><dt>今日新词义</dt>{% if ns.done >= ns.target %}<dd>{{ ns.done }} 个</dd><p>已达成目标 {{ ns.target }} 个</p>{% else %}<dd>{{ ns.done }} / {{ ns.target }}</dd><p>还有 {{ ns.available }} 个可学</p>{% endif %}</div>
       <div><dt>待复习</dt><dd>{{ plan.review.due }}</dd></div>
     </dl>
     <div class="today-tasks">
@@ -29,7 +30,9 @@
         {% if plan.new_senses.remaining %}
           <button class="button" type="button" data-skill="recognition" data-focus="new_senses" data-count="{{ plan.new_senses.remaining }}">学今日新词（{{ plan.new_senses.remaining }} 个）</button>
         {% elif plan.new_senses.available %}
-          <p class="form-note">今天的 {{ plan.new_senses.target }} 个新词义已完成。</p>
+          {% set more = [plan.new_senses.available, plan.new_senses.target]|min %}
+          <p class="form-note">今天的目标已完成，还有 {{ plan.new_senses.available }} 个可学。</p>
+          <button class="button" type="button" data-skill="recognition" data-focus="new_senses" data-count="{{ more }}">再学 {{ more }} 个</button>
         {% else %}
           <p class="form-note">目标词表中的词义都已练习过。</p>
         {% endif %}

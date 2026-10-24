@@ -13,6 +13,6 @@ validation-practice.txt,S2/T04—T08/T10,"docker compose run --rm web sh -c 'pyt
 review-path.txt,S2/T09/T14/答辩路径,bash evidence/exp02/review-path.sh,2026-10-23T14:21:49Z,demo：六级目标 → 含 2 道错题的练习 → 复习计划（错题约 10 分钟后到期）→ 增加雅思（合计词条去重为 50）→ 单看雅思复用共有词作答 → rebuild-learning-state 核对一致；统计含此前留证运行的作答
 review-path.sh,S2,bash evidence/exp02/review-path.sh,2026-10-23T14:21:49Z,生成 review-path.txt 的脚本；每次运行新建一组练习
 validation-review.txt,S2/T09/T14,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T14:23:21Z,116 项通过，含复习清单、统计分母、近期作答稳定、多目标去重与重建测试
-today-http.sh,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T15:32:08Z,生成 today-http.txt 的 curl 脚本；对已运行的 docker compose web 执行，新注册演示账户，密码随机生成且未记录
-today-http.txt,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T15:32:08Z,今日任务：未选目标 422；新账户新词义 0/10；focus=new_senses 练习 10 题（前 2 题答错）后完成、连续 1 天；再学新词与已作答词义重叠 0 题；非法 focus 422；/today 页面；学习状态重建一致
+today-http.sh,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T19:40:23Z,生成 today-http.txt 的 curl 脚本；对已运行的 docker compose web 执行，新注册演示账户，密码随机生成且未记录
+today-http.txt,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T19:40:23Z,今日任务：未选目标 422；新账户新词义 0/10；focus=new_senses 练习 10 题（前 2 题答错）后完成、连续 1 天；再学新词与已作答词义重叠 0 题；非法 focus 422；/today 页面（达成目标后显示“再学 10 个”）；学习状态重建一致
 import-v2.txt,E2/T10/T12,flask import-content data/demo/v2 --dry-run 后正式导入,2026-10-24T16:59:53Z,在已导入 v1 的演示库上导入 v2：17 道题目新版本、旧版本停用，13 条例句更新，1 个词义更新；已发放的 3 个题目实例仍引用停用的旧版本
