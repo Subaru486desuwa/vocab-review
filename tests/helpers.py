@@ -9,6 +9,8 @@ from app.services import accounts
 
 NOW = datetime(2026, 10, 24, 0, 0, 0)
 DEMO = Path(__file__).resolve().parents[1] / "data" / "demo" / "v1"
+# 演示库按发布顺序导入：v1 是首次发布，v2 在其上新增题目版本与例句修订。
+DEMO_PACKS = [DEMO, DEMO.parent / "v2"]
 PASSWORD = "correct horse"
 
 

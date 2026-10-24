@@ -9,8 +9,8 @@
   "dtype": "float32",
   "normalized": "L2",
   "count": 158,
-  "corpus_fingerprint": "b1cd848eac8e5521bf79abae72b5a044582ab43d1295a6bd81c597532f115da6",
-  "vectors_sha256": "5bdd4284294b1b2e0c17fa348ebcb5797eb1558c0727ee4373bcf00510d76593",
-  "ids_sha256": "e3d7af80f7af977ff7dae4b63fb74d0cd2191da1ddd4e4cd823eccc4bcc3a50b",
-  "built_at_utc": "2026-10-23T20:13:01Z"
+  "corpus_fingerprint": "5d7dcbadcb029b7cb919bed2338ab49c0d5b8009b636b3d4bfab5cc94091c4aa",
+  "vectors_sha256": "577228068642da995e936dd753ec2a898cd281eeaad69c28cb982c7b9061495d",
+  "ids_sha256": "56dab8b22e23ded47a2e3bffa0a6c9d09ca0546b0894aa46fe25ae0fe9ff7dc4",
+  "built_at_utc": "2026-10-24T17:00:16Z"
 }

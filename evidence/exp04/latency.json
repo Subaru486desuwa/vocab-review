@@ -1,62 +1,62 @@
 {
-  "executed_at_utc": "2026-10-23T20:18:21Z",
+  "executed_at_utc": "2026-10-24T17:01:28Z",
   "first_request": {
-    "http_ms": 7403.935,
-    "processing_time_ms": 7376.828,
-    "model_time_ms": 263.075,
+    "http_ms": 7174.383,
+    "processing_time_ms": 7146.548,
+    "model_time_ms": 240.908,
     "note": "web 进程重启后的第一次请求，processing_time_ms 含模型校验与加载"
   },
   "warm": {
     "requests": 30,
     "failures": 0,
     "http_ms": {
-      "p50": 51.172,
-      "p95": 55.123,
-      "max": 56.314
+      "p50": 49.174,
+      "p95": 53.676,
+      "max": 54.188
     },
     "processing_time_ms": {
-      "p50": 25.497,
-      "p95": 29.982,
-      "max": 30.621
+      "p50": 24.605,
+      "p95": 27.312,
+      "max": 29.827
     },
     "model_time_ms": {
-      "p50": 21.463,
-      "p95": 26.111,
-      "max": 26.734
+      "p50": 20.745,
+      "p95": 23.363,
+      "max": 25.993
     }
   },
   "request_ids": [
-    "4f0b6c8eff2441289fe8878487b44591",
-    "f33a2361bebf4ec29f4b51cf8f5a5416",
-    "725b5c3e05b443009631fbb0a991d1d1",
-    "8dcfcb7be6d443edb7cfcc5dd1f31ec7",
-    "86f047fe9fb64d5794fd7f430baedbfa",
-    "27dc9ede7a25403a8c7809d28eba7779",
-    "589534c371cf4df19fa19dcf809a6c7a",
-    "56c394511e4a4bb58d8d6ac2bad17e85",
-    "f1066335d41041f3a393180a15f8f23a",
-    "01f778b953394a7796e73120ee455c49",
-    "cd4f394f04c7453f8201f4561b9d3737",
-    "f577fefef14e4955bdec50a2a18de72d",
-    "4fa53c056bf1418799bbc80fa7e42db3",
-    "3097fef2e625473c85b5232d51e181b0",
-    "bbb192de553b4ac18f17221b0881bed7",
-    "70ddfb4d0a2a4ba8ad1692fa39f33200",
-    "362557d1abcd4c86a67f72e27cf8594b",
-    "ef49102a55864672808524fa2424b6d1",
-    "807c7b07aa794a4298943edff1070833",
-    "6aab707488a44beebf6e5185335fff6e",
-    "49ea9545de1245e7a9e4b3f022619e25",
-    "404e129cb3804b109f166ad73ef85d10",
-    "798a180d94e9490895fa6cf83d06083c",
-    "3c5b34906c5d43309f7f262a0878e7e8",
-    "1cd7db3c86944de8ad4b50306fb866c9",
-    "6a070f0afda94eb2b61bf72c68fa2b02",
-    "31e4491172264b57abfd9394cd73cb00",
-    "0bc68372631c4b6da85118a277f339f0",
-    "cca944ca06a64bda9c30c0576c977f6c",
-    "3f24be96482847e098b1a498a5f4f915",
-    "8403954f6f1b42b79d910d350a02e59e"
+    "3372611171af461a8505f98e185dc84a",
+    "b61dca68d65742d7a927c5be2d2a800d",
+    "e1f228500125470eaff1d37a3cd1f265",
+    "6940d8c5aed04d378df0ad216a9729ce",
+    "973bcb6778ff458bac52b59dda24dc92",
+    "b359dede683943918d0f72a49ef04560",
+    "79be09b0e57e4dd599ae6285e94457e0",
+    "8e4728aaf1b24668b9d81c3b9e3591b9",
+    "c768b1b415da4a4eab7d758bb6985011",
+    "19b822ad153d445baf0649e3e0657859",
+    "c658f8c126154a1794cad3de23414126",
+    "fb8dc2fd6ab048e8bcbc0e435ac54cda",
+    "25e8e039a65042fc9a7d5bbedb0a9b83",
+    "dee2263468cc47c2b3cf543e01647e35",
+    "1d989188409d47ee9b51bfcc5a873c7e",
+    "dc5dbb5f3ca14c849ed2544bafd46de4",
+    "901aa577c5bc4a82a75a41fa226e5463",
+    "aab782279352417b8483d94fc8a8dee3",
+    "cd75944db8314888b47efac571fa3421",
+    "f478c25e841d493d88f229ac573c5323",
+    "990e510634304200b6851b4264c6737d",
+    "1023bfa4145c4314b08c37b8e8f28212",
+    "3f9c6b2e75254421a3c288a3df657c9e",
+    "88694889fcf34239b5193b479466ae94",
+    "4031a7d77f434d06a29492aed55c7a8e",
+    "cf78825d78a04f73b063154b495c02fd",
+    "5c9e86ab9e814aa4ab077513653a0ecc",
+    "2db05113016b4b3e875e27321fc2ea87",
+    "74b104ee90f1400a8c29a74ed395f81f",
+    "242636d1c2724425a437a565e7f8f84b",
+    "77a0a7dfef19485ea576ad861efa9a94"
   ],
   "top1": [
     [
@@ -87,8 +87,8 @@
   ],
   "versions": {
     "corpus_count": 158,
-    "corpus_fingerprint": "b1cd848eac8e5521bf79abae72b5a044582ab43d1295a6bd81c597532f115da6",
-    "index_built_at_utc": "2026-10-23T20:13:01Z",
+    "corpus_fingerprint": "5d7dcbadcb029b7cb919bed2338ab49c0d5b8009b636b3d4bfab5cc94091c4aa",
+    "index_built_at_utc": "2026-10-24T17:00:16Z",
     "model_code": "all-MiniLM-L6-v2",
     "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
   }

@@ -35,7 +35,7 @@ curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5000/lab/hello
 | 5 | `/review` | 2 道错题约 10 分钟后到期；到期后今日任务出现“复习辨义（2）”并变回未完成 | **规则结果**：复习时间由作答记录按复习规则计算，可由 `flask rebuild-learning-state` 从作答事实重建核对 |
 | 6 | `/dashboard` → 回到 `/wordbooks` 增加雅思 → `/dashboard` | 合计词条中共有词只计一次；雅思下已练习的共有词条复用六级作答 | 切换目标不删除历史；未练习的词义、题型仍显示未测试，不推断掌握 |
 | 7 | `/lab/ml` 输入 间隔 1 天、历史 5 次、正确 4 次；再输入历史 0 次 | 预期练习正确比例与模型版本、耗时；历史 0 次显示冷启动、无估计值 | **模型输出**：随机森林估计一次练习内正确回忆比例，不是掌握度；test MAE 低于训练集均值基线（数字见 `evidence/exp03/evaluation.md`） |
-| 8 | `/examples` 输入 `I need to open a savings account.`；再输入 `We sat on the grass beside the river.` | 两次分别命中 bank 的“银行”与“河岸”词义例句，附余弦相似度与编码器版本 | **模型输出**：句向量相似度只表示语境相关程度；同一词条的多义能区分，TF-IDF 对照见 `evidence/exp04/evaluation.md`；标注状态如实说明（#7） |
+| 8 | `/examples` 输入 `I need to open a savings account.`；再输入 `We sat on the grass beside the river.` | 两次分别命中 bank 的“银行”与“河岸”词义例句，附余弦相似度与编码器版本 | **模型输出**：句向量相似度只表示语境相关程度；同一词条的多义能区分，TF-IDF 对照见 `evidence/exp04/evaluation.md`；标注由 AI 起草并经 AI 复核，不是独立人工标注 |
 | 9 | 终端执行下方查询 | 第 7、8 步的推理事件：类型（ml/dl）、来源、状态、模型版本、耗时 | 模型输入、输出与版本只进 `inference_events`；模型不可用时练习照常（T13） |
 
 第 9 步查询（密码从 `.env` 读取，不显示）：

@@ -1,0 +1,4 @@
+code,version,exam_type,name,source,is_active
+cet6-demo,v1,cet6,六级演示词表,项目自编演示 v1（AI 起草，待人工校对）,1
+postgraduate-demo,v1,postgraduate,考研演示词表,项目自编演示 v1（AI 起草，待人工校对）,1
+ielts-demo,v1,ielts,雅思演示词表,项目自编演示 v1（AI 起草，待人工校对）,1

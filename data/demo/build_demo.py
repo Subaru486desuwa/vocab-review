@@ -1,7 +1,9 @@
-"""由 source/entries.csv 生成可导入的演示内容包 v1。
+"""由 source/ 生成可导入的演示内容包。
 
-用法：python data/demo/build_demo.py [输出目录]，默认写入 data/demo/v1。
-校对只改 entries.csv，再重新生成；同一输入总是得到同一输出（干扰项按题目键固定随机）。
+用法：python data/demo/build_demo.py [输出目录]，默认写入 data/demo/v2，并与已发布的 data/demo/v1 比对：
+内容变化的题目版本号加一，正文变化的例句换用新的 content_version，未变的行与 v1 完全相同。
+v1 是首次发布的内容包，保持不变；新库先导入 v1 再导入 v2。
+校对只改 source/ 下的表，再重新生成；同一输入总是得到同一输出（干扰项按题目键固定随机）。
 """
 
 import csv
@@ -16,6 +18,10 @@ HERE = Path(__file__).resolve().parent
 SOURCE = "项目自编演示 v1（AI 起草，待人工校对）"
 VERSION = "v1"
 CONTENT_VERSION = "demo-v1"
+LATEST = "v2"
+BASELINE = HERE / "v1"
+# 语境题干扰项排除近义词：同组词填入同一句子都成立，会让题目出现多个正确答案。
+CONTEXT_SYNONYMS = [{"significant", "crucial", "fundamental"}, {"diminish", "undermine"}]
 WORDBOOKS = [
     ("cet6-demo", "cet6", "六级演示词表"),
     ("postgraduate-demo", "postgraduate", "考研演示词表"),
@@ -68,7 +74,8 @@ def build_questions(entries):
         key = f"{base}-context"
         sentence = e["example_en"]
         article = sentence[: TARGET.search(sentence).start()].split()[-1:]
-        candidates = [o["lemma"] for o in same_pos]
+        synonyms = set().union(*(g for g in CONTEXT_SYNONYMS if e["lemma_norm"] in g))
+        candidates = [o["lemma"] for o in same_pos if o["lemma_norm"] not in synonyms]
         if article and article[0].lower() in ("a", "an"):
             # 冠词 a/an 不应暗示答案，只取首字母元音性一致的干扰词。
             candidates = [c for c in candidates if _starts_with_vowel(c) == _starts_with_vowel(e["lemma"])]
@@ -142,7 +149,34 @@ def _example_rows(entries, extra):
     return rows
 
 
-def build(out_dir, entries_path=HERE / "source" / "entries.csv", extra_path=HERE / "source" / "extra_examples.csv"):
+def apply_baseline(questions, example_rows, baseline, content_version):
+    """与已发布的内容包比对：题目内容变化则版本加一，例句正文变化则换用 content_version。"""
+    old_questions = {}
+    for line in (baseline / "questions.jsonl").read_text(encoding="utf-8").splitlines():
+        q = json.loads(line)
+        old_questions[q["logical_key"]] = q
+    for q in questions:
+        old = old_questions.get(q["logical_key"])
+        if old is not None:
+            changed = any(old[k] != q[k] for k in ("prompt", "options", "answers", "grading_policy"))
+            q["version"] = old["version"] + 1 if changed else old["version"]
+    with open(baseline / "examples.csv", encoding="utf-8", newline="") as f:
+        old_examples = {row["example_key"]: row for row in csv.DictReader(f)}
+    rows = []
+    for row in example_rows:
+        old = old_examples.get(row[0])
+        if old is not None:
+            row = (*row[:6], old["content_version"] if old["text_en"] == row[3] else content_version, *row[7:])
+        rows.append(row)
+    return rows
+
+
+def build(
+    out_dir,
+    entries_path=HERE / "source" / "entries.csv",
+    extra_path=HERE / "source" / "extra_examples.csv",
+    baseline=BASELINE,
+):
     entries = load_entries(entries_path)
     extra = load_extra_examples(extra_path, entries)
     out = Path(out_dir)
@@ -177,6 +211,10 @@ def build(out_dir, entries_path=HERE / "source" / "entries.csv", extra_path=HERE
         ["wordbook_code", "wordbook_version", "lemma_norm", "position", "source_note"],
         memberships,
     )
+    questions = build_questions(entries)
+    examples = _example_rows(entries, extra)
+    if baseline is not None:
+        examples = apply_baseline(questions, examples, Path(baseline), f"demo-{out.name}")
     _write_csv(
         out / "examples.csv",
         [
@@ -189,12 +227,12 @@ def build(out_dir, entries_path=HERE / "source" / "entries.csv", extra_path=HERE
             "content_version",
             "is_active",
         ],
-        _example_rows(entries, extra),
+        examples,
     )
     with open(out / "questions.jsonl", "w", encoding="utf-8") as f:
-        for q in build_questions(entries):
+        for q in questions:
             f.write(json.dumps(q, ensure_ascii=False) + "\n")
 
 
 if __name__ == "__main__":
-    build(sys.argv[1] if len(sys.argv) > 1 else HERE / VERSION)
+    build(sys.argv[1] if len(sys.argv) > 1 else HERE / LATEST)

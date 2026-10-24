@@ -191,6 +191,14 @@ def build_example_index_command():
     )
 
 
+# 查询文件中 annotation 字段到报告用语的映射；混合或未知状态按最弱的说法报告。
+ANNOTATION_STATUS = {
+    "human_reviewed": "人工确认",
+    "ai_reviewed": "AI 起草并经 AI 复核，不是独立人工标注",
+    "unknown": "AI 草拟、待确认，不是独立人工标注",
+}
+
+
 @click.command("evaluate-example-search")
 @click.option("--queries", default="data/demo/eval/example_queries.jsonl", show_default=True)
 @click.option("--out", default=None, help="输出目录，默认 DL_MODEL_DIR/eval。")
@@ -210,7 +218,7 @@ def evaluate_example_search_command(queries, out):
         raise click.ClickException("启用例句已变化，索引已过期；请先执行 flask build-example-index")
     loaded = evaluate_examples.load_queries(queries, {item["example_key"] for item in ids})
     statuses = sorted({q.get("annotation", "unknown") for q in loaded})
-    status = "人工确认" if statuses == ["human_reviewed"] else "AI 草拟、待人工确认（#7），不是独立人工标注"
+    status = ANNOTATION_STATUS.get(statuses[0] if len(statuses) == 1 else "unknown", ANNOTATION_STATUS["unknown"])
     result = evaluate_examples.run(model, vectors, ids, rows, loaded, example_index.encode)
     out_dir = Path(out) if out else _dl_dir() / "eval"
     out_dir.mkdir(parents=True, exist_ok=True)

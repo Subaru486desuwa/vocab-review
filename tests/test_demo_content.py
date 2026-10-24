@@ -6,21 +6,49 @@ from collections import Counter
 from pathlib import Path
 
 DEMO = Path(__file__).resolve().parents[1] / "data" / "demo"
+LATEST = "v2"
 
 
-def _rows(name):
-    with open(DEMO / "v1" / name, encoding="utf-8", newline="") as f:
+def _rows(name, pack=LATEST):
+    with open(DEMO / pack / name, encoding="utf-8", newline="") as f:
         return list(csv.DictReader(f))
 
 
-def _questions():
-    return [json.loads(line) for line in (DEMO / "v1" / "questions.jsonl").read_text(encoding="utf-8").splitlines()]
+def _questions(pack=LATEST):
+    return [json.loads(line) for line in (DEMO / pack / "questions.jsonl").read_text(encoding="utf-8").splitlines()]
 
 
 def test_generated_pack_matches_source(tmp_path):
-    subprocess.run([sys.executable, str(DEMO / "build_demo.py"), str(tmp_path)], check=True)
-    for path in sorted((DEMO / "v1").iterdir()):
-        assert (tmp_path / path.name).read_text(encoding="utf-8") == path.read_text(encoding="utf-8"), path.name
+    out = tmp_path / LATEST
+    subprocess.run([sys.executable, str(DEMO / "build_demo.py"), str(out)], check=True)
+    for path in sorted((DEMO / LATEST).iterdir()):
+        assert (out / path.name).read_text(encoding="utf-8") == path.read_text(encoding="utf-8"), path.name
+
+
+def test_latest_pack_only_adds_versions_on_top_of_v1():
+    """v1 已发布，不再修改：v2 中未变的题目与 v1 相同，变化的题目版本加一；正文变化的例句换 content_version。"""
+    old = {q["logical_key"]: q for q in _questions("v1")}
+    new = _questions()
+    assert {q["logical_key"] for q in new} == set(old)
+    for q in new:
+        if q["version"] == old[q["logical_key"]]["version"]:
+            assert q == old[q["logical_key"]], q["logical_key"]
+        else:
+            assert q["version"] == old[q["logical_key"]]["version"] + 1, q["logical_key"]
+    assert any(q["version"] == 2 for q in new)
+    old_examples = {r["example_key"]: r for r in _rows("examples.csv", "v1")}
+    for r in _rows("examples.csv"):
+        before = old_examples[r["example_key"]]
+        assert (r["text_en"] == before["text_en"]) == (r["content_version"] == before["content_version"]), r
+    assert _rows("wordbooks.csv") == _rows("wordbooks.csv", "v1")
+
+
+def test_context_distractors_exclude_near_synonyms():
+    groups = [{"significant", "crucial", "fundamental"}, {"diminish", "undermine"}]
+    for q in _questions():
+        group = next((g for g in groups if q["lemma_norm"] in g), None)
+        if q["skill_type"] == "context" and group:
+            assert not group & {o["text"] for o in q["options"]} - {q["lemma_norm"]}, q["logical_key"]
 
 
 def test_wordbooks_share_words_and_mark_demo_source():

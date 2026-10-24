@@ -47,6 +47,12 @@ docker compose run --rm web flask import-content data/demo/v1
 ```
 
 ```bash
+docker compose run --rm web flask import-content data/demo/v2
+```
+
+v1 是首次发布的内容包，v2 在其上新增题目版本与例句修订（见 [data/demo/README.md](data/demo/README.md)），两者按顺序导入。
+
+```bash
 docker compose run --rm web flask seed-demo-user
 ```
 
@@ -127,7 +133,7 @@ ml/           离线训练、特征构建、模型评价
 artifacts/    本地模型与向量；二进制制品不进入 Git
 sql/          按序迁移与内容导出（sql/export/）
 scripts/      干净环境验收、SQL 导出、备份与恢复
-data/demo/    演示内容源表、生成脚本与 v1 内容包（待人工校对）
+data/demo/    演示内容源表、生成脚本与 v1/v2 内容包（AI 起草、AI 复核）
 tests/        实际入口与回归检查
 evidence/     四次实验的真实截图、日志和评价索引
 docs/         架构、契约、验收与 ADR

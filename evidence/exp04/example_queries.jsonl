@@ -1,40 +1,40 @@
-{"query_id": "d01", "split": "dev", "type": "paraphrase", "text": "They gave up the plan halfway because it was too risky.", "relevant": ["abandon-1-1", "abandon-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d02", "split": "dev", "type": "paraphrase", "text": "a place where people can stay when they travel", "relevant": ["accommodation-1-1", "accommodation-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d03", "split": "dev", "type": "paraphrase", "text": "the money students pay to study at a college", "relevant": ["tuition-1-1", "tuition-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d04", "split": "dev", "type": "paraphrase", "text": "Prices keep going down every month.", "relevant": ["decline-1-1", "decline-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d05", "split": "dev", "type": "polysemy", "text": "She said no politely to the party invitation.", "relevant": ["decline-2-1", "decline-2-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d06", "split": "dev", "type": "paraphrase", "text": "a person who works at the same company as you", "relevant": ["colleague-1-1", "colleague-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d07", "split": "dev", "type": "polysemy", "text": "We sat on the grass beside the river and watched the water.", "relevant": ["bank-2-1", "bank-2-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d08", "split": "dev", "type": "polysemy", "text": "I need to open a savings account for my salary.", "relevant": ["bank-1-1", "bank-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d09", "split": "dev", "type": "no_relevant", "text": "How do I bake a chocolate cake?", "relevant": [], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "d10", "split": "dev", "type": "no_relevant", "text": "The football match ended in a draw.", "relevant": [], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t01", "split": "test", "type": "paraphrase", "text": "You must hand in the essay before Friday at midnight.", "relevant": ["deadline-1-1", "deadline-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t02", "split": "test", "type": "paraphrase", "text": "Cars and factories make the air dirty.", "relevant": ["pollution-1-1", "pollution-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t03", "split": "test", "type": "paraphrase", "text": "Animals lose their natural home when trees are cut down.", "relevant": ["habitat-1-1", "habitat-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t04", "split": "test", "type": "paraphrase", "text": "the plan for our trip, day by day", "relevant": ["itinerary-1-1", "itinerary-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t05", "split": "test", "type": "paraphrase", "text": "Glass cups break easily, so be careful with them.", "relevant": ["fragile-1-1", "fragile-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t06", "split": "test", "type": "paraphrase", "text": "His words could mean two different things.", "relevant": ["ambiguous-1-1", "ambiguous-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t07", "split": "test", "type": "paraphrase", "text": "Both groups gave up something to reach an agreement.", "relevant": ["compromise-1-1", "compromise-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t08", "split": "test", "type": "paraphrase", "text": "We did not expect so many people to come.", "relevant": ["anticipate-1-1", "anticipate-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t09", "split": "test", "type": "paraphrase", "text": "She did it on purpose, not by accident.", "relevant": ["deliberate-1-1", "deliberate-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t10", "split": "test", "type": "paraphrase", "text": "Getting rid of extra steps makes the process faster.", "relevant": ["eliminate-1-1", "eliminate-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t11", "split": "test", "type": "polysemy", "text": "What do you do when you are not busy at work?", "relevant": ["spare-1-1", "spare-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t12", "split": "test", "type": "polysemy", "text": "Could you give me a little of your time today?", "relevant": ["spare-2-1", "spare-2-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t13", "split": "test", "type": "paraphrase", "text": "The government shared the budget among different schools.", "relevant": ["allocate-1-1", "allocate-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t14", "split": "test", "type": "polysemy", "text": "Don't think something is true just because you believe it.", "relevant": ["assume-1-1", "assume-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t15", "split": "test", "type": "polysemy", "text": "She took charge of the new office as its manager.", "relevant": ["assume-2-1", "assume-2-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t16", "split": "test", "type": "paraphrase", "text": "The new law led to strong public disagreement.", "relevant": ["controversy-1-1", "controversy-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t17", "split": "test", "type": "paraphrase", "text": "Newspapers made the danger sound much bigger than it was.", "relevant": ["exaggerate-1-1", "exaggerate-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t18", "split": "test", "type": "paraphrase", "text": "Lower prices encourage people to buy more.", "relevant": ["incentive-1-1", "incentive-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t19", "split": "test", "type": "paraphrase", "text": "Some ads try to control how we feel.", "relevant": ["manipulate-1-1", "manipulate-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t20", "split": "test", "type": "paraphrase", "text": "Many scientists doubt that the claim is true.", "relevant": ["skeptical-1-1", "skeptical-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t21", "split": "test", "type": "paraphrase", "text": "Repeated criticism slowly weakens confidence.", "relevant": ["undermine-1-1", "undermine-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t22", "split": "test", "type": "polysemy", "text": "The workers refused to give in to pressure from their boss.", "relevant": ["yield-2-1", "yield-2-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t23", "split": "test", "type": "polysemy", "text": "This field produces a lot of rice each year.", "relevant": ["yield-1-1", "yield-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t24", "split": "test", "type": "polysemy", "text": "Everyone deserves equal treatment, whatever they look like.", "relevant": ["fair-1-1", "fair-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t25", "split": "test", "type": "polysemy", "text": "There were games and food stalls at the summer market in the park.", "relevant": ["fair-2-1", "fair-2-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t26", "split": "test", "type": "polysemy", "text": "The school will announce new exam rules next week.", "relevant": ["issue-2-1", "issue-2-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t27", "split": "test", "type": "paraphrase", "text": "I travel to work by train every morning.", "relevant": ["commute-1-1", "commute-1-2"], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t28", "split": "test", "type": "no_relevant", "text": "My cat likes sleeping in the sun.", "relevant": [], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t29", "split": "test", "type": "no_relevant", "text": "What is the capital city of Australia?", "relevant": [], "annotation": "ai_draft_pending_human_review"}
-{"query_id": "t30", "split": "test", "type": "no_relevant", "text": "He plays the violin in an orchestra.", "relevant": [], "annotation": "ai_draft_pending_human_review"}
+{"query_id": "d01", "split": "dev", "type": "paraphrase", "text": "They gave up the plan halfway because it was too risky.", "relevant": ["abandon-1-1"], "annotation": "ai_reviewed"}
+{"query_id": "d02", "split": "dev", "type": "paraphrase", "text": "a place where people can stay when they travel", "relevant": ["accommodation-1-1", "accommodation-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "d03", "split": "dev", "type": "paraphrase", "text": "the money students pay to study at a college", "relevant": ["tuition-1-1", "tuition-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "d04", "split": "dev", "type": "paraphrase", "text": "Prices keep going down every month.", "relevant": ["decline-1-1", "decline-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "d05", "split": "dev", "type": "polysemy", "text": "She said no politely to the party invitation.", "relevant": ["decline-2-1", "decline-2-2"], "annotation": "ai_reviewed"}
+{"query_id": "d06", "split": "dev", "type": "paraphrase", "text": "a person who works at the same company as you", "relevant": ["colleague-1-1", "colleague-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "d07", "split": "dev", "type": "polysemy", "text": "We sat on the grass beside the river and watched the water.", "relevant": ["bank-2-1", "bank-2-2"], "annotation": "ai_reviewed"}
+{"query_id": "d08", "split": "dev", "type": "polysemy", "text": "I need to open a savings account for my salary.", "relevant": ["bank-1-1", "bank-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "d09", "split": "dev", "type": "no_relevant", "text": "How do I bake a chocolate cake?", "relevant": [], "annotation": "ai_reviewed"}
+{"query_id": "d10", "split": "dev", "type": "no_relevant", "text": "The football match ended in a draw.", "relevant": [], "annotation": "ai_reviewed"}
+{"query_id": "t01", "split": "test", "type": "paraphrase", "text": "You must hand in the essay before Friday at midnight.", "relevant": ["deadline-1-1", "deadline-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t02", "split": "test", "type": "paraphrase", "text": "Cars and factories make the air dirty.", "relevant": ["pollution-1-1", "pollution-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t03", "split": "test", "type": "paraphrase", "text": "Animals lose their natural home when trees are cut down.", "relevant": ["habitat-1-1", "habitat-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t04", "split": "test", "type": "paraphrase", "text": "the plan for our trip, day by day", "relevant": ["itinerary-1-1", "itinerary-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t05", "split": "test", "type": "paraphrase", "text": "Glass cups break easily, so be careful with them.", "relevant": ["fragile-1-1"], "annotation": "ai_reviewed"}
+{"query_id": "t06", "split": "test", "type": "paraphrase", "text": "His words could mean two different things.", "relevant": ["ambiguous-1-1", "ambiguous-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t07", "split": "test", "type": "paraphrase", "text": "Both groups gave up something to reach an agreement.", "relevant": ["compromise-1-1", "compromise-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t08", "split": "test", "type": "paraphrase", "text": "We did not expect so many people to come.", "relevant": ["anticipate-1-1", "anticipate-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t09", "split": "test", "type": "paraphrase", "text": "She did it on purpose, not by accident.", "relevant": ["deliberate-1-1", "deliberate-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t10", "split": "test", "type": "paraphrase", "text": "Getting rid of extra steps makes the process faster.", "relevant": ["eliminate-1-1", "eliminate-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t11", "split": "test", "type": "polysemy", "text": "What do you do when you are not busy at work?", "relevant": ["spare-1-1"], "annotation": "ai_reviewed"}
+{"query_id": "t12", "split": "test", "type": "polysemy", "text": "Could you give me a little of your time today?", "relevant": ["spare-2-1", "spare-2-2"], "annotation": "ai_reviewed"}
+{"query_id": "t13", "split": "test", "type": "paraphrase", "text": "The government shared the budget among different schools.", "relevant": ["allocate-1-1", "allocate-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t14", "split": "test", "type": "polysemy", "text": "Don't think something is true just because you believe it.", "relevant": ["assume-1-1", "assume-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t15", "split": "test", "type": "polysemy", "text": "She took charge of the new office as its manager.", "relevant": ["assume-2-1", "assume-2-2"], "annotation": "ai_reviewed"}
+{"query_id": "t16", "split": "test", "type": "paraphrase", "text": "The new law led to strong public disagreement.", "relevant": ["controversy-1-1", "controversy-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t17", "split": "test", "type": "paraphrase", "text": "Newspapers made the danger sound much bigger than it was.", "relevant": ["exaggerate-1-1", "exaggerate-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t18", "split": "test", "type": "paraphrase", "text": "Lower prices encourage people to buy more.", "relevant": ["incentive-1-1", "incentive-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t19", "split": "test", "type": "paraphrase", "text": "Some ads try to control how we feel.", "relevant": ["manipulate-1-1", "manipulate-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t20", "split": "test", "type": "paraphrase", "text": "Many scientists doubt that the claim is true.", "relevant": ["skeptical-1-1", "skeptical-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t21", "split": "test", "type": "paraphrase", "text": "Repeated criticism slowly weakens confidence.", "relevant": ["undermine-1-1", "undermine-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t22", "split": "test", "type": "polysemy", "text": "The workers refused to give in to pressure from their boss.", "relevant": ["yield-2-1", "yield-2-2"], "annotation": "ai_reviewed"}
+{"query_id": "t23", "split": "test", "type": "polysemy", "text": "This field produces a lot of rice each year.", "relevant": ["yield-1-1", "yield-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t24", "split": "test", "type": "polysemy", "text": "Everyone deserves equal treatment, whatever they look like.", "relevant": ["fair-1-1", "fair-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t25", "split": "test", "type": "polysemy", "text": "There were games and food stalls at the summer market in the park.", "relevant": ["fair-2-1", "fair-2-2", "neighbourhood-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t26", "split": "test", "type": "polysemy", "text": "The school will announce new exam rules next week.", "relevant": ["issue-2-1"], "annotation": "ai_reviewed"}
+{"query_id": "t27", "split": "test", "type": "paraphrase", "text": "I travel to work by train every morning.", "relevant": ["commute-1-1", "commute-1-2"], "annotation": "ai_reviewed"}
+{"query_id": "t28", "split": "test", "type": "no_relevant", "text": "My cat likes sleeping in the sun.", "relevant": [], "annotation": "ai_reviewed"}
+{"query_id": "t29", "split": "test", "type": "no_relevant", "text": "What is the capital city of Australia?", "relevant": [], "annotation": "ai_reviewed"}
+{"query_id": "t30", "split": "test", "type": "no_relevant", "text": "He plays the violin in an orchestra.", "relevant": [], "annotation": "ai_reviewed"}

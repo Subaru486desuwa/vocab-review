@@ -1,23 +1,23 @@
 # 实验四评价：英语语境例句检索
 
-编码器 sentence-transformers/all-MiniLM-L6-v2 @ 1110a243fdf4706b3f48f1d95db1a4f5529b4d41，语料 158 条，指纹 `b1cd848eac8e5521`，索引构建于 2026-10-23T20:13:01Z。
-标注状态：AI 草拟、待人工确认（#7），不是独立人工标注。由 `flask evaluate-example-search` 自动生成。
+编码器 sentence-transformers/all-MiniLM-L6-v2 @ 1110a243fdf4706b3f48f1d95db1a4f5529b4d41，语料 158 条，指纹 `5d7dcbadcb029b7c`，索引构建于 2026-10-24T17:00:16Z。
+标注状态：AI 起草并经 AI 复核，不是独立人工标注。由 `flask evaluate-example-search` 自动生成。
 
 | 集合 | 方法 | 有相关项查询 | Recall@3 | MRR@3 | 无相关项查询 |
 | --- | --- | --- | --- | --- | --- |
 | dev | 句向量 | 8 | 0.6875 | 0.7917 | 2 |
-| dev | TF-IDF | 8 | 0.3125 | 0.4792 | 2 |
-| test | 句向量 | 27 | 0.6296 | 0.9074 | 3 |
-| test | TF-IDF | 27 | 0.3148 | 0.5617 | 3 |
+| dev | TF-IDF | 8 | 0.375 | 0.4792 | 2 |
+| test | 句向量 | 27 | 0.6914 | 0.9259 | 3 |
+| test | TF-IDF | 27 | 0.3457 | 0.5741 | 3 |
 
 ## test 按查询类型
 
 | 类型 | 方法 | 查询 | Recall@3 | MRR@3 |
 | --- | --- | --- | --- | --- |
-| paraphrase | 句向量 | 18 | 0.6389 | 0.9167 |
-| polysemy | 句向量 | 9 | 0.6111 | 0.8889 |
-| paraphrase | TF-IDF | 18 | 0.3889 | 0.713 |
-| polysemy | TF-IDF | 9 | 0.1667 | 0.2593 |
+| paraphrase | 句向量 | 18 | 0.6667 | 0.9167 |
+| polysemy | 句向量 | 9 | 0.7407 | 0.9444 |
+| paraphrase | TF-IDF | 18 | 0.4167 | 0.713 |
+| polysemy | TF-IDF | 9 | 0.2037 | 0.2963 |
 
 ## test 无相关例句查询的最高分
 
@@ -26,7 +26,7 @@
 
 ## test 句向量未在前三命中的查询
 
-- t18 paraphrase：Lower prices encourage people to buy more. → decline-1-1（0.5768）、reluctant-1-2（0.5419）、significant-1-2（0.5336）
+- t18 paraphrase：Lower prices encourage people to buy more. → decline-1-1（0.5768）、reluctant-1-2（0.5419）、significant-1-1（0.5336）
 
 ## 说明
 

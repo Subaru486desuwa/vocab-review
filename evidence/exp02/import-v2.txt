@@ -1,0 +1,28 @@
+# executed_at_utc=2026-10-24T16:59:53Z 演示库 vocab_review：先 --dry-run 预检，再导入 data/demo/v2（在已导入的 v1 之上）
+## dry-run
+目标库：vocab_review@db:3306
+wordbooks：新增 0，更新 0，未变 3
+words：新增 0，更新 0，未变 70
+senses：新增 0，更新 1，未变 78
+memberships：新增 0，更新 0，未变 90
+examples：新增 0，更新 13，未变 145
+questions：新增 17，更新 0，未变 220，停用旧版本 17
+预检通过，未写入。
+## 导入
+目标库：vocab_review@db:3306
+wordbooks：新增 0，更新 0，未变 3
+words：新增 0，更新 0，未变 70
+senses：新增 0，更新 1，未变 78
+memberships：新增 0，更新 0，未变 90
+examples：新增 0，更新 13，未变 145
+questions：新增 17，更新 0，未变 220，停用旧版本 17
+已提交。
+## 题目版本（status 计数）
+version	status	n
+1	published	220
+1	retired	17
+2	published	17
+## 已发放的旧版本题目实例仍引用旧版本（T10）
+status	session_items
+published	69
+retired	3
