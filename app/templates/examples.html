@@ -4,9 +4,9 @@
 <section class="auth-page wide-page">
   <p class="eyebrow">实验四 / 深度学习</p>
   <h1>英语语境例句检索</h1>
-  <p class="lead">用本地句向量编码器把英语句子转成向量，找出语义最接近的已校对例句。相似度只表示语义相关程度，不是答案置信度或语法评分；只支持英语查询。</p>
+  <p class="lead">输入一个英语句子，找到语境最接近的例句。</p>
   {% if status == "available" %}
-    <p class="verdict correct">检索可用：{{ info.model_code }} @ {{ info.revision[:12] }} · 语料 {{ info.corpus_count }} 条 · 索引构建于 {{ info.index_built_at_utc }}</p>
+    <p class="verdict correct">检索可用 · {{ info.corpus_count }} 条例句</p>
   {% else %}
     <p class="verdict wrong" role="status">检索不可用：{{ reason }}</p>
     <p class="form-note">练习、复习等基础学习功能不受影响。</p>
@@ -23,7 +23,10 @@
     <button class="button" type="submit" {% if status != "available" %}disabled{% endif %}>检索</button>
   </form>
   <div id="search-result" class="feedback" role="status" hidden></div>
-  <p class="form-note">每次检索的输入、结果、模型与语料版本和耗时都写入 MySQL 的 inference_events（kind=dl）。</p>
+  <details class="about">
+    <summary>说明</summary>
+    <p>本地句向量编码器{% if status == "available" %} {{ info.model_code }} @ {{ info.revision[:12] }}，索引构建于 {{ info.index_built_at_utc }}{% endif %}。相似度只表示语义相关程度，不是答案置信度或语法评分；只支持英语查询。每次检索的输入、结果、模型与语料版本和耗时写入 MySQL 的 inference_events（kind=dl）。</p>
+  </details>
 </section>
 {% endblock %}
 {% block scripts %}<script src="{{ url_for('static', filename='js/examples.js') }}"></script>{% endblock %}

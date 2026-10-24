@@ -42,7 +42,8 @@
       title.textContent = `${examNames[book.exam_type] || book.exam_type} · ${book.name}`;
       const meta = document.createElement("span");
       meta.className = "field-hint";
-      meta.textContent = `${book.word_count} 个词条 · 版本 ${book.version} · 来源：${book.source}`;
+      meta.textContent = `${book.word_count} 个词条 · ${book.version}`;
+      label.title = `来源：${book.source}`;
       label.append(box, title, meta);
       list.append(label);
     }

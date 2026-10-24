@@ -15,7 +15,7 @@ class AppSmokeTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("词汇诊断", response.get_data(as_text=True))
         self.assertIn('href="/lab/hello"', response.get_data(as_text=True))
-        self.assertIn("后续实现", response.get_data(as_text=True))
+        self.assertIn("课程实验", response.get_data(as_text=True))
 
     def test_hello_renders_text_and_static_image(self):
         response = self.client.get("/lab/hello")

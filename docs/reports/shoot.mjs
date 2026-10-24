@@ -54,7 +54,9 @@ await shot("e2_practice_feedback");
 await go("/review"); await shot("e2_review");
 await go("/dashboard"); await shot("e2_dashboard_stats");
 // 实验三
-await go("/lab/ml"); await submitAndWaitResult("#recall-form", "#recall-result"); await shot("e3_ml");
+// 报告需要展示离线误差表：截图前展开页面上折叠的“离线评测”。
+await go("/lab/ml"); await submitAndWaitResult("#recall-form", "#recall-result");
+await evaluate("document.querySelector('details.about').open = true"); await shot("e3_ml");
 // 实验四
 await go("/examples"); await submitAndWaitResult("#search-form", "#search-result"); await shot("e4_examples");
 await evaluate(fill("input[name=text]", "I need to open a savings account at the bank.")); await submitAndWaitResult("#search-form", "#search-result", true); await shot("e4_examples_money");
