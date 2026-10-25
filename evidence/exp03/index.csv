@@ -10,3 +10,5 @@ inference-events.txt,E3/M06,docker compose exec db mysql: model_versions 与 inf
 lab-http.txt,E3/T13,curl 与 docker compose run web python（ML_MODEL_DIR=/nonexistent）,2026-10-23T19:50:10Z,实验页可用状态、冷启动 null、非法输入 422；模型目录缺失时 503、实验页显示不可用、练习照常作答、失败事件 model_version_id 为空（该段用测试客户端并关闭 CSRF）
 environment.txt,E3,uname; lscpu; pip freeze,2026-10-23T19:50:24Z,Osaka Neoverse-N1 2 核、11 GiB，CPU 推理；Python 与库版本；本地数据与制品文件
 validation.txt,S3,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo ml && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T19:53:52Z,140 项通过，含特征、数据处理、训练制品、加载校验、推理接口、留证与 T13 测试
+demo-07-lab-ml-estimate.png,E3/M06/答辩路径,内置浏览器: /lab/ml 间隔 86400、历史 5、正确 4 → 估计; screenshot,2026-10-24T21:15:30Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；88.5%，18.285 ms；展开“离线评测”“说明”；对应 inference_events 178
+demo-07-lab-ml-no-history.png,E3/M06/答辩路径,内置浏览器: /lab/ml 历史 0、正确 0 → 估计; screenshot,2026-10-24T21:16:14Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；“没有历史作答，暂不估计。”；对应 inference_events 179（cold_start）

@@ -1,0 +1,38 @@
+验证位置：Mac 上 Claude 桌面应用内置浏览器，经 SSH 隧道 http://127.0.0.1:5000 访问 Osaka docker compose web（commit d5a9d07）。
+时间：2026-10-24T21:05Z—21:23Z（UTC；页面“今天”按 Asia/Shanghai 为 2026-10-25）。
+账户：本次新注册的演示账户 evid1025（密码随机生成且未记录），统计从零开始。
+截图方式：视口模拟 800×600、页面缩放 1×，整页按滚动位置分块截取后拼接；均为网页视口，不含浏览器地址栏。展开了页面底部折叠的“词表来源”“复习规则”“统计说明”“离线评测”“说明”（今日页的“说明”保持折叠）。
+
+按 docs/demo.md 路径：
+1  首页 → 课程实验“Web 框架 · 进入” → /lab/hello：文字、学习闭环静态图与图注可见。demo-01-home.png、demo-01-lab-hello.png（exp01）
+2  首页“注册开始学习” → 注册 evid1025：自动登录并跳转 /dashboard，提示“先选择考试目标，再开始练习”。demo-02-register.png、demo-02-after-register-dashboard.png
+3  /wordbooks 只选六级 → 保存：“已保存 1 个目标”；三本词表各 30 个词条 · v1。demo-03-wordbooks-cet6.png
+4  导航“今日” → /today：连续 0 天、今日新词义 0 / 10、还有 35 个可学。点击“学今日新词（10 个）”按钮 → 跳转 /practice?session=21，直接进入辨义第 1 / 10 题（#8 的按钮点击验收：通过）。
+   第 1 题 contribute、第 2 题 crucial 故意答错，其余 8 题答对；每题提交后即时显示对错与标准答案。小结“辨义题 10 道，答对 8 道。错题会在 10 分钟后进入复习”。
+   “返回今日任务”：今天的任务已完成、连续学习 1 天、今日新词义显示“10 个 / 已达成目标 10 个”、“再学 10 个”（#30 后的文案；docs/demo.md 仍写“10 / 10”）。
+   demo-04-today-before.png、demo-04-practice-question.png、demo-04-practice-wrong-feedback.png、demo-04-practice-correct-feedback.png、demo-04-practice-summary.png、demo-04-today-done.png
+   未验证：重复点击提交不重复计数（提交后按钮切换为“下一题”，本次未构造重复提交）。
+5  /review（21:14Z）：已到期 0，未到期的错题 2（contribute、crucial，约 6 分钟后到期）。到期后（21:21Z）：/review 已到期 2；/today 出现“复习辨义（2）”，副标题由“今天的任务已完成。”变回“先复习，再学新词。”。
+   demo-05-review-pending.png、demo-05-review-due.png、demo-05-today-review-due.png
+6  /dashboard（仅六级）：已练词条 9 / 30、未测试 95 / 共 105 项、作答正确比例 80%（8 / 10）。/wordbooks 增加雅思 →“已保存 2 个目标” → /dashboard：已练词条 9 / 50（统计说明“合计 50”，共有词只计一次）、按词表 六级 9 / 雅思 4（雅思下复用六级作答）、语境与拼写仍为未测试。
+   demo-06-dashboard-cet6.png、demo-06-wordbooks-cet6-ielts.png、demo-06-dashboard-cet6-ielts.png
+7  /lab/ml：模型可用 · recall_rf v1；间隔 86400 秒、历史 5 次、正确 4 次 → 预期正确比例 88.5%，模型计算 18.285 ms；历史 0 次 → “没有历史作答，暂不估计。”；离线评测表 test 随机森林 MAE 0.169456 < 训练集标签均值 0.177831。
+   demo-07-lab-ml-estimate.png、demo-07-lab-ml-no-history.png（exp03）
+8  /examples：“I need to open a savings account.” 第一名 0.793 bank（n.）银行；“We sat on the grass beside the river.” 第一名 0.645 bank（n.）河岸；编码器 all-MiniLM-L6-v2 @ 1110a243fdf4。
+   demo-08-examples-bank-money.png、demo-08-examples-bank-river.png（exp04）
+9  docs/demo.md 第 9 步查询（21:18Z，Osaka 仓库根目录，密码从 .env 读取未显示）：
+
+id	kind	source_type	status	model_code	version	model_time_ms	created_at
+181	dl	manual_lab	ok	all-MiniLM-L6-v2	1110a243fdf4706b3f48f1d95db1a4f5529b4d41	22.024	2026-10-24 21:17:23.795731
+180	dl	manual_lab	ok	all-MiniLM-L6-v2	1110a243fdf4706b3f48f1d95db1a4f5529b4d41	24.649	2026-10-24 21:17:03.596281
+179	ml	manual_lab	cold_start	recall_rf	v1	NULL	2026-10-24 21:15:50.877371
+178	ml	manual_lab	ok	recall_rf	v1	18.285	2026-10-24 21:15:20.268842
+177	dl	manual_lab	ok	all-MiniLM-L6-v2	1110a243fdf4706b3f48f1d95db1a4f5529b4d41	29.572	2026-10-24 19:20:12.907396
+
+178—181 对应第 7、8 步的四次操作，耗时与页面显示一致；177 为本次之前的记录。
+
+补充（2026-10-25）：带地址栏截图
+项目负责人用 Mac Chrome 手动截取实验一、二的带地址栏窗口截图（对话附件 webp 无损转 PNG）：
+- exp01：chrome-home.png（/）、chrome-lab-hello.png（/lab/hello，已登录 Subaru486）
+- exp02：chrome-register.png（/register，user0）、chrome-register-dashboard.png（注册后 /dashboard）、chrome-login-failed.png（/auth/login，user0 登录失败）、chrome-login-error-user.png（/auth/login，用户名 user 登录失败，两者提示相同）
+实验三、四按项目负责人决定使用上方不含地址栏的视口截图，不另补带地址栏截图。

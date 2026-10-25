@@ -10,3 +10,5 @@ lab-http.txt,E4/M04/M05/T13,curl 与 docker compose run web python（DL_MODEL_DI
 inference-events.txt,E4/M06,docker compose exec db mysql: model_versions 与 inference_events,2026-10-23T20:19:00Z,两类模型登记与 dl 推理事件（输入、前一名结果、语料指纹、状态、耗时、request_id）；v2 修订前的推理记录
 environment.txt,E4,uname; lscpu; pip freeze,2026-10-23T20:19:10Z,Neoverse-N1 2 核 CPU 推理，torch 2.14.1+cpu、sentence-transformers 5.7.0 等版本，本地制品大小
 validation.txt,S4,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo ml && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T20:24:15Z,161 项通过，含检索、词表过滤、长度上限、索引过期与篡改、未登记编码器、留证失败、评价指标与 T13
+demo-08-examples-bank-money.png,E4/M06/答辩路径,内置浏览器: /examples 查询 I need to open a savings account.; screenshot,2026-10-24T21:17:15Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；第一名 bank 银行 0.793；对应 inference_events 180
+demo-08-examples-bank-river.png,E4/M06/答辩路径,内置浏览器: /examples 查询 We sat on the grass beside the river.; screenshot,2026-10-24T21:17:35Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；第一名 bank 河岸 0.645；对应 inference_events 181
