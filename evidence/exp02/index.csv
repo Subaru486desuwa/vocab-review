@@ -32,3 +32,7 @@ demo-06-dashboard-cet6.png,E2/T14/答辩路径,内置浏览器: /dashboard（仅
 demo-06-wordbooks-cet6-ielts.png,E2/T14/答辩路径,内置浏览器: /wordbooks 增加雅思并保存; screenshot,2026-10-24T21:22:47Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏
 demo-06-dashboard-cet6-ielts.png,E2/T14/答辩路径,内置浏览器: 增加雅思后 /dashboard; screenshot,2026-10-24T21:23:08Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；合计 50、雅思复用六级作答 4 个词条
 demo-browser-path.txt,E2/T15/答辩路径,内置浏览器按 docs/demo.md 步骤 1—8；第 9 步 docker compose exec db mysql 查询 inference_events,2026-10-24T21:23:08Z,答辩路径浏览器验收记录（#8）与第 9 步查询结果；未验证重复点击提交
+chrome-register.png,E2/T02,Chrome: /register 填写 user0 后提交前; screenshot,2026-10-25T05:46:49Z,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；时间取自 users.created_at（user0）
+chrome-register-dashboard.png,E2/T02,Chrome: 注册 user0 后自动跳转 /dashboard; screenshot,2026-10-25T05:46:49Z,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；自动登录，提示先选择考试目标
+chrome-login-failed.png,E2/T02,Chrome: /auth/login 用户名 user0 登录失败; screenshot,未记录（2026-10-25T05:48Z 前提供）,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；显示“用户名或密码错误”
+chrome-login-error-user.png,E2/T02,Chrome: /auth/login 用户名 user 登录失败; screenshot,未记录（2026-10-25T05:48Z 前提供）,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；显示同一提示“用户名或密码错误”；users 表中无 user 账户

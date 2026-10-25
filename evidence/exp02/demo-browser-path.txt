@@ -30,3 +30,9 @@ id	kind	source_type	status	model_code	version	model_time_ms	created_at
 177	dl	manual_lab	ok	all-MiniLM-L6-v2	1110a243fdf4706b3f48f1d95db1a4f5529b4d41	29.572	2026-10-24 19:20:12.907396
 
 178—181 对应第 7、8 步的四次操作，耗时与页面显示一致；177 为本次之前的记录。
+
+补充（2026-10-25）：带地址栏截图
+项目负责人用 Mac Chrome 手动截取实验一、二的带地址栏窗口截图（对话附件 webp 无损转 PNG）：
+- exp01：chrome-home.png（/）、chrome-lab-hello.png（/lab/hello，已登录 Subaru486）
+- exp02：chrome-register.png（/register，user0）、chrome-register-dashboard.png（注册后 /dashboard）、chrome-login-failed.png（/auth/login，user0 登录失败）、chrome-login-error-user.png（/auth/login，用户名 user 登录失败，两者提示相同）
+实验三、四按项目负责人决定使用上方不含地址栏的视口截图，不另补带地址栏截图。

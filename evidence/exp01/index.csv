@@ -8,3 +8,5 @@ hello.png,T01,Chrome: click 查看 Flask 基础演示; screenshot,2026-10-23T12:
 browser-acceptance.txt,T01,Chrome: 首页 → 演示页 → 返回首页,2026-10-23T12:21:33.367377+00:00,导航与可见状态记录
 demo-01-home.png,T01/答辩路径,内置浏览器: GET http://127.0.0.1:5000/; screenshot,2026-10-24T21:05:23Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；精简文案后的首页
 demo-01-lab-hello.png,T01/答辩路径,内置浏览器: 首页“Web 框架 · 进入”; screenshot,2026-10-24T21:06:20Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；文字、静态图与图注
+chrome-home.png,T01,Chrome: GET http://127.0.0.1:5000/; screenshot,未记录（2026-10-25T05:48Z 前提供）,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；未登录首页
+chrome-lab-hello.png,T01,Chrome: GET http://127.0.0.1:5000/lab/hello; screenshot,未记录（2026-10-25T05:48Z 前提供）,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；已登录 Subaru486，文字、静态图与图注
