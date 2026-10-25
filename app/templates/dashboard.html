@@ -34,9 +34,27 @@
         {% for b in summary.by_wordbook %}<tr><th scope="row">{{ b.name }}</th><td>{{ b.words_total }}</td><td>{{ b.words_practiced }}</td></tr>{% endfor %}
       </tbody>
     </table>
+    {% set peak = [trend.days | map(attribute="attempts.count") | max, 1] | max %}
+    <table class="data-table trend">
+      <caption>近 14 天</caption>
+      <thead><tr><th scope="col">日期</th><th scope="col">作答</th><th scope="col">正确率</th><th scope="col">新词义</th><th scope="col">到期复习完成</th><th scope="col">日终待复习</th></tr></thead>
+      <tbody>
+        {% for d in trend.days %}
+          <tr class="trend-row">
+            <th scope="row">{{ d.date[5:] }}</th>
+            <td><span class="bar"><span style="width: {{ (d.attempts.count / peak * 100) | round(1) }}%"></span></span>{{ d.attempts.count }}</td>
+            <td>{% if d.attempts.accuracy is none %}—{% else %}<span class="bar"><span style="width: {{ (d.attempts.accuracy * 100) | round(1) }}%"></span></span>{{ "%.0f" | format(d.attempts.accuracy * 100) }}%{% endif %}</td>
+            <td>{{ d.new_senses }}</td>
+            <td>{{ d.reviews.due }}</td>
+            <td>{{ d.backlog_end }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
     <details class="about">
       <summary>统计说明</summary>
       <p>统计只来自真实作答记录；没有作答的词义 × 题型显示为未测试，不代表“不会”。“项”指有题目的词义 × 题型组合；多个目标共有的词条在合计中只计一次（合计 {{ summary.words.total }}）。近期稳定：最近三次都答对，且三次跨度不少于 24 小时。</p>
+      <p>近 14 天按 {{ trend.timezone }} 的自然日统计全部作答，不按目标词表过滤。到期复习完成：作答前已到复习时间的作答次数；提前练习与首次作答某题型不计入。日终待复习：当天结束时（今天为当前时间）已到复习时间的词义 × 题型数。错题 10 分钟后会再次到期，因此不计算复习完成率。</p>
     </details>
   {% else %}
     <p class="lead">先选择考试目标，再开始练习。</p>

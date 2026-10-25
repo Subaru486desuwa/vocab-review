@@ -6,7 +6,7 @@ from app import clock
 from app.blueprints.auth import current_user, login_required
 from app.blueprints.responses import api_error, api_ok
 from app.repositories import db
-from app.services import grading, practice, progress, today
+from app.services import daily, grading, practice, progress, today
 
 bp = Blueprint("learning", __name__)
 
@@ -53,7 +53,8 @@ def dashboard():
         summary = progress.stats(db.get_db(), _user_id(), clock.now())
     except practice.NoTarget:
         summary = None
-    return render_template("dashboard.html", user=current_user(), summary=summary, skill_names=SKILL_NAMES)
+    trend = daily.trend(db.get_db(), _user_id(), clock.now()) if summary else None
+    return render_template("dashboard.html", user=current_user(), summary=summary, trend=trend, skill_names=SKILL_NAMES)
 
 
 @bp.get("/today")
@@ -180,6 +181,16 @@ def stats_api():
         return _invalid(exc)
     except practice.NoTarget:
         return api_error("NO_TARGET", "请先选择目标词表", 422)
+
+
+@bp.get("/api/v1/me/daily")
+@login_required
+def daily_api():
+    days = request.args.get("days", str(daily.DEFAULT_DAYS))
+    try:
+        return api_ok(daily.trend(db.get_db(), _user_id(), clock.now(), int(days) if days.isdigit() else -1))
+    except practice.InvalidRequest as exc:
+        return _invalid(exc)
 
 
 @bp.get("/api/v1/practice/sessions/<int:session_id>")

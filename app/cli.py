@@ -10,7 +10,15 @@ from app import clock
 from app.repositories import db, migrations, users
 from app.repositories import examples as examples_repo
 from app.repositories import models as model_repo
-from app.services import accounts, content_import, example_search, learning_state, recall_model
+from app.services import (
+    accounts,
+    content_import,
+    demo_history,
+    example_search,
+    learning_state,
+    practice,
+    recall_model,
+)
 
 db_cli = AppGroup("db", help="数据库迁移。")
 
@@ -90,6 +98,42 @@ def seed_demo_user_command(username):
     except accounts.ValidationFailed as exc:
         raise click.ClickException("；".join(exc.fields.values())) from exc
     click.echo(f"已创建演示账户：{user['username']}")
+
+
+@click.command("seed-demo-history")
+@click.option("--username", required=True, help="必须以 sim_ 开头，标明是模拟演示账户。")
+@click.option("--days", default=14, show_default=True, type=click.IntRange(1, 60), help="生成今天之前的天数。")
+@click.option("--seed", "seed_value", default=42, show_default=True, type=int, help="随机种子。")
+@with_appcontext
+def seed_demo_history_command(username, days, seed_value):
+    """生成模拟演示数据：在固定时钟下调用真实组卷与作答服务，为今天之前的若干天逐日作答。
+
+    账户不存在时以 DEMO_USER_PASSWORD 创建；目标设为全部启用词表；已有作答的账户拒绝生成。
+    """
+    if not username.startswith(demo_history.PREFIX):
+        raise click.ClickException(f"模拟演示账户名必须以 {demo_history.PREFIX} 开头")
+    conn = db.get_db()
+    now = clock.now()
+    with db.transaction(conn):
+        user = users.find_by_username_norm(conn, accounts.normalize_username(username))
+    if user is None:
+        password = os.environ.get("DEMO_USER_PASSWORD")
+        if not password:
+            raise click.ClickException("未设置 DEMO_USER_PASSWORD")
+        try:
+            with db.transaction(conn):
+                user = accounts.register(conn, username, password, now)
+        except accounts.ValidationFailed as exc:
+            raise click.ClickException("；".join(exc.fields.values())) from exc
+    if demo_history.has_history(conn, user["id"]):
+        raise click.ClickException(f"{username} 已有作答，不再生成，以免与既有记录混合")
+    wordbook_ids = [b["id"] for b in practice.list_wordbooks(conn, user["id"])["items"]]
+    practice.set_targets(conn, user["id"], wordbook_ids, now)
+    days_done = demo_history.generate(conn, user["id"], now, days, seed_value)
+    click.echo(f"模拟演示数据（非真实学习记录）：{username}，种子 {seed_value}，目标词表 {len(wordbook_ids)} 个")
+    for day, count in days_done:
+        click.echo(f"  {day}：{f'作答 {count} 次' if count else '未练习'}")
+    click.echo(f"共 {sum(c for _, c in days_done)} 次作答，今天未生成。")
 
 
 @click.command("rebuild-learning-state")
@@ -241,6 +285,7 @@ def init_app(app):
     app.cli.add_command(create_admin_command)
     app.cli.add_command(import_content_command)
     app.cli.add_command(seed_demo_user_command)
+    app.cli.add_command(seed_demo_history_command)
     app.cli.add_command(rebuild_learning_state_command)
     app.cli.add_command(register_model_command)
     app.cli.add_command(build_example_index_command)

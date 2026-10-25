@@ -36,3 +36,8 @@ chrome-register.png,E2/T02,Chrome: /register 填写 user0 后提交前; screensh
 chrome-register-dashboard.png,E2/T02,Chrome: 注册 user0 后自动跳转 /dashboard; screenshot,2026-10-25T05:46:49Z,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；自动登录，提示先选择考试目标
 chrome-login-failed.png,E2/T02,Chrome: /auth/login 用户名 user0 登录失败; screenshot,未记录（2026-10-25T05:48Z 前提供）,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；显示“用户名或密码错误”
 chrome-login-error-user.png,E2/T02,Chrome: /auth/login 用户名 user 登录失败; screenshot,未记录（2026-10-25T05:48Z 前提供）,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；显示同一提示“用户名或密码错误”；users 表中无 user 账户
+validation-daily.txt,S2/T16,docker compose run --rm web sh -c 'python -m compileall -q app tests && ruff check . && ruff format --check . && pytest -v && pip check',2026-10-25T06:44:39Z,178 项通过、无跳过，含学习趋势与模拟演示数据 7 项（#32）
+daily-seed.txt,S2/T16,flask seed-demo-history --username sim_trend --days 14 --seed 42; flask rebuild-learning-state --username sim_trend,2026-10-25T06:45:54Z,模拟演示数据：固定时钟下调用真实组卷与作答服务为 10/11—10/24 生成 417 次作答（10 天练习、4 天未练习），不是真实学习记录；重建核对 108 组一致
+daily-http.sh,T16,bash evidence/exp02/daily-http.sh,2026-10-25T06:47:00Z,生成 daily-http.txt 的 curl 脚本；登录模拟演示账户，密码取 .env 且不输出
+daily-http.txt,T16,bash evidence/exp02/daily-http.sh,2026-10-25T06:47:00Z,未登录 401；近 14 天逐日汇总，三类作答之和逐日等于作答数；days 越界与非整数 422；今天新词义、日终待复习分别与 /me/today、/me/review 一致；窗口作答 398 与数据库一致；概览页 14 行；重建一致；数据为模拟演示数据
+daily-dashboard.png,T16,内置浏览器: sim_trend 登录后 /dashboard; screenshot,2026-10-25T06:48:25Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，分块拼接整页），不含地址栏；模拟演示数据；展开统计说明

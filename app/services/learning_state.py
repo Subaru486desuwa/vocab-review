@@ -15,17 +15,21 @@ class UnknownRuleVersion(Exception):
     pass
 
 
-def replay(attempts):
+def replay_steps(attempts):
+    """逐条产出 (作答, 作答前状态, 作答后状态)；该 (用户, 词义, 题型) 首次作答时作答前状态为 None。"""
     states = {}
     for attempt in attempts:
         rule = RULES.get(attempt["review_rule_version"])
         if rule is None:
             raise UnknownRuleVersion(attempt["review_rule_version"])
         key = (attempt["user_id"], attempt["sense_id"], attempt["skill_type"])
-        states[key] = rule(
-            states.get(key, review_rules.initial()), bool(attempt["is_correct"]), attempt["submitted_at"]
-        )
-    return states
+        before = states.get(key)
+        states[key] = rule(before or review_rules.initial(), bool(attempt["is_correct"]), attempt["submitted_at"])
+        yield attempt, before, states[key]
+
+
+def replay(attempts):
+    return {(a["user_id"], a["sense_id"], a["skill_type"]): after for a, _, after in replay_steps(attempts)}
 
 
 def _differences(stored_rows, attempts):
