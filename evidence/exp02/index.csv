@@ -16,3 +16,8 @@ validation-review.txt,S2/T09/T14,"docker compose run --rm web sh -c 'python -m c
 today-http.sh,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T19:40:23Z,生成 today-http.txt 的 curl 脚本；对已运行的 docker compose web 执行，新注册演示账户，密码随机生成且未记录
 today-http.txt,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T19:40:23Z,今日任务：未选目标 422；新账户新词义 0/10；focus=new_senses 练习 10 题（前 2 题答错）后完成、连续 1 天；再学新词与已作答词义重叠 0 题；非法 focus 422；/today 页面（达成目标后显示“再学 10 个”）；学习状态重建一致
 import-v2.txt,E2/T10/T12,flask import-content data/demo/v2 --dry-run 后正式导入,2026-10-24T16:59:53Z,在已导入 v1 的演示库上导入 v2：17 道题目新版本、旧版本停用，13 条例句更新，1 个词义更新；已发放的 3 个题目实例仍引用停用的旧版本
+validation-daily.txt,S2/T16,docker compose run --rm web sh -c 'python -m compileall -q app tests && ruff check . && ruff format --check . && pytest -v && pip check',2026-10-25T06:44:39Z,178 项通过、无跳过，含学习趋势与模拟演示数据 7 项（#32）
+daily-seed.txt,S2/T16,flask seed-demo-history --username sim_trend --days 14 --seed 42; flask rebuild-learning-state --username sim_trend,2026-10-25T06:45:54Z,模拟演示数据：固定时钟下调用真实组卷与作答服务为 10/11—10/24 生成 417 次作答（10 天练习、4 天未练习），不是真实学习记录；重建核对 108 组一致
+daily-http.sh,T16,bash evidence/exp02/daily-http.sh,2026-10-25T06:47:00Z,生成 daily-http.txt 的 curl 脚本；登录模拟演示账户，密码取 .env 且不输出
+daily-http.txt,T16,bash evidence/exp02/daily-http.sh,2026-10-25T06:47:00Z,未登录 401；近 14 天逐日汇总，三类作答之和逐日等于作答数；days 越界与非整数 422；今天新词义、日终待复习分别与 /me/today、/me/review 一致；窗口作答 398 与数据库一致；概览页 14 行；重建一致；数据为模拟演示数据
+daily-dashboard.png,T16,内置浏览器: sim_trend 登录后 /dashboard; screenshot,2026-10-25T06:48:25Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，分块拼接整页），不含地址栏；模拟演示数据；展开统计说明

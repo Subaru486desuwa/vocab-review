@@ -87,6 +87,8 @@ a.status { text-decoration: none; }
 .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-variant-numeric: tabular-nums; }
 .data-table caption { text-align: left; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
 .data-table th, .data-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.trend .bar { display: inline-block; width: 72px; height: 8px; margin-right: 8px; border-radius: 4px; background: var(--line); overflow: hidden; vertical-align: middle; }
+.trend .bar span { display: block; height: 100%; background: var(--green); }
 .review-list li { flex-wrap: wrap; gap: 8px 16px; }
 footer { padding-block: 24px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); }
 @media (max-width: 600px) {

@@ -56,6 +56,12 @@ v1 是首次发布的内容包，v2 在其上新增题目版本与例句修订�
 docker compose run --rm web flask seed-demo-user
 ```
 
+演示学习趋势时，可另建一个模拟演示账户：在固定时钟下调用真实组卷与作答服务，为今天之前的 14 天逐日生成作答（账户名须以 `sim_` 开头，密码取 `DEMO_USER_PASSWORD`；已有作答的账户拒绝生成）。这些记录是模拟演示数据，不是真实学习记录：
+
+```bash
+docker compose run --rm web flask seed-demo-history --username sim_trend --days 14 --seed 42
+```
+
 实验三需要先在本地准备数据并训练（原始数据与模型不进 Git，步骤见 [模型契约](docs/models.md)），然后登记制品：
 
 ```bash
@@ -147,7 +153,7 @@ docs/         架构、契约、验收与 ADR
 docker compose run --rm web sh -c 'python -m compileall -q app tests && ruff check . && ruff format --check . && pytest -v && pip check'
 ```
 
-标记为 `db` 的测试使用 `TEST_DB_*` 指定的独立测试库，每次运行先清空再迁移；库名必须以 `_test` 结尾。未配置测试库时这些测试显示为跳过，不算通过；已配置但无法连接时报错。检查覆盖基础页面、安全配置、迁移与约束、账户、导入、练习与作答事务、复习与统计、实验三与实验四。
+标记为 `db` 的测试使用 `TEST_DB_*` 指定的独立测试库，每次运行先清空再迁移；库名必须以 `_test` 结尾。未配置测试库时这些测试显示为跳过，不算通过；已配置但无法连接时报错。检查覆盖基础页面、安全配置、迁移与约束、账户、导入、练习与作答事务、复习与统计、学习趋势与模拟演示数据、实验三与实验四。
 
 `requirements.in` 是 Web 直接依赖，`requirements.lock.txt` 是实际安装版本；`requirements-dev.in`/`requirements-dev.lock.txt` 另含 pytest 与 ruff；`requirements-ml.*` 与 `requirements-dl.*`（torch 取 CPU 源）分别是实验三、四依赖。镜像默认都安装，`WITH_ML=0 WITH_DL=0 docker compose build` 构建不含模型依赖的镜像，此时实验页显示不可用，其余功能照常。算法依赖将在模型阶段独立验证后加入，不在基础页面启动时下载或训练模型。
 
