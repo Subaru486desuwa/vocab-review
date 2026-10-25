@@ -6,3 +6,5 @@ http.txt,T01,curl --fail --silent --show-error --output /dev/null --write-out st
 home.png,T01,Chrome: GET http://127.0.0.1:5087/; screenshot,2026-10-23T12:20:40+00:00,Mac Chrome 视口截图，不含地址栏
 hello.png,T01,Chrome: click 查看 Flask 基础演示; screenshot,2026-10-23T12:20:47+00:00,文字与静态图片实际呈现，不含地址栏
 browser-acceptance.txt,T01,Chrome: 首页 → 演示页 → 返回首页,2026-10-23T12:21:33.367377+00:00,导航与可见状态记录
+demo-01-home.png,T01/答辩路径,内置浏览器: GET http://127.0.0.1:5000/; screenshot,2026-10-24T21:05:23Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；精简文案后的首页
+demo-01-lab-hello.png,T01/答辩路径,内置浏览器: 首页“Web 框架 · 进入”; screenshot,2026-10-24T21:06:20Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；文字、静态图与图注

@@ -16,3 +16,19 @@ validation-review.txt,S2/T09/T14,"docker compose run --rm web sh -c 'python -m c
 today-http.sh,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T19:40:23Z,生成 today-http.txt 的 curl 脚本；对已运行的 docker compose web 执行，新注册演示账户，密码随机生成且未记录
 today-http.txt,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T19:40:23Z,今日任务：未选目标 422；新账户新词义 0/10；focus=new_senses 练习 10 题（前 2 题答错）后完成、连续 1 天；再学新词与已作答词义重叠 0 题；非法 focus 422；/today 页面（达成目标后显示“再学 10 个”）；学习状态重建一致
 import-v2.txt,E2/T10/T12,flask import-content data/demo/v2 --dry-run 后正式导入,2026-10-24T16:59:53Z,在已导入 v1 的演示库上导入 v2：17 道题目新版本、旧版本停用，13 条例句更新，1 个词义更新；已发放的 3 个题目实例仍引用停用的旧版本
+demo-02-register.png,E2/T02/答辩路径,内置浏览器: 首页“注册开始学习”; screenshot,2026-10-24T21:06:53Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏
+demo-02-after-register-dashboard.png,E2/T02/答辩路径,内置浏览器: 注册 evid1025 后自动跳转 /dashboard; screenshot,2026-10-24T21:07:30Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；新账户密码随机生成且未记录
+demo-03-wordbooks-cet6.png,E2/答辩路径,内置浏览器: /wordbooks 只选六级并保存; screenshot,2026-10-24T21:08:21Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；展开“词表来源”
+demo-04-today-before.png,E2/T15/答辩路径,内置浏览器: 导航“今日” → /today; screenshot,2026-10-24T21:08:55Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；新词义 0 / 10
+demo-04-practice-question.png,E2/T04/T15,内置浏览器: 点击“学今日新词（10 个）”; screenshot,2026-10-24T21:09:26Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；按钮点击跳转 /practice?session=21 进入第 1 题（#8 点击验收）
+demo-04-practice-wrong-feedback.png,E2/T05,内置浏览器: 第 1 题故意答错并提交; screenshot,2026-10-24T21:09:52Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；即时判分与标准答案
+demo-04-practice-correct-feedback.png,E2/T05,内置浏览器: 第 4 题答对并提交; screenshot,2026-10-24T21:11:18Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏
+demo-04-practice-summary.png,E2/T15,内置浏览器: 第 10 题后“查看小结”; screenshot,2026-10-24T21:13:18Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；10 道答对 8 道（前 2 题故意答错）
+demo-04-today-done.png,E2/T15/答辩路径,内置浏览器: “返回今日任务”; screenshot,2026-10-24T21:13:35Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；已完成、连续 1 天、新词义显示“10 个 / 已达成目标 10 个”（#30 文案）
+demo-05-review-pending.png,E2/T09/答辩路径,内置浏览器: /review; screenshot,2026-10-24T21:14:18Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；2 道错题约 6 分钟后到期；展开“复习规则”
+demo-05-review-due.png,E2/T09/答辩路径,内置浏览器: 到期后 /review; screenshot,2026-10-24T21:21:46Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；已到期 2
+demo-05-today-review-due.png,E2/T15/答辩路径,内置浏览器: 到期后 /today; screenshot,2026-10-24T21:21:58Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；出现“复习辨义（2）”并变回未完成
+demo-06-dashboard-cet6.png,E2/T14/答辩路径,内置浏览器: /dashboard（仅六级）; screenshot,2026-10-24T21:14:48Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；已练词条 9 / 30；展开“统计说明”
+demo-06-wordbooks-cet6-ielts.png,E2/T14/答辩路径,内置浏览器: /wordbooks 增加雅思并保存; screenshot,2026-10-24T21:22:47Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏
+demo-06-dashboard-cet6-ielts.png,E2/T14/答辩路径,内置浏览器: 增加雅思后 /dashboard; screenshot,2026-10-24T21:23:08Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；合计 50、雅思复用六级作答 4 个词条
+demo-browser-path.txt,E2/T15/答辩路径,内置浏览器按 docs/demo.md 步骤 1—8；第 9 步 docker compose exec db mysql 查询 inference_events,2026-10-24T21:23:08Z,答辩路径浏览器验收记录（#8）与第 9 步查询结果；未验证重复点击提交
