@@ -2,7 +2,7 @@
 
 python3 docs/reports/build_reports.py [输出目录]，默认 docs/reports/。需要 LibreOffice（把 .doc 模板转为 .docx）。
 数字全部从 evidence/ 读取，源码片段从仓库代码截取；封面的姓名、学号、实验时间、成绩与签字留给本人填写。
-截图由 docs/reports/shoot.mjs 在 Osaka 用 headless Chromium 生成，不含浏览器地址栏（带地址栏截图见 #8）。
+截图由 docs/reports/shoot.mjs 在 Osaka 用 headless Chromium 生成，不含地址栏；实验一、二的部分图直接用 evidence/ 中的带地址栏 Chrome 截图（#8）。
 """
 
 import ast
@@ -103,8 +103,8 @@ def report1():
         ("p", "启动开发服务器后用 curl 依次请求首页、实验页和静态图片，结果如下（evidence/exp01/http.txt）："),
         ("table", ["请求路径", "HTTP 状态", "内容类型"], rows),
         ("code", ["# evidence/exp01/startup.txt（启动日志节选）"] + startup),
-        ("img", EVIDENCE / "exp01" / "home.png", "图 1  首页（Mac Chrome 经 SSH 隧道访问，网页视口截图）"),
-        ("img", EVIDENCE / "exp01" / "hello.png", "图 2  /lab/hello 页面：Hello Flask 文字与静态图片"),
+        ("img", EVIDENCE / "exp01" / "chrome-home.png", "图 1  首页（Mac Chrome 经 SSH 隧道访问，含地址栏）"),
+        ("img", EVIDENCE / "exp01" / "chrome-lab-hello.png", "图 2  /lab/hello 页面：Hello Flask 文字与静态图片"),
         ("h", "4. 探讨分析"),
         (
             "p",
@@ -163,6 +163,8 @@ def report2():
     hash_cells = [c.strip() for c in hash_row.strip("|").split("|")]
     review = read("evidence/exp02/review-path.txt")
     today = read("evidence/exp02/today-http.txt")
+    daily = read("evidence/exp02/daily-http.txt")
+    totals = json.loads(re.search(r"^totals (.*)$", daily, re.M).group(1))
     s5 = [
         ("h", "1. 数据库设计"),
         (
@@ -195,13 +197,18 @@ def report2():
             f"数据库中该用户的密码字段：哈希算法前缀 {hash_cells[4]}，长度 {hash_cells[5]} 个字符，"
             "确认为 Werkzeug scrypt 哈希（为避免泄露，只导出前缀与长度）。",
         ),
-        ("img", shot("e2_login_failed"), "图 1  错误密码登录：返回 401，提示“用户名或密码错误”"),
-        ("img", shot("e2_dashboard"), "图 2  正确登录后进入概览页"),
+        (
+            "img",
+            EVIDENCE / "exp02" / "chrome-login-failed.png",
+            "图 1  错误密码登录：返回 401，提示“用户名或密码错误”（Mac Chrome，含地址栏）",
+        ),
+        ("img", EVIDENCE / "exp02" / "chrome-login-error-user.png", "图 2  不存在的用户名 user：返回同一提示"),
+        ("img", shot("e2_dashboard"), "图 3  正确登录后进入概览页"),
         (
             "p",
             "功能扩展：在登录的基础上，系统实现了注册、退出和完整的背单词学习闭环——选择目标词表、三类题型练习"
-            "（服务端判分，作答与学习状态在同一事务中提交）、复习计划与统计，以及汇总当天待复习、每日 10 个新词义与连续学习天数的今日任务。"
-            "下表摘自答辩路径与今日任务实测（evidence/exp02/review-path.txt、today-http.txt）：",
+            "（服务端判分，作答与学习状态在同一事务中提交）、复习计划与统计、汇总当天待复习、每日 10 个新词义与连续学习天数的今日任务，以及按天汇总作答的近 14 天学习趋势。"
+            "下表摘自答辩路径、今日任务与学习趋势实测（evidence/exp02/review-path.txt、today-http.txt、daily-http.txt）：",
         ),
         (
             "table",
@@ -228,11 +235,24 @@ def report2():
                     + re.search(r"与已作答词义重叠：(\d+) 题", today).group(1)
                     + " 题",
                 ),
+                (
+                    "学习趋势（模拟演示账户）",
+                    f"近 14 天中 {totals['active_days']} 天有作答，共 {totals['attempts']['count']} 次，"
+                    f"正确率 {pct(totals['attempts']['accuracy'])}；每天的首次作答、到期复习与提前练习之和等于作答数，"
+                    "今天的新词义与日终待复习分别与今日任务、复习计划一致",
+                ),
             ],
         ),
-        ("img", shot("e2_practice_feedback"), "图 3  练习页：提交后显示服务端判分结果"),
-        ("img", shot("e2_review"), "图 4  复习计划：已到期与未到期错题"),
-        ("img", shot("e2_today"), "图 5  今日任务：连续学习天数、今日新词义进度与各题型待复习"),
+        (
+            "p",
+            "学习趋势由作答事实按复习规则重放计算，只读、不新增业务表。为了展示多天数据，模拟演示账户 sim_trend 的作答由"
+            " flask seed-demo-history 在固定时钟下调用真实的组卷与作答服务逐日生成，是模拟演示数据，不是真实学习记录，"
+            "不用于说明学习效果。",
+        ),
+        ("img", shot("e2_practice_feedback"), "图 4  练习页：提交后显示服务端判分结果"),
+        ("img", shot("e2_review"), "图 5  复习计划：已到期与未到期错题"),
+        ("img", shot("e2_today"), "图 6  今日任务：连续学习天数、今日新词义进度与各题型待复习"),
+        ("img", shot("e2_trend"), "图 7  概览页“近 14 天”学习趋势（sim_trend，模拟演示数据）"),
         ("h", "4. 探讨分析"),
         (
             "p",

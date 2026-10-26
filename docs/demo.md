@@ -18,7 +18,13 @@ docker compose run --rm web flask rebuild-learning-state
 curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5000/lab/hello
 ```
 
-- Mac 建立隧道 `ssh -N -L 5000:127.0.0.1:5000 osaka`，浏览器打开 `http://127.0.0.1:5000/`。
+汇报前一天生成一个新的模拟演示账户，让“近 14 天”覆盖到前一天（`sim_trend` 只有 10/11—10/24 的数据；已有作答的账户拒绝再生成，因此换新的 `sim_` 账户名，第 6 步登录它）：
+
+```bash
+docker compose run --rm web flask seed-demo-history --username sim_1029 --days 14 --seed 42
+```
+
+- 在 **Mac 本地终端**（不是登录 Osaka 的 SSH 会话里）建立隧道 `ssh -N -L 5000:127.0.0.1:5000 osaka`，浏览器打开 `http://127.0.0.1:5000/`。上面的命令只检查 Osaka 上的服务与数据，隧道只负责让 Mac 浏览器访问它。
 - 用一个**新注册账户**演示（如 `defense1`），统计从零开始，能看到“未测试”。已有的 demo 账户保留了留证时的作答，适合在第 5 步后对照。
 - `/lab/ml` 显示模型可用、`/examples` 能检索；否则按 README 执行 `flask register-model artifacts/ml` 与 `flask build-example-index` 后重启 web。
 - 另开一个终端准备第 9 步的 MySQL 查询。
