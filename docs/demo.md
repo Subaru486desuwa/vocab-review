@@ -18,7 +18,7 @@ docker compose run --rm web flask rebuild-learning-state
 curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5000/lab/hello
 ```
 
-汇报前一天生成一个新的模拟演示账户，让“近 14 天”覆盖到前一天（`sim_trend` 只有 10/11—10/24 的数据；已有作答的账户拒绝再生成，因此换新的 `sim_` 账户名，第 6 步登录它）：
+汇报前一天生成一个新的模拟演示账户，让“近 14 天”覆盖到前一天（`sim_trend` 的数据止于 10/24，窗口已向右滚动；已有作答的账户拒绝再生成，因此换新的 `sim_` 账户名，第 6 步登录它）：
 
 ```bash
 docker compose run --rm web flask seed-demo-history --username sim_1029 --days 14 --seed 42
@@ -26,7 +26,7 @@ docker compose run --rm web flask seed-demo-history --username sim_1029 --days 1
 
 - 在 **Mac 本地终端**（不是登录 Osaka 的 SSH 会话里）建立隧道 `ssh -N -L 5000:127.0.0.1:5000 osaka`，浏览器打开 `http://127.0.0.1:5000/`。上面的命令只检查 Osaka 上的服务与数据，隧道只负责让 Mac 浏览器访问它。
 - 用一个**新注册账户**演示（如 `defense1`），统计从零开始，能看到“未测试”。已有的 demo 账户保留了留证时的作答，适合在第 5 步后对照。
-- `/lab/ml` 显示模型可用、`/examples` 能检索；用模拟账户打开一次 `/insights` 预热（首次加载两个模型约 8 秒，之后不到 1 秒）；否则按 README 执行 `flask register-model artifacts/ml` 与 `flask build-example-index` 后重启 web。
+- `/lab/ml` 显示模型可用、`/examples` 能检索、`/insights` 能出结果；用模拟账户打开一次 `/insights` 预热（首次加载两个模型约 8 秒，之后约 0.4 秒）；否则按 README 执行 `flask register-model artifacts/ml` 与 `flask build-example-index` 后重启 web。
 - 另开一个终端准备第 10 步的 MySQL 查询。
 - 页面只保留操作与结果，统计分母、复习规则、“不是掌握度/置信度”等说明默认折叠在页面底部，老师追问时再展开。
 - 万一 Osaka 或隧道不可用：`docs/reports/screenshots/` 的截图与 `evidence/exp02/review-path.txt` 的完整 HTTP 记录作为备用材料。
