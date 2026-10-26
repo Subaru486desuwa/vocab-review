@@ -1,8 +1,10 @@
 """由 source/ 生成可导入的演示内容包。
 
-用法：python data/demo/build_demo.py [输出目录]，默认写入 data/demo/v2，并与已发布的 data/demo/v1 比对：
-内容变化的题目版本号加一，正文变化的例句换用新的 content_version，未变的行与 v1 完全相同。
-v1 是首次发布的内容包，保持不变；新库先导入 v1 再导入 v2。
+用法：python data/demo/build_demo.py [输出目录]，默认写入 data/demo/v3，并与已发布的 data/demo/v2 比对：
+内容变化的题目版本号加一，正文变化的例句换用新的 content_version，未变的行与 v2 完全相同。
+v1、v2 已发布，保持不变；新库依次导入 v1、v2、v3。
+source/entries.csv 是 v1/v2 的词义，只在这些词义里取干扰项，因此 v3 不改变已有题目；
+source/entries_v3.csv 是 v3 新增的词义，从全部词义里取干扰项，辨义与语境题都排除同组近义词。
 校对只改 source/ 下的表，再重新生成；同一输入总是得到同一输出（干扰项按题目键固定随机）。
 """
 
@@ -16,12 +18,56 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 SOURCE = "项目自编演示 v1（AI 起草，待人工校对）"
+SOURCE_V3 = "项目自编演示 v3（AI 起草，AI 复核）"
 VERSION = "v1"
 CONTENT_VERSION = "demo-v1"
-LATEST = "v2"
-BASELINE = HERE / "v1"
+CONTENT_VERSION_V3 = "demo-v3"
+LATEST = "v3"
+BASELINE = HERE / "v2"
 # 语境题干扰项排除近义词：同组词填入同一句子都成立，会让题目出现多个正确答案。
 CONTEXT_SYNONYMS = [{"significant", "crucial", "fundamental"}, {"diminish", "undermine"}]
+# v3 新词义的近义词组：辨义与语境题都不把同组词作为干扰项（可含 v1/v2 的词条）。
+SYNONYMS_V3 = [
+    {"mitigate", "alleviate"},
+    {"substantial", "abundant", "immense"},
+    {"comprehensive", "substantial", "radical"},
+    {"significant", "crucial", "fundamental", "indispensable"},
+    {"diminish", "undermine", "erode"},
+    {"constrain", "hinder"},
+    {"devote", "allocate"},
+    {"inherent", "inevitable"},
+    {"disparity", "discrepancy"},
+    {"prevalent", "dominant", "prominent"},
+    {"sustainable", "renewable"},
+    {"boost", "stimulate", "facilitate"},
+    {"cautious", "optimistic", "skeptical"},
+    {"cultivate", "reinforce", "cherish"},
+    {"exploit", "utilize"},
+    {"magnify", "exaggerate"},
+    {"modest", "humble"},
+    {"feasible", "plausible", "rational"},
+    {"rational", "coherent", "fair"},
+    {"contradict", "refute", "constrain"},
+    {"deduce", "verify", "assume"},
+    {"marginal", "subtle"},
+    {"retain", "maintain"},
+    {"ambition", "objective"},
+    {"dilemma", "paradox"},
+    {"paradox", "phenomenon"},
+    {"tentative", "preliminary"},
+    {"affordable", "budget"},
+    {"urban", "residential"},
+    {"fertile", "humid"},
+    {"suburb", "neighbourhood"},
+    {"agriculture", "tourism", "infrastructure", "conservation"},
+    {"wildlife", "biodiversity", "habitat"},
+    {"fossil", "habitat"},
+    {"carbon", "pollution", "emission"},
+    {"drought", "pollution"},
+    {"pedestrian", "vegetarian"},
+    {"semester", "lecture"},
+    {"assume", "perceive"},
+]
 WORDBOOKS = [
     ("cet6-demo", "cet6", "六级演示词表"),
     ("postgraduate-demo", "postgraduate", "考研演示词表"),
@@ -57,24 +103,31 @@ def _starts_with_vowel(word):
     return word[0].lower() in "aeiou"
 
 
-def build_questions(entries):
+def build_questions(entries, pool=None, synonym_groups=None):
+    """pool 为取干扰项的词义（默认 entries）。给定 synonym_groups 时辨义题也排除同组近义词；
+    否则只在语境题排除 CONTEXT_SYNONYMS（v1/v2 的规则，保持已发布题目不变）。"""
+    pool = entries if pool is None else pool
+    groups = CONTEXT_SYNONYMS if synonym_groups is None else synonym_groups
     questions = []
     for e in entries:
         base = f"{e['lemma_norm']}-{e['sense_key']}"
+        synonyms = set().union(*(g for g in groups if e["lemma_norm"] in g))
         same_pos = [
-            o for o in entries if o["part_of_speech"] == e["part_of_speech"] and o["lemma_norm"] != e["lemma_norm"]
+            o for o in pool if o["part_of_speech"] == e["part_of_speech"] and o["lemma_norm"] != e["lemma_norm"]
         ]
+        recognition_pool = same_pos
+        if synonym_groups is not None:
+            recognition_pool = [o for o in same_pos if o["lemma_norm"] not in synonyms]
 
         key = f"{base}-recognition"
         options, answer = _choice_options(
-            random.Random(key), e["definition_zh"], [o["definition_zh"] for o in same_pos]
+            random.Random(key), e["definition_zh"], [o["definition_zh"] for o in recognition_pool]
         )
         questions.append(_question(key, e, "recognition", f"{e['lemma']}（{e['part_of_speech']}）", options, answer))
 
         key = f"{base}-context"
         sentence = e["example_en"]
         article = sentence[: TARGET.search(sentence).start()].split()[-1:]
-        synonyms = set().union(*(g for g in CONTEXT_SYNONYMS if e["lemma_norm"] in g))
         candidates = [o["lemma"] for o in same_pos if o["lemma_norm"] not in synonyms]
         if article and article[0].lower() in ("a", "an"):
             # 冠词 a/an 不应暗示答案，只取首字母元音性一致的干扰词。
@@ -136,7 +189,7 @@ def load_extra_examples(path, entries):
     return extra
 
 
-def _example_rows(entries, extra):
+def _example_rows(entries, extra, source=SOURCE, content_version=CONTENT_VERSION):
     rows = []
     for e in entries:
         sentences = [(e["example_en"], e["example_zh"])]
@@ -144,7 +197,7 @@ def _example_rows(entries, extra):
         for n, (text, translation) in enumerate(sentences, start=1):
             key = f"{e['lemma_norm']}-{e['sense_key']}-{n}"
             rows.append(
-                (key, e["lemma_norm"], e["sense_key"], TARGET.sub(r"\1", text), translation, SOURCE, CONTENT_VERSION, 1)
+                (key, e["lemma_norm"], e["sense_key"], TARGET.sub(r"\1", text), translation, source, content_version, 1)
             )
     return rows
 
@@ -176,9 +229,14 @@ def build(
     entries_path=HERE / "source" / "entries.csv",
     extra_path=HERE / "source" / "extra_examples.csv",
     baseline=BASELINE,
+    new_entries_path=HERE / "source" / "entries_v3.csv",
+    new_extra_path=HERE / "source" / "extra_examples_v3.csv",
 ):
-    entries = load_entries(entries_path)
-    extra = load_extra_examples(extra_path, entries)
+    old_entries = load_entries(entries_path)
+    old_extra = load_extra_examples(extra_path, old_entries)
+    new_entries = load_entries(new_entries_path) if new_entries_path else []
+    new_extra = load_extra_examples(new_extra_path, new_entries) if new_entries else {}
+    entries = old_entries + new_entries
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     _write_csv(
@@ -211,8 +269,10 @@ def build(
         ["wordbook_code", "wordbook_version", "lemma_norm", "position", "source_note"],
         memberships,
     )
-    questions = build_questions(entries)
-    examples = _example_rows(entries, extra)
+    questions = build_questions(old_entries) + build_questions(new_entries, entries, SYNONYMS_V3)
+    examples = _example_rows(old_entries, old_extra) + _example_rows(
+        new_entries, new_extra, SOURCE_V3, CONTENT_VERSION_V3
+    )
     if baseline is not None:
         examples = apply_baseline(questions, examples, Path(baseline), f"demo-{out.name}")
     _write_csv(
