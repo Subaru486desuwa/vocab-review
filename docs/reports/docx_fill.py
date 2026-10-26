@@ -14,6 +14,9 @@ from pathlib import Path
 CELL_DXA = 8100
 INNER_DXA = 7900
 EMU_PER_DXA = 635
+# 整页截图可能很高（例如诊断页 1280×3211）；超过一页可容纳的高度时按比例缩小，避免被裁切。
+EMU_PER_INCH = 914400
+MAX_IMAGE_HEIGHT = int(6.2 * EMU_PER_INCH)
 FONT = '<w:rFonts w:ascii="宋体" w:hAnsi="宋体" w:eastAsia="宋体" w:cs="宋体"/>'
 MONO = '<w:rFonts w:ascii="Courier New" w:hAnsi="Courier New" w:eastAsia="宋体" w:cs="Courier New"/>'
 
@@ -87,6 +90,9 @@ def _image_size(path):
 def _drawing(rid, pic_id, name, width_px, height_px):
     cx = INNER_DXA * EMU_PER_DXA
     cy = int(cx * height_px / width_px)
+    if cy > MAX_IMAGE_HEIGHT:  # 过高的整页截图缩到一页以内，宽度同比缩小
+        cx = int(cx * MAX_IMAGE_HEIGHT / cy)
+        cy = MAX_IMAGE_HEIGHT
     return (
         '<w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0">'
         f'<wp:extent cx="{cx}" cy="{cy}"/><wp:docPr id="{pic_id}" name="{_esc(name)}"/>'
