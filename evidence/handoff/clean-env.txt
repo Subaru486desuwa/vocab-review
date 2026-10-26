@@ -1,7 +1,7 @@
-# executed_at_utc=2026-10-26T11:44:40Z commit=6a23522+工作区改动 project=vocab-review-handoff base=http://127.0.0.1:5001
+# executed_at_utc=2026-10-26T14:50:53Z commit=6cc90f8+工作区改动 project=vocab-review-handoff base=http://127.0.0.1:5001
 
 ## 1. 复制受 Git 管理的文件到临时目录（等同干净克隆，不含 .env、artifacts/、data/raw/）
-文件数 265；artifacts/：README.md；data/raw 存在：否
+文件数 279；artifacts/：README.md；data/raw 存在：否
 
 ## 2. 由 .env.example 生成随机凭据（不输出）
 APP_ENV SECRET_KEY DB_HOST DB_PORT DB_NAME DB_USER DB_PASSWORD TEST_DB_NAME TEST_DB_USER TEST_DB_PASSWORD DEMO_USERNAME DEMO_USER_PASSWORD MYSQL_ROOT_PASSWORD HOST_UID HOST_GID ML_MODEL_DIR DL_MODEL_DIR WEB_PORT COMPOSE_PROJECT_NAME 
@@ -22,18 +22,18 @@ APP_ENV SECRET_KEY DB_HOST DB_PORT DB_NAME DB_USER DB_PASSWORD TEST_DB_NAME TEST
 #4 transferring context: 161B done
 #4 DONE 0.0s
 
-#5 [1/5] FROM docker.io/library/python:3.12-slim@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704
-#5 resolve docker.io/library/python:3.12-slim@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704 0.0s done
-#5 DONE 0.0s
+#5 [internal] load build context
+#5 transferring context: 6.71MB 0.1s done
+#5 DONE 0.1s
 
-#6 [internal] load build context
-#6 transferring context: 4.99MB 0.2s done
-#6 DONE 0.2s
+#6 [1/5] FROM docker.io/library/python:3.12-slim@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704
+#6 resolve docker.io/library/python:3.12-slim@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704 0.0s done
+#6 DONE 0.0s
 
-#7 [2/5] WORKDIR /app
+#7 [3/5] COPY requirements.lock.txt requirements-dev.lock.txt requirements-ml.lock.txt requirements-dl.lock.txt ./
 #7 CACHED
 
-#8 [3/5] COPY requirements.lock.txt requirements-dev.lock.txt requirements-ml.lock.txt requirements-dl.lock.txt ./
+#8 [2/5] WORKDIR /app
 #8 CACHED
 
 #9 [4/5] RUN pip install -r requirements.lock.txt     && if [ "1" = "1" ]; then pip install -r requirements-dev.lock.txt; fi     && if [ "1" = "1" ]; then pip install -r requirements-ml.lock.txt; fi     && if [ "1" = "1" ]; then pip install -r requirements-dl.lock.txt; fi
@@ -45,14 +45,13 @@ APP_ENV SECRET_KEY DB_HOST DB_PORT DB_NAME DB_USER DB_PASSWORD TEST_DB_NAME TEST
 #11 exporting to image
 #11 exporting layers
 #11 exporting layers 0.3s done
-#11 exporting manifest sha256:dfb2d8198fe48632b1fc3bfc9c6462092d73ef48b94265633a893ef027e2a7e9 0.0s done
-#11 exporting config sha256:0c426801c0071773bb5629930a652b95bc63970520218c69a833a1722415d77c 0.0s done
-#11 exporting attestation manifest sha256:edbcccdcb4ca19d5eb11014cc8dadc395038fcec6bb4589e2fab7f76e02aa847 0.0s done
-#11 exporting manifest list sha256:456c2f02ecdccb1c8c1e1a5d8f90b33fcf7154ad3f8571b45260f0ace857f92f 0.0s done
+#11 exporting manifest sha256:7bb1c5f298ee2e23ccfea85550cef716055eab222f79db6c867c49a05676b72f 0.0s done
+#11 exporting config sha256:f0097f8d14335790e9646b82cc7b198114875551f8718424a4826f412f08b0dc 0.0s done
+#11 exporting attestation manifest sha256:209ee2556d1cfaa57255f9bb1428d5a507b548814901ce66c896ac398dcc77f1 0.0s done
+#11 exporting manifest list sha256:0bac05c00d5d796e8bb1739faeb06505faa30ed04f561d24a6bb4a27995800d2 0.0s done
 #11 naming to docker.io/library/vocab-review-handoff-web:latest done
-#11 unpacking to docker.io/library/vocab-review-handoff-web:latest
 #11 unpacking to docker.io/library/vocab-review-handoff-web:latest 0.1s done
-#11 DONE 0.6s
+#11 DONE 0.5s
 
 #12 resolving provenance for metadata file
 #12 DONE 0.0s
@@ -80,6 +79,8 @@ GET /lab/hello → 200
 GET /static/images/learning-loop.svg → 200
 GET /login → 200
 GET /api/v1/me → 401
+GET /insights → 302
+GET /api/v1/me/insights → 401
 
 ## 7. 答辩路径学习闭环（evidence/exp02/review-path.sh）
 ## 1. 登录
@@ -87,15 +88,15 @@ HTTP 302
 ## 2. 只选六级目标
 ['cet6-demo']
 ## 3. 5 题辨义练习：前 2 题故意答错，其余答对
-vulnerable 错误(meaning) → active
-eliminate 错误(meaning) → active
+maintain 错误(meaning) → active
+fragile 错误(meaning) → active
 compromise 正确 → active
-benefit 正确 → active
-withdraw 正确 → completed
+spare 正确 → active
+fair 正确 → completed
 ## 4. 复习计划（GET /api/v1/me/review）
-已到期 0 ；未到期错题 2 ；下一项到期 2026-10-26T11:55:17.837457Z
-  错题 vulnerable recognition 约 10 分钟后到期
-  错题 eliminate recognition 约 10 分钟后到期
+已到期 0 ；未到期错题 2 ；下一项到期 2026-10-26T15:01:23.242536Z
+  错题 maintain recognition 约 10 分钟后到期
+  错题 fragile recognition 约 10 分钟后到期
 ## 5. 六级目标统计（GET /api/v1/me/stats）
 词条 已练习/总数 5 / 30 ；词义×题型 已测试/未测试/总数 5 100 105 ；作答 {'accuracy': 0.6, 'correct': 3, 'count': 5}
 ## 6. 增加雅思目标（六级 + 雅思）
@@ -104,7 +105,7 @@ withdraw 正确 → completed
    cet6-demo 词条 30 已练习 5
    ielts-demo 词条 30 已练习 1
 ## 7. 只看雅思词表：共有词条在六级目标下的作答被复用
-雅思 已练习词条 1 / 30 ；作答 {'accuracy': 1.0, 'correct': 1, 'count': 1} ；未测试 98
+雅思 已练习词条 1 / 30 ；作答 {'accuracy': 0.0, 'correct': 0, 'count': 1} ；未测试 98
 ## 8. 页面
 /dashboard HTTP 200
 /review HTTP 200
@@ -122,16 +123,16 @@ HTTP 200 {"wordbooks": [{"code": "cet6-demo", "exam_type": "cet6", "id": 1, "nam
 HTTP 200 {"completed": false, "date": "2026-10-26", "new_senses": {"available": 35, "done": 0, "remaining": 10, "target": 10}, "review": {"by_skill": {"context": 0, "recognition": 0, "spelling": 0}, "due": 0}, "streak": {"active_today": false, "days": 0}, "timezone": "Asia/Shanghai"}
 ## 5. 学今日新词：POST /api/v1/practice/sessions focus=new_senses count=10
 HTTP 201 {"id": 2, "focus": "new_senses", "skill_type": "recognition", "total": 10}
-HTTP 200 {"lemma": "benefit", "is_correct": false, "session_status": "active"}
-HTTP 200 {"lemma": "crucial", "is_correct": false, "session_status": "active"}
+HTTP 200 {"lemma": "abandon", "is_correct": false, "session_status": "active"}
+HTTP 200 {"lemma": "withdraw", "is_correct": false, "session_status": "active"}
+HTTP 200 {"lemma": "emerge", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "compromise", "is_correct": true, "session_status": "active"}
 HTTP 200 {"lemma": "consequence", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "persist", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "approach", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "contribute", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "issue", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "vulnerable", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "bank", "is_correct": true, "session_status": "active"}
-HTTP 200 {"lemma": "reluctant", "is_correct": true, "session_status": "completed"}
+HTTP 200 {"lemma": "fair", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "access", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "benefit", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "reluctant", "is_correct": true, "session_status": "active"}
+HTTP 200 {"lemma": "intensify", "is_correct": true, "session_status": "completed"}
 ## 6. 今日任务（10 个新词义已完成，2 个错题约 10 分钟后到期）
 HTTP 200 {"completed": true, "date": "2026-10-26", "new_senses": {"available": 25, "done": 10, "remaining": 0, "target": 10}, "review": {"by_skill": {"context": 0, "recognition": 0, "spelling": 0}, "due": 0}, "streak": {"active_today": true, "days": 1}, "timezone": "Asia/Shanghai"}
 ## 7. 再学新词：只出任何题型都未作答的词义
@@ -157,6 +158,9 @@ HTTP 503 MODEL_UNAVAILABLE
 HTTP 201 {"status": "active", "total": 1}
 GET /lab/ml → 模型不可用：缺少模型清单 /app/artifacts/ml/manifest.json
 GET /examples → 检索不可用：缺少编码器清单 /app/artifacts/dl/encoder/encoder_manifest.json
+学习诊断（T17）：规则统计照常，两个模型部分各自不可用
+HTTP 200 attempts 5 错误类型 {'meaning': 2} | ml unavailable | dl unavailable
+GET /insights → 200
 
 ## 9. 放入本地模型制品后登记并建索引（制品不进 Git，从源目录复制）
 已登记 recall_rf v1（id=1），制品 artifacts/ml/model.joblib
@@ -185,30 +189,41 @@ HTTP 200 430 条例句 [('bank-1-1', 0.793), ('cumulative-1-1', 0.395), ('withdr
 推理事件（MySQL，M06）：
 dl	manual_lab	model_unavailable	2
 dl	manual_lab	ok	2
+dl	user_history	model_unavailable	2
 ml	manual_lab	cold_start	1
 ml	manual_lab	model_unavailable	1
 ml	manual_lab	ok	1
+ml	user_history	model_unavailable	2
+
+## 9c. 登记模型后学习诊断页（T17）：ml、dl 可用，只读，各写一条 user_history 推理事件
+HTTP 200 attempts 5 | ml ok 遗忘风险 5 分组 [] | dl ok 错题词义 2 语义组 0
+访问前 作答/seen_count/user_history 事件：15	15	4
+访问后 作答/seen_count/user_history 事件：15	15	6
+作答与学习状态未变化（只读）
+本次新增的推理事件：
+ml	user_history	ok	1
+dl	user_history	ok	1
 
 ## 10. 完整检查：编译、ruff、pytest（db 测试使用本项目的全新测试库）、pip check
 All checks passed!
-91 files already formatted
-..................................................................... [ 38%]
-........................................................................ [ 78%]
-.......................................                                  [100%]
-180 passed, 3 subtests passed in 167.38s (0:02:47)
+98 files already formatted
+..................................................................... [ 35%]
+........................................................................ [ 72%]
+......................................................                   [100%]
+195 passed, 3 subtests passed in 163.08s (0:02:43)
 No broken requirements found.
 
 ## 11. SQL 导出可导入空库（测试账户，最小权限）
-已导出：/tmp/tmp.p1I1zG77uU/export.sql（1752 行数据）
+已导出：/tmp/tmp.E33Euuafmx/export.sql（1752 行数据）
 目标库：vocab_review_test@db:3306
 没有待执行的迁移。
 内容表行数一致：examples 430 questions 662 word_senses 215 wordbooks 3 words 200 
 个人记录表在导出中为空：attempts 0 inference_events 0 learning_state 0 users 0 
 
 ## 12. 完整备份 → 恢复到临时库 → 逐表核对行数
-备份文件 vocab_review-20261026T114938Z.sql，336477 字节，权限 600
+备份文件 vocab_review-20261026T145543Z.sql，338850 字节，权限 600
 已恢复到 vocab_review_restore：15 张表
-15 张表逐表行数一致：attempts 15 examples 430 inference_events 7 learning_state 15 model_versions 2 practice_sessions 4 questions 662 schema_migrations 2 session_items 36 user_wordbooks 3 users 2 word_senses 215 wordbook_words 240 wordbooks 3 words 200 
+15 张表逐表行数一致：attempts 15 examples 430 inference_events 13 learning_state 15 model_versions 2 practice_sessions 4 questions 662 schema_migrations 2 session_items 36 user_wordbooks 3 users 2 word_senses 215 wordbook_words 240 wordbooks 3 words 200 
 学习状态与作答记录一致：核对 15 组（用户, 词义, 题型）。
 
 ## 完成：干净环境验收全部通过
