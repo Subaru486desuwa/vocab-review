@@ -24,3 +24,6 @@ artifacts/*
 *.npy
 *.npz
 backups/
+
+# 报告截图用的临时浏览器配置目录
+docs/reports/screenshots/profile/

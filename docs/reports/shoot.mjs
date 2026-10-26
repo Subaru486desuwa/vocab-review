@@ -31,6 +31,13 @@ const shot = async (name, maxHeight = 2400) => {
   console.log("saved", name, h);
 };
 const fill = (sel, v) => `(() => { const e = document.querySelector(${JSON.stringify(sel)}); e.value = ${JSON.stringify(v)}; e.dispatchEvent(new Event('input', {bubbles: true})); })()`;
+// 只截某个元素（例如“近 14 天”表格），不截整页。
+const shotElement = async (name, selector) => {
+  const box = await evaluate(`(() => { const r = document.querySelector(${JSON.stringify(selector)}).getBoundingClientRect(); return {x: r.x, y: r.y + window.scrollY, width: r.width, height: r.height}; })()`);
+  const r = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: {...box, scale: 1} });
+  writeFileSync(`${out}/${name}.png`, Buffer.from(r.result.data, "base64"));
+  console.log("saved", name, box.width, box.height);
+};
 
 await send("Page.enable"); await send("Runtime.enable");
 await send("Emulation.setDeviceMetricsOverride", { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
@@ -43,6 +50,7 @@ await evaluate(fill("input[name=username]", "demo")); await evaluate(fill("input
 await submitAndWait("document.querySelector('form.auth-form').submit()"); await shot("e2_login_failed");
 await evaluate(fill("input[name=username]", "demo")); await evaluate(fill("input[name=password]", env.DEMO_USER_PASSWORD));
 await submitAndWait("document.querySelector('form.auth-form').submit()"); await shot("e2_dashboard", 900);
+await go("/dashboard"); await shot("e2_dashboard_stats");
 await go("/today"); await shot("e2_today");
 await go("/wordbooks"); await until("document.querySelectorAll('#wordbook-list input').length > 0"); await shot("e2_wordbooks");
 await go("/practice");
@@ -53,7 +61,6 @@ await evaluate("document.querySelector('#answer-area input').checked = true");
 await evaluate("document.querySelector('#answer-form').requestSubmit()"); await until("!document.querySelector('#feedback').hidden");
 await shot("e2_practice_feedback");
 await go("/review"); await shot("e2_review");
-await go("/dashboard"); await shot("e2_dashboard_stats");
 // 实验三
 // 报告需要展示离线误差表：截图前展开页面上折叠的“离线评测”。
 await go("/lab/ml"); await submitAndWaitResult("#recall-form", "#recall-result");
@@ -61,6 +68,17 @@ await evaluate("document.querySelector('details.about').open = true"); await sho
 // 实验四
 await go("/examples"); await submitAndWaitResult("#search-form", "#search-result"); await shot("e4_examples");
 await evaluate(fill("input[name=text]", "I need to open a savings account at the bank.")); await submitAndWaitResult("#search-form", "#search-result", true); await shot("e4_examples_money");
+
+// 实验二趋势图：改用模拟演示账户 sim_trend（初测时从 daily-dashboard.png 裁图，现已由脚本直接截取）。
+await evaluate("document.querySelector('form[action=\"/auth/logout\"]').requestSubmit()");
+await sleep(500);
+await go("/login");
+await evaluate(fill("input[name=username]", process.env.SIM_DEMO_USER || "sim_trend"));
+await evaluate(fill("input[name=password]", env.DEMO_USER_PASSWORD));
+await submitAndWait("document.querySelector('form.auth-form').submit()");
+await go("/dashboard"); await until("document.querySelector('table.trend') !== null");
+await shotElement("e2_trend", "table.trend");
+await go("/insights"); await until("document.querySelector('.stat-grid') !== null"); await shot("e2_insights", 4200);
 
 async function submitAndWaitResult(form, result, again = false) {
   if (again) await evaluate(`document.querySelector('${result}').hidden = true`);

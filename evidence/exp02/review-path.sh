@@ -10,7 +10,7 @@ tok() { curl -s -b "$J" -c "$J" "$B$1" | grep -o 'name="csrf-token" content="[^"
 api() { local t; t=$(tok /dashboard); curl -s -b "$J" -c "$J" -X "$1" -H "X-CSRFToken: $t" -H 'Content-Type: application/json' ${3:+-d "$3"} "$B$2"; }
 py() { python3 -c "import sys,json; d=json.load(sys.stdin)['data']; $1"; }
 
-echo "# executed_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ) base=$B 演示学习者 demo；内容为项目自编演示 v1"
+echo "# executed_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ) base=$B 演示学习者 demo；内容为项目自编演示 v1/v2/v3"
 echo "## 1. 登录"
 T=$(tok /login); curl -s -o /dev/null -w "HTTP %{http_code}\n" -b "$J" -c "$J" -X POST --data-urlencode "csrf_token=$T" -d username=demo --data-urlencode "password=$DEMO_USER_PASSWORD" "$B/auth/login"
 CET6=$(sql "SELECT id FROM wordbooks WHERE code='cet6-demo'"); IELTS=$(sql "SELECT id FROM wordbooks WHERE code='ielts-demo'")

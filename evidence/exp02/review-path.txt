@@ -1,29 +1,29 @@
-# executed_at_utc=2026-10-23T14:21:49Z base=http://127.0.0.1:5000 演示学习者 demo；内容为项目自编演示 v1
+# executed_at_utc=2026-10-26T14:41:27Z base=http://127.0.0.1:5000 演示学习者 demo；内容为项目自编演示 v1/v2/v3
 ## 1. 登录
 HTTP 302
 ## 2. 只选六级目标
 ['cet6-demo']
 ## 3. 5 题辨义练习：前 2 题故意答错，其余答对
-consequence 错误(meaning) → active
-vulnerable 错误(meaning) → active
-persist 正确 → active
-bank 正确 → active
-fair 正确 → completed
+persist 错误(meaning) → active
+cultivate 错误(meaning) → active
+contempt 正确 → active
+spare 正确 → active
+deliberate 正确 → completed
 ## 4. 复习计划（GET /api/v1/me/review）
-已到期 1 ；未到期错题 2 ；下一项到期 2026-10-23T14:31:50.177021Z
-  错题 consequence recognition 约 10 分钟后到期
-  错题 vulnerable recognition 约 10 分钟后到期
+已到期 2 ；未到期错题 2 ；下一项到期 2026-10-26T14:51:28.726256Z
+  错题 persist recognition 约 10 分钟后到期
+  错题 cultivate recognition 约 10 分钟后到期
 ## 5. 六级目标统计（GET /api/v1/me/stats）
-词条 已练习/总数 7 / 30 ；词义×题型 已测试/未测试/总数 8 97 105 ；作答 {'accuracy': 0.4167, 'correct': 5, 'count': 12}
+词条 已练习/总数 16 / 80 ；词义×题型 已测试/未测试/总数 19 245 264 ；作答 {'accuracy': 0.5238, 'correct': 22, 'count': 42}
 ## 6. 增加雅思目标（六级 + 雅思）
 ['cet6-demo', 'ielts-demo']
-合计词条（共有词只计一次） 50
-   cet6-demo 词条 30 已练习 7
-   ielts-demo 词条 30 已练习 2
+合计词条（共有词只计一次） 140
+   cet6-demo 词条 80 已练习 16
+   ielts-demo 词条 80 已练习 3
 ## 7. 只看雅思词表：共有词条在六级目标下的作答被复用
-雅思 已练习词条 2 / 30 ；作答 {'accuracy': 0.6667, 'correct': 2, 'count': 3} ；未测试 97
+雅思 已练习词条 3 / 80 ；作答 {'accuracy': 0.625, 'correct': 5, 'count': 8} ；未测试 255
 ## 8. 页面
 /dashboard HTTP 200
 /review HTTP 200
 ## 9. 从作答记录重建学习状态并核对（flask rebuild-learning-state）
-学习状态与作答记录一致：核对 8 组（用户, 词义, 题型）。
+学习状态与作答记录一致：核对 220 组（用户, 词义, 题型）。

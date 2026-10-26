@@ -1,27 +1,27 @@
-# executed_at_utc=2026-10-26T11:21:38Z base=http://127.0.0.1:5000 user=sim_trend（模拟演示数据，由 flask seed-demo-history 生成，不是真实学习记录）
+# executed_at_utc=2026-10-26T14:26:28Z base=http://127.0.0.1:5000 user=sim_trend（模拟演示数据，由 flask seed-demo-history 生成，不是真实学习记录）
 ## 1. 未登录
 GET /api/v1/me/insights HTTP 401
 GET /insights HTTP 302（跳转登录）
 ## 2. 登录（表单 POST /auth/login）
 HTTP 302
 ## 3. GET /api/v1/me/insights（第一次含模型加载，第二次为预热后）
-第一次 HTTP 200 7.814839s
-第二次 HTTP 200 0.382309s
+第一次 HTTP 200 7.821129s
+第二次 HTTP 200 0.385315s
 attempts {"count": 417, "wrong": 76}
 error_types {"context": 8, "meaning": 48, "spelling": 20}
 spelling {"extra_letter": 0, "missing_letter": 20, "other": 0, "transposition": 0, "unanswered": 0, "wrong_letter": 0}
 most_wrong 前 5 [('fundamental', 6, 15), ('vulnerable', 5, 14), ('consequence', 4, 11), ('yield', 4, 11), ('intensify', 4, 10)]
 误选选项 51 组，次数 56 ；可对应回词义 51 组
-ML ok {"feature_schema_version": "recall_features_v1", "model_code": "recall_rf", "version": "v1"} items 108 model_time_ms 26.516
-  遗忘风险 vulnerable spelling 距上次 3.9 天 6 / 10 expected_recall 0.7802
-  遗忘风险 fundamental recognition 距上次 1.9 天 4 / 8 expected_recall 0.7846
-  遗忘风险 consequence context 距上次 3.9 天 3 / 6 expected_recall 0.8104
-  遗忘风险 intensify recognition 距上次 1.9 天 3 / 7 expected_recall 0.8189
-  遗忘风险 fundamental spelling 距上次 5.0 天 3 / 5 expected_recall 0.8387
-  分组 薄弱 9 项 平均预期 0.868 正确率 0.5833 距上次 2.1 天
-  分组 一般 44 项 平均预期 0.8652 正确率 0.704 距上次 4.3 天
-  分组 较稳 55 项 平均预期 0.9027 正确率 1.0 距上次 4.4 天
-DL ok {"model_code": "all-MiniLM-L6-v2", "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"} 错题词义 40 threshold 0.45 model_time_ms 303.018
+ML ok {"feature_schema_version": "recall_features_v1", "model_code": "recall_rf", "version": "v1"} items 108 model_time_ms 26.593
+  遗忘风险 vulnerable spelling 距上次 4.1 天 6 / 10 expected_recall 0.7548
+  遗忘风险 fundamental recognition 距上次 2.1 天 4 / 8 expected_recall 0.7656
+  遗忘风险 consequence context 距上次 4.1 天 3 / 6 expected_recall 0.7953
+  遗忘风险 landscape context 距上次 2.1 天 2 / 4 expected_recall 0.8111
+  遗忘风险 intensify recognition 距上次 2.0 天 3 / 7 expected_recall 0.8135
+  分组 薄弱 9 项 平均预期 0.8608 正确率 0.5833 距上次 2.3 天
+  分组 一般 44 项 平均预期 0.8623 正确率 0.704 距上次 4.4 天
+  分组 较稳 55 项 平均预期 0.9003 正确率 1.0 距上次 4.6 天
+DL ok {"model_code": "all-MiniLM-L6-v2", "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"} 错题词义 40 threshold 0.45 model_time_ms 305.118
   语义组 ['significant#1', 'crucial#1'] 组内平均相似度 0.5222
   语义组 ['issue#1', 'controversy#1'] 组内平均相似度 0.564
   语义组 ['evidence#1', 'assume#1'] 组内平均相似度 0.581
@@ -37,12 +37,12 @@ DL ok {"model_code": "all-MiniLM-L6-v2", "revision": "1110a243fdf4706b3f48f1d95d
 ## 4. 与数据库作答事实对照
 接口 {"count": 417, "wrong": 76} | 数据库 作答 答错：417	76
 ## 5. 只读核对（全部作答数、全部 seen_count 之和）
-访问前 507 507 | 访问后 507	507
+访问前 540 540 | 访问后 540	540
 ## 6. 本次产生的推理事件（两次请求各一条 ml、一条 dl）
-195	ml	user_history	ok	recall_rf	v1	73.150	1797.086	108	NULL
-196	dl	user_history	ok	all-MiniLM-L6-v2	1110a243fdf4	322.039	7786.575	NULL	40
-197	ml	user_history	ok	recall_rf	v1	26.516	45.253	108	NULL
-198	dl	user_history	ok	all-MiniLM-L6-v2	1110a243fdf4	303.018	355.744	NULL	40
+232	ml	user_history	ok	recall_rf	v1	71.610	1766.322	108	NULL
+233	dl	user_history	ok	all-MiniLM-L6-v2	1110a243fdf4	312.411	7793.982	NULL	40
+234	ml	user_history	ok	recall_rf	v1	26.593	43.527	108	NULL
+235	dl	user_history	ok	all-MiniLM-L6-v2	1110a243fdf4	305.118	359.178	NULL	40
 ## 7. 诊断页
 /insights HTTP 200
 选错的选项：1
