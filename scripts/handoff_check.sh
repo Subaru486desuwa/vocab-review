@@ -89,6 +89,8 @@ IMG=$(curl -s "$B/lab/hello" | grep -o 'src="/static/[^"]*"' | head -1 | sed 's/
 expect "$IMG" 200
 expect /login 200
 expect /api/v1/me 401
+expect /insights 302
+expect /api/v1/me/insights 401
 
 step "7. 答辩路径学习闭环（evidence/exp02/review-path.sh）"
 BASE_URL=$B bash evidence/exp02/review-path.sh | sed 1d
@@ -103,6 +105,14 @@ api POST /api/v1/ml/recall '{"delta_seconds":86400,"history_seen":5,"history_cor
 api POST /api/v1/examples/search '{"text":"I need to open a savings account.","top_k":3}' | show 503 ""
 S=$(api POST /api/v1/practice/sessions '{"skill_type":"spelling","count":1}'); echo "$S" | show 201 status,total
 for p in /lab/ml /examples; do echo "GET $p → $(curl -s -b "$J" "$B$p" | grep -o '[^>]*不可用：[^<]*' | head -1)"; done
+echo "学习诊断（T17）：规则统计照常，两个模型部分各自不可用"
+api GET /api/v1/me/insights \
+  | python3 -c 'import sys,json
+raw=sys.stdin.read().rstrip("\n"); body,code=raw.rsplit("\n",1); d=json.loads(body)["data"]
+print("HTTP", code, "attempts", d["attempts"]["count"], "错误类型", d["rules"]["error_types"],
+      "| ml", d["ml"]["status"], "| dl", d["dl"]["status"])
+sys.exit(0 if code=="200" and d["ml"]["status"]=="unavailable" and d["dl"]["status"]=="unavailable" else 1)'
+expect /insights 200
 
 step "9. 放入本地模型制品后登记并建索引（制品不进 Git，从源目录复制）"
 mkdir -p artifacts/ml artifacts/dl
@@ -140,6 +150,23 @@ api POST /api/v1/examples/search '{"text":"I need to open a savings account.","t
 print("HTTP", code, d["versions"]["corpus_count"], "条例句", [(r["example_key"], round(r["cosine_similarity"],3)) for r in d["results"]]); sys.exit(0 if code=="200" else 1)'
 echo "推理事件（MySQL，M06）："
 sql "SELECT kind, source_type, status, COUNT(*) FROM inference_events GROUP BY kind, source_type, status ORDER BY kind, source_type, status"
+
+step "9c. 登记模型后学习诊断页（T17）：ml、dl 可用，只读，各写一条 user_history 推理事件"
+LAST_EVENT=$(sql "SELECT COALESCE(MAX(id),0) FROM inference_events")
+BEFORE=$(sql "SELECT (SELECT COUNT(*) FROM attempts), (SELECT COALESCE(SUM(seen_count),0) FROM learning_state), (SELECT COUNT(*) FROM inference_events WHERE source_type='user_history')")
+api GET /api/v1/me/insights \
+  | python3 -c 'import sys,json
+raw=sys.stdin.read().rstrip("\n"); body,code=raw.rsplit("\n",1); d=json.loads(body)["data"]
+print("HTTP", code, "attempts", d["attempts"]["count"], "| ml", d["ml"]["status"], "遗忘风险", len(d["ml"].get("risk") or []),
+      "分组", [(g["name"], g["count"]) for g in (d["ml"].get("groups") or [])],
+      "| dl", d["dl"]["status"], "错题词义", d["dl"].get("wrong_senses"), "语义组", len(d["dl"].get("groups") or []))
+sys.exit(0 if code=="200" and d["ml"]["status"]=="ok" and d["dl"]["status"]=="ok" else 1)'
+AFTER=$(sql "SELECT (SELECT COUNT(*) FROM attempts), (SELECT COALESCE(SUM(seen_count),0) FROM learning_state), (SELECT COUNT(*) FROM inference_events WHERE source_type='user_history')")
+echo "访问前 作答/seen_count/user_history 事件：$BEFORE"
+echo "访问后 作答/seen_count/user_history 事件：$AFTER"
+[ "$(echo "$BEFORE" | awk '{print $1, $2}')" = "$(echo "$AFTER" | awk '{print $1, $2}')" ] && echo "作答与学习状态未变化（只读）"
+echo "本次新增的推理事件："
+sql "SELECT kind, source_type, status, COUNT(*) FROM inference_events WHERE id > $LAST_EVENT GROUP BY kind, source_type, status"
 
 step "10. 完整检查：编译、ruff、pytest（db 测试使用本项目的全新测试库）、pip check"
 run bash -c 'set -o pipefail; python -m compileall -q app tests ml && ruff check . && ruff format --check . && pytest -q -rs 2>&1 | tail -n 15 && pip check'
