@@ -129,6 +129,15 @@ if old != new:
     sys.exit(1)
 print("汇总指标与逐条前三项（含分数与顺序）均与 evidence/exp04 一致")
 PY
+
+step "9b. 在 v2 之上导入 v3 扩充词库（#38）：已有题目不变，旧索引被拒绝，重建后检索可用"
+run flask import-content data/demo/v3 | tail -n 7
+sql "SELECT (SELECT COUNT(*) FROM words) AS words, (SELECT COUNT(*) FROM word_senses) AS senses, (SELECT COUNT(*) FROM questions WHERE status='published') AS published, (SELECT COUNT(*) FROM examples) AS examples"
+api POST /api/v1/examples/search '{"text":"I need to open a savings account.","top_k":3}' | show 503 ""
+run flask build-example-index | tail -n 2
+api POST /api/v1/examples/search '{"text":"I need to open a savings account.","top_k":3}' \
+  | python3 -c 'import sys,json; raw=sys.stdin.read().rstrip("\n"); body,code=raw.rsplit("\n",1); d=json.loads(body)["data"]
+print("HTTP", code, d["versions"]["corpus_count"], "条例句", [(r["example_key"], round(r["cosine_similarity"],3)) for r in d["results"]]); sys.exit(0 if code=="200" else 1)'
 echo "推理事件（MySQL，M06）："
 sql "SELECT kind, source_type, status, COUNT(*) FROM inference_events GROUP BY kind, source_type, status ORDER BY kind, source_type, status"
 

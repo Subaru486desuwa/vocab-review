@@ -50,7 +50,11 @@ docker compose run --rm web flask import-content data/demo/v1
 docker compose run --rm web flask import-content data/demo/v2
 ```
 
-v1 是首次发布的内容包，v2 在其上新增题目版本与例句修订（见 [data/demo/README.md](data/demo/README.md)），两者按顺序导入。
+```bash
+docker compose run --rm web flask import-content data/demo/v3
+```
+
+v1 是首次发布的内容包，v2 在其上新增题目版本与例句修订，v3 扩充到 200 个词条（见 [data/demo/README.md](data/demo/README.md)），三者按顺序导入；导入 v3 后需重新执行下文的 `flask build-example-index`。
 
 ```bash
 docker compose run --rm web flask seed-demo-user

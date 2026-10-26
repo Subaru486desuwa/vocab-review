@@ -80,6 +80,21 @@ def test_demo_v2_adds_question_versions_over_v1(db_conn):
     assert v1_questions <= {q["id"] for q in _questions(db_conn)}  # 旧版本保留，历史练习仍可解释
 
 
+def test_demo_v3_only_adds_content_over_v2(db_conn):
+    for pack in ("v1", "v2"):
+        import_content(db_conn, read_directory(DEMO.parent / pack), NOW)
+    published = count(db_conn, "questions", "status = 'published'")
+    summary = import_content(db_conn, read_directory(DEMO.parent / "v3"), NOW)
+    assert {name: (s["inserted"], s["updated"]) for name, s in summary.items()} == {
+        "wordbooks": (0, 0), "words": (130, 0), "senses": (136, 0), "memberships": (150, 0),
+        "examples": (272, 0), "questions": (408, 0),
+    }  # fmt: skip
+    assert summary["questions"]["retired"] == 0
+    assert count(db_conn, "questions", "status = 'published'") == published + 408 == 645
+    again = import_content(db_conn, read_directory(DEMO.parent / "v3"), NOW)
+    assert all(s["inserted"] == 0 and s["updated"] == 0 for s in again.values())
+
+
 def test_dry_run_reports_without_writing(db_conn):
     summary = import_content(db_conn, mini_pack(), NOW, dry_run=True)
     assert summary["words"]["inserted"] == 1

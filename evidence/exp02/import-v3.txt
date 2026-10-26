@@ -1,0 +1,23 @@
+# executed_at_utc=2026-10-26T11:41:30Z commit=6a23522+工作区（feat/38-content-v3） 演示库 vocab_review，导入前已备份（scripts/db_backup.sh）
+$ flask import-content data/demo/v3
+wordbooks：新增 0，更新 0，未变 3
+words：新增 130，更新 0，未变 70
+senses：新增 136，更新 0，未变 79
+memberships：新增 150，更新 0，未变 90
+examples：新增 272，更新 0，未变 158
+questions：新增 408，更新 0，未变 237，停用旧版本 0
+已提交。
+$ flask build-example-index
+已构建索引：430 条例句，384 维 float32，语料指纹 7d472e5618aea78b
+编码器 all-MiniLM-L6-v2 @ 1110a243fdf4706b3f48f1d95db1a4f5529b4d41：沿用已登记（id=2）
+$ flask rebuild-learning-state
+学习状态与作答记录一致：核对 177 组（用户, 词义, 题型）。
+## GET /api/v1/wordbooks（模拟演示账户 sim_trend）
+cet6-demo v1 启用词条 80
+ielts-demo v1 启用词条 80
+postgraduate-demo v1 启用词条 80
+## POST /api/v1/examples/search（重建索引后，top_k=3）
+Farmers grow rice on terraces in the hills. → 430 条语料 [('cultivate-1-1', 0.821), ('fertile-1-1', 0.547), ('fertile-1-2', 0.501)]
+The government wants to reduce the gap between rich and poor regions. → 430 条语料 [('disparity-1-1', 0.483), ('stimulate-1-1', 0.46), ('maintain-1-2', 0.457)]
+I need to open a savings account. → 430 条语料 [('bank-1-1', 0.793), ('cumulative-1-1', 0.395), ('withdraw-1-1', 0.354)]
+# 以上检索只是演示查询，不是评价；实验四评价仍以 v2 的 158 条例句为准（evidence/exp04）。
