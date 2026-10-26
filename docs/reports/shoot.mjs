@@ -20,9 +20,10 @@ const evaluate = async (expr) => (await send("Runtime.evaluate", { expression: e
 const go = async (path) => { const l = loaded(); await send("Page.navigate", { url: BASE + path }); await l; await sleep(300); };
 const submitAndWait = async (expr) => { const l = loaded(); await evaluate(expr); await l; await sleep(300); };
 const until = async (expr) => { for (let i = 0; i < 100; i++) { if (await evaluate(expr)) return; await sleep(100); } throw new Error("等待超时：" + expr); };
-const shot = async (name) => {
+// maxHeight 限制截图高度；登录后的概览页只需首屏，下方“近 14 天”另有趋势图。
+const shot = async (name, maxHeight = 2400) => {
   const h = await evaluate("Math.ceil(document.documentElement.scrollHeight)");
-  await send("Emulation.setDeviceMetricsOverride", { width: 1280, height: Math.min(h, 2400), deviceScaleFactor: 1, mobile: false });
+  await send("Emulation.setDeviceMetricsOverride", { width: 1280, height: Math.min(h, maxHeight), deviceScaleFactor: 1, mobile: false });
   await sleep(200);
   const r = await send("Page.captureScreenshot", { format: "png" });
   writeFileSync(`${out}/${name}.png`, Buffer.from(r.result.data, "base64"));
@@ -41,7 +42,7 @@ await go("/login"); await shot("e2_login");
 await evaluate(fill("input[name=username]", "demo")); await evaluate(fill("input[name=password]", "wrong-password"));
 await submitAndWait("document.querySelector('form.auth-form').submit()"); await shot("e2_login_failed");
 await evaluate(fill("input[name=username]", "demo")); await evaluate(fill("input[name=password]", env.DEMO_USER_PASSWORD));
-await submitAndWait("document.querySelector('form.auth-form').submit()"); await shot("e2_dashboard");
+await submitAndWait("document.querySelector('form.auth-form').submit()"); await shot("e2_dashboard", 900);
 await go("/today"); await shot("e2_today");
 await go("/wordbooks"); await until("document.querySelectorAll('#wordbook-list input').length > 0"); await shot("e2_wordbooks");
 await go("/practice");

@@ -11,6 +11,7 @@
 | /today | 今日任务：待复习、今日新词义、连续学习天数，一键开始练习 |
 | /dashboard, /wordbooks | 概览（含近 14 天学习趋势）与目标选择 |
 | /practice, /review | 练习、错词与到期复习 |
+| /insights | 学习诊断：规则统计、遗忘风险（ML）与错题语义（DL） |
 | /lab/ml | 回归实验、冷启动与不可用状态 |
 | /examples, /admin | 英语例句检索与内容维护 |
 
@@ -33,6 +34,7 @@
 | GET /api/v1/me/review | 可选 wordbook_id（须为已选目标）、skill_type | 默认范围为全部已选目标；未选目标 422 NO_TARGET。返回 due（next_review_at ≤ 当前）与 wrong_pending（最近一次答错且未到期，附 seconds_until_due），以及 next_due_at；未作答过的词义不出现 |
 | GET /api/v1/me/stats | 可选 wordbook_id、skill_type | 只来自真实作答与学习状态：words（目标并集按词条去重的总数与已练习数）、items（有已发布题目的词义 × 题型：total/tested/untested/due/wrong_pending/recently_consistent）、attempts（all_time 与 last_7_days 的次数、正确数、accuracy，无作答为 null）、by_skill、by_wordbook，并附 granularity 说明 |
 | GET /api/v1/me/daily | 可选 days（1—60 的整数，默认 14；非法 422 fields.days） | 学习趋势：按用户 display_timezone 的最近 days 个自然日（含今天、按日期升序，无作答的日子也返回），范围为该用户全部作答、不按目标过滤。每天返回 attempts 与 by_skill（count、correct、accuracy，无作答为 null）、new_senses（首次作答落在当天的词义数，今天等于 /me/today 的 done）、first_on_skill、reviews（due：作答前按作答记录重放的 next_review_at ≤ 提交时间；due_correct；early：作答前已有作答但未到期）、backlog_end（当天结束时、今天为当前时间，已到复习时间的词义 × 题型数）；first_on_skill + reviews.due + reviews.early = attempts.count。另返回 timezone、totals（窗口合计与 active_days）与 granularity；只读 |
+| GET /api/v1/me/insights | 会话 | 学习诊断，范围为该用户全部作答、不按目标过滤，只读。返回 attempts（count、wrong）；rules：error_types、most_wrong（按词义的答错/作答，前 10）、confusions（误选选项：词义、题型、正确与误选文本、对应的词义或 null、次数）、spelling（counts 按 missing_letter/extra_letter/wrong_letter/transposition/other/unanswered，examples）；ml：status（ok/no_data/unavailable/log_failed）、model、risk（expected_recall 最低的 10 项，附间隔天数与正误次数）、groups（薄弱/一般/较稳，不足 6 项或取值少于 3 种为 null）、items；dl：status、model、wrong_senses、groups（成员与组内平均相似度）、confusions（可对应词义的误选及 similarity、similar）、threshold。模型部分各写一条 source_type=user_history 的推理事件，留证失败为 log_failed 且不返回结果 |
 | POST /api/v1/ml/recall | delta_seconds,history_seen,history_correct,CSRF | 需登录；manual_lab；返回 status（ok/cold_start）、expected_recall（冷启动为 null）、features、model（model_code/version/feature_schema_version）、model_time_ms、processing_time_ms；非法输入 422；模型不可用 503 MODEL_UNAVAILABLE 并记录 status=model_unavailable 的事件；留证失败 503 INFERENCE_LOG_FAILED |
 | POST /api/v1/examples/search | 英语 text（≤1000 字符、≤256 word pieces）,top_k=1—10（默认 5）,可选 wordbook_id,CSRF | 需登录；返回 results（example_id、example_key、正文、译文、目标词义、cosine_similarity）、versions（编码器 revision、语料指纹与条数、索引构建时间）、model_time_ms、processing_time_ms；中文或超长 422 不截断；编码器/索引不可用或语料已变化 503 MODEL_UNAVAILABLE；留证失败 503 INFERENCE_LOG_FAILED |
 | POST /api/v1/admin/import | multipart，字段名为 wordbooks、words、senses、memberships、examples、questions，可选 dry_run=1；管理员及 CSRF | 格式见 [内容包格式](content-format.md)；先预检后显式提交，成功返回 dry_run 与各文件计数；预检失败 422 IMPORT_INVALID，`error.rows` 为至多 200 条 {file, line, field, message}；未知字段 400；单批事务失败回滚 |

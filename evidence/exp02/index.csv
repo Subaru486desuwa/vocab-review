@@ -41,5 +41,9 @@ daily-seed.txt,S2/T16,flask seed-demo-history --username sim_trend --days 14 --s
 daily-http.sh,T16,bash evidence/exp02/daily-http.sh,2026-10-25T06:47:00Z,生成 daily-http.txt 的 curl 脚本；登录模拟演示账户，密码取 .env 且不输出
 daily-http.txt,T16,bash evidence/exp02/daily-http.sh,2026-10-25T06:47:00Z,未登录 401；近 14 天逐日汇总，三类作答之和逐日等于作答数；days 越界与非整数 422；今天新词义、日终待复习分别与 /me/today、/me/review 一致；窗口作答 398 与数据库一致；概览页 14 行；重建一致；数据为模拟演示数据
 daily-dashboard.png,T16,内置浏览器: sim_trend 登录后 /dashboard; screenshot,2026-10-25T06:48:25Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，分块拼接整页），不含地址栏；模拟演示数据；展开统计说明
+validation-insights.txt,S2/T17,docker compose run --rm web sh -c 'python -m compileall -q app tests ml && ruff check . && ruff format --check . && pytest -v && pip check',2026-10-26T11:25:13Z,193 项通过、无跳过，含学习诊断 15 项（#36）
+insights-http.sh,T17,bash evidence/exp02/insights-http.sh,2026-10-26T11:21:38Z,生成 insights-http.txt 的 curl 脚本；登录模拟演示账户，密码取 .env 且不输出
+insights-http.txt,T17,bash evidence/exp02/insights-http.sh,2026-10-26T11:21:38Z,未登录 401/302；首次请求 7.8 s（加载两个模型）、预热后 0.38 s；作答数与答错数与数据库一致；访问前后作答与学习状态不变；每次请求各一条 user_history 的 ml、dl 推理事件；数据为模拟演示数据：模拟器答错时随机选干扰项、拼写只删末字母，因此误选“语义相近”为 0、拼写错法全为漏字母，不代表真实学习者的错误分布
+insights-page.png,T17,headless Chromium: sim_trend 登录后 /insights; screenshot,2026-10-26T11:29:03Z,Osaka 本机 headless Chromium 整页截图（1280 宽），不含地址栏；模拟演示数据
 import-v3.txt,S2/T12,flask import-content data/demo/v3; flask build-example-index; flask rebuild-learning-state; curl /api/v1/wordbooks 与 /api/v1/examples/search,2026-10-26T11:41:30Z,v3 扩充词库导入演示库（#38）：新增 130 词条、136 词义、272 例句、408 题，已有内容全部未变、无旧版本停用；重建 430 条例句索引；学习状态一致；三个词表各 80 个词条；三条演示查询（非评价）
 validation-content-v3.txt,S2/T12,docker compose run --rm web sh -c 'python -m compileall -q app tests ml data/demo && ruff check . && ruff format --check . && pytest -v && pip check',2026-10-26T11:41:36Z,180 项通过、无跳过，含 v3 内容包生成、近义词排除与 v1→v2→v3 导入测试（#38）

@@ -19,6 +19,7 @@ MAX_TOP_K = 10
 MODEL_CODE = "all-MiniLM-L6-v2"
 _NON_ENGLISH = re.compile(r"[぀-ヿ㐀-鿿가-힯]")
 _cache = {}
+_encoders = {}
 _lock = threading.Lock()
 
 
@@ -43,9 +44,17 @@ class Loaded:
     model_version_id: int
 
 
+@dataclass(frozen=True)
+class Encoder:
+    model: object
+    manifest: dict
+    model_version_id: int
+
+
 def reset_cache():
     with _lock:
         _cache.clear()
+        _encoders.clear()
 
 
 def _modules():
@@ -54,6 +63,26 @@ def _modules():
     except ImportError as exc:
         raise SearchUnavailable("未安装模型依赖（构建镜像时 WITH_DL=1）") from exc
     return example_index
+
+
+def _load_encoder(example_index, key, dl_dir):
+    """校验权重后加载编码器，每个进程一份，检索与学习诊断共用；调用方持有 _lock。"""
+    if key not in _encoders:
+        _encoders[key] = example_index.load_encoder(dl_dir)
+    return _encoders[key]
+
+
+def _registered(conn, example_index, encoder):
+    with db.transaction(conn):
+        row = model_repo.find_model_version(conn, MODEL_CODE, encoder["revision"])
+    if (
+        row is None
+        or row["status"] != "active"
+        or row["kind"] != "dl"
+        or (row["artifact_sha256"] != encoder["files"][example_index.WEIGHTS]["sha256"])
+    ):
+        raise SearchUnavailable("编码器未登记或登记信息与权重不符（flask build-example-index）")
+    return row["id"]
 
 
 def get(conn, dl_dir):
@@ -66,25 +95,26 @@ def get(conn, dl_dir):
             cached = _cache.get(key)
             if cached is not None and cached.index_manifest_text == current_text:
                 return cached
-            if cached is not None:
-                model, encoder = cached.model, cached.encoder_manifest
-            else:
-                model, encoder = example_index.load_encoder(dl_dir)
+            model, encoder = _load_encoder(example_index, key, dl_dir)
             vectors, ids, index_manifest = example_index.load_index(dl_dir, encoder)
         except example_index.IndexUnavailable as exc:
             raise SearchUnavailable(str(exc)) from exc
-        with db.transaction(conn):
-            row = model_repo.find_model_version(conn, MODEL_CODE, encoder["revision"])
-        if (
-            row is None
-            or row["status"] != "active"
-            or row["kind"] != "dl"
-            or (row["artifact_sha256"] != encoder["files"][example_index.WEIGHTS]["sha256"])
-        ):
-            raise SearchUnavailable("编码器未登记或登记信息与权重不符（flask build-example-index）")
-        loaded = Loaded(model, encoder, vectors, ids, index_manifest, current_text, row["id"])
+        model_version_id = _registered(conn, example_index, encoder)
+        loaded = Loaded(model, encoder, vectors, ids, index_manifest, current_text, model_version_id)
         _cache[key] = loaded
         return loaded
+
+
+def encoder(conn, dl_dir):
+    """只加载并核对已登记的编码器，不需要例句索引（学习诊断用）。"""
+    example_index = _modules()
+    key = str(Path(dl_dir).resolve())
+    with _lock:
+        try:
+            model, manifest = _load_encoder(example_index, key, dl_dir)
+        except example_index.IndexUnavailable as exc:
+            raise SearchUnavailable(str(exc)) from exc
+        return Encoder(model, manifest, _registered(conn, example_index, manifest))
 
 
 def validate(text, top_k, wordbook_id):
