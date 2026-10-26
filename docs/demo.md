@@ -26,8 +26,8 @@ docker compose run --rm web flask seed-demo-history --username sim_1029 --days 1
 
 - 在 **Mac 本地终端**（不是登录 Osaka 的 SSH 会话里）建立隧道 `ssh -N -L 5000:127.0.0.1:5000 osaka`，浏览器打开 `http://127.0.0.1:5000/`。上面的命令只检查 Osaka 上的服务与数据，隧道只负责让 Mac 浏览器访问它。
 - 用一个**新注册账户**演示（如 `defense1`），统计从零开始，能看到“未测试”。已有的 demo 账户保留了留证时的作答，适合在第 5 步后对照。
-- `/lab/ml` 显示模型可用、`/examples` 能检索；否则按 README 执行 `flask register-model artifacts/ml` 与 `flask build-example-index` 后重启 web。
-- 另开一个终端准备第 9 步的 MySQL 查询。
+- `/lab/ml` 显示模型可用、`/examples` 能检索；用模拟账户打开一次 `/insights` 预热（首次加载两个模型约 8 秒，之后不到 1 秒）；否则按 README 执行 `flask register-model artifacts/ml` 与 `flask build-example-index` 后重启 web。
+- 另开一个终端准备第 10 步的 MySQL 查询。
 - 页面只保留操作与结果，统计分母、复习规则、“不是掌握度/置信度”等说明默认折叠在页面底部，老师追问时再展开。
 - 万一 Osaka 或隧道不可用：`docs/reports/screenshots/` 的截图与 `evidence/exp02/review-path.txt` 的完整 HTTP 记录作为备用材料。
 
@@ -41,14 +41,15 @@ docker compose run --rm web flask seed-demo-history --username sim_1029 --days 1
 | 4 | 导航“今日” → `/today` → “学今日新词（10 个）”，故意答错前 2 题；做完点“返回今日任务” | 新词义 0 / 10 → 10 / 10，显示已完成、连续学习 1 天；每题即时判分，重复点击提交不重复计数 | **规则结果**：今日新词义只出任何题型都未作答的词义，“今天”按用户时区；服务端按固定题目版本判分，同答案重试返回原结果、换答案 409 |
 | 5 | `/review` | 2 道错题约 10 分钟后到期；到期后今日任务出现“复习辨义（2）”并变回未完成 | **规则结果**：复习时间由作答记录按复习规则计算，可由 `flask rebuild-learning-state` 从作答事实重建核对 |
 | 6 | `/dashboard` → 回到 `/wordbooks` 增加雅思 → `/dashboard`；再登录模拟账户看“近 14 天” | 合计词条中共有词只计一次；雅思下已练习的共有词条复用六级作答；模拟账户逐日显示作答量、正确率、新词义、到期复习完成与日终待复习 | 切换目标不删除历史；未练习的词义、题型仍显示未测试，不推断掌握。**规则结果**：趋势由作答事实重放计算（T16）；模拟账户的记录由 `flask seed-demo-history` 调用真实服务生成，是模拟演示数据，不是真实用户 |
-| 7 | `/lab/ml` 输入 间隔 1 天、历史 5 次、正确 4 次；再输入历史 0 次 | 预期正确比例（百分比）、模型版本与耗时；历史 0 次显示“没有历史作答，暂不估计”；展开“离线评测”可看误差表 | **模型输出**：随机森林估计一次练习内正确回忆比例，不是掌握度；test MAE 低于训练集均值基线（数字见 `evidence/exp03/evaluation.md`） |
-| 8 | `/examples` 输入 `I need to open a savings account.`；再输入 `We sat on the grass beside the river.` | 两次分别命中 bank 的“银行”与“河岸”词义例句，附余弦相似度；编码器版本在页面底部“说明”中 | **模型输出**：句向量相似度只表示语境相关程度；同一词条的多义能区分，TF-IDF 对照见 `evidence/exp04/evaluation.md`；标注由 AI 起草并经 AI 复核，不是独立人工标注 |
-| 9 | 终端执行下方查询 | 第 7、8 步的推理事件：类型（ml/dl）、来源、状态、模型版本、耗时 | 模型输入、输出与版本只进 `inference_events`；模型不可用时练习照常（T13） |
+| 7 | 导航“诊断” → `/insights`（新账户与模拟账户各看一次） | 错误类型、最常错的词义、选错的选项与语义相似度、拼写错法；遗忘风险前 10 项与薄弱/一般/较稳三组；错题语义组 | **规则结果**：错误统计直接来自作答事实。**模型输出**：遗忘风险是实验三随机森林的跨域参考估计、分组为 KMeans；语义组与相似度来自实验四编码器，阈值未经标注评价（ADR 0002）。只读，不改变复习安排 |
+| 8 | `/lab/ml` 输入 间隔 1 天、历史 5 次、正确 4 次；再输入历史 0 次 | 预期正确比例（百分比）、模型版本与耗时；历史 0 次显示“没有历史作答，暂不估计”；展开“离线评测”可看误差表 | **模型输出**：随机森林估计一次练习内正确回忆比例，不是掌握度；test MAE 低于训练集均值基线（数字见 `evidence/exp03/evaluation.md`） |
+| 9 | `/examples` 输入 `I need to open a savings account.`；再输入 `We sat on the grass beside the river.` | 两次分别命中 bank 的“银行”与“河岸”词义例句，附余弦相似度；编码器版本在页面底部“说明”中 | **模型输出**：句向量相似度只表示语境相关程度；同一词条的多义能区分，TF-IDF 对照见 `evidence/exp04/evaluation.md`；标注由 AI 起草并经 AI 复核，不是独立人工标注 |
+| 10 | 终端执行下方查询 | 第 7—9 步的推理事件：类型（ml/dl）、来源、状态、模型版本、耗时 | 模型输入、输出与版本只进 `inference_events`；模型不可用时练习照常（T13） |
 
-第 9 步查询（密码从 `.env` 读取，不显示）：
+第 10 步查询（密码从 `.env` 读取，不显示）：
 
 ```bash
-set -a; . ./.env; set +a; docker compose exec -T -e MYSQL_PWD="$DB_PASSWORD" db mysql -u"$DB_USER" "$DB_NAME" -e "SELECT e.id, e.kind, e.source_type, e.status, m.model_code, m.version, e.model_time_ms, e.created_at FROM inference_events e LEFT JOIN model_versions m ON m.id = e.model_version_id ORDER BY e.id DESC LIMIT 5"
+set -a; . ./.env; set +a; docker compose exec -T -e MYSQL_PWD="$DB_PASSWORD" db mysql -u"$DB_USER" "$DB_NAME" -e "SELECT e.id, e.kind, e.source_type, e.status, m.model_code, m.version, e.model_time_ms, e.created_at FROM inference_events e LEFT JOIN model_versions m ON m.id = e.model_version_id ORDER BY e.id DESC LIMIT 8"
 ```
 
 ## 可能的追问
@@ -62,4 +63,5 @@ set -a; . ./.env; set +a; docker compose exec -T -e MYSQL_PWD="$DB_PASSWORD" db 
 | 题目改了旧练习还能解释吗？ | T10：题目版本不可原地修改，旧练习引用旧版本；`tests/test_practice.py::test_old_session_keeps_original_question_version` |
 | 模型挂了还能学吗？ | T13：干净环境未放模型时练习可用、模型接口 503，见 `evidence/handoff/clean-env.txt` |
 | ML 有没有数据泄漏？ | 按全局时间 70/15/15 切分、同一时间戳不跨集合，特征只用作答前历史，测试集最后使用；`docs/models.md`、`evidence/exp03/evaluation.md` |
+| 诊断页的结果能信吗？ | 规则统计直接来自作答事实；遗忘风险是实验三模型的跨域参考估计、语义组阈值未经标注评价，只作参考、不改复习安排（ADR 0002，`evidence/exp02/insights-http.txt`）；有真实用户数据后再验证 |
 | 怎么在别的机器复现？ | README 启动步骤；`scripts/handoff_check.sh` 从干净副本全新启动并检查；SQL 导出见 `sql/export/` |
