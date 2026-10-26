@@ -1,6 +1,6 @@
 # 页面与接口契约
 
-当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），`/today`、`/wordbooks`、`/practice`、`/review`、`/dashboard` 页面和今日任务、目标词表、练习、作答、复习、统计、学习趋势接口，以及 `/lab/ml`、`POST /api/v1/ml/recall`、`/examples` 与 `POST /api/v1/examples/search`。管理导入页面按降级方案不做，下表中的 `/admin` 页面不是当前可访问的入口。
+当前已实现 `GET /`、`GET /lab/hello`、`/static/`、`/login`、`/register`、`POST /auth/register`、`POST /auth/login`、`POST /auth/logout`、`GET /api/v1/me`、`POST /api/v1/admin/import`（管理页面未做，按降级方案先提供接口与 CLI），`/today`、`/wordbooks`、`/practice`、`/review`、`/dashboard`、`/insights` 页面和今日任务、目标词表、练习、作答、复习、统计、学习趋势、学习诊断接口，以及 `/lab/ml`、`POST /api/v1/ml/recall`、`/examples` 与 `POST /api/v1/examples/search`。管理导入页面按降级方案不做，下表中的 `/admin` 页面不是当前可访问的入口。
 
 ## 页面
 

@@ -140,6 +140,58 @@ def report1():
     return s5, s6
 
 
+# ---------------- 诊断页证据（#36 / ADR 0002） ----------------
+
+
+def insights_evidence():
+    """解析 evidence/exp02/insights-http.txt：规则统计、ML 遗忘风险与分组、DL 语义组。"""
+    text = read("evidence/exp02/insights-http.txt")
+    attempts = json.loads(re.search(r"^attempts (.*)$", text, re.M).group(1))
+    error_types = json.loads(re.search(r"^error_types (.*)$", text, re.M).group(1))
+    spelling = json.loads(re.search(r"^spelling (.*)$", text, re.M).group(1))
+    confusions = re.search(r"误选选项 (\d+) 组，次数 (\d+) ；可对应回词义 (\d+) 组", text)
+    risk = [
+        match.groups()
+        for line in text.splitlines()
+        if (
+            match := re.match(
+                r"\s+遗忘风险 (\S+) (\w+) 距上次 ([\d.]+) 天 (\d+) / (\d+) expected_recall ([\d.]+)", line
+            )
+        )
+    ]
+    groups = [
+        match.groups()
+        for line in text.splitlines()
+        if (match := re.match(r"\s+分组 (\S+) (\d+) 项 平均预期 ([\d.]+) 正确率 ([\d.]+) 距上次 ([\d.]+) 天", line))
+    ]
+    semantic = [
+        (
+            re.search(r"语义组 \[(.*?)\] 组内平均相似度 ([\d.]+)", line).group(1).replace("'", ""),
+            re.search(r"组内平均相似度 ([\d.]+)", line).group(1),
+        )
+        for line in text.splitlines()
+        if "语义组 [" in line
+    ]
+    similar = re.search(r"误选：语义相近 (\d+) 次；相关度低 (\d+) 次", text)
+    read_only = re.search(r"访问前 (.*) \| 访问后 (.*)", text)
+    timings = re.findall(r"第(一|二)次 HTTP 200 ([\d.]+)s", text)
+    return {
+        "attempts": attempts,
+        "error_types": error_types,
+        "spelling": spelling,
+        "confusions": confusions.groups() if confusions else None,
+        "risk": risk,
+        "groups": groups,
+        "semantic": semantic,
+        "similar": similar.groups() if similar else None,
+        "read_only": read_only.groups() if read_only else None,
+        "timings": timings,
+        "ml_items": re.search(r"items (\d+) model_time_ms", text).group(1),
+        "dl_senses": re.search(r"错题词义 (\d+) threshold", text).group(1),
+        "threshold": re.search(r"threshold ([\d.]+)", text).group(1),
+    }
+
+
 # ---------------- 实验二 ----------------
 
 
@@ -165,6 +217,15 @@ def report2():
     today = read("evidence/exp02/today-http.txt")
     daily = read("evidence/exp02/daily-http.txt")
     totals = json.loads(re.search(r"^totals (.*)$", daily, re.M).group(1))
+    diagnosis = insights_evidence()
+    conf_groups, conf_times, conf_matched = diagnosis["confusions"] or ("0", "0", "0")
+    similar_count, low_count = diagnosis["similar"] or ("0", "0")
+    semantic_top, semantic_sim = diagnosis["semantic"][0] if diagnosis["semantic"] else ("—", "—")
+    first_load = diagnosis["timings"][0][1] if diagnosis["timings"] else "—"
+    warm_ms = round(float(diagnosis["timings"][1][1]) * 1000) if len(diagnosis["timings"]) > 1 else "—"
+    union_words = int(re.search(r"合计词条（共有词只计一次） (\d+)", review).group(1))
+    per_book = dict(re.findall(r"(\S+-demo) 词条 (\d+) 已练习", review))
+    shared_words = sum(int(v) for v in per_book.values()) - union_words
     s5 = [
         ("h", "1. 数据库设计"),
         (
@@ -222,9 +283,8 @@ def report2():
                 ("六级目标统计", re.search(r"词条 已练习/总数 .*", review).group(0)[:60]),
                 (
                     "增加雅思目标",
-                    "合计词条 "
-                    + re.search(r"合计词条（共有词只计一次） (\d+)", review).group(1)
-                    + "（两个词表共 10 个共有词只计一次）",
+                    f"合计词条 {union_words}"
+                    f"（两个词表各 {per_book['cet6-demo']} 个词条，共 {shared_words} 个共有词只计一次）",
                 ),
                 ("学习状态重建核对", re.search(r"学习状态与作答记录一致.*", review).group(0)),
                 (
@@ -253,7 +313,31 @@ def report2():
         ("img", shot("e2_review"), "图 5  复习计划：已到期与未到期错题"),
         ("img", shot("e2_today"), "图 6  今日任务：连续学习天数、今日新词义进度与各题型待复习"),
         ("img", shot("e2_trend"), "图 7  概览页“近 14 天”学习趋势（sim_trend，模拟演示数据）"),
-        ("h", "4. 探讨分析"),
+        ("h", "4. 学习诊断页（复用实验三、实验四的制品）"),
+        (
+            "p",
+            f"学习诊断页 /insights 把本系统的作答事实与实验三、实验四的两个制品接在一起（ADR 0002）。规则部分不依赖模型："
+            f"模拟演示账户 sim_trend 的 {diagnosis['attempts']['count']} 次作答中有 {diagnosis['attempts']['wrong']} 次答错，"
+            f"按错误类型分为 {diagnosis['error_types']}，拼写错法按编辑距离分为 {diagnosis['spelling']}；"
+            f"误选选项 {conf_groups} 组、共 {conf_times} 次，其中 {conf_matched} 组能对应回具体词义。"
+            "这些数字与数据库逐条一致（evidence/exp02/insights-http.txt）。",
+        ),
+        (
+            "p",
+            f"模型部分：实验三的随机森林对 {diagnosis['ml_items']} 项「词义 × 题型」给出预期正确比例，取最低的 10 项列为遗忘风险，"
+            "再按特征与估计值做 KMeans（k=3）分成"
+            + "、".join(
+                f"{name} {count} 项（平均预期 {float(mean):.2f}、正确率 {float(acc) * 100:.0f}%）"
+                for name, count, mean, acc, _ in diagnosis["groups"]
+            )
+            + "；实验四的编码器把错题词义编码后聚类，得到 "
+            f"{len(diagnosis['semantic'])} 组语义相近的错题（如 {semantic_top}，组内平均相似度 {float(semantic_sim):.2f}），"
+            f"误选与正确释义的相似度以 {diagnosis['threshold']} 为阈值：{similar_count} 次记为语义相近、{low_count} 次相关度低。"
+            f"首次请求含两个模型加载约 {float(first_load):.1f} 秒，预热后约 {warm_ms} 毫秒。模型在公开数据上训练、在本系统用户上未经验证，"
+            "页面标注为参考，不改变组卷、复习安排与统计。",
+        ),
+        ("img", shot("e2_insights"), "图 8  学习诊断页：错误统计、遗忘风险与错题语义组（sim_trend，模拟演示数据）"),
+        ("h", "5. 探讨分析"),
         (
             "p",
             "（1）密码存储：模板示例用 SHA2(password, 256) 存储，相同密码得到相同哈希且计算很快，泄库后容易被彩虹表或暴力破解。"
@@ -403,6 +487,13 @@ def report3():
         ("p", "MySQL 中的推理记录（evidence/exp03/inference-events.txt 节选）："),
         ("code", [re.sub(r"\s+\|", " |", line)[:118] for line in events]),
         ("img", shot("e3_ml"), "图 1  实验三页面：模型状态、离线误差表与在线估计结果"),
+        (
+            "p",
+            "制品复用（ADR 0002）：同一个已登记模型还被学习诊断页 /insights 调用。诊断页对用户全部「词义 × 题型」批量预测预期正确比例，"
+            "取最低的 10 项作为遗忘风险，并把特征与估计值标准化后做 KMeans（k=3）分组；每次调用都写一条 source_type=user_history 的推理事件，"
+            "与 /lab/ml 的人工实验输入分开留证。模型结果只标注为参考，不进入组卷与复习规则；模拟演示账户上的实测见实验二报告的诊断页小节"
+            "（evidence/exp02/insights-http.txt）。",
+        ),
         ("h", "4. 探讨分析"),
         (
             "p",
@@ -543,6 +634,13 @@ def report4():
             "img",
             shot("e4_examples_money"),
             "图 2  查询“I need to open a savings account at the bank.”：第一名为 bank 的“银行”词义",
+        ),
+        (
+            "p",
+            "制品复用（ADR 0002）：编码器除用于例句检索，还被学习诊断页 /insights 用来刻画错题。诊断页把每个错题词义编码为"
+            "“词条: 英文释义”的句向量，按余弦距离做平均链接层次聚类得到语义组，并计算误选选项与正确释义的相似度，"
+            "以词库两两相似度的第 99 百分位为参考阈值标注“语义相近”。这部分阈值没有独立标注评价，只作参考；"
+            "实测见实验二报告的诊断页小节（evidence/exp02/insights-http.txt）。",
         ),
         ("h", "4. 探讨分析"),
         (

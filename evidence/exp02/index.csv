@@ -10,11 +10,11 @@ validation-content-import.txt,S2/T03/T10/T11/T12,"docker compose run --rm web sh
 practice-http.txt,S2/T04/T05/T06/T07,bash evidence/exp02/practice-http.sh,2026-10-23T14:06:57Z,demo 选择六级目标、组卷不含答案、正确/错误/空答案、重放、换答案 409、他人访问 404 及 MySQL 作答与学习状态；学习状态累计了同一脚本此前两次试运行的作答
 practice-http.sh,S2,bash evidence/exp02/practice-http.sh,2026-10-23T14:06:57Z,生成 practice-http.txt 的脚本；每次运行新建一个练习与一个 peer_ 演示账户
 validation-practice.txt,S2/T04—T08/T10,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T14:08:07Z,107 项通过，含并发同答案、注入异常回滚、越权与题目版本测试；前端脚本仅做 node --check，浏览器验收见 #8
-review-path.txt,S2/T09/T14/答辩路径,bash evidence/exp02/review-path.sh,2026-10-23T14:21:49Z,demo：六级目标 → 含 2 道错题的练习 → 复习计划（错题约 10 分钟后到期）→ 增加雅思（合计词条去重为 50）→ 单看雅思复用共有词作答 → rebuild-learning-state 核对一致；统计含此前留证运行的作答
-review-path.sh,S2,bash evidence/exp02/review-path.sh,2026-10-23T14:21:49Z,生成 review-path.txt 的脚本；每次运行新建一组练习
+review-path.txt,S2/T09/T14/答辩路径,bash evidence/exp02/review-path.sh,2026-10-26T14:41:27Z,demo：六级目标（80 个词条）→ 含 2 道错题的练习 → 复习计划（错题约 10 分钟后到期）→ 增加雅思（合计词条去重为 140，两个词表各 80 个、共 20 个共有词）→ 单看雅思复用共有词作答 → rebuild-learning-state 核对一致；内容为 v1/v2/v3，统计含此前留证运行的作答
+review-path.sh,S2,bash evidence/exp02/review-path.sh,2026-10-26T14:41:27Z,生成 review-path.txt 的脚本；每次运行新建一组练习；输出头标注内容包版本
 validation-review.txt,S2/T09/T14,"docker compose run --rm web sh -c 'python -m compileall -q app tests data/demo && ruff check . && ruff format --check . && pytest -v && pip check'",2026-10-23T14:23:21Z,116 项通过，含复习清单、统计分母、近期作答稳定、多目标去重与重建测试
-today-http.sh,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T19:40:23Z,生成 today-http.txt 的 curl 脚本；对已运行的 docker compose web 执行，新注册演示账户，密码随机生成且未记录
-today-http.txt,E2/T15,bash evidence/exp02/today-http.sh,2026-10-24T19:40:23Z,今日任务：未选目标 422；新账户新词义 0/10；focus=new_senses 练习 10 题（前 2 题答错）后完成、连续 1 天；再学新词与已作答词义重叠 0 题；非法 focus 422；/today 页面（达成目标后显示“再学 10 个”）；学习状态重建一致
+today-http.sh,E2/T15,bash evidence/exp02/today-http.sh,2026-10-26T14:30:12Z,生成 today-http.txt 的 curl 脚本；对已运行的 docker compose web 执行，新注册演示账户，密码随机生成且未记录
+today-http.txt,E2/T15,bash evidence/exp02/today-http.sh,2026-10-26T14:30:12Z,今日任务（导入 v3 后重跑）：未选目标 422；新账户新词义 0/10；focus=new_senses 练习 10 题（前 2 题答错）后完成、连续 1 天；再学新词与已作答词义重叠 0 题；非法 focus 422；/today 页面（达成目标后显示“再学 10 个”）；学习状态重建一致
 import-v2.txt,E2/T10/T12,flask import-content data/demo/v2 --dry-run 后正式导入,2026-10-24T16:59:53Z,在已导入 v1 的演示库上导入 v2：17 道题目新版本、旧版本停用，13 条例句更新，1 个词义更新；已发放的 3 个题目实例仍引用停用的旧版本
 demo-02-register.png,E2/T02/答辩路径,内置浏览器: 首页“注册开始学习”; screenshot,2026-10-24T21:06:53Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏
 demo-02-after-register-dashboard.png,E2/T02/答辩路径,内置浏览器: 注册 evid1025 后自动跳转 /dashboard; screenshot,2026-10-24T21:07:30Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，滚动分块拼接整页），不含地址栏；新账户密码随机生成且未记录
@@ -38,12 +38,12 @@ chrome-login-failed.png,E2/T02,Chrome: /auth/login 用户名 user0 登录失败;
 chrome-login-error-user.png,E2/T02,Chrome: /auth/login 用户名 user 登录失败; screenshot,未记录（2026-10-25T05:48Z 前提供）,Mac Chrome 窗口截图，含地址栏；项目负责人手动截取，对话附件 webp 无损转 PNG（2000 px 宽）；显示同一提示“用户名或密码错误”；users 表中无 user 账户
 validation-daily.txt,S2/T16,docker compose run --rm web sh -c 'python -m compileall -q app tests && ruff check . && ruff format --check . && pytest -v && pip check',2026-10-25T06:44:39Z,178 项通过、无跳过，含学习趋势与模拟演示数据 7 项（#32）
 daily-seed.txt,S2/T16,flask seed-demo-history --username sim_trend --days 14 --seed 42; flask rebuild-learning-state --username sim_trend,2026-10-25T06:45:54Z,模拟演示数据：固定时钟下调用真实组卷与作答服务为 10/11—10/24 生成 417 次作答（10 天练习、4 天未练习），不是真实学习记录；重建核对 108 组一致
-daily-http.sh,T16,bash evidence/exp02/daily-http.sh,2026-10-25T06:47:00Z,生成 daily-http.txt 的 curl 脚本；登录模拟演示账户，密码取 .env 且不输出
-daily-http.txt,T16,bash evidence/exp02/daily-http.sh,2026-10-25T06:47:00Z,未登录 401；近 14 天逐日汇总，三类作答之和逐日等于作答数；days 越界与非整数 422；今天新词义、日终待复习分别与 /me/today、/me/review 一致；窗口作答 398 与数据库一致；概览页 14 行；重建一致；数据为模拟演示数据
+daily-http.sh,T16,bash evidence/exp02/daily-http.sh,2026-10-26T14:25:31Z,生成 daily-http.txt 的 curl 脚本；登录模拟演示账户，密码取 .env 且不输出
+daily-http.txt,T16,bash evidence/exp02/daily-http.sh,2026-10-26T14:25:31Z,导入 v3 后重跑：未登录 401；近 14 天逐日汇总，三类作答之和逐日等于作答数；days 越界与非整数 422；今天新词义、日终待复习分别与 /me/today、/me/review 一致；窗口作答 398 与数据库一致；概览页 14 行；重建一致；数据为模拟演示数据；窗口右移一天（10/13—10/26）
 daily-dashboard.png,T16,内置浏览器: sim_trend 登录后 /dashboard; screenshot,2026-10-25T06:48:25Z,Claude 桌面应用内置浏览器视口截图（800×600 模拟视口，分块拼接整页），不含地址栏；模拟演示数据；展开统计说明
 validation-insights.txt,S2/T17,docker compose run --rm web sh -c 'python -m compileall -q app tests ml && ruff check . && ruff format --check . && pytest -v && pip check',2026-10-26T11:25:13Z,193 项通过、无跳过，含学习诊断 15 项（#36）
-insights-http.sh,T17,bash evidence/exp02/insights-http.sh,2026-10-26T11:21:38Z,生成 insights-http.txt 的 curl 脚本；登录模拟演示账户，密码取 .env 且不输出
-insights-http.txt,T17,bash evidence/exp02/insights-http.sh,2026-10-26T11:21:38Z,未登录 401/302；首次请求 7.8 s（加载两个模型）、预热后 0.38 s；作答数与答错数与数据库一致；访问前后作答与学习状态不变；每次请求各一条 user_history 的 ml、dl 推理事件；数据为模拟演示数据：模拟器答错时随机选干扰项、拼写只删末字母，因此误选“语义相近”为 0、拼写错法全为漏字母，不代表真实学习者的错误分布
+insights-http.sh,T17,bash evidence/exp02/insights-http.sh,2026-10-26T14:26:28Z,生成 insights-http.txt 的 curl 脚本；登录模拟演示账户，密码取 .env 且不输出
+insights-http.txt,T17,bash evidence/exp02/insights-http.sh,2026-10-26T14:26:28Z,导入 v3 后重跑（重启 web 后冷启动）：未登录 401/302；首次请求 7.8 s（加载两个模型）、预热后 0.39 s；作答数与答错数与数据库一致；访问前后作答与学习状态不变；每次请求各一条 user_history 的 ml、dl 推理事件；数据为模拟演示数据：模拟器答错时随机选干扰项、拼写只删末字母，因此误选“语义相近”为 0、拼写错法全为漏字母，不代表真实学习者的错误分布
 insights-page.png,T17,headless Chromium: sim_trend 登录后 /insights; screenshot,2026-10-26T11:29:03Z,Osaka 本机 headless Chromium 整页截图（1280 宽），不含地址栏；模拟演示数据
 import-v3.txt,S2/T12,flask import-content data/demo/v3; flask build-example-index; flask rebuild-learning-state; curl /api/v1/wordbooks 与 /api/v1/examples/search,2026-10-26T11:41:30Z,v3 扩充词库导入演示库（#38）：新增 130 词条、136 词义、272 例句、408 题，已有内容全部未变、无旧版本停用；重建 430 条例句索引；学习状态一致；三个词表各 80 个词条；三条演示查询（非评价）
 validation-content-v3.txt,S2/T12,docker compose run --rm web sh -c 'python -m compileall -q app tests ml data/demo && ruff check . && ruff format --check . && pytest -v && pip check',2026-10-26T11:41:36Z,180 项通过、无跳过，含 v3 内容包生成、近义词排除与 v1→v2→v3 导入测试（#38）

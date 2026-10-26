@@ -16,7 +16,7 @@ keys=[k for k in sys.argv[1].split(",") if k] if len(sys.argv)>1 else []
 out=d["error"] if d["error"] else ({k:d["data"][k] for k in keys} if keys else d["data"])
 print("HTTP", code, json.dumps(out, ensure_ascii=False))' "$@"; }
 
-echo "# executed_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ) base=$B user=$U（演示账户）；内容为项目自编演示 v1"
+echo "# executed_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ) base=$B user=$U（演示账户）；内容为项目自编演示 v1/v2/v3"
 echo "## 1. 注册并登录（表单 POST /auth/register）"
 T=$(form_tok /register); curl -s -o /dev/null -w "HTTP %{http_code}\n" -b "$J" -c "$J" -X POST "$B/auth/register" --data-urlencode "csrf_token=$T" -d "username=$U" --data-urlencode "password=$PW"
 echo "## 2. 未选目标时 GET /api/v1/me/today"; api GET /api/v1/me/today | show

@@ -1,4 +1,4 @@
-# executed_at_utc=2026-10-25T06:47:00Z base=http://127.0.0.1:5000 user=sim_trend（模拟演示数据，由 flask seed-demo-history 生成，不是真实学习记录）
+# executed_at_utc=2026-10-26T14:25:31Z base=http://127.0.0.1:5000 user=sim_trend（模拟演示数据，由 flask seed-demo-history 生成，不是真实学习记录）
 ## 1. 未登录 GET /api/v1/me/daily
 HTTP 401 {"code": "UNAUTHENTICATED", "message": "请先登录"}
 ## 2. 登录（表单 POST /auth/login）
@@ -6,7 +6,6 @@ HTTP 302
 ## 3. GET /api/v1/me/daily（默认 14 天）
 timezone Asia/Shanghai 天数 14
 日期        作答  正确率  新词义  首次题型  到期复习(对)  提前  日终待复习  三类之和=作答
-2026-10-12     0      —       0         0       0(0)     0          15  True
 2026-10-13    36    83%      14        15      21(20)     0           0  True
 2026-10-14     0      —       0         0       0(0)     0          17  True
 2026-10-15    39    79%      13        15      24(21)     0           1  True
@@ -19,7 +18,8 @@ timezone Asia/Shanghai 天数 14
 2026-10-22    53    83%       0         5      48(41)     0           2  True
 2026-10-23     0      —       0         0       0(0)     0          23  True
 2026-10-24    46    78%       0         4      41(35)     1           1  True
-2026-10-25     0      —       0         0       0(0)     0           1  True
+2026-10-25     0      —       0         0       0(0)     0          32  True
+2026-10-26     0      —       0         0       0(0)     0          42  True
 totals {"active_days": 9, "attempts": {"accuracy": 0.8216, "correct": 327, "count": 398}, "first_on_skill": 93, "new_senses": 66, "reviews": {"due": 299, "due_correct": 259, "early": 6}}
 granularity 按用户时区的自然日统计该用户的全部作答，不按目标词表过滤；每次作答按作答前学习状态归入首次作答该题型、到期复习或提前练习之一；日终待复习为当天结束时（今天为当前时间）已到复习时间的词义 × 题型数。
 ## 4. days 参数
@@ -29,7 +29,7 @@ days=61 → HTTP 422 {"days": "days 必须是 1—60 的整数"}
 days=abc → HTTP 422 {"days": "days 必须是 1—60 的整数"}
 ## 5. 与今日任务、复习清单、数据库对照（今天）
 今天新词义 0 | /me/today new_senses.done 0
-今天日终待复习 1 | /me/review due 数 1
+今天日终待复习 42 | /me/review due 数 42
 窗口作答合计 398 | 数据库同期作答数 398
 ## 6. 概览页
 /dashboard HTTP 200
