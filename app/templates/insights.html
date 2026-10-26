@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}学习诊断 · 词汇研习室{% endblock %}
+{% block content %}
+{% set r = data.rules %}
+<section class="auth-page wide-page">
+  <p class="eyebrow">学习诊断</p>
+  <h1>做题反馈</h1>
+  {% if not data.attempts.count %}
+    <p class="lead">还没有作答记录，先去练习几题。</p>
+    <div class="actions"><a class="button" href="{{ url_for('learning.today_page') }}">今日任务</a></div>
+  {% else %}
+    <p class="lead">共 {{ data.attempts.count }} 次作答，答错 {{ data.attempts.wrong }} 次。</p>
+    <dl class="stat-grid">
+      {% for kind, count in r.error_types.items() %}
+        <div><dt>{{ error_names.get(kind, kind) }}错误</dt><dd>{{ count }}</dd></div>
+      {% else %}
+        <div><dt>错误</dt><dd>0</dd><p>全部答对</p></div>
+      {% endfor %}
+    </dl>
+
+    {% if r.most_wrong %}
+    <table class="data-table">
+      <caption>最常错的词义</caption>
+      <thead><tr><th scope="col">词义</th><th scope="col">释义</th><th scope="col">答错 / 作答</th></tr></thead>
+      <tbody>
+        {% for e in r.most_wrong %}
+          <tr><th scope="row">{{ e.lemma }} <span class="muted">{{ e.part_of_speech }}</span></th><td>{{ e.definition_zh }}</td><td>{{ e.wrong }} / {{ e.attempts }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+
+    {% if r.confusions %}
+    {% set sims = {} %}
+    {% if data.dl.status == "ok" %}{% for c in data.dl.confusions %}{% set _ = sims.update({c.sense.sense_id ~ "|" ~ c.skill_type ~ "|" ~ c.chosen: c}) %}{% endfor %}{% endif %}
+    <table class="data-table">
+      <caption>选错的选项</caption>
+      <thead><tr><th scope="col">题目</th><th scope="col">正确</th><th scope="col">误选</th><th scope="col">次数</th><th scope="col">语义相似度</th></tr></thead>
+      <tbody>
+        {% for c in r.confusions[:10] %}
+          {% set s = sims.get(c.sense.sense_id ~ "|" ~ c.skill_type ~ "|" ~ c.chosen) %}
+          <tr>
+            <th scope="row">{{ c.sense.lemma }} <span class="muted">{{ skill_names[c.skill_type] }}</span></th>
+            <td>{{ c.correct }}</td><td>{{ c.chosen }}</td><td>{{ c.count }}</td>
+            <td>{% if s %}{{ "%.2f" | format(s.similarity) }}{% if s.similar %} <span class="tag">语义相近</span>{% endif %}{% else %}—{% endif %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+
+    {% if r.spelling.counts.values() | sum %}
+    <table class="data-table">
+      <caption>拼写错法</caption>
+      <thead><tr>{% for kind, count in r.spelling.counts.items() %}<th scope="col">{{ spelling_names[kind] }}</th>{% endfor %}</tr></thead>
+      <tbody><tr>{% for kind, count in r.spelling.counts.items() %}<td>{{ count }}</td>{% endfor %}</tr></tbody>
+    </table>
+    {% if r.spelling.examples %}
+    <p class="muted">最近：{% for e in r.spelling.examples[:5] %}<span class="mono">{{ e.answer }}</span> → <span class="mono">{{ e.correct }}</span>{% if not loop.last %}；{% endif %}{% endfor %}</p>
+    {% endif %}
+    {% endif %}
+
+    <h2>遗忘风险 <span class="model-tag">ML · 随机森林</span></h2>
+    {% set ml = data.ml %}
+    {% if ml.status == "ok" %}
+      <table class="data-table">
+        <caption>预期正确比例最低的 {{ ml.risk | length }} 项（共 {{ ml["items"] }} 项）</caption>
+        <thead><tr><th scope="col">词义</th><th scope="col">题型</th><th scope="col">距上次</th><th scope="col">正确 / 作答</th><th scope="col">预期正确比例</th></tr></thead>
+        <tbody>
+          {% for e in ml.risk %}
+            <tr><th scope="row">{{ e.lemma }} <span class="muted">{{ e.definition_zh }}</span></th><td>{{ skill_names[e.skill_type] }}</td><td>{{ e.days_since }} 天</td><td>{{ e.correct }} / {{ e.seen }}</td><td>{{ "%.2f" | format(e.expected_recall) }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if ml.groups %}
+      <div class="group-grid">
+        {% for g in ml.groups %}
+          <div class="group-card">
+            <h3>{{ g.name }} <span class="muted">{{ g.count }} 项</span></h3>
+            <p class="muted">预期 {{ "%.2f" | format(g.mean_expected_recall) }} · 正确率 {{ "%.0f" | format(g.mean_accuracy * 100) }}% · 距上次 {{ g.mean_days_since }} 天</p>
+            <p>{% for m in g.examples %}{{ m.lemma }}<span class="muted">（{{ skill_names[m.skill_type] }}）</span>{% if not loop.last %}、{% endif %}{% endfor %}</p>
+          </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="muted">已作答的词义 × 题型不足 6 项，暂不分组。</p>
+      {% endif %}
+    {% elif ml.status == "unavailable" %}
+      <p class="muted">模型不可用：{{ ml.reason }}</p>
+    {% elif ml.status == "log_failed" %}
+      <p class="muted">本次结果未能留证，暂不展示。</p>
+    {% endif %}
+
+    <h2>错题语义 <span class="model-tag">DL · MiniLM</span></h2>
+    {% set dl = data.dl %}
+    {% if dl.status == "ok" %}
+      {% if dl.confusions %}
+      <p>误选里语义相近 {{ dl.similar_count }} 次，相关度低 {{ dl.low_count }} 次。</p>
+      {% endif %}
+      {% if dl.groups %}
+      <div class="group-grid">
+        {% for g in dl.groups %}
+          <div class="group-card">
+            <h3>{% set lemmas = g.members | map(attribute="lemma") | list %}{% for m in g.members %}{{ m.lemma }}{% if lemmas.count(m.lemma) > 1 %}<span class="muted">（义项 {{ m.sense_key }}）</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}</h3>
+            <p class="muted">组内平均相似度 {{ "%.2f" | format(g.cohesion) }}</p>
+            <p>{% for m in g.members %}{{ m.definition_zh }}{% if not loop.last %} / {% endif %}{% endfor %}</p>
+          </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="muted">{{ dl.wrong_senses }} 个错题词义之间没有语义相近的组。</p>
+      {% endif %}
+    {% elif dl.status == "unavailable" %}
+      <p class="muted">编码器不可用：{{ dl.reason }}</p>
+    {% elif dl.status == "log_failed" %}
+      <p class="muted">本次结果未能留证，暂不展示。</p>
+    {% elif dl.status == "no_data" %}
+      <p class="muted">还没有错题。</p>
+    {% endif %}
+
+    <details class="about">
+      <summary>方法说明</summary>
+      <p>{{ data.granularity }}</p>
+      <p>遗忘风险：实验三随机森林（{% if ml.model %}{{ ml.model.model_code }} {{ ml.model.version }}{% else %}未加载{% endif %}）按距上次作答的间隔、作答次数与正确次数估计预期练习正确比例；模型在 Duolingo 公开记录上训练，在本系统用户上未经验证，不是掌握度。分组：对上述特征与估计值标准化后 KMeans（k=3，固定种子），按组内平均正确率从低到高命名为薄弱、一般、较稳。</p>
+      <p>错题语义：实验四 all-MiniLM-L6-v2 编码“词条: 英文释义”，按余弦距离做平均链接层次聚类；组内与误选的相似度高于 {{ "%.2f" | format(dl.threshold or 0.45) }} 记为语义相近（约为演示词库两两相似度的第 99 百分位，未经标注评价）。拼写错法按与最接近的正确拼写的编辑距离分类。</p>
+    </details>
+  {% endif %}
+</section>
+{% endblock %}

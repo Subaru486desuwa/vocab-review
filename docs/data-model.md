@@ -28,7 +28,7 @@
 | model_versions | id, kind, model_code, version, artifact_sha256, feature_schema_version, metadata_json, status | (model_code,version) 唯一；kind=ml/dl；记录数据、环境与制品版本 |
 | inference_events | id, request_id, user_id, model_version_id, kind, source_type, input_json, output_json, status, model_time_ms, processing_time_ms, created_at | 模型加载失败允许 model_version_id 为 NULL；禁止存密码/会话密钥 |
 
-`attempts` 保存事实，`learning_state` 保存投影；模型输出不改写二者。source_type 区分 manual_lab、source_test、user_history；个人日志适配未实现，不生成虚构的 user_history 效果记录。
+`attempts` 保存事实，`learning_state` 保存投影；模型输出不改写二者。source_type 区分 manual_lab、source_test、user_history；user_history 只来自学习诊断对本人作答的参考分析（ADR 0002），不生成虚构的效果记录。
 
 ## 迁移中确定的取值
 
