@@ -7,7 +7,7 @@ from app.repositories import db, users
 from app.repositories import practice as practice_repo
 from app.repositories import progress as repo
 from app.repositories import wordbooks as wordbook_repo
-from app.services import progress
+from app.services import insights, progress
 from app.services.content_import import SKILL_TYPES
 from app.services.practice import NoTarget
 
@@ -35,6 +35,7 @@ def streak(times, today, tz):
 
 def plan(conn, user_id, now):
     review = progress.review_list(conn, user_id, now)
+    found, _ = insights.load_current(conn, user_id, now)
     with db.transaction(conn):
         user = users.find_by_id(conn, user_id)
         books = wordbook_repo.selected(conn, user_id)
@@ -50,11 +51,15 @@ def plan(conn, user_id, now):
     available = sum(1 for sense_id in candidates if sense_id not in first)
     remaining = min(max(DAILY_NEW_SENSES - done, 0), available)
     due = len(review["due"])
+    weak = {
+        skill: sum(1 for (_, s), i in found.items() if s == skill and i["status"] == "weak") for skill in SKILL_TYPES
+    }
     return {
         "date": day.isoformat(),
         "timezone": user["display_timezone"],
         "review": {"due": due, "by_skill": by_skill},
         "new_senses": {"target": DAILY_NEW_SENSES, "done": done, "remaining": remaining, "available": available},
+        "weak": {"total": sum(weak.values()), "by_skill": weak},
         "streak": streak(times, day, tz),
         "completed": due == 0 and remaining == 0,
     }

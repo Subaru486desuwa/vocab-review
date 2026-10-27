@@ -11,6 +11,17 @@ from app.services import daily, grading, practice, progress, today
 bp = Blueprint("learning", __name__)
 
 SKILL_NAMES = {"recognition": "辨义", "spelling": "拼写", "context": "语境"}
+STATUS_NAMES = {"weak": "当前弱项", "fading": "记忆衰减", "improved": "已改善", "stable": "稳定"}
+REASON_NAMES = {
+    "due": "到期复习",
+    "wrong_pending": "错题巩固",
+    "untested": "首次练习",
+    "consolidate": "巩固",
+    "new_sense": "今日新词",
+    "weak": "弱项专练",
+    "fading": "记忆衰减",
+    "targeted": "定向练习",
+}
 
 
 def _user_id():
@@ -80,7 +91,7 @@ def review_page():
         if data["next_due_at"]:
             next_at = datetime.fromisoformat(data["next_due_at"].removesuffix("Z"))
             data["next_due_in"] = _until((next_at - clock.now()).total_seconds())
-    return render_template("review.html", data=data, skill_names=SKILL_NAMES)
+    return render_template("review.html", data=data, skill_names=SKILL_NAMES, status_names=STATUS_NAMES)
 
 
 @bp.get("/wordbooks")
@@ -142,6 +153,7 @@ def create_session():
             body.get("wordbook_ids"),
             clock.now(),
             focus=body.get("focus"),
+            sense_ids=body.get("sense_ids"),
         )
     except practice.InvalidRequest as exc:
         return _invalid(exc)
@@ -149,6 +161,8 @@ def create_session():
         return api_error("NO_TARGET", "请先选择目标词表", 422)
     except practice.NoQuestions:
         return api_error("NO_QUESTIONS", "所选词表中没有该题型的可用题目", 422)
+    except practice.NoWeakItems:
+        return api_error("NO_WEAK_ITEMS", "该题型暂无当前弱项", 422)
     return api_ok(session, 201)
 
 

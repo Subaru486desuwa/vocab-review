@@ -1,0 +1,1 @@
+<span class="strength" title="记忆强度约 {{ '%.0f' | format(e.recall * 100) }}%" aria-label="记忆强度 {{ e.strength }} / 4">{% for i in range(4) %}<i class="{{ 'on' if i < e.strength }}"></i>{% endfor %}</span>

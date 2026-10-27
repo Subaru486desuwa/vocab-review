@@ -1,0 +1,1 @@
+<span class="recent" aria-label="最近 {{ e.recent | length }} 次：{% for ok in e.recent %}{{ '对' if ok else '错' }}{% endfor %}">{% for ok in e.recent %}<i class="{{ 'ok' if ok else 'no' }}">{{ '✓' if ok else '✗' }}</i>{% endfor %}</span>

@@ -11,7 +11,8 @@ from collections import Counter, defaultdict
 from app.repositories import db
 from app.repositories import insights as repo
 from app.repositories import progress as progress_repo
-from app.services import grading
+from app.repositories import wordbooks as wordbook_repo
+from app.services import evidence, grading
 from app.services.content_import import SKILL_TYPES
 
 TOP = 10
@@ -237,3 +238,72 @@ def dl_analysis(model, wrong_ids, texts, pairs):
         cohesion.append(round(sum(sims) / len(sims), 4))
     elapsed = (time.perf_counter() - started) * 1000
     return {"groups": clusters, "cohesion": cohesion, "pair_similarity": similarity}, elapsed
+
+
+# ---- 当前证据：只看当前目标词表内、有已发布题目的 词义 × 题型 ----
+
+
+def load_current(conn, user_id, now):
+    """当前目标范围内的证据与词义信息；未选目标返回 None。"""
+    with db.transaction(conn):
+        books = wordbook_repo.selected(conn, user_id)
+        if not books:
+            return None
+        senses = {s["sense_id"]: s for s in progress_repo.scope_senses(conn, [b["id"] for b in books])}
+        pairs = progress_repo.published_pairs(conn, list(senses)) if senses else set()
+        attempts = progress_repo.attempts_for(conn, user_id, list(senses)) if senses else []
+    found = {k: v for k, v in evidence.items(attempts, now).items() if k in pairs}
+    return found, senses
+
+
+def _entry(item, senses):
+    sense = senses[item["sense_id"]]
+    return {
+        **{k: sense[k] for k in ("lemma", "part_of_speech", "definition_zh")},
+        **{k: v for k, v in item.items() if k != "last_attempt_at"},
+    }
+
+
+def current_view(found, senses):
+    """按题型的状态与记忆强度分布、当前弱项、记忆衰减、已改善与题型落差。"""
+    by_skill = {}
+    for skill in SKILL_TYPES:
+        members = [i for (_, s), i in found.items() if s == skill]
+        by_skill[skill] = {
+            "tested": len(members),
+            **{status: sum(1 for i in members if i["status"] == status) for status in evidence.STATUSES},
+            "strength": [sum(1 for i in members if i["strength"] == level) for level in (1, 2, 3, 4)],
+            "mean_recall": round(sum(i["recall"] for i in members) / len(members), 4) if members else None,
+        }
+    values = list(found.values())
+    weak = sorted((i for i in values if i["status"] == "weak"), key=evidence.weak_order)
+    fading = sorted((i for i in values if i["status"] == "fading"), key=evidence.fading_order)
+    improved = sorted(
+        (i for i in values if i["status"] == "improved"), key=lambda i: (-i["wrong"], i["sense_id"], i["skill_type"])
+    )
+    per_sense = defaultdict(dict)
+    for (sense_id, skill), item in found.items():
+        per_sense[sense_id][skill] = item["status"]
+    gaps = []
+    for sense_id, statuses in sorted(per_sense.items()):
+        weak_skills = [s for s in SKILL_TYPES if statuses.get(s) == "weak"]
+        solid_skills = [s for s in SKILL_TYPES if statuses.get(s) in ("stable", "improved")]
+        if weak_skills and solid_skills:
+            sense = senses[sense_id]
+            gaps.append(
+                {
+                    "sense_id": sense_id,
+                    **{k: sense[k] for k in ("lemma", "part_of_speech", "definition_zh")},
+                    "weak": weak_skills,
+                    "solid": solid_skills,
+                }
+            )
+    return {
+        "version": evidence.VERSION,
+        "tested": len(values),
+        "by_skill": by_skill,
+        "weak": [_entry(i, senses) for i in weak[:TOP]],
+        "fading": [_entry(i, senses) for i in fading[:TOP]],
+        "improved": [_entry(i, senses) for i in improved[:TOP]],
+        "skill_gaps": gaps[:TOP],
+    }

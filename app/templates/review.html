@@ -10,11 +10,12 @@
   {% else %}
     <h2>已到期（{{ data.due|length }}）</h2>
     {% if data.due %}
+      <p class="form-note">记忆强度低的排在前面。</p>
       <ul class="review-list">
         {% for e in data.due %}
           <li><strong>{{ e.lemma }}</strong> <span class="field-hint">{{ e.part_of_speech }} {{ e.definition_zh }}</span>
-            <span class="status">{{ skill_names[e.skill_type] }} · 正确 {{ e.correct_count }} / {{ e.seen_count }}</span>
-            <a class="text-link" href="{{ url_for('learning.practice_page', skill_type=e.skill_type) }}">复习</a></li>
+            <span class="status">{{ skill_names[e.skill_type] }} · 正确 {{ e.correct_count }} / {{ e.seen_count }}{% if e.strength %} · {% include "_strength.html" %}{% endif %}</span>
+            <button class="link-button text-link" type="button" data-skill="{{ e.skill_type }}" data-senses="{{ e.sense_id }}" data-count="1">复习</button></li>
         {% endfor %}
       </ul>
     {% else %}
@@ -25,7 +26,8 @@
       <ul class="review-list">
         {% for e in data.wrong_pending %}
           <li><strong>{{ e.lemma }}</strong> <span class="field-hint">{{ e.part_of_speech }} {{ e.definition_zh }}</span>
-            <span class="status">{{ skill_names[e.skill_type] }} · {{ e.until }}到期</span></li>
+            <span class="status">{{ skill_names[e.skill_type] }} · {{ e.until }}到期</span>
+            <button class="link-button text-link" type="button" data-skill="{{ e.skill_type }}" data-senses="{{ e.sense_id }}" data-count="1">现在练</button></li>
         {% endfor %}
       </ul>
     {% else %}
@@ -33,8 +35,11 @@
     {% endif %}
     <details class="about">
       <summary>复习规则</summary>
-      <p>按 review_rules_v1 安排：答错 10 分钟后复习，答对后间隔依次为 1、3、7、14 天。复习时间由作答记录计算。</p>
+      <p>按 review_rules_v2 安排：答错 10 分钟后复习，答对后间隔依次为 1、3、7、14 天；未到期的提前练习答对只计次数，不推进间隔。复习时间由作答记录计算。</p>
+      <p>记忆强度按半衰期公式 p = 2^(−距上次天数 / 半衰期) 估计，半衰期随答对次数增长、随答错次数缩短；只用于排序，不是掌握度。</p>
     </details>
+    <p id="launch-error" class="form-error" role="alert"></p>
   {% endif %}
 </section>
 {% endblock %}
+{% block scripts %}{% if data %}<script src="{{ url_for('static', filename='js/launch.js') }}"></script>{% endif %}{% endblock %}

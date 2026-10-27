@@ -7,13 +7,13 @@ from app.repositories import db
 from app.repositories import practice as repo
 from app.repositories import progress as progress_repo
 from app.repositories import wordbooks as wordbook_repo
-from app.services import grading, review_rules
+from app.services import evidence, grading, review_rules, selection
 from app.services.content_import import EXAM_TYPES, SKILL_TYPES
 
 DEFAULT_COUNT = 10
 MAX_COUNT = 20
-# new_senses：只出任何题型都未作答的词义（今日新词义）。
-FOCUSES = ("new_senses",)
+# new_senses：只出任何题型都未作答的词义（今日新词义）；weak：当前弱项与记忆衰减项（弱项专练）。
+FOCUSES = ("new_senses", "weak")
 PAGE_SIZE = 20
 
 
@@ -28,6 +28,10 @@ class NoTarget(Exception):
 
 
 class NoQuestions(Exception):
+    pass
+
+
+class NoWeakItems(Exception):
     pass
 
 
@@ -79,10 +83,11 @@ def _is_id(value):
 # ---- 组卷 ----
 
 
-def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None, focus=None):
-    """按 到期复习 > 未到期错题 > 未测试 > 其他 的优先级组卷，同级随机，每个词义最多一题。
+def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None, focus=None, sense_ids=None):
+    """按选题决策 selection_v1 组卷，每个词义最多一题，每题记录选题理由。
 
-    focus="new_senses" 时只从任何题型都未作答的词义中随机取题。
+    默认按 到期复习 > 未到期错题 > 未测试 > 巩固；focus="new_senses" 只出任何题型都未作答的词义；
+    focus="weak" 只出当前弱项与记忆衰减项；sense_ids 按指定词义定向练习（与 focus 互斥）。
     """
     rng = rng or random.SystemRandom()
     fields = {}
@@ -94,6 +99,11 @@ def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None
         fields["wordbook_ids"] = "wordbook_ids 必须是词表 id 列表"
     if focus is not None and focus not in FOCUSES:
         fields["focus"] = "focus 只能为 " + "/".join(FOCUSES)
+    if sense_ids is not None:
+        if not isinstance(sense_ids, list) or not sense_ids or not all(_is_id(i) for i in sense_ids):
+            fields["sense_ids"] = "sense_ids 必须是非空的词义 id 列表"
+        elif focus is not None:
+            fields["sense_ids"] = "sense_ids 不能与 focus 同时使用"
     if fields:
         raise InvalidRequest(fields)
     with db.transaction(conn):
@@ -113,11 +123,22 @@ def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None
         if not senses:
             raise NoQuestions
         if focus == "new_senses":
-            rng.shuffle(senses)
-            chosen = senses[:count]
+            plan = selection.new_senses(senses, count, rng)
         else:
-            states = repo.learning_states(conn, user_id, skill_type, senses)
-            chosen = _prioritize(senses, states, now, count, rng)
+            attempts = [a for a in progress_repo.attempts_for(conn, user_id, senses) if a["skill_type"] == skill_type]
+            found = {sense_id: item for (sense_id, _), item in evidence.items(attempts, now).items()}
+            if sense_ids is not None:
+                plan = selection.targeted(senses, sense_ids, found, count)
+            elif focus == "weak":
+                plan = selection.weak(senses, found, count)
+                if not plan:
+                    raise NoWeakItems
+            else:
+                states = repo.learning_states(conn, user_id, skill_type, senses)
+                plan = selection.default(senses, states, found, now, count, rng)
+        if not plan:
+            raise NoQuestions
+        chosen = [sense_id for sense_id, _ in plan]
         by_sense = {}
         for question in repo.published_questions(conn, chosen, skill_type):
             by_sense.setdefault(question["sense_id"], []).append(question["id"])
@@ -126,28 +147,15 @@ def create_session(conn, user_id, skill_type, count, wordbook_ids, now, rng=None
             "skill_type": skill_type,
             "count": count,
             "focus": focus,
+            "sense_ids": sense_ids,
             "review_rule_version": review_rules.VERSION,
+            "selection_version": selection.VERSION,
+            "evidence_version": evidence.VERSION,
+            "reasons": [reason for _, reason in plan],
         }
         session_id = repo.insert_session(conn, user_id, json.dumps(snapshot, ensure_ascii=False), now)
         repo.insert_items(conn, session_id, [rng.choice(by_sense[s]) for s in chosen], now)
     return get_session(conn, user_id, session_id)
-
-
-def _prioritize(senses, states, now, count, rng):
-    due, wrong, untested, rest = [], [], [], []
-    for sense_id in senses:
-        state = states.get(sense_id)
-        if state is None or state["seen_count"] == 0:
-            untested.append(sense_id)
-        elif state["next_review_at"] is not None and state["next_review_at"] <= now:
-            due.append(sense_id)
-        elif state["correct_streak"] == 0:
-            wrong.append(sense_id)
-        else:
-            rest.append(sense_id)
-    for bucket in (due, wrong, untested, rest):
-        rng.shuffle(bucket)
-    return (due + wrong + untested + rest)[:count]
 
 
 # ---- 查看 ----
@@ -160,7 +168,9 @@ def get_session(conn, user_id, session_id):
             raise NotFound
         rows = repo.session_items(conn, session_id)
     snapshot = json.loads(session["target_snapshot_json"])
-    items = [_item_view(row) for row in rows]
+    # selection_v1 之前的练习没有选题理由。
+    reasons = snapshot.get("reasons") or [None] * len(rows)
+    items = [{**_item_view(row), "reason": reason} for row, reason in zip(rows, reasons, strict=True)]
     return {
         "id": session["id"],
         "status": session["status"],
