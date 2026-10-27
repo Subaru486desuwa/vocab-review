@@ -2,7 +2,7 @@
 
 纯函数，不读写数据库；作答事务按当前版本 VERSION 调用，重建时按作答记录保存的版本重放（见 RULES）。
 v1：答错 10 分钟后复习，答对按 1/3/7/14 天推进。
-v2：在 v1 基础上，未到复习时间的提前练习答对只累计次数，不推进间隔、不改复习时间（错题恢复除外）。
+v2：在 v1 基础上，未到复习时间的提前练习答对只累计次数，不推进间隔、不改复习时间。
 """
 
 from datetime import timedelta
@@ -43,12 +43,7 @@ def apply_v1(state, is_correct, submitted_at):
 
 
 def apply_v2(state, is_correct, submitted_at):
-    early = (
-        is_correct
-        and state["correct_streak"] > 0
-        and state["next_review_at"] is not None
-        and submitted_at < state["next_review_at"]
-    )
+    early = is_correct and state["next_review_at"] is not None and submitted_at < state["next_review_at"]
     if not early:
         return apply_v1(state, is_correct, submitted_at)
     return {

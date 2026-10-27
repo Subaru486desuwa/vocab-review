@@ -52,7 +52,7 @@
 - 连续三次正确且跨度≥24 小时：近期作答稳定；跨度从作答事实查询，不仅凭 correct_streak 判断。
 - 错误：correct_streak 清零，interval_stage=0，10 分钟后复习。
 - 正确：按当前 interval_stage 取 [1,3,7,14] 天间隔，之后阶段加一并封顶 3；初始阶段为 0。
-- review_rules_v2（当前）：正确且 correct_streak>0、提交时间早于 next_review_at 的提前练习，只累计 seen/correct/streak 与 last_attempt_at，不推进阶段、不改 next_review_at；其余与 v1 相同。v2 之前的作答仍记录并按 review_rules_v1 重放。
+- review_rules_v2（当前）：提交时间早于 next_review_at 的提前练习答对，只累计 seen/correct/streak 与 last_attempt_at，不推进阶段、不改 next_review_at（错题提前答对也一样）；其余与 v1 相同，提交时间等于 next_review_at 已算到期。v2 之前的作答仍记录并按 review_rules_v1 重放。
 - 重建按 (submitted_at,attempt_id) 排序，使用作答记录保存的规则版本；变更规则保留旧版或记录完整迁移。`flask rebuild-learning-state [--username U] [--apply]` 执行重放并逐字段比对，有差异时退出码为 1，`--apply` 把差异行改写为重放结果；遇到未登记的规则版本即中止。应在无人练习时执行。
 - 近期作答稳定：同一用户、词义、题型最近三次作答均正确，且第一次与第三次的 submitted_at 相差不少于 24 小时。
 

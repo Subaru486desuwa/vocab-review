@@ -1,12 +1,13 @@
 """T18：诊断到练习的决策闭环——定向练习、弱项专练、选题理由与改善后的诊断反馈。"""
 
 import json
+from datetime import timedelta
 
 import pytest
 
 from app.repositories import db
 from app.services import learning_state
-from tests.helpers import answer, query, question_of, right, start, wrong
+from tests.helpers import NOW, answer, query, question_of, right, start, wrong
 
 pytestmark = pytest.mark.db
 
@@ -133,3 +134,28 @@ def test_early_correct_practice_keeps_interval_and_replays(demo, learner, db_con
     with demo.app_context():
         diffs, checked = learning_state.compare(db.get_db())
     assert (diffs, checked) == ([], 1)
+
+
+def test_wrong_then_early_correct_keeps_retry_until_due_and_replays(demo, learner, db_config):
+    sense = senses_of(db_config, "cet6-demo")[0]
+    for count, (minute, correct) in enumerate(((0, False), (1, True), (2, True), (10, True)), start=1):
+        moment = NOW + timedelta(minutes=minute)
+        demo.config["CLOCK"] = lambda moment=moment: moment
+        practice_once(learner, db_config, sense, correct)
+        [state] = query(db_config, "SELECT * FROM learning_state")
+        assert (state["seen_count"], state["correct_count"], state["correct_streak"]) == (count, count - 1, count - 1)
+        assert state["last_attempt_at"] == moment
+        if minute < 10:
+            assert (state["interval_stage"], state["next_review_at"]) == (0, NOW + timedelta(minutes=10))
+            assert (
+                learner.get("/api/v1/me/review").get_json()["data"]["next_due_at"]
+                == (NOW + timedelta(minutes=10)).isoformat() + "Z"
+            )
+        else:
+            assert (state["interval_stage"], state["next_review_at"]) == (1, moment + timedelta(days=1))
+        with demo.app_context():
+            assert learning_state.compare(db.get_db()) == ([], 1)
+    assert (state["correct_count"], state["correct_streak"]) == (3, 3)
+    assert {a["review_rule_version"] for a in query(db_config, "SELECT review_rule_version FROM attempts")} == {
+        "review_rules_v2"
+    }

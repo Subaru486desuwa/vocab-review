@@ -12,16 +12,6 @@ bp = Blueprint("learning", __name__)
 
 SKILL_NAMES = {"recognition": "辨义", "spelling": "拼写", "context": "语境"}
 STATUS_NAMES = {"weak": "当前弱项", "fading": "记忆衰减", "improved": "已改善", "stable": "稳定"}
-REASON_NAMES = {
-    "due": "到期复习",
-    "wrong_pending": "错题巩固",
-    "untested": "首次练习",
-    "consolidate": "巩固",
-    "new_sense": "今日新词",
-    "weak": "弱项专练",
-    "fading": "记忆衰减",
-    "targeted": "定向练习",
-}
 
 
 def _user_id():
