@@ -7,7 +7,7 @@ from app.repositories import db
 from app.repositories import progress as repo
 from app.services import review_rules
 
-RULES = {review_rules.VERSION: review_rules.apply}
+RULES = review_rules.RULES
 FIELDS = ("seen_count", "correct_count", "correct_streak", "interval_stage", "last_attempt_at", "next_review_at")
 
 

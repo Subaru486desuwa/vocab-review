@@ -5,6 +5,7 @@ from datetime import timedelta
 from app.repositories import db
 from app.repositories import progress as repo
 from app.repositories import wordbooks as wordbook_repo
+from app.services import evidence
 from app.services.content_import import SKILL_TYPES
 from app.services.practice import InvalidRequest, NoTarget, _is_id, _iso
 
@@ -44,11 +45,16 @@ def _scope_view(books, skill_type):
 
 
 def review_list(conn, user_id, now, wordbook_id=None, skill_type=None):
-    """到期复习与未到期错题（附剩余时间）；未作答过的词义不出现。"""
+    """到期复习与未到期错题（附剩余时间与记忆强度）；未作答过的词义不出现。
+
+    到期项按记忆强度从低到高排列，与默认组卷的到期顺序一致。
+    """
     with db.transaction(conn):
         books = _scope(conn, user_id, wordbook_id, skill_type)
         senses = {s["sense_id"]: s for s in repo.scope_senses(conn, [b["id"] for b in books])}
         states = repo.learning_states(conn, user_id, list(senses)) if senses else []
+        attempts = repo.attempts_for(conn, user_id, list(senses)) if senses else []
+    found = evidence.items(attempts, now)
     due, pending, upcoming = [], [], []
     for state in states:
         if (skill_type and state["skill_type"] != skill_type) or state["seen_count"] == 0:
@@ -60,6 +66,7 @@ def review_list(conn, user_id, now, wordbook_id=None, skill_type=None):
         if not is_due and state["correct_streak"] != 0:
             continue
         sense = senses[state["sense_id"]]
+        item = found.get((state["sense_id"], state["skill_type"]))
         entry = {
             "sense_id": state["sense_id"],
             "lemma": sense["lemma"],
@@ -72,7 +79,10 @@ def review_list(conn, user_id, now, wordbook_id=None, skill_type=None):
             "last_attempt_at": _iso(state["last_attempt_at"]),
             "next_review_at": _iso(next_at),
             "seconds_until_due": 0 if is_due else int((next_at - now).total_seconds()),
-            "_order": (next_at, state["sense_id"], state["skill_type"]),
+            "recall": item["recall"] if item else None,
+            "strength": item["strength"] if item else None,
+            "status": item["status"] if item else None,
+            "_order": (item["recall"] if item and is_due else 0, next_at, state["sense_id"], state["skill_type"]),
         }
         (due if is_due else pending).append(entry)
     for bucket in (due, pending):

@@ -98,6 +98,15 @@ a.status { text-decoration: none; }
 .group-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0 24px; }
 .group-card { padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; background: white; }
 .group-card p { margin: 6px 0 0; font-size: 14px; }
+.strength { display: inline-flex; gap: 2px; vertical-align: middle; }
+.strength i { width: 5px; height: 12px; border-radius: 1px; background: var(--line); }
+.strength i.on { background: var(--green); }
+.strength-dist { display: flex; width: 120px; height: 10px; border-radius: 3px; overflow: hidden; background: var(--line); }
+.strength-dist .lv1 { background: #c96a4f; } .strength-dist .lv2 { background: #d9a648; } .strength-dist .lv3 { background: #7fae8e; } .strength-dist .lv4 { background: var(--green); }
+.recent { font-style: normal; letter-spacing: 2px; }
+.recent i { font-style: normal; }
+.recent .ok { color: var(--green); } .recent .no { color: #b04a3c; }
+.reason { color: var(--muted); font-size: 13px; margin: -10px 0 16px; }
 footer { padding-block: 24px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); }
 @media (max-width: 600px) {
   .site-header, main, footer { width: calc(100% - 36px); }

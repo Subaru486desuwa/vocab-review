@@ -175,7 +175,7 @@ def test_grading_records_attempts_and_updates_learning_state(learner, db_config)
     assert empty["session_status"] == "completed"
     attempts = query(db_config, "SELECT is_correct, error_type, review_rule_version FROM attempts ORDER BY id")
     assert [(a["is_correct"], a["error_type"]) for a in attempts] == [(1, None), (0, "meaning"), (0, "unanswered")]
-    assert {a["review_rule_version"] for a in attempts} == {"review_rules_v1"}
+    assert {a["review_rule_version"] for a in attempts} == {"review_rules_v2"}
     states = query(db_config, "SELECT seen_count, correct_count, interval_stage, next_review_at FROM learning_state")
     assert sorted((s["seen_count"], s["correct_count"], s["interval_stage"]) for s in states) == [
         (1, 0, 0), (1, 0, 0), (1, 1, 1),

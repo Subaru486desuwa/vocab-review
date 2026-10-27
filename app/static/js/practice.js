@@ -4,6 +4,27 @@
   const $ = (id) => document.getElementById(id);
   const skillNames = { recognition: "辨义", spelling: "拼写", context: "语境" };
   const errorNames = { meaning: "释义", spelling: "拼写", context: "语境", unanswered: "未作答", unknown: "未知" };
+  const reasonNames = {
+    due: "到期复习",
+    wrong_pending: "错题巩固",
+    untested: "首次练习",
+    consolidate: "巩固",
+    new_sense: "今日新词",
+    weak: "当前弱项",
+    fading: "记忆衰减",
+    targeted: "定向练习",
+  };
+
+  // 选题理由，例如“当前弱项 · 最近 3 次错 2 次 · 记忆约 35%”；旧练习没有理由时为空。
+  function reasonText(reason) {
+    if (!reason) return "";
+    const parts = [reasonNames[reason.code] || reason.code];
+    if (reason.recent_wrong) parts.push(`最近 ${reason.recent_count} 次错 ${reason.recent_wrong} 次`);
+    // 弱项与定向练习多是刚作答过的，此时记忆强度接近 100%，不显示以免误读。
+    const showRecall = ["due", "wrong_pending", "consolidate", "fading"].includes(reason.code);
+    if (showRecall && reason.recall !== undefined) parts.push(`记忆约 ${Math.round(reason.recall * 100)}%`);
+    return parts.join(" · ");
+  }
   let session = null;
   let current = null;
 
@@ -36,6 +57,7 @@
     $("submit-answer").hidden = false;
     $("submit-answer").disabled = false;
     $("progress").textContent = `${skillNames[current.skill_type]} · 第 ${current.position} / ${session.total} 题`;
+    $("reason").textContent = reasonText(current.reason);
     $("prompt").textContent = current.prompt;
     const area = $("answer-area");
     area.replaceChildren();
@@ -96,6 +118,21 @@
     const line = document.createElement("p");
     line.className = "lead";
     line.textContent = `${skillNames[session.skill_type]}题 ${session.total} 道，答对 ${correct} 道。错题会在 10 分钟后进入复习。`;
+    const list = document.createElement("ul");
+    list.className = "review-list";
+    for (const item of session.items) {
+      const row = document.createElement("li");
+      const word = document.createElement("strong");
+      word.textContent = item.result.lemma;
+      const hint = document.createElement("span");
+      hint.className = "field-hint";
+      hint.textContent = item.result.definition_zh;
+      const status = document.createElement("span");
+      status.className = "status";
+      status.textContent = [reasonText(item.reason), item.result.is_correct ? "✓" : "✗"].filter(Boolean).join(" · ");
+      row.append(word, hint, status);
+      list.append(row);
+    }
     const actions = document.createElement("div");
     actions.className = "actions";
     const back = document.createElement("a");
@@ -106,8 +143,12 @@
     again.className = "text-link";
     again.href = "/practice";
     again.textContent = "再练一组 →";
-    actions.append(back, again);
-    box.append(title, line, actions);
+    const insight = document.createElement("a");
+    insight.className = "text-link";
+    insight.href = "/insights";
+    insight.textContent = "查看诊断变化 →";
+    actions.append(back, again, insight);
+    box.append(title, line, list, actions);
     box.hidden = false;
   }
 

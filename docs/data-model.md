@@ -45,14 +45,19 @@
 
 已引用的词条、词义、例句、题目和模型版本保留历史或停用，不级联删除。已发布题目更新必须新增版本。关系字段不使用逗号拼接 ID；选项等结构化内容可用 JSON。
 
-## 学习状态与 review_rules_v1
+## 学习状态与 review_rules_v2
 
 - 无有效作答：未测试，不赋虚构分数。
 - next_review_at≤当前时间：待复习；错题未到期可列出，但显示倒计时。
 - 连续三次正确且跨度≥24 小时：近期作答稳定；跨度从作答事实查询，不仅凭 correct_streak 判断。
 - 错误：correct_streak 清零，interval_stage=0，10 分钟后复习。
 - 正确：按当前 interval_stage 取 [1,3,7,14] 天间隔，之后阶段加一并封顶 3；初始阶段为 0。
+- review_rules_v2（当前）：提交时间早于 next_review_at 的提前练习答对，只累计 seen/correct/streak 与 last_attempt_at，不推进阶段、不改 next_review_at（错题提前答对也一样）；其余与 v1 相同，提交时间等于 next_review_at 已算到期。v2 之前的作答仍记录并按 review_rules_v1 重放。
 - 重建按 (submitted_at,attempt_id) 排序，使用作答记录保存的规则版本；变更规则保留旧版或记录完整迁移。`flask rebuild-learning-state [--username U] [--apply]` 执行重放并逐字段比对，有差异时退出码为 1，`--apply` 把差异行改写为重放结果；遇到未登记的规则版本即中止。应在无人练习时执行。
 - 近期作答稳定：同一用户、词义、题型最近三次作答均正确，且第一次与第三次的 submitted_at 相差不少于 24 小时。
+
+## 当前证据与选题（evidence_v1、selection_v1）
+
+不新增表。当前证据由 attempts 按 (submitted_at,id) 顺序现场计算，每个 词义 × 题型：正误次数、最近 5 次正误、距上次天数、半衰期 h = 2^(−1.8 + 2√(1+答对) − √(1+答错)) 天、记忆强度 p = 2^(−天数/h)，以及状态：最近一次错或最近 3 次错 ≥2 为 weak；否则 p<0.5 为 fading；否则曾错且最近 3 次全对为 improved；其余 stable。当前弱项按（近期错误比例降序、半衰期升序、最近作答在前）排序，记忆衰减按记忆强度升序。诊断页、今日任务与选题只看当前目标内有已发布题目的组合。选题理由与版本写入 practice_sessions.target_snapshot_json（reasons 与 session_items 按 position 对齐），不改写学习状态。
 
 词表交集按 words 去重；题型表现按词义与题型统计，两种分母分别标明。某词收录于词表不等于考试覆盖该词全部词义。

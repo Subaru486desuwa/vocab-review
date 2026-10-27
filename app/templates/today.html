@@ -11,6 +11,7 @@
       {% set ns = plan.new_senses %}
       <div><dt>今日新词义</dt>{% if ns.done >= ns.target %}<dd>{{ ns.done }} 个</dd><p>已达成目标 {{ ns.target }} 个</p>{% else %}<dd>{{ ns.done }} / {{ ns.target }}</dd><p>还有 {{ ns.available }} 个可学</p>{% endif %}</div>
       <div><dt>待复习</dt><dd>{{ plan.review.due }}</dd></div>
+      <div><dt>当前弱项</dt><dd>{{ plan.weak.total }}</dd><p><a class="text-link" href="{{ url_for('insights.page') }}">查看诊断</a></p></div>
     </dl>
     <div class="today-tasks">
       <div class="today-task">
@@ -37,11 +38,21 @@
           <p class="form-note">目标词表中的词义都已练习过。</p>
         {% endif %}
       </div>
+      {% if plan.weak.total %}
+      <div class="today-task">
+        <h2>弱项专练</h2>
+        <div class="actions">
+          {% for skill, n in plan.weak.by_skill.items() if n %}
+            <button class="button" type="button" data-skill="{{ skill }}" data-focus="weak" data-count="{{ [n, 20]|min }}">专练{{ skill_names[skill] }}（{{ n }}）</button>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
     </div>
-    <p id="today-error" class="form-error" role="alert"></p>
+    <p id="launch-error" class="form-error" role="alert"></p>
     <details class="about">
       <summary>说明</summary>
-      <p>“今天”按 {{ plan.timezone }} 时区计算。今日新词义是今天首次作答的词义，答错也计入；连续学习天数只看每天是否有作答。答错的词义 10 分钟后到期，届时会重新出现在复习里。</p>
+      <p>“今天”按 {{ plan.timezone }} 时区计算。今日新词义是今天首次作答的词义，答错也计入；连续学习天数只看每天是否有作答。答错的词义 10 分钟后到期，届时会重新出现在复习里。当前弱项：某词义的某题型最近一次答错，或最近 3 次错 2 次。</p>
     </details>
   {% else %}
     <p class="lead">先选择考试目标，再开始今日任务。</p>
@@ -49,4 +60,4 @@
   {% endif %}
 </section>
 {% endblock %}
-{% block scripts %}{% if plan %}<script src="{{ url_for('static', filename='js/today.js') }}"></script>{% endif %}{% endblock %}
+{% block scripts %}{% if plan %}<script src="{{ url_for('static', filename='js/launch.js') }}"></script>{% endif %}{% endblock %}

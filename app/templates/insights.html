@@ -5,11 +5,83 @@
 <section class="auth-page wide-page">
   <p class="eyebrow">学习诊断</p>
   <h1>做题反馈</h1>
+  {% set cur = data.current %}
   {% if not data.attempts.count %}
     <p class="lead">还没有作答记录，先去练习几题。</p>
     <div class="actions"><a class="button" href="{{ url_for('learning.today_page') }}">今日任务</a></div>
   {% else %}
     <p class="lead">共 {{ data.attempts.count }} 次作答，答错 {{ data.attempts.wrong }} 次。</p>
+    {% if cur and cur.tested %}
+    <h2>当前状态 <span class="model-tag">规则 · 当前目标</span></h2>
+    <table class="data-table">
+      <caption>按题型（共 {{ cur.tested }} 个已练习的词义 × 题型）</caption>
+      <thead><tr><th scope="col">题型</th><th scope="col">当前弱项</th><th scope="col">记忆衰减</th><th scope="col">已改善</th><th scope="col">稳定</th><th scope="col">记忆强度分布</th><th scope="col">平均记忆</th><th scope="col"></th></tr></thead>
+      <tbody>
+        {% for skill, b in cur.by_skill.items() if b.tested %}
+          <tr>
+            <th scope="row">{{ skill_names[skill] }}</th>
+            <td>{{ b.weak }}</td><td>{{ b.fading }}</td><td>{{ b.improved }}</td><td>{{ b.stable }}</td>
+            <td><span class="strength-dist" aria-label="1 格 {{ b.strength[0] }}，2 格 {{ b.strength[1] }}，3 格 {{ b.strength[2] }}，4 格 {{ b.strength[3] }}">{% for n in b.strength %}<span class="lv{{ loop.index }}" style="flex-grow: {{ n }}" title="{{ loop.index }} 格：{{ n }}"></span>{% endfor %}</span></td>
+            <td>{{ "%.0f" | format(b.mean_recall * 100) }}%</td>
+            <td>{% if b.weak + b.fading %}<button class="link-button text-link" type="button" data-skill="{{ skill }}" data-focus="weak" data-count="{{ [b.weak + b.fading, 20] | min }}">专练</button>{% endif %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if cur.weak %}
+    <table class="data-table">
+      <caption>当前弱项</caption>
+      <thead><tr><th scope="col">词义</th><th scope="col">题型</th><th scope="col">最近作答</th><th scope="col">半衰期</th><th scope="col"></th></tr></thead>
+      <tbody>
+        {% for e in cur.weak %}
+          <tr>
+            <th scope="row">{{ e.lemma }} <span class="muted">{{ e.definition_zh }}</span></th>
+            <td>{{ skill_names[e.skill_type] }}</td>
+            <td>{% include "_recent.html" %}</td>
+            <td>{% if e.half_life_days < 1 %}约 {{ [1, (e.half_life_days * 24) | round | int] | max }} 小时{% else %}约 {{ "%.1f" | format(e.half_life_days) }} 天{% endif %}</td>
+            <td><button class="link-button text-link" type="button" data-skill="{{ e.skill_type }}" data-senses="{{ e.sense_id }}" data-count="1">练这项</button></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+
+    {% if cur.skill_gaps %}
+    <table class="data-table">
+      <caption>题型落差：同一词义有的题型稳、有的题型弱</caption>
+      <thead><tr><th scope="col">词义</th><th scope="col">较稳</th><th scope="col">薄弱</th><th scope="col"></th></tr></thead>
+      <tbody>
+        {% for g in cur.skill_gaps %}
+          <tr>
+            <th scope="row">{{ g.lemma }} <span class="muted">{{ g.definition_zh }}</span></th>
+            <td>{% for x in g.solid %}{{ skill_names[x] }}{% if not loop.last %}、{% endif %}{% endfor %}</td>
+            <td>{% for x in g.weak %}{{ skill_names[x] }}{% if not loop.last %}、{% endif %}{% endfor %}</td>
+            <td><button class="link-button text-link" type="button" data-skill="{{ g.weak[0] }}" data-senses="{{ g.sense_id }}" data-count="1">练{{ skill_names[g.weak[0]] }}</button></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+
+    <div class="group-grid">
+      {% if cur.fading %}
+      <div class="group-card">
+        <h3>记忆衰减 <span class="muted">{{ cur.fading | length }} 项</span></h3>
+        <p>{% for e in cur.fading[:6] %}{{ e.lemma }}<span class="muted">（{{ skill_names[e.skill_type] }} {{ "%.0f" | format(e.recall * 100) }}%）</span>{% if not loop.last %}、{% endif %}{% endfor %}</p>
+      </div>
+      {% endif %}
+      {% if cur.improved %}
+      <div class="group-card">
+        <h3>已改善 <span class="muted">{{ cur.improved | length }} 项</span></h3>
+        <p>{% for e in cur.improved[:6] %}{{ e.lemma }}<span class="muted">（{{ skill_names[e.skill_type] }} 曾错 {{ e.wrong }} 次）</span>{% if not loop.last %}、{% endif %}{% endfor %}</p>
+      </div>
+      {% endif %}
+    </div>
+    <p id="launch-error" class="form-error" role="alert"></p>
+
+    <h2>历史统计 <span class="model-tag">规则 · 全部作答</span></h2>
+    {% endif %}
     <dl class="stat-grid">
       {% for kind, count in r.error_types.items() %}
         <div><dt>{{ error_names.get(kind, kind) }}错误</dt><dd>{{ count }}</dd></div>
@@ -120,6 +192,7 @@
 
     <details class="about">
       <summary>方法说明</summary>
+      <p>当前状态：只看当前目标词表内、有已发布题目的词义 × 题型（evidence_v1）。当前弱项为最近一次答错或最近 3 次错 2 次，按近期错误比例与半衰期（记忆强度降到 50% 所需时间）排序；已改善为曾答错、最近 3 次全对；记忆衰减为其余项中记忆强度低于 50%。记忆强度沿用 Duolingo 半衰期回归的形式 p = 2^(−距上次天数 / h)，h = 2^(−1.8 + 2√(1+答对) − √(1+答错)) 天；系数为手工设定、未经训练，只用于排序与选题，不是掌握度。“专练”先出当前弱项，再出记忆衰减项。</p>
       <p>{{ data.granularity }}</p>
       <p>遗忘风险：实验三随机森林（{% if ml.model %}{{ ml.model.model_code }} {{ ml.model.version }}{% else %}未加载{% endif %}）按距上次作答的间隔、作答次数与正确次数估计预期练习正确比例；模型在 Duolingo 公开记录上训练，在本系统用户上未经验证，不是掌握度。分组：对上述特征与估计值标准化后 KMeans（k=3，固定种子），按组内平均正确率从低到高命名为薄弱、一般、较稳。</p>
       <p>错题语义：实验四 all-MiniLM-L6-v2 编码“词条: 英文释义”，按余弦距离做平均链接层次聚类；组内与误选的相似度高于 {{ "%.2f" | format(dl.threshold or 0.45) }} 记为语义相近（约为演示词库两两相似度的第 99 百分位，未经标注评价）。拼写错法按与最接近的正确拼写的编辑距离分类。</p>
@@ -127,3 +200,4 @@
   {% endif %}
 </section>
 {% endblock %}
+{% block scripts %}{% if data.current %}<script src="{{ url_for('static', filename='js/launch.js') }}"></script>{% endif %}{% endblock %}

@@ -124,7 +124,9 @@ def diagnose():
     rows, senses, states = insights.load(conn, current_user()["id"])
     rule_result = insights.rules(rows, senses)
     sense_rows = {s["sense_id"]: s for s in senses}
+    loaded = insights.load_current(conn, current_user()["id"], clock.now())
     return {
+        "current": insights.current_view(*loaded) if loaded else None,
         "attempts": rule_result.pop("attempts"),
         "rules": rule_result,
         "ml": _ml(conn, insights.ml_inputs(states, clock.now()), sense_rows, started),
