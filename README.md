@@ -24,10 +24,10 @@ docker compose up -d --build
 docker compose run --rm web flask db upgrade
 ```
 
-在浏览器打开 `http://127.0.0.1:5000/`，在“课程实验”中进入“Web 框架”即为 `/lab/hello`。若从 Mac 浏览器查看 Osaka 上的页面，先在 Mac 建立隧道：
+在浏览器打开 `http://127.0.0.1:5000/`，在“课程实验”中进入“Web 框架”即为 `/lab/hello`。若从 Mac 浏览器查看 Osaka 上的页面，先在 Mac 建立隧道，再打开 `http://127.0.0.1:5050/`（Mac 的“隔空播放接收器”占用本地 5000 端口，会直接返回 403）：
 
 ```bash
-ssh -N -L 5000:127.0.0.1:5000 osaka
+ssh -N -L 5050:127.0.0.1:5000 osaka
 ```
 
 `flask db upgrade` 只对 `.env` 中 `DB_NAME` 指定的库执行未应用的迁移，已执行的版本记录在 `schema_migrations`。基础页面不连接数据库，不设数据库也能启动。

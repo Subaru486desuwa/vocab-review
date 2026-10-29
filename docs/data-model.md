@@ -2,7 +2,7 @@
 
 以下为 MySQL 数据字典，由 `sql/migrations/` 下按序迁移创建；内容导入规则见 [内容包格式](content-format.md)；`schema_migrations` 记录已执行迁移，属于基础设施表，不计入 15 张业务表（0001 建 14 张，0003 追加 word_relations）。使用 InnoDB、utf8mb4；除注明的复合键外主键为 BIGINT。时间保存为 UTC DATETIME(6)，展示和日统计按用户时区转换。所有外键类型一致并建索引，默认限制删除。
 
-![0001 建立的 14 张表的关系与基数（word_relations 见下表）](images/data-model.svg)
+![15 张表的关系与基数](images/data-model.svg)
 
 ## 账户与内容
 
