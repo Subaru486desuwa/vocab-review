@@ -7,7 +7,7 @@ from app.repositories import db
 from app.repositories import practice as repo
 from app.repositories import progress as progress_repo
 from app.repositories import wordbooks as wordbook_repo
-from app.services import evidence, grading, review_rules, selection
+from app.services import evidence, grading, relations, review_rules, selection
 from app.services.content_import import EXAM_TYPES, SKILL_TYPES
 
 DEFAULT_COUNT = 10
@@ -167,10 +167,11 @@ def get_session(conn, user_id, session_id):
         if session is None:
             raise NotFound
         rows = repo.session_items(conn, session_id)
+        related = relations.related(conn, {row["word_id"] for row in rows if row["attempt_id"]})
     snapshot = json.loads(session["target_snapshot_json"])
     # selection_v1 之前的练习没有选题理由。
     reasons = snapshot.get("reasons") or [None] * len(rows)
-    items = [{**_item_view(row), "reason": reason} for row, reason in zip(rows, reasons, strict=True)]
+    items = [{**_item_view(row, related), "reason": reason} for row, reason in zip(rows, reasons, strict=True)]
     return {
         "id": session["id"],
         "status": session["status"],
@@ -194,7 +195,7 @@ def _question(row):
     }
 
 
-def _item_view(row):
+def _item_view(row, related):
     # 未作答时只给题干与选项，不返回答案或判分规则。
     question = _question(row)
     return {
@@ -203,11 +204,12 @@ def _item_view(row):
         "skill_type": row["skill_type"],
         "prompt": row["prompt"],
         "options": question["options"],
-        "result": _result(row, row, question) if row["attempt_id"] else None,
+        "result": _result(row, row, question, related) if row["attempt_id"] else None,
     }
 
 
-def _result(item, attempt, question):
+def _result(item, attempt, question, related):
+    """判分结果；related 为 word_id → 词对（成对记忆，ADR 0004）。"""
     return {
         "item_id": item["id"],
         "is_correct": bool(attempt["is_correct"]),
@@ -217,6 +219,7 @@ def _result(item, attempt, question):
         "lemma": item["lemma"],
         "definition_zh": item["definition_zh"],
         "submitted_at": _iso(attempt["attempt_submitted_at"]),
+        "related": related.get(item["word_id"], []),
     }
 
 
@@ -242,10 +245,11 @@ def submit_answer(conn, user_id, item_id, raw_answer, now):
         question = _question(item)
         normalized = grading.normalize(question, raw_answer)
         attempt = repo.lock_attempt(conn, item_id)
+        related = relations.related(conn, {item["word_id"]})
         if attempt is not None:
             if attempt["normalized_answer"] != normalized:
                 raise AlreadySubmitted
-            return {**_result(item, attempt, question), "replayed": True, "session_status": session["status"]}
+            return {**_result(item, attempt, question, related), "replayed": True, "session_status": session["status"]}
         if session["status"] != "active":
             raise SessionClosed
         is_correct, error_type = grading.grade(question, normalized)
@@ -274,4 +278,4 @@ def submit_answer(conn, user_id, item_id, raw_answer, now):
         "normalized_answer": normalized,
         "attempt_submitted_at": submitted_at,
     }
-    return {**_result(item, attempt, question), "replayed": False, "session_status": status}
+    return {**_result(item, attempt, question, related), "replayed": False, "session_status": status}

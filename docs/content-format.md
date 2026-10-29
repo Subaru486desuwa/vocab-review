@@ -19,6 +19,7 @@
 | memberships.csv | wordbook_code, wordbook_version, lemma_norm, position | source_note | (词表, lemma_norm)；同一批次重复即报错；可改 position、source_note |
 | examples.csv | example_key, lemma_norm, sense_key, text_en, source, content_version | translation_zh, is_active | example_key；不可换绑词义；修改 text_en 必须同时更换 content_version |
 | questions.jsonl | logical_key, version, lemma_norm, sense_key, skill_type, prompt, answers, grading_policy | options, status | (logical_key, version)，见下 |
+| relations.csv | lemma_norm_a, lemma_norm_b, relation_type, source | is_active | (两词条不分先后, relation_type)；relation_type 为 synonym（近义）、derivation（同族）、confusable（形近）；两词条不能相同，同一批次 a—b 与 b—a 视为重复；可改 source、is_active |
 
 ## 题目版本
 
