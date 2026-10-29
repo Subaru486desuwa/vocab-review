@@ -1,0 +1,29 @@
+# executed_at_utc=2026-10-29T06:48:32Z base=http://127.0.0.1:5000 user=ky_check_1029064832（留证账户）
+## 1. 内容表计数
+ky-ecdict	v1	考研词表（ECDICT）	4778
+confusable	1470
+derivation	585
+synonym	1124
+## 2. 注册并选择考研词表
+POST /auth/register HTTP 302
+PUT /api/v1/me/wordbooks HTTP 200
+## 3. 辨义练习 10 题：第一个有词对的词答错、其余答对
+POST /api/v1/practice/sessions HTTP 201
+HTTP 200 predecessor：✗ 词对：derivation precede
+HTTP 200 warrant：✓ 词对：synonym justify
+HTTP 200 semester：✓ 词对：无
+HTTP 200 ashore：✓ 词对：confusable shore
+HTTP 200 dirt：✓ 词对：confusable diet；synonym soil
+HTTP 200 grab：✓ 词对：无
+HTTP 200 wax：✓ 词对：synonym mount
+HTTP 200 active：✓ 词对：derivation activity
+HTTP 200 flush：✓ 词对：confusable flash；confusable flesh；synonym blush；synonym peak
+HTTP 200 discreet：✓ 词对：无
+## 4. 诊断：当前弱项与成对复习建议
+GET /api/v1/me/insights HTTP 200
+weak [('predecessor', 'recognition')]
+pairs predecessor recognition：derivation precede（untested） sense_ids=[10318, 10311]
+## 5. 成对练习
+POST /api/v1/practice/sessions HTTP 201
+items 2 reasons ['targeted']
+成对复习：弱项与它的形近、近义、同族词

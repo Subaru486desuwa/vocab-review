@@ -1,8 +1,8 @@
 # 数据模型
 
-以下为 MySQL 数据字典，由 `sql/migrations/` 下按序迁移创建；内容导入规则见 [内容包格式](content-format.md)；`schema_migrations` 记录已执行迁移，属于基础设施表，不计入 14 张业务表。使用 InnoDB、utf8mb4；除注明的复合键外主键为 BIGINT。时间保存为 UTC DATETIME(6)，展示和日统计按用户时区转换。所有外键类型一致并建索引，默认限制删除。
+以下为 MySQL 数据字典，由 `sql/migrations/` 下按序迁移创建；内容导入规则见 [内容包格式](content-format.md)；`schema_migrations` 记录已执行迁移，属于基础设施表，不计入 15 张业务表（0001 建 14 张，0003 追加 word_relations）。使用 InnoDB、utf8mb4；除注明的复合键外主键为 BIGINT。时间保存为 UTC DATETIME(6)，展示和日统计按用户时区转换。所有外键类型一致并建索引，默认限制删除。
 
-![14 张表的关系与基数](images/data-model.svg)
+![0001 建立的 14 张表的关系与基数（word_relations 见下表）](images/data-model.svg)
 
 ## 账户与内容
 
@@ -14,6 +14,7 @@
 | word_senses | id, word_id, sense_key, part_of_speech, definition_zh, definition_en, is_active | FK word_id；(word_id,sense_key) 唯一；sense_key 稳定 |
 | wordbook_words | wordbook_id, word_id, position, source_note | 复合主键 (wordbook_id,word_id)；两个外键；不推断词义覆盖 |
 | user_wordbooks | user_id, wordbook_id, selected_at | 复合主键 (user_id,wordbook_id)；切换仅修改关联 |
+| word_relations | id, word_id_a, word_id_b, relation_type, source, is_active | 0003 迁移（ADR 0004）；两个外键指向 words，word_id_a < word_id_b；(word_id_a,word_id_b,relation_type) 唯一；relation_type=synonym/derivation/confusable；按词条连接，不推断词义 |
 | examples | id, example_key, sense_id, text_en, translation_zh, source, content_version, is_active | example_key 唯一（0002 迁移），供重复导入与 DL 标注引用；FK sense_id；每条例句一个目标词义；正文版本与向量一致 |
 
 ## 练习、学习与推理

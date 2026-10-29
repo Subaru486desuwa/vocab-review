@@ -140,9 +140,10 @@ if old != new:
 print("汇总指标与逐条前三项（含分数与顺序）均与 evidence/exp04 一致")
 PY
 
-step "9b. 在 v2 之上导入 v3 扩充词库（#38）：已有题目不变，旧索引被拒绝，重建后检索可用"
+step "9b. 在 v2 之上导入 v3 扩充词库（#38）与考研词表（#49）：已有题目不变，旧索引被拒绝，重建后检索可用"
 run flask import-content data/demo/v3 | tail -n 7
-sql "SELECT (SELECT COUNT(*) FROM words) AS words, (SELECT COUNT(*) FROM word_senses) AS senses, (SELECT COUNT(*) FROM questions WHERE status='published') AS published, (SELECT COUNT(*) FROM examples) AS examples"
+run flask import-content data/wordbooks/postgraduate/v1 | tail -n 8
+sql "SELECT (SELECT COUNT(*) FROM words) AS words, (SELECT COUNT(*) FROM word_senses) AS senses, (SELECT COUNT(*) FROM questions WHERE status='published') AS published, (SELECT COUNT(*) FROM examples) AS examples, (SELECT COUNT(*) FROM word_relations) AS relations"
 api POST /api/v1/examples/search '{"text":"I need to open a savings account.","top_k":3}' | show 503 ""
 run flask build-example-index | tail -n 2
 api POST /api/v1/examples/search '{"text":"I need to open a savings account.","top_k":3}' \
@@ -176,8 +177,8 @@ scripts/db_export.sh "$WORK/export.sql"
 root -e "DROP DATABASE \`$TEST_DB_NAME\`; CREATE DATABASE \`$TEST_DB_NAME\` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci"
 docker compose exec -T -e MYSQL_PWD="$TEST_DB_PASSWORD" db mysql -u"$TEST_DB_USER" "$TEST_DB_NAME" <"$WORK/export.sql"
 run env DB_NAME="$TEST_DB_NAME" DB_USER="$TEST_DB_USER" DB_PASSWORD="$TEST_DB_PASSWORD" flask db upgrade
-diff <(counts "$DB_NAME" | grep -E '^(schema_migrations|wordbooks|words|word_senses|wordbook_words|examples|questions) ') \
-     <(counts "$TEST_DB_NAME" | grep -E '^(schema_migrations|wordbooks|words|word_senses|wordbook_words|examples|questions) ') \
+diff <(counts "$DB_NAME" | grep -E '^(schema_migrations|wordbooks|words|word_senses|wordbook_words|examples|questions|word_relations) ') \
+     <(counts "$TEST_DB_NAME" | grep -E '^(schema_migrations|wordbooks|words|word_senses|wordbook_words|examples|questions|word_relations) ') \
   && echo "内容表行数一致：$(counts "$TEST_DB_NAME" | grep -E '^(wordbooks|words|word_senses|examples|questions) ' | tr '\n' ' ')"
 echo "个人记录表在导出中为空：$(counts "$TEST_DB_NAME" | grep -E '^(users|attempts|learning_state|inference_events) ' | tr '\n' ' ')"
 

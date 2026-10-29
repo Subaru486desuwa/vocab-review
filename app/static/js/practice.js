@@ -25,6 +25,27 @@
     if (showRecall && reason.recall !== undefined) parts.push(`记忆约 ${Math.round(reason.recall * 100)}%`);
     return parts.join(" · ");
   }
+  const relationNames = { confusable: "形近", synonym: "近义", derivation: "同族" };
+
+  // 成对记忆：本词的形近、近义、同族词与其释义（内容关系，不影响判分与复习）。
+  function renderRelated(related) {
+    const list = document.createElement("ul");
+    list.className = "related-list";
+    for (const entry of related) {
+      const row = document.createElement("li");
+      const tag = document.createElement("span");
+      tag.className = "relation-tag";
+      tag.textContent = entry.types.map((t) => relationNames[t] || t).join(" · ");
+      const word = document.createElement("strong");
+      word.textContent = entry.lemma;
+      const meaning = document.createElement("span");
+      meaning.className = "muted";
+      meaning.textContent = entry.senses.map((s) => `${s.part_of_speech} ${s.definition_zh}`).join("；");
+      row.append(tag, word, meaning);
+      list.append(row);
+    }
+    return list;
+  }
   let session = null;
   let current = null;
 
@@ -101,6 +122,7 @@
     const detail = document.createElement("p");
     detail.textContent = `标准答案：${result.correct_answer.text} · ${result.lemma}：${result.definition_zh}`;
     box.append(verdict, detail);
+    if (result.related && result.related.length) box.append(renderRelated(result.related));
     box.hidden = false;
     $("submit-answer").hidden = true;
     $("next").hidden = false;
