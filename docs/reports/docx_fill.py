@@ -1,7 +1,7 @@
 """把内容块写进课程模板“五、实验结果分析”和“六、实验总结与思考”下的空段落。
 
 模板是一个单元格包含全部正文的大表格；只替换这两节下面原有的空段落，其余内容与格式不动
-（唯一例外：封面信息栏按模板中的文字重新排版，见 _cover）。
+（例外：封面信息栏按模板中的文字重新排版，见 _cover；模板示例中的明显错误按调用方给出的修正清单逐条更正，见 _fix）。
 内容块：("h", 文本) 小标题、("p", 文本) 正文、("code", [行]) 代码、("table", 表题, 表头, 行列表[, 列宽比])、
 ("img", 图片路径, 图题)。
 
@@ -80,7 +80,7 @@ def _table(header, rows, ratios=None):
     grid = "".join(f'<w:gridCol w:w="{w}"/>' for w in widths)
     # 表格整体不跨页（除最后一行外各行与下一行同页）；万一超过一页，表头行重复。
     body = "".join(
-        f'<w:tr><w:trPr><w:cantSplit/>{"<w:tblHeader/>" if k == 0 else ""}</w:trPr>'
+        f"<w:tr><w:trPr><w:cantSplit/>{'<w:tblHeader/>' if k == 0 else ''}</w:trPr>"
         + "".join(_cell(v, widths[i], k == 0, k < len(rows)) for i, v in enumerate(row))
         + "</w:tr>"
         for k, row in enumerate([header, *rows])
@@ -173,7 +173,9 @@ class _Doc:
         )
         self.images.append(name)
         w, h = _image_size(path)
-        picture = _para(_drawing(rid, self.next_pic, Path(path).name, w, h), grid=False, align="center", before=60, keep_next=True)
+        picture = _para(
+            _drawing(rid, self.next_pic, Path(path).name, w, h), grid=False, align="center", before=60, keep_next=True
+        )
         return picture + _caption(caption, after=120)
 
 
@@ -212,7 +214,7 @@ def _cover_para(text, align, before=0):
         f'<w:p><w:pPr><w:pStyle w:val="Normal"/><w:snapToGrid w:val="0"/>'
         f'<w:spacing w:before="{before}" w:after="0" w:line="240" w:lineRule="auto"/><w:jc w:val="{align}"/>'
         f'<w:rPr><w:b w:val="0"/><w:sz w:val="{COVER_SIZE}"/><w:szCs w:val="{COVER_SIZE}"/></w:rPr></w:pPr>'
-        f'{run if text else ""}</w:p>'
+        f"{run if text else ''}</w:p>"
     )
 
 
@@ -246,8 +248,12 @@ def _cover(xml):
     paras = list(re.finditer(PARA, xml[:cover_end], flags=re.S))
     texts = [_text(m.group(0)).strip() for m in paras]
     first = next(i for i, t in enumerate(texts) if t.startswith(COVER_FIELDS[0]))
-    values = [(label, next(t for t in texts[first:] if t.startswith(label))[len(label) :].strip()) for label in COVER_FIELDS]
-    last = next(i for i in range(first, len(texts)) if re.fullmatch(r"\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日", texts[i]))
+    values = [
+        (label, next(t for t in texts[first:] if t.startswith(label))[len(label) :].strip()) for label in COVER_FIELDS
+    ]
+    last = next(
+        i for i in range(first, len(texts)) if re.fullmatch(r"\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日", texts[i])
+    )
     if last != len(paras) - 1:
         raise ValueError("封面日期之后、正文表格之前还有内容，模板结构与预期不符")
     date = re.sub(r"\s", "", texts[last])
@@ -260,10 +266,42 @@ def _cover(xml):
     return xml[: paras[first].start()] + block + xml[paras[last].end() :]
 
 
-def fill(template_docx, output_docx, section5, section6):
+def _fix(xml, fix):
+    """按一条修正更正模板文字；定位不唯一时报错，模板变化后不会悄悄改错地方。
+
+    ("replace", 段落定位文字, 原文, 新文)：在该段唯一含原文的文字片段中替换。
+    ("before" | "after", 段落定位文字, 新行)：在该段前 / 后插入一行，沿用该段格式与末尾文字的字符格式。
+    """
+    kind, where = fix[0], fix[1]
+    matches = [m for m in re.finditer(PARA, xml, flags=re.S) if where in _text(m.group(0))]
+    if len(matches) != 1:
+        raise ValueError(f"模板修正 {fix!r}：定位到 {len(matches)} 个段落")
+    para = matches[0].group(0)
+    if kind == "replace":
+        old, new = _esc(fix[2]), _esc(fix[3])
+        hits = [t for t in re.findall(r"<w:t[^>]*>[^<]*</w:t>", para) if old in t]
+        if len(hits) != 1 or hits[0].count(old) != 1:
+            raise ValueError(f"模板修正 {fix!r}：原文不在唯一的文字片段中")
+        fixed = para.replace(hits[0], hits[0].replace(old, new))
+    elif kind in ("before", "after"):
+        props = re.search(r"<w:pPr>.*?</w:pPr>", para, re.S)
+        run_props = re.findall(r"<w:r>\s*(<w:rPr>.*?</w:rPr>)", para, re.S)
+        line = (
+            f"<w:p>{props.group(0) if props else ''}<w:r>{run_props[-1] if run_props else ''}"
+            f'<w:t xml:space="preserve">{_esc(fix[2])}</w:t></w:r></w:p>'
+        )
+        fixed = line + para if kind == "before" else para + line
+    else:
+        raise ValueError(kind)
+    return xml[: matches[0].start()] + fixed + xml[matches[0].end() :]
+
+
+def fill(template_docx, output_docx, section5, section6, fixes=()):
     with zipfile.ZipFile(template_docx) as z:
         files = {n: z.read(n) for n in z.namelist()}
     xml = files["word/document.xml"].decode()
+    for fix in fixes:
+        xml = _fix(xml, fix)
     paras = list(re.finditer(PARA, xml, flags=re.S))
     heads = [m for m in paras if _text(m.group(0)).startswith(("五、", "五")) and "实验结果分析" in _text(m.group(0))]
     sixes = [m for m in paras if _text(m.group(0)).startswith("六、")]

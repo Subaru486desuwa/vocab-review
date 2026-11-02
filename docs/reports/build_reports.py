@@ -273,7 +273,9 @@ def report2():
     union_words = int(re.search(r"合计词条（共有词只计一次） (\d+)", review).group(1))
     per_book = dict(re.findall(r"(\S+-demo) 词条 (\d+) 已练习", review))
     shared_words = sum(int(v) for v in per_book.values()) - union_words
-    stats = re.search(r"词条 已练习/总数 (\d+) / (\d+) ；词义×题型 已测试/未测试/总数 (\d+) \d+ (\d+) ；作答 (\{.*\})", review)
+    stats = re.search(
+        r"词条 已练习/总数 (\d+) / (\d+) ；词义×题型 已测试/未测试/总数 (\d+) \d+ (\d+) ；作答 (\{.*\})", review
+    )
     stats_answers = ast.literal_eval(stats.group(5))
     rebuilt = re.search(r"学习状态与作答记录一致：核对 (\d+) 组", review).group(1)
     error_names = constant("app/blueprints/insights.py", "ERROR_NAMES")
@@ -349,7 +351,10 @@ def report2():
                     f"合计词条 {union_words}"
                     f"（两个词表各 {per_book['cet6-demo']} 个词条，{shared_words} 个共有词只计一次）",
                 ),
-                ("学习状态重建核对", f"由作答记录重建的学习状态与现有记录一致（核对 {rebuilt} 组“用户 × 词义 × 题型”）"),
+                (
+                    "学习状态重建核对",
+                    f"由作答记录重建的学习状态与现有记录一致（核对 {rebuilt} 组“用户 × 词义 × 题型”）",
+                ),
                 (
                     "今日任务（新账户）",
                     "初始新词义 0/10；完成 10 个新词义（2 题答错）后显示已完成，连续学习 "
@@ -533,7 +538,13 @@ def report3():
             f"{data['sampling']['users_sampled']:,}/{data['sampling']['users_total']:,} 名用户，保留完整时间序列），共 {rows['sampled']:,} 行。"
             "随后按全局时间约 70/15/15 切分，同一时间戳不跨集合，结果见表 1。",
         ),
-        ("table", "表 1  数据集切分", ["集合", "行数", "用户数", "时间范围（UTC）", "标签均值"], split_rows, [3, 2, 2, 5, 2]),
+        (
+            "table",
+            "表 1  数据集切分",
+            ["集合", "行数", "用户数", "时间范围（UTC）", "标签均值"],
+            split_rows,
+            [3, 2, 2, 5, 2],
+        ),
         ("h", "2. 特征、模型与 Web 集成"),
         ("p", "模型使用的 4 个特征及其变换见表 2。"),
         (
@@ -716,7 +727,12 @@ def report4():
             f"标注状态：{annotated}。总体结果见表 1，test 集按查询类型的结果见表 2。",
         ),
         ("table", "表 1  检索效果总体对比", ["集合", "方法", "有相关项查询", "Recall@3", "MRR@3"], overall),
-        ("table", "表 2  test 集按查询类型的检索效果", ["test 查询类型", "方法", "查询数", "Recall@3", "MRR@3"], by_type),
+        (
+            "table",
+            "表 2  test 集按查询类型的检索效果",
+            ["test 查询类型", "方法", "查询数", "Recall@3", "MRR@3"],
+            by_type,
+        ),
         (
             "p",
             "对于没有相关例句的 test 查询，句向量返回的最高相似度分别为 "
@@ -810,6 +826,20 @@ def report4():
     return s5, s6
 
 
+# 模板第一至四节中的明显错误（缺少的语句、照抄未改的文字、英文标点），按条更正，其余模板内容不动。
+SEMICOLON = ("replace", "解析内容（如提取图像、文本或数值数据）", ";", "；")
+FIXES = {
+    "2_实验二：Web页面设计（实验报告模板）.doc": [
+        ("after", "password_hash VARCHAR(255) NOT NULL", ");"),
+        ("before", "import pymysql", "import hashlib"),
+    ],
+    "3_实验三：案例数据分析（机器学习）.doc": [SEMICOLON],
+    "4_实验四：案例数据分析（深度学习）.doc": [
+        ("replace", "提高实际项目开发能力", "具有机器学习预测功能", "具有深度学习预测功能"),
+        SEMICOLON,
+    ],
+}
+
 REPORTS = {
     "1_实验一：Web框架搭建（实验报告模板）.doc": ("实验一_Web框架搭建.docx", report1),
     "2_实验二：Web页面设计（实验报告模板）.doc": ("实验二_Web页面设计.docx", report2),
@@ -829,7 +859,9 @@ def main(out_dir=None):
                 capture_output=True,
             )
             section5, section6 = build()
-            fill(Path(tmp) / template.replace(".doc", ".docx"), out / target, section5, section6)
+            fill(
+                Path(tmp) / template.replace(".doc", ".docx"), out / target, section5, section6, FIXES.get(template, ())
+            )
             print("已生成", out / target)
 
 
