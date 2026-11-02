@@ -42,6 +42,23 @@ def test_index_lists_every_evidence_file_that_reports_read():
         assert used <= listed, (directory, sorted(used - listed))
 
 
+def test_report_blocks_have_no_raw_values_or_empty_cells():
+    """正文不出现字典原样输出；每张表有“表 n”表题且没有空单元格。"""
+    for build in (build_reports.report1, build_reports.report2, build_reports.report3, build_reports.report4):
+        for section in build():
+            for block in section:
+                if block[0] in ("h", "p"):
+                    assert not re.search(r"\{['\"]", block[1]), (build.__name__, block[1][:60])
+                elif block[0] == "table":
+                    caption, header, rows = block[1:4]
+                    assert re.match(r"表 \d+  ", caption), (build.__name__, caption)
+                    for row in rows:
+                        assert len(row) == len(header), (build.__name__, caption, row)
+                        for value in row:
+                            assert str(value).strip(), (build.__name__, caption, row)
+                            assert not re.search(r"\{['\"]", str(value)), (build.__name__, caption, value)
+
+
 def test_insights_evidence_is_self_consistent():
     data = build_reports.insights_evidence()
     text = (ROOT / "evidence" / "exp02" / "insights-http.txt").read_text(encoding="utf-8")
