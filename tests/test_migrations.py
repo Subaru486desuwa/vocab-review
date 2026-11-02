@@ -6,11 +6,13 @@ import pytest
 from app.repositories import migrations
 
 NOW = datetime(2026, 10, 24, 0, 0, 0)
-BUSINESS_TABLES = {
+INITIAL_TABLES = {
     "users", "wordbooks", "words", "word_senses", "wordbook_words", "user_wordbooks", "examples",
     "questions", "practice_sessions", "session_items", "attempts", "learning_state",
     "model_versions", "inference_events",
 }  # fmt: skip
+# 0003 追加词对关系表（ADR 0004）。
+BUSINESS_TABLES = INITIAL_TABLES | {"word_relations"}
 
 
 def test_split_statements_ignores_comment_lines_and_blank_tail():
@@ -21,8 +23,8 @@ def test_split_statements_ignores_comment_lines_and_blank_tail():
 def test_initial_migration_creates_each_business_table_once():
     sql = (migrations.MIGRATIONS_DIR / "0001_initial_schema.sql").read_text(encoding="utf-8")
     statements = migrations.split_statements(sql)
-    assert len(statements) == len(BUSINESS_TABLES)
-    assert {s.split()[2] for s in statements} == BUSINESS_TABLES
+    assert len(statements) == len(INITIAL_TABLES)
+    assert {s.split()[2] for s in statements} == INITIAL_TABLES
 
 
 @pytest.mark.db

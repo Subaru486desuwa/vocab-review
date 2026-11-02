@@ -21,7 +21,7 @@ Web 与 MySQL 都通过 Docker Compose 运行：`web` 服务挂载源码，只�
 - 标识符使用英文，并与 `GLOSSARY.md` 的英文名和表名对应（`WordSense`、`SessionItem`、`Attempt`、`LearningState`）。注释与 docstring 用中文、保持简短；界面文案用中文；错误码用英文大写（`ALREADY_SUBMITTED`）。
 - 数据库：每个请求在 `flask.g` 中懒创建 PyMySQL 连接，关闭 autocommit，使用 DictCursor。service 用 `with db.transaction():` 划定事务；repository 是接收 `conn` 的普通函数，只写参数化 SQL，提交与回滚交给 service。
 - 时间：业务代码通过可注入的 `clock` 取 UTC 时间，测试固定时钟验证复习规则。
-- 迁移：`sql/migrations/NNNN_*.sql` 按序编号，由 `flask db upgrade` 执行并写入 `schema_migrations`（基础设施表，不计入 14 张业务表）。已合并的迁移不修改，变更追加新文件。
+- 迁移：`sql/migrations/NNNN_*.sql` 按序编号，由 `flask db upgrade` 执行并写入 `schema_migrations`（基础设施表，不计入 15 张业务表）。已合并的迁移不修改，变更追加新文件。
 - 测试：pytest；需要 MySQL 的测试标记 `db`，并只连接测试库。
 - 前端：Jinja 加原生 JS，一页一个小脚本，没有构建流程。重复提交由服务端幂等处理，按钮禁用只用于改善体验。
 

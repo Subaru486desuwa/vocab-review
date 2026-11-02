@@ -64,6 +64,9 @@ figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .button:disabled { opacity: .6; cursor: progress; }
 .feedback { margin: 20px 0; padding: 14px 16px; border-radius: 8px; background: white; border: 1px solid var(--line); }
 .feedback p { margin: 4px 0; }
+.related-list { list-style: none; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid var(--line); font-size: 14px; }
+.related-list li { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; padding: 2px 0; border: 0; }
+.relation-tag { color: var(--green); font-size: 12px; font-weight: 600; min-width: 2.5em; }
 .verdict { font-weight: 700; }
 .verdict.correct { color: var(--green); }
 .verdict.wrong { color: #a33a2b; }

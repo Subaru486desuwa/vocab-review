@@ -2,7 +2,7 @@
 
 面向六级、考研和雅思的 Python Web 课程项目。以统一词库连接三类目标词表，记录辨义、拼写和语境练习，再生成可解释的复习计划。
 
-**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容、目标词表选择、今日任务（到期复习、每日 10 个新词义、连续学习天数）、三类题型练习与服务端判分、复习计划与统计、学习状态重建核对、实验三 ML（`/lab/ml`）与实验四 DL（`/examples`）、复用两类模型的学习诊断（`/insights`），以及 Docker 中的 MySQL 与 14 张业务表迁移。** 干净环境启动、SQL 导出与备份恢复已脚本化（见“交接、导出与备份”），答辩步骤见 [演示脚本](docs/demo.md)；分级背单词等平台功能后续实现（#17）。仓库保持 **private**。
+**当前可运行：首页、`/lab/hello`、静态图片、注册/登录/退出、`flask create-admin`、内容包导入与演示内容、目标词表选择、今日任务（到期复习、每日 10 个新词义、连续学习天数）、三类题型练习与服务端判分、复习计划与统计、学习状态重建核对、实验三 ML（`/lab/ml`）与实验四 DL（`/examples`）、复用两类模型的学习诊断（`/insights`），考研正式词表（ECDICT，约 4800 词条）与词对（近义、同族、形近）、练习反馈中的成对记忆与诊断页的成对练习，以及 Docker 中的 MySQL 与 15 张业务表迁移。** 干净环境启动、SQL 导出与备份恢复已脚本化（见“交接、导出与备份”），答辩步骤见 [演示脚本](docs/demo.md)；分级背单词等平台功能后续实现（#17）。仓库保持 **private**。
 
 ## 先运行基础页面
 
@@ -24,10 +24,10 @@ docker compose up -d --build
 docker compose run --rm web flask db upgrade
 ```
 
-在浏览器打开 `http://127.0.0.1:5000/`，在“课程实验”中进入“Web 框架”即为 `/lab/hello`。若从 Mac 浏览器查看 Osaka 上的页面，先在 Mac 建立隧道：
+在浏览器打开 `http://127.0.0.1:5000/`，在“课程实验”中进入“Web 框架”即为 `/lab/hello`。若从 Mac 浏览器查看 Osaka 上的页面，先在 Mac 建立隧道，再打开 `http://127.0.0.1:5050/`（Mac 的“隔空播放接收器”占用本地 5000 端口，会直接返回 403）：
 
 ```bash
-ssh -N -L 5000:127.0.0.1:5000 osaka
+ssh -N -L 5050:127.0.0.1:5000 osaka
 ```
 
 `flask db upgrade` 只对 `.env` 中 `DB_NAME` 指定的库执行未应用的迁移，已执行的版本记录在 `schema_migrations`。基础页面不连接数据库，不设数据库也能启动。
@@ -54,7 +54,11 @@ docker compose run --rm web flask import-content data/demo/v2
 docker compose run --rm web flask import-content data/demo/v3
 ```
 
-v1 是首次发布的内容包，v2 在其上新增题目版本与例句修订，v3 扩充到 200 个词条（见 [data/demo/README.md](data/demo/README.md)），三者按顺序导入；导入 v3 后需重新执行下文的 `flask build-example-index`。
+v1 是首次发布的内容包，v2 在其上新增题目版本与例句修订，v3 扩充到 200 个词条（见 [data/demo/README.md](data/demo/README.md)），三者按顺序导入。之后导入正式考研词表（ECDICT 考研标签，4778 个词条与 3179 个词对，来源与构建见 [data/wordbooks/postgraduate/README.md](data/wordbooks/postgraduate/README.md)）；导入后需重新执行下文的 `flask build-example-index`。
+
+```bash
+docker compose run --rm web flask import-content data/wordbooks/postgraduate/v1
+```
 
 ```bash
 docker compose run --rm web flask seed-demo-user
@@ -128,7 +132,7 @@ scripts/db_restore.sh backups/vocab_review-20261024T000000Z.sql vocab_review_res
 | --- | --- |
 | [架构](docs/architecture.md) | 模块职责、依赖方向、模型隔离 |
 | [首版范围](docs/requirements.md) | 四个课程实验及功能边界 |
-| [数据模型](docs/data-model.md) | ER 图、14 张表、历史与事务规则 |
+| [数据模型](docs/data-model.md) | ER 图、15 张表、历史与事务规则 |
 | [接口契约](docs/api.md) | 页面、JSON 接口、状态码、幂等提交 |
 | [模型契约](docs/models.md) | 共享特征、离线评价、索引版本与留证 |
 | [实施与验收](docs/acceptance.md) | S0—S5、T01—T14、M01—M06 |

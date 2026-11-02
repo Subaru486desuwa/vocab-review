@@ -21,7 +21,7 @@ def all_senses(conn):
     """全部词义（含停用），用于把误选的选项对应回词义。"""
     with conn.cursor() as cur:
         cur.execute(
-            "SELECT s.id AS sense_id, w.lemma, w.lemma_norm, s.sense_key, s.part_of_speech, s.definition_zh,"
+            "SELECT s.id AS sense_id, s.word_id, w.lemma, w.lemma_norm, s.sense_key, s.part_of_speech, s.definition_zh,"
             " s.definition_en FROM word_senses s JOIN words w ON w.id = s.word_id ORDER BY s.id"
         )
         return cur.fetchall()

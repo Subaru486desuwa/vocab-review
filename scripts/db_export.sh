@@ -3,7 +3,7 @@
 # 不含账户、练习、作答、学习状态、模型登记与推理事件。在仓库根目录、docker compose 运行时执行。
 set -euo pipefail
 OUT=${1:-sql/export/vocab_review_content.sql}
-CONTENT="schema_migrations wordbooks words word_senses wordbook_words examples questions"
+CONTENT="schema_migrations wordbooks words word_senses wordbook_words examples questions word_relations"
 # 以 root 在 db 容器内导出；密码经环境变量传入，不出现在命令行。
 dump() { docker compose exec -T db sh -c "MYSQL_PWD=\"\$MYSQL_ROOT_PASSWORD\" mysqldump -uroot \
   --single-transaction --no-tablespaces --skip-dump-date --set-gtid-purged=OFF --skip-add-locks \

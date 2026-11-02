@@ -1,0 +1,20 @@
+# executed_at_utc=2026-10-29T06:45Z 演示库 vocab_review；导入前备份 backups/vocab_review-20261029T064421Z.sql（不入库）
+## flask db upgrade
+已执行：0003_word_relations
+## flask import-content data/wordbooks/postgraduate/v1
+目标库：vocab_review@db:3306
+wordbooks：新增 1，更新 0，未变 0
+words：新增 4611，更新 0，未变 0
+senses：新增 6034，更新 0，未变 0
+memberships：新增 4778，更新 0，未变 0
+examples：新增 5775，更新 0，未变 0
+questions：新增 15440，更新 0，未变 0，停用旧版本 0
+relations：新增 3179，更新 0，未变 0
+已提交。
+## flask build-example-index
+已构建索引：6205 条例句，384 维 float32，语料指纹 1abb4758381e8401
+## flask rebuild-learning-state
+学习状态与作答记录一致：核对 422 组（用户, 词义, 题型）。
+## 演示查询（非评价）：example_search.search(top_k=5)
+I need to open a savings account. → I need to go to the bank to open an account.（bank 银行，演示 v1 例句）居首
+We sat on the grass beside the river. → We had a picnic on the bank of the river.（bank 河岸，演示 v1 例句）居首

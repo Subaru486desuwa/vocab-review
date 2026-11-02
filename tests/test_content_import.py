@@ -60,6 +60,7 @@ def test_demo_pack_imports_and_reimport_is_idempotent(db_conn):
     first = import_content(db_conn, read_directory(DEMO), NOW)
     assert {name: s["inserted"] for name, s in first.items()} == {
         "wordbooks": 3, "words": 70, "senses": 79, "memberships": 90, "examples": 158, "questions": 237,
+        "relations": 0,
     }  # fmt: skip
     assert count(db_conn, "questions", "status = 'published'") == 237
     second = import_content(db_conn, read_directory(DEMO), NOW)
@@ -87,7 +88,7 @@ def test_demo_v3_only_adds_content_over_v2(db_conn):
     summary = import_content(db_conn, read_directory(DEMO.parent / "v3"), NOW)
     assert {name: (s["inserted"], s["updated"]) for name, s in summary.items()} == {
         "wordbooks": (0, 0), "words": (130, 0), "senses": (136, 0), "memberships": (150, 0),
-        "examples": (272, 0), "questions": (408, 0),
+        "examples": (272, 0), "questions": (408, 0), "relations": (0, 0),
     }  # fmt: skip
     assert summary["questions"]["retired"] == 0
     assert count(db_conn, "questions", "status = 'published'") == published + 408 == 645

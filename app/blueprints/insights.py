@@ -124,9 +124,13 @@ def diagnose():
     rows, senses, states = insights.load(conn, current_user()["id"])
     rule_result = insights.rules(rows, senses)
     sense_rows = {s["sense_id"]: s for s in senses}
+    insights.mark_confusion_relations(conn, rule_result, senses)
     loaded = insights.load_current(conn, current_user()["id"], clock.now())
+    current = None
+    if loaded:
+        current = {**insights.current_view(*loaded), "pairs": insights.pair_view(conn, *loaded)}
     return {
-        "current": insights.current_view(*loaded) if loaded else None,
+        "current": current,
         "attempts": rule_result.pop("attempts"),
         "rules": rule_result,
         "ml": _ml(conn, insights.ml_inputs(states, clock.now()), sense_rows, started),

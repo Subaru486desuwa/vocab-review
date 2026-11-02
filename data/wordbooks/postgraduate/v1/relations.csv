@@ -1,0 +1,3180 @@
+lemma_norm_a,lemma_norm_b,relation_type,source,is_active
+abdomen,belly,synonym,WordNet 3.0,1
+abdomen,stomach,synonym,WordNet 3.0,1
+abide,aside,confusable,拼写编辑距离,1
+abide,brook,synonym,WordNet 3.0,1
+abide,endure,synonym,WordNet 3.0,1
+abide,tolerate,synonym,WordNet 3.0,1
+aboard,board,confusable,拼写编辑距离,1
+abound,abundance,derivation,WordNet 3.0,1
+abound,abundant,derivation,WordNet 3.0,1
+abound,bound,confusable,拼写编辑距离,1
+absence,absent,derivation,WordNet 3.0,1
+absolute,sheer,synonym,WordNet 3.0,1
+absorb,assimilate,synonym,WordNet 3.0,1
+absurd,ridiculous,synonym,WordNet 3.0,1
+abundance,abundant,derivation,WordNet 3.0,1
+abuse,amuse,confusable,拼写编辑距离,1
+abuse,maltreat,synonym,WordNet 3.0,1
+academic,academy,derivation,WordNet 3.0,1
+accelerate,speed,synonym,WordNet 3.0,1
+accent,accept,confusable,拼写编辑距离,1
+accent,emphasis,synonym,WordNet 3.0,1
+accept,acceptance,derivation,WordNet 3.0,1
+accident,accidental,derivation,WordNet 3.0,1
+acclaim,hail,synonym,WordNet 3.0,1
+accommodate,accommodation,derivation,WordNet 3.0,1
+accommodate,adapt,synonym,WordNet 3.0,1
+accommodate,suit,synonym,WordNet 3.0,1
+accomplish,achieve,synonym,WordNet 3.0,1
+accomplish,attain,synonym,WordNet 3.0,1
+accomplish,fulfill,synonym,WordNet 3.0,1
+accord,accordance,derivation,WordNet 3.0,1
+accordingly,consequently,synonym,WordNet 3.0,1
+account,accountant,derivation,WordNet 3.0,1
+account,history,synonym,WordNet 3.0,1
+accumulate,collect,synonym,WordNet 3.0,1
+accumulate,compile,synonym,WordNet 3.0,1
+accuracy,accurate,confusable,拼写编辑距离,1
+ache,acre,confusable,拼写编辑距离,1
+achieve,attain,synonym,WordNet 3.0,1
+acid,amid,confusable,拼写编辑距离,1
+acknowledge,admit,synonym,WordNet 3.0,1
+acquaint,acquaintance,derivation,WordNet 3.0,1
+acquaint,introduce,synonym,WordNet 3.0,1
+acquire,acquisition,derivation,WordNet 3.0,1
+act,action,derivation,WordNet 3.0,1
+act,actor,derivation,WordNet 3.0,1
+act,behave,synonym,WordNet 3.0,1
+action,activity,synonym,WordNet 3.0,1
+action,auction,confusable,拼写编辑距离,1
+activate,activity,confusable,拼写编辑距离,1
+activate,spark,synonym,WordNet 3.0,1
+activate,trigger,synonym,WordNet 3.0,1
+active,activity,derivation,WordNet 3.0,1
+actor,factor,confusable,拼写编辑距离,1
+adapt,adopt,confusable,拼写编辑距离,1
+adapt,conform,synonym,WordNet 3.0,1
+add,addition,derivation,WordNet 3.0,1
+addition,additional,confusable,拼写编辑距离,1
+administer,administration,derivation,WordNet 3.0,1
+administration,disposal,synonym,WordNet 3.0,1
+admission,admit,derivation,WordNet 3.0,1
+adolescent,teenager,synonym,WordNet 3.0,1
+advance,improvement,synonym,WordNet 3.0,1
+advance,progress,synonym,WordNet 3.0,1
+adventure,chance,synonym,WordNet 3.0,1
+adventure,gamble,synonym,WordNet 3.0,1
+adventure,risk,synonym,WordNet 3.0,1
+advertise,publicize,synonym,WordNet 3.0,1
+advice,advise,confusable,拼写编辑距离,1
+advisable,advise,derivation,WordNet 3.0,1
+advise,counsel,synonym,WordNet 3.0,1
+advise,notify,synonym,WordNet 3.0,1
+advocate,preach,synonym,WordNet 3.0,1
+advocate,recommend,synonym,WordNet 3.0,1
+advocate,urge,synonym,WordNet 3.0,1
+aerial,serial,confusable,拼写编辑距离,1
+affect,effect,confusable,拼写编辑距离,1
+affiliate,affiliation,derivation,WordNet 3.0,1
+affiliation,tie,synonym,WordNet 3.0,1
+affirm,assert,synonym,WordNet 3.0,1
+affirm,confirm,synonym,WordNet 3.0,1
+affirm,swan,synonym,WordNet 3.0,1
+affirm,swear,synonym,WordNet 3.0,1
+afford,yield,synonym,WordNet 3.0,1
+afterward,later,synonym,WordNet 3.0,1
+agency,agent,derivation,WordNet 3.0,1
+agency,bureau,synonym,WordNet 3.0,1
+aid,assist,synonym,WordNet 3.0,1
+aid,assistance,synonym,WordNet 3.0,1
+aim,intention,synonym,WordNet 3.0,1
+aim,object,synonym,WordNet 3.0,1
+aim,objective,synonym,WordNet 3.0,1
+aim,purpose,synonym,WordNet 3.0,1
+aisle,isle,confusable,拼写编辑距离,1
+alarm,alert,synonym,WordNet 3.0,1
+alarm,dismay,synonym,WordNet 3.0,1
+alert,avert,confusable,拼写编辑距离,1
+alien,exotic,synonym,WordNet 3.0,1
+alien,foreigner,synonym,WordNet 3.0,1
+alike,alive,confusable,拼写编辑距离,1
+alleviate,facilitate,synonym,WordNet 3.0,1
+alleviate,relieve,synonym,WordNet 3.0,1
+alliance,allowance,confusable,拼写编辑距离,1
+alliance,ally,derivation,WordNet 3.0,1
+allow,allowance,derivation,WordNet 3.0,1
+allow,alloy,confusable,拼写编辑距离,1
+allow,permit,synonym,WordNet 3.0,1
+alloy,ally,confusable,拼写编辑距离,1
+ally,rally,confusable,拼写编辑距离,1
+alone,lonely,synonym,WordNet 3.0,1
+aloud,loud,confusable,拼写编辑距离,1
+aloud,loud,synonym,WordNet 3.0,1
+alter,falter,confusable,拼写编辑距离,1
+alter,later,confusable,拼写编辑距离,1
+alter,vary,synonym,WordNet 3.0,1
+alternate,alternative,confusable,拼写编辑距离,1
+alternate,alternative,synonym,WordNet 3.0,1
+altitude,attitude,confusable,拼写编辑距离,1
+altitude,latitude,confusable,拼写编辑距离,1
+altogether,whole,synonym,WordNet 3.0,1
+altogether,wholly,synonym,WordNet 3.0,1
+amaze,astonish,synonym,WordNet 3.0,1
+amaze,bewilder,synonym,WordNet 3.0,1
+amaze,puzzle,synonym,WordNet 3.0,1
+ambiguous,ambitious,confusable,拼写编辑距离,1
+ambition,ambitious,derivation,WordNet 3.0,1
+amend,improve,synonym,WordNet 3.0,1
+amiable,cordial,synonym,WordNet 3.0,1
+amid,maid,confusable,拼写编辑距离,1
+amount,mount,confusable,拼写编辑距离,1
+amount,sum,synonym,WordNet 3.0,1
+amount,total,synonym,WordNet 3.0,1
+ample,plentiful,synonym,WordNet 3.0,1
+ample,sample,confusable,拼写编辑距离,1
+amplifier,amplify,derivation,WordNet 3.0,1
+amplify,magnify,synonym,WordNet 3.0,1
+analogue,parallel,synonym,WordNet 3.0,1
+analyse,examine,synonym,WordNet 3.0,1
+analysis,analytic,derivation,WordNet 3.0,1
+angel,anger,confusable,拼写编辑距离,1
+angel,angle,confusable,拼写编辑距离,1
+anger,danger,confusable,拼写编辑距离,1
+angle,ankle,confusable,拼写编辑距离,1
+angle,tangle,confusable,拼写编辑距离,1
+anguish,torment,synonym,WordNet 3.0,1
+anguish,torture,synonym,WordNet 3.0,1
+announce,declare,synonym,WordNet 3.0,1
+anticipate,counter,synonym,WordNet 3.0,1
+anyhow,anyway,synonym,WordNet 3.0,1
+apart,part,confusable,拼写编辑距离,1
+apologise,apology,derivation,WordNet 3.0,1
+appal,appall,confusable,拼写编辑距离,1
+appal,appeal,confusable,拼写编辑距离,1
+apparent,appear,derivation,WordNet 3.0,1
+apparent,evident,synonym,WordNet 3.0,1
+apparent,plain,synonym,WordNet 3.0,1
+appeal,appear,confusable,拼写编辑距离,1
+appeal,charm,synonym,WordNet 3.0,1
+appear,appearance,derivation,WordNet 3.0,1
+applause,appraise,confusable,拼写编辑距离,1
+applicable,apply,derivation,WordNet 3.0,1
+application,apply,derivation,WordNet 3.0,1
+apply,employ,synonym,WordNet 3.0,1
+apply,utilize,synonym,WordNet 3.0,1
+appoint,constitute,synonym,WordNet 3.0,1
+appointment,engagement,synonym,WordNet 3.0,1
+appraisal,appraise,derivation,WordNet 3.0,1
+appraise,assess,synonym,WordNet 3.0,1
+appraise,evaluate,synonym,WordNet 3.0,1
+apprehend,apprehensive,derivation,WordNet 3.0,1
+apprehend,arrest,synonym,WordNet 3.0,1
+apprehend,collar,synonym,WordNet 3.0,1
+apprehend,comprehend,synonym,WordNet 3.0,1
+apprehend,grasp,synonym,WordNet 3.0,1
+apprehend,nail,synonym,WordNet 3.0,1
+appropriate,conquer,synonym,WordNet 3.0,1
+appropriate,reserve,synonym,WordNet 3.0,1
+approval,approve,derivation,WordNet 3.0,1
+approve,sanction,synonym,WordNet 3.0,1
+approximate,estimate,synonym,WordNet 3.0,1
+approximate,gauge,synonym,WordNet 3.0,1
+argue,argument,derivation,WordNet 3.0,1
+argue,contend,synonym,WordNet 3.0,1
+argument,contention,synonym,WordNet 3.0,1
+argument,controversy,synonym,WordNet 3.0,1
+argument,statement,synonym,WordNet 3.0,1
+arise,originate,synonym,WordNet 3.0,1
+arise,rise,confusable,拼写编辑距离,1
+arouse,awake,synonym,WordNet 3.0,1
+arouse,evoke,synonym,WordNet 3.0,1
+arouse,provoke,synonym,WordNet 3.0,1
+arouse,rouse,confusable,拼写编辑距离,1
+arrest,collar,synonym,WordNet 3.0,1
+arrest,nail,synonym,WordNet 3.0,1
+arrow,narrow,confusable,拼写编辑距离,1
+art,artist,derivation,WordNet 3.0,1
+art,artistic,derivation,WordNet 3.0,1
+article,particle,confusable,拼写编辑距离,1
+articulate,phrase,synonym,WordNet 3.0,1
+artist,artistic,derivation,WordNet 3.0,1
+ascertain,determine,synonym,WordNet 3.0,1
+ascertain,ensure,synonym,WordNet 3.0,1
+ascertain,insure,synonym,WordNet 3.0,1
+ashore,shore,confusable,拼写编辑距离,1
+assemble,assembly,confusable,拼写编辑距离,1
+assemble,gather,synonym,WordNet 3.0,1
+assert,asset,confusable,拼写编辑距离,1
+assert,swan,synonym,WordNet 3.0,1
+assert,swear,synonym,WordNet 3.0,1
+assess,evaluate,synonym,WordNet 3.0,1
+assign,assignment,derivation,WordNet 3.0,1
+assign,delegate,synonym,WordNet 3.0,1
+assign,designate,synonym,WordNet 3.0,1
+assist,assistance,derivation,WordNet 3.0,1
+assist,assistance,synonym,WordNet 3.0,1
+assist,assistant,derivation,WordNet 3.0,1
+assistance,assistant,confusable,拼写编辑距离,1
+associate,association,derivation,WordNet 3.0,1
+associate,connect,synonym,WordNet 3.0,1
+associate,link,synonym,WordNet 3.0,1
+associate,relate,synonym,WordNet 3.0,1
+assume,assumption,derivation,WordNet 3.0,1
+assume,assure,confusable,拼写编辑距离,1
+assume,presume,synonym,WordNet 3.0,1
+assumption,premise,synonym,WordNet 3.0,1
+assurance,assure,derivation,WordNet 3.0,1
+assurance,confidence,synonym,WordNet 3.0,1
+assure,ensure,synonym,WordNet 3.0,1
+assure,guarantee,synonym,WordNet 3.0,1
+assure,insure,synonym,WordNet 3.0,1
+attach,attack,confusable,拼写编辑距离,1
+attain,reach,synonym,WordNet 3.0,1
+attempt,effort,synonym,WordNet 3.0,1
+attempt,endeavor,synonym,WordNet 3.0,1
+attempt,essay,synonym,WordNet 3.0,1
+attempt,undertake,synonym,WordNet 3.0,1
+attend,attendance,derivation,WordNet 3.0,1
+attend,attendant,derivation,WordNet 3.0,1
+attend,attention,derivation,WordNet 3.0,1
+attend,attentive,derivation,WordNet 3.0,1
+attendance,attendant,derivation,WordNet 3.0,1
+attention,attentive,confusable,拼写编辑距离,1
+attitude,posture,synonym,WordNet 3.0,1
+attorney,lawyer,synonym,WordNet 3.0,1
+attract,attractive,derivation,WordNet 3.0,1
+attribute,dimension,synonym,WordNet 3.0,1
+audio,audit,confusable,拼写编辑距离,1
+automatic,automation,confusable,拼写编辑距离,1
+autonomy,liberty,synonym,WordNet 3.0,1
+avail,available,derivation,WordNet 3.0,1
+average,norm,synonym,WordNet 3.0,1
+average,ordinary,synonym,WordNet 3.0,1
+avert,avoid,synonym,WordNet 3.0,1
+avoid,void,confusable,拼写编辑距离,1
+awake,aware,confusable,拼写编辑距离,1
+award,aware,confusable,拼写编辑距离,1
+award,grant,synonym,WordNet 3.0,1
+award,honor,synonym,WordNet 3.0,1
+award,ward,confusable,拼写编辑距离,1
+awful,fearful,synonym,WordNet 3.0,1
+awful,terrible,synonym,WordNet 3.0,1
+baggage,luggage,synonym,WordNet 3.0,1
+bait,tease,synonym,WordNet 3.0,1
+bake,bare,confusable,拼写编辑距离,1
+bake,base,confusable,拼写编辑距离,1
+bake,brake,confusable,拼写编辑距离,1
+bald,band,confusable,拼写编辑距离,1
+bald,bold,confusable,拼写编辑距离,1
+ballet,ballot,confusable,拼写编辑距离,1
+ballet,bullet,confusable,拼写编辑距离,1
+ballet,wallet,confusable,拼写编辑距离,1
+ballot,vote,synonym,WordNet 3.0,1
+band,bang,confusable,拼写编辑距离,1
+band,bend,confusable,拼写编辑距离,1
+band,bind,confusable,拼写编辑距离,1
+band,bond,confusable,拼写编辑距离,1
+band,brand,confusable,拼写编辑距离,1
+band,circle,synonym,WordNet 3.0,1
+bang,blast,synonym,WordNet 3.0,1
+bang,clap,synonym,WordNet 3.0,1
+bang,slam,synonym,WordNet 3.0,1
+bang,smash,synonym,WordNet 3.0,1
+banner,manner,confusable,拼写编辑距离,1
+banquet,feast,synonym,WordNet 3.0,1
+bare,bark,confusable,拼写编辑距离,1
+bare,barn,confusable,拼写编辑距离,1
+bare,base,confusable,拼写编辑距离,1
+bare,bore,confusable,拼写编辑距离,1
+bare,naked,synonym,WordNet 3.0,1
+barely,hardly,synonym,WordNet 3.0,1
+barely,rarely,confusable,拼写编辑距离,1
+barely,scarce,synonym,WordNet 3.0,1
+barely,scarcely,synonym,WordNet 3.0,1
+bargain,deal,synonym,WordNet 3.0,1
+bark,barn,confusable,拼写编辑距离,1
+barn,born,confusable,拼写编辑距离,1
+barn,burn,confusable,拼写编辑距离,1
+barrel,barren,confusable,拼写编辑距离,1
+barrier,carrier,confusable,拼写编辑距离,1
+basement,cellar,synonym,WordNet 3.0,1
+basic,basin,confusable,拼写编辑距离,1
+basic,basis,confusable,拼写编辑距离,1
+basin,basis,confusable,拼写编辑距离,1
+batch,bath,confusable,拼写编辑距离,1
+bath,bathe,confusable,拼写编辑距离,1
+battle,cattle,confusable,拼写编辑距离,1
+battle,combat,synonym,WordNet 3.0,1
+battle,engagement,synonym,WordNet 3.0,1
+battle,fight,synonym,WordNet 3.0,1
+battle,struggle,synonym,WordNet 3.0,1
+beach,bench,confusable,拼写编辑距离,1
+beach,breach,confusable,拼写编辑距离,1
+beam,bean,confusable,拼写编辑距离,1
+beard,board,confusable,拼写编辑距离,1
+bearing,hearing,confusable,拼写编辑距离,1
+beast,blast,confusable,拼写编辑距离,1
+beast,boast,confusable,拼写编辑距离,1
+beast,breast,confusable,拼写编辑距离,1
+beast,creature,synonym,WordNet 3.0,1
+beg,pray,synonym,WordNet 3.0,1
+beginning,outset,synonym,WordNet 3.0,1
+behavior,conduct,synonym,WordNet 3.0,1
+being,existence,synonym,WordNet 3.0,1
+being,organism,synonym,WordNet 3.0,1
+belief,feeling,synonym,WordNet 3.0,1
+belief,impression,synonym,WordNet 3.0,1
+belief,notion,synonym,WordNet 3.0,1
+belief,relief,confusable,拼写编辑距离,1
+belly,bully,confusable,拼写编辑距离,1
+belly,stomach,synonym,WordNet 3.0,1
+beloved,darling,synonym,WordNet 3.0,1
+belt,bolt,confusable,拼写编辑距离,1
+bench,bunch,confusable,拼写编辑距离,1
+bend,bind,confusable,拼写编辑距离,1
+bend,blend,confusable,拼写编辑距离,1
+bend,bond,confusable,拼写编辑距离,1
+beneficial,benefit,derivation,WordNet 3.0,1
+benefit,profit,synonym,WordNet 3.0,1
+benefit,welfare,synonym,WordNet 3.0,1
+besides,likewise,synonym,WordNet 3.0,1
+bewilder,puzzle,synonym,WordNet 3.0,1
+bias,prejudice,synonym,WordNet 3.0,1
+bid,command,synonym,WordNet 3.0,1
+bill,bull,confusable,拼写编辑距离,1
+bind,blind,confusable,拼写编辑距离,1
+bind,bond,confusable,拼写编辑距离,1
+bind,bond,synonym,WordNet 3.0,1
+bite,sting,synonym,WordNet 3.0,1
+bitter,butter,confusable,拼写编辑距离,1
+bitter,litter,confusable,拼写编辑距离,1
+bizarre,eccentric,synonym,WordNet 3.0,1
+blade,blame,confusable,拼写编辑距离,1
+blade,blaze,confusable,拼写编辑距离,1
+blame,blaze,confusable,拼写编辑距离,1
+blame,fault,synonym,WordNet 3.0,1
+blame,lame,confusable,拼写编辑距离,1
+blame,rap,synonym,WordNet 3.0,1
+blast,boast,confusable,拼写编辑距离,1
+blast,boom,synonym,WordNet 3.0,1
+blast,clap,synonym,WordNet 3.0,1
+blast,smash,synonym,WordNet 3.0,1
+bleak,desolate,synonym,WordNet 3.0,1
+bleak,leak,confusable,拼写编辑距离,1
+bleed,blend,confusable,拼写编辑距离,1
+bleed,breed,confusable,拼写编辑距离,1
+blend,blind,confusable,拼写编辑距离,1
+bless,less,confusable,拼写编辑距离,1
+blood,bloody,derivation,WordNet 3.0,1
+blood,bloom,confusable,拼写编辑距离,1
+bloom,blossom,synonym,WordNet 3.0,1
+bloom,boom,confusable,拼写编辑距离,1
+bloom,broom,confusable,拼写编辑距离,1
+bloom,loom,confusable,拼写编辑距离,1
+blossom,unfold,synonym,WordNet 3.0,1
+blush,bush,confusable,拼写编辑距离,1
+blush,flush,synonym,WordNet 3.0,1
+boast,boost,confusable,拼写编辑距离,1
+boast,feature,synonym,WordNet 3.0,1
+boil,bowl,confusable,拼写编辑距离,1
+bold,bolt,confusable,拼写编辑距离,1
+bold,bond,confusable,拼写编辑距离,1
+bolt,boot,confusable,拼写编辑距离,1
+bond,bone,confusable,拼写编辑距离,1
+bond,bound,confusable,拼写编辑距离,1
+bone,bore,confusable,拼写编辑距离,1
+boom,boot,confusable,拼写编辑距离,1
+boom,bosom,confusable,拼写编辑距离,1
+boom,broom,confusable,拼写编辑距离,1
+boom,roar,synonym,WordNet 3.0,1
+boom,smash,synonym,WordNet 3.0,1
+boom,thunder,synonym,WordNet 3.0,1
+boost,boot,confusable,拼写编辑距离,1
+boost,hike,synonym,WordNet 3.0,1
+boot,booth,confusable,拼写编辑距离,1
+booth,stall,synonym,WordNet 3.0,1
+border,bound,synonym,WordNet 3.0,1
+border,margin,synonym,WordNet 3.0,1
+border,surround,synonym,WordNet 3.0,1
+bore,born,confusable,拼写编辑距离,1
+bore,drill,synonym,WordNet 3.0,1
+born,burn,confusable,拼写编辑距离,1
+boss,chief,synonym,WordNet 3.0,1
+bounce,leap,synonym,WordNet 3.0,1
+bounce,ounce,confusable,拼写编辑距离,1
+bound,boundary,derivation,WordNet 3.0,1
+bound,boundary,synonym,WordNet 3.0,1
+bound,edge,synonym,WordNet 3.0,1
+bound,leap,synonym,WordNet 3.0,1
+boundary,edge,synonym,WordNet 3.0,1
+bowel,bowl,confusable,拼写编辑距离,1
+brace,brake,confusable,拼写编辑距离,1
+brace,brave,confusable,拼写编辑距离,1
+brace,race,confusable,拼写编辑距离,1
+brace,steady,synonym,WordNet 3.0,1
+bracket,racket,confusable,拼写编辑距离,1
+brain,wit,synonym,WordNet 3.0,1
+brake,brave,confusable,拼写编辑距离,1
+brake,rake,confusable,拼写编辑距离,1
+brave,endure,synonym,WordNet 3.0,1
+breach,breath,confusable,拼写编辑距离,1
+breach,preach,confusable,拼写编辑距离,1
+breach,reach,confusable,拼写编辑距离,1
+breach,violate,synonym,WordNet 3.0,1
+breadth,breath,confusable,拼写编辑距离,1
+breadth,width,synonym,WordNet 3.0,1
+breath,breathe,confusable,拼写编辑距离,1
+breath,wreath,confusable,拼写编辑距离,1
+breed,reed,confusable,拼写编辑距离,1
+breeze,freeze,confusable,拼写编辑距离,1
+bribe,bride,confusable,拼写编辑距离,1
+brick,brisk,confusable,拼写编辑距离,1
+brilliant,superb,synonym,WordNet 3.0,1
+brisk,risk,confusable,拼写编辑距离,1
+broad,extensive,synonym,WordNet 3.0,1
+brook,broom,confusable,拼写编辑距离,1
+brook,endure,synonym,WordNet 3.0,1
+brook,tolerate,synonym,WordNet 3.0,1
+brow,eyebrow,synonym,WordNet 3.0,1
+brow,forehead,synonym,WordNet 3.0,1
+bruise,cruise,confusable,拼写编辑距离,1
+brutal,cruel,synonym,WordNet 3.0,1
+brutal,savage,synonym,WordNet 3.0,1
+brutal,vicious,synonym,WordNet 3.0,1
+bucket,pail,synonym,WordNet 3.0,1
+bug,tease,synonym,WordNet 3.0,1
+bulb,bulk,confusable,拼写编辑距离,1
+bulb,bull,confusable,拼写编辑距离,1
+bulk,bull,confusable,拼写编辑距离,1
+bulk,majority,synonym,WordNet 3.0,1
+bulk,volume,synonym,WordNet 3.0,1
+bully,swell,synonym,WordNet 3.0,1
+bump,encounter,synonym,WordNet 3.0,1
+bunch,cluster,synonym,WordNet 3.0,1
+bunch,crowd,synonym,WordNet 3.0,1
+bunch,gang,synonym,WordNet 3.0,1
+bundle,package,synonym,WordNet 3.0,1
+bundle,packet,synonym,WordNet 3.0,1
+burden,load,synonym,WordNet 3.0,1
+burn,bury,confusable,拼写编辑距离,1
+burn,tan,synonym,WordNet 3.0,1
+burst,explosion,synonym,WordNet 3.0,1
+butcher,slaughter,synonym,WordNet 3.0,1
+butter,mutter,confusable,拼写编辑距离,1
+butter,utter,confusable,拼写编辑距离,1
+button,mutton,confusable,拼写编辑距离,1
+cable,telegraph,synonym,WordNet 3.0,1
+cable,wire,synonym,WordNet 3.0,1
+cafe,cage,confusable,拼写编辑距离,1
+cafe,cake,confusable,拼写编辑距离,1
+cafe,cape,confusable,拼写编辑距离,1
+cafe,cave,confusable,拼写编辑距离,1
+cage,cake,confusable,拼写编辑距离,1
+cage,cape,confusable,拼写编辑距离,1
+cage,cave,confusable,拼写编辑距离,1
+cake,cape,confusable,拼写编辑距离,1
+cake,cave,confusable,拼写编辑距离,1
+calculate,compute,synonym,WordNet 3.0,1
+calculate,estimate,synonym,WordNet 3.0,1
+calculate,figure,synonym,WordNet 3.0,1
+calculate,forecast,synonym,WordNet 3.0,1
+calculate,reckon,synonym,WordNet 3.0,1
+calm,steady,synonym,WordNet 3.0,1
+cancel,cancer,confusable,拼写编辑距离,1
+candle,handle,confusable,拼写编辑距离,1
+cape,cave,confusable,拼写编辑距离,1
+cape,cope,confusable,拼写编辑距离,1
+captive,prisoner,synonym,WordNet 3.0,1
+capture,charm,synonym,WordNet 3.0,1
+cardinal,central,synonym,WordNet 3.0,1
+cardinal,fundamental,synonym,WordNet 3.0,1
+career,vocation,synonym,WordNet 3.0,1
+cargo,freight,synonym,WordNet 3.0,1
+cargo,shipment,synonym,WordNet 3.0,1
+carpet,rug,synonym,WordNet 3.0,1
+carriage,marriage,confusable,拼写编辑距离,1
+cart,cast,confusable,拼写编辑距离,1
+cart,chart,confusable,拼写编辑距离,1
+cart,drag,synonym,WordNet 3.0,1
+cart,haul,synonym,WordNet 3.0,1
+carve,cave,confusable,拼写编辑距离,1
+carve,curve,confusable,拼写编辑距离,1
+cash,cast,confusable,拼写编辑距离,1
+cash,clash,confusable,拼写编辑距离,1
+cash,crash,confusable,拼写编辑距离,1
+cast,coast,confusable,拼写编辑距离,1
+castle,cattle,confusable,拼写编辑距离,1
+catastrophe,disaster,synonym,WordNet 3.0,1
+catastrophe,tragedy,synonym,WordNet 3.0,1
+cater,provide,synonym,WordNet 3.0,1
+cause,clause,confusable,拼写编辑距离,1
+cause,induce,synonym,WordNet 3.0,1
+cause,stimulate,synonym,WordNet 3.0,1
+caution,cautious,derivation,WordNet 3.0,1
+cease,chase,confusable,拼写编辑距离,1
+cease,ease,confusable,拼写编辑距离,1
+cease,quit,synonym,WordNet 3.0,1
+cease,terminate,synonym,WordNet 3.0,1
+celebrate,celebrity,confusable,拼写编辑距离,1
+cellar,collar,confusable,拼写编辑距离,1
+cent,penny,synonym,WordNet 3.0,1
+cent,scent,confusable,拼写编辑距离,1
+central,fundamental,synonym,WordNet 3.0,1
+certain,curtain,confusable,拼写编辑距离,1
+certificate,certify,derivation,WordNet 3.0,1
+certify,evidence,synonym,WordNet 3.0,1
+certify,manifest,synonym,WordNet 3.0,1
+chain,chin,confusable,拼写编辑距离,1
+challenge,dispute,synonym,WordNet 3.0,1
+chance,fortune,synonym,WordNet 3.0,1
+chance,gamble,synonym,WordNet 3.0,1
+chance,hazard,synonym,WordNet 3.0,1
+chance,luck,synonym,WordNet 3.0,1
+chance,opportunity,synonym,WordNet 3.0,1
+chance,risk,synonym,WordNet 3.0,1
+channel,transmit,synonym,WordNet 3.0,1
+chap,chat,confusable,拼写编辑距离,1
+chap,chip,confusable,拼写编辑距离,1
+chap,chop,confusable,拼写编辑距离,1
+chap,clap,confusable,拼写编辑距离,1
+chap,fellow,synonym,WordNet 3.0,1
+chap,lad,synonym,WordNet 3.0,1
+chapter,charter,confusable,拼写编辑距离,1
+character,characteristic,derivation,WordNet 3.0,1
+character,characterize,derivation,WordNet 3.0,1
+characteristic,feature,synonym,WordNet 3.0,1
+charity,clarity,confusable,拼写编辑距离,1
+charm,chart,confusable,拼写编辑距离,1
+charm,harm,confusable,拼写编辑距离,1
+chart,chat,confusable,拼写编辑距离,1
+charter,hire,synonym,WordNet 3.0,1
+chase,pursuit,synonym,WordNet 3.0,1
+chase,trail,synonym,WordNet 3.0,1
+chat,cheat,confusable,拼写编辑距离,1
+chat,coat,confusable,拼写编辑距离,1
+chat,jaw,synonym,WordNet 3.0,1
+cheat,chest,confusable,拼写编辑距离,1
+cheat,heat,confusable,拼写编辑距离,1
+cheek,cheer,confusable,拼写编辑距离,1
+chef,chew,confusable,拼写编辑距离,1
+chef,chief,confusable,拼写编辑距离,1
+chemical,chemistry,derivation,WordNet 3.0,1
+chemist,chemistry,derivation,WordNet 3.0,1
+chess,chest,confusable,拼写编辑距离,1
+chew,crew,confusable,拼写编辑距离,1
+chief,main,synonym,WordNet 3.0,1
+chief,principal,synonym,WordNet 3.0,1
+chill,quiver,synonym,WordNet 3.0,1
+chill,thrill,synonym,WordNet 3.0,1
+chin,chip,confusable,拼写编辑距离,1
+chin,coin,confusable,拼写编辑距离,1
+chip,chop,confusable,拼写编辑距离,1
+chip,clip,confusable,拼写编辑距离,1
+chip,scrap,synonym,WordNet 3.0,1
+choice,select,synonym,WordNet 3.0,1
+choice,selection,synonym,WordNet 3.0,1
+choose,prefer,synonym,WordNet 3.0,1
+choose,select,synonym,WordNet 3.0,1
+chop,crop,confusable,拼写编辑距离,1
+circle,circular,derivation,WordNet 3.0,1
+circle,circulate,derivation,WordNet 3.0,1
+circuit,tour,synonym,WordNet 3.0,1
+circular,circulate,derivation,WordNet 3.0,1
+cite,refer,synonym,WordNet 3.0,1
+civil,civility,derivation,WordNet 3.0,1
+civilian,civility,confusable,拼写编辑距离,1
+civilian,civilize,confusable,拼写编辑距离,1
+civility,civilize,confusable,拼写编辑距离,1
+civilization,civilize,derivation,WordNet 3.0,1
+clap,clasp,confusable,拼写编辑距离,1
+clap,claw,confusable,拼写编辑距离,1
+clap,clay,confusable,拼写编辑距离,1
+clap,clip,confusable,拼写编辑距离,1
+clarify,clarity,confusable,拼写编辑距离,1
+clash,clasp,confusable,拼写编辑距离,1
+clash,crash,confusable,拼写编辑距离,1
+clash,crash,synonym,WordNet 3.0,1
+clash,friction,synonym,WordNet 3.0,1
+clash,lash,confusable,拼写编辑距离,1
+classic,classical,synonym,WordNet 3.0,1
+classification,classify,derivation,WordNet 3.0,1
+claw,clay,confusable,拼写编辑距离,1
+clever,lever,confusable,拼写编辑距离,1
+click,clock,confusable,拼写编辑距离,1
+click,lick,confusable,拼写编辑距离,1
+click,tick,synonym,WordNet 3.0,1
+client,customer,synonym,WordNet 3.0,1
+climate,mood,synonym,WordNet 3.0,1
+climb,limb,confusable,拼写编辑距离,1
+cloak,clock,confusable,拼写编辑距离,1
+clock,cock,confusable,拼写编辑距离,1
+clock,lock,confusable,拼写编辑距离,1
+closet,cupboard,synonym,WordNet 3.0,1
+cloth,clothe,confusable,拼写编辑距离,1
+cloth,fabric,synonym,WordNet 3.0,1
+cloth,textile,synonym,WordNet 3.0,1
+clothe,clothing,derivation,WordNet 3.0,1
+club,clue,confusable,拼写编辑距离,1
+club,society,synonym,WordNet 3.0,1
+clue,hint,synonym,WordNet 3.0,1
+clutch,grip,synonym,WordNet 3.0,1
+clutch,seize,synonym,WordNet 3.0,1
+coach,couch,confusable,拼写编辑距离,1
+coal,coat,confusable,拼写编辑距离,1
+coal,coil,confusable,拼写编辑距离,1
+coarse,course,confusable,拼写编辑距离,1
+coarse,vulgar,synonym,WordNet 3.0,1
+coast,coat,confusable,拼写编辑距离,1
+code,cope,confusable,拼写编辑距离,1
+coil,coin,confusable,拼写编辑距离,1
+coil,spiral,synonym,WordNet 3.0,1
+coin,corn,confusable,拼写编辑距离,1
+coincide,coincidence,derivation,WordNet 3.0,1
+cold,cord,confusable,拼写编辑距离,1
+cold,scold,confusable,拼写编辑距离,1
+collaborate,cooperate,synonym,WordNet 3.0,1
+collar,nail,synonym,WordNet 3.0,1
+collect,collection,derivation,WordNet 3.0,1
+collect,compile,synonym,WordNet 3.0,1
+collection,collective,confusable,拼写编辑距离,1
+collide,collision,derivation,WordNet 3.0,1
+colonial,colony,derivation,WordNet 3.0,1
+colony,settlement,synonym,WordNet 3.0,1
+combat,fight,synonym,WordNet 3.0,1
+combination,combine,derivation,WordNet 3.0,1
+combine,compound,synonym,WordNet 3.0,1
+comedy,comic,derivation,WordNet 3.0,1
+comfort,console,synonym,WordNet 3.0,1
+comfort,ease,synonym,WordNet 3.0,1
+comic,cosmic,confusable,拼写编辑距离,1
+comic,funny,synonym,WordNet 3.0,1
+command,commend,confusable,拼写编辑距离,1
+commence,commerce,confusable,拼写编辑距离,1
+commend,comment,confusable,拼写编辑距离,1
+comment,remark,synonym,WordNet 3.0,1
+commerce,commercial,derivation,WordNet 3.0,1
+commission,commit,derivation,WordNet 3.0,1
+commission,committee,synonym,WordNet 3.0,1
+commission,compassion,confusable,拼写编辑距离,1
+commit,committee,derivation,WordNet 3.0,1
+commit,dedicate,synonym,WordNet 3.0,1
+commit,devote,synonym,WordNet 3.0,1
+commodity,community,confusable,拼写编辑距离,1
+commonwealth,nation,synonym,WordNet 3.0,1
+communicate,communication,derivation,WordNet 3.0,1
+communism,community,confusable,拼写编辑距离,1
+commute,compute,confusable,拼写编辑距离,1
+companion,comparison,confusable,拼写编辑距离,1
+companion,compassion,confusable,拼写编辑距离,1
+companion,comrade,synonym,WordNet 3.0,1
+companion,fellow,synonym,WordNet 3.0,1
+comparable,compatible,confusable,拼写编辑距离,1
+comparative,compare,derivation,WordNet 3.0,1
+compare,comparison,derivation,WordNet 3.0,1
+comparison,compassion,confusable,拼写编辑距离,1
+compass,range,synonym,WordNet 3.0,1
+compass,reach,synonym,WordNet 3.0,1
+compass,scope,synonym,WordNet 3.0,1
+compel,oblige,synonym,WordNet 3.0,1
+compensate,compensation,derivation,WordNet 3.0,1
+compete,competition,derivation,WordNet 3.0,1
+compete,competitive,derivation,WordNet 3.0,1
+compete,complete,confusable,拼写编辑距离,1
+compete,compute,confusable,拼写编辑距离,1
+competent,complement,confusable,拼写编辑距离,1
+competent,component,confusable,拼写编辑距离,1
+competition,competitive,confusable,拼写编辑距离,1
+competition,composition,confusable,拼写编辑距离,1
+competition,contest,synonym,WordNet 3.0,1
+complain,complaint,derivation,WordNet 3.0,1
+complement,compliment,confusable,拼写编辑距离,1
+complex,composite,synonym,WordNet 3.0,1
+compliance,comply,derivation,WordNet 3.0,1
+compliance,conformity,synonym,WordNet 3.0,1
+complicate,complication,derivation,WordNet 3.0,1
+complicate,refine,synonym,WordNet 3.0,1
+compliment,congratulate,synonym,WordNet 3.0,1
+component,compose,derivation,WordNet 3.0,1
+component,element,synonym,WordNet 3.0,1
+component,factor,synonym,WordNet 3.0,1
+component,ingredient,synonym,WordNet 3.0,1
+component,part,synonym,WordNet 3.0,1
+component,portion,synonym,WordNet 3.0,1
+compose,composition,derivation,WordNet 3.0,1
+comprehend,comprehension,derivation,WordNet 3.0,1
+comprehend,comprehensive,derivation,WordNet 3.0,1
+comprehend,grasp,synonym,WordNet 3.0,1
+comprehend,perceive,synonym,WordNet 3.0,1
+comprehension,comprehensive,confusable,拼写编辑距离,1
+compress,comprise,confusable,拼写编辑距离,1
+comprise,compromise,confusable,拼写编辑距离,1
+comprise,contain,synonym,WordNet 3.0,1
+comprise,incorporate,synonym,WordNet 3.0,1
+comrade,fellow,synonym,WordNet 3.0,1
+conceal,hide,synonym,WordNet 3.0,1
+concede,concession,derivation,WordNet 3.0,1
+concede,confess,synonym,WordNet 3.0,1
+conceive,concept,derivation,WordNet 3.0,1
+conceive,conserve,confusable,拼写编辑距离,1
+conceive,contrive,confusable,拼写编辑距离,1
+concentrate,concentration,derivation,WordNet 3.0,1
+concentrate,focus,synonym,WordNet 3.0,1
+concentration,density,synonym,WordNet 3.0,1
+concept,concert,confusable,拼写编辑距离,1
+concern,concert,confusable,拼写编辑距离,1
+concern,fear,synonym,WordNet 3.0,1
+concern,interest,synonym,WordNet 3.0,1
+concern,refer,synonym,WordNet 3.0,1
+concern,relate,synonym,WordNet 3.0,1
+concert,convert,confusable,拼写编辑距离,1
+concession,conclusion,confusable,拼写编辑距离,1
+concession,conversion,confusable,拼写编辑距离,1
+conclude,conclusion,derivation,WordNet 3.0,1
+conclude,conclusive,derivation,WordNet 3.0,1
+conclusion,conclusive,confusable,拼写编辑距离,1
+conclusion,confusion,confusable,拼写编辑距离,1
+conclusion,decision,synonym,WordNet 3.0,1
+condition,conviction,confusable,拼写编辑距离,1
+condition,discipline,synonym,WordNet 3.0,1
+condition,status,synonym,WordNet 3.0,1
+conduct,conductor,derivation,WordNet 3.0,1
+confer,conference,derivation,WordNet 3.0,1
+conference,confidence,confusable,拼写编辑距离,1
+confidence,confident,derivation,WordNet 3.0,1
+confidence,confidential,derivation,WordNet 3.0,1
+confident,continent,confusable,拼写编辑距离,1
+confine,limit,synonym,WordNet 3.0,1
+confine,restrain,synonym,WordNet 3.0,1
+confirm,conform,confusable,拼写编辑距离,1
+conflict,struggle,synonym,WordNet 3.0,1
+confuse,confusion,derivation,WordNet 3.0,1
+congratulate,congratulation,derivation,WordNet 3.0,1
+connect,connection,derivation,WordNet 3.0,1
+connect,link,synonym,WordNet 3.0,1
+connect,relate,synonym,WordNet 3.0,1
+connection,contention,confusable,拼写编辑距离,1
+connection,convention,confusable,拼写编辑距离,1
+connection,conviction,confusable,拼写编辑距离,1
+conquer,curb,synonym,WordNet 3.0,1
+conquer,inhibit,synonym,WordNet 3.0,1
+conquer,suppress,synonym,WordNet 3.0,1
+conscience,conscientious,derivation,WordNet 3.0,1
+consent,content,confusable,拼写编辑距离,1
+consequence,effect,synonym,WordNet 3.0,1
+consequence,outcome,synonym,WordNet 3.0,1
+consequence,result,synonym,WordNet 3.0,1
+conservation,conserve,derivation,WordNet 3.0,1
+consider,consideration,derivation,WordNet 3.0,1
+consider,regard,synonym,WordNet 3.0,1
+consider,view,synonym,WordNet 3.0,1
+considerable,considerate,confusable,拼写编辑距离,1
+consist,dwell,synonym,WordNet 3.0,1
+conspiracy,conspire,derivation,WordNet 3.0,1
+constant,consultant,confusable,拼写编辑距离,1
+constituent,constitute,derivation,WordNet 3.0,1
+constituent,element,synonym,WordNet 3.0,1
+constitute,constitution,derivation,WordNet 3.0,1
+constitution,establishment,synonym,WordNet 3.0,1
+construct,construction,derivation,WordNet 3.0,1
+construct,contract,confusable,拼写编辑距离,1
+construct,manufacture,synonym,WordNet 3.0,1
+consult,consultant,derivation,WordNet 3.0,1
+consume,consumption,derivation,WordNet 3.0,1
+contact,contract,confusable,拼写编辑距离,1
+contain,container,derivation,WordNet 3.0,1
+contain,content,derivation,WordNet 3.0,1
+contain,continent,derivation,WordNet 3.0,1
+contain,incorporate,synonym,WordNet 3.0,1
+contaminate,foul,synonym,WordNet 3.0,1
+contempt,disdain,synonym,WordNet 3.0,1
+contempt,scorn,synonym,WordNet 3.0,1
+contend,content,confusable,拼写编辑距离,1
+contend,contention,derivation,WordNet 3.0,1
+content,contest,confusable,拼写编辑距离,1
+content,context,confusable,拼写编辑距离,1
+content,message,synonym,WordNet 3.0,1
+contention,controversy,synonym,WordNet 3.0,1
+contention,convention,confusable,拼写编辑距离,1
+contest,context,confusable,拼写编辑距离,1
+continual,continue,confusable,拼写编辑距离,1
+continue,convince,confusable,拼写编辑距离,1
+continue,proceed,synonym,WordNet 3.0,1
+contract,contradict,confusable,拼写编辑距离,1
+contract,contrary,confusable,拼写编辑距离,1
+contract,contrast,confusable,拼写编辑距离,1
+contradict,contradiction,derivation,WordNet 3.0,1
+contrary,contrast,confusable,拼写编辑距离,1
+contrary,opposite,synonym,WordNet 3.0,1
+contrary,reverse,synonym,WordNet 3.0,1
+contribute,contribution,derivation,WordNet 3.0,1
+contribute,impart,synonym,WordNet 3.0,1
+contrive,design,synonym,WordNet 3.0,1
+contrive,devise,synonym,WordNet 3.0,1
+contrive,formulate,synonym,WordNet 3.0,1
+contrive,invent,synonym,WordNet 3.0,1
+control,curb,synonym,WordNet 3.0,1
+controversial,controversy,derivation,WordNet 3.0,1
+convenience,convenient,derivation,WordNet 3.0,1
+convention,conventional,confusable,拼写编辑距离,1
+convention,conversion,confusable,拼写编辑距离,1
+convention,conviction,confusable,拼写编辑距离,1
+convention,rule,synonym,WordNet 3.0,1
+conversion,convert,derivation,WordNet 3.0,1
+conversion,transition,synonym,WordNet 3.0,1
+convict,conviction,derivation,WordNet 3.0,1
+conviction,sentence,synonym,WordNet 3.0,1
+cooperate,cooperative,derivation,WordNet 3.0,1
+cope,scope,confusable,拼写编辑距离,1
+cord,corn,confusable,拼写编辑距离,1
+corn,scorn,confusable,拼写编辑距离,1
+correspond,correspondence,derivation,WordNet 3.0,1
+correspond,correspondent,derivation,WordNet 3.0,1
+correspondence,correspondent,derivation,WordNet 3.0,1
+correspondent,corresponding,confusable,拼写编辑距离,1
+costly,mostly,confusable,拼写编辑距离,1
+couch,cough,confusable,拼写编辑距离,1
+couch,sofa,synonym,WordNet 3.0,1
+count,counter,derivation,WordNet 3.0,1
+count,court,confusable,拼写编辑距离,1
+couple,mate,synonym,WordNet 3.0,1
+course,curse,confusable,拼写编辑距离,1
+cow,coward,derivation,WordNet 3.0,1
+coward,toward,confusable,拼写编辑距离,1
+crack,rack,confusable,拼写编辑距离,1
+crack,super,synonym,WordNet 3.0,1
+craft,trade,synonym,WordNet 3.0,1
+crash,crush,confusable,拼写编辑距离,1
+crash,rash,confusable,拼写编辑距离,1
+crawl,creep,synonym,WordNet 3.0,1
+crazy,mad,synonym,WordNet 3.0,1
+cream,scream,confusable,拼写编辑距离,1
+create,creative,derivation,WordNet 3.0,1
+create,creature,derivation,WordNet 3.0,1
+creative,creature,confusable,拼写编辑距离,1
+creep,sneak,synonym,WordNet 3.0,1
+crew,crow,confusable,拼写编辑距离,1
+crew,screw,confusable,拼写编辑距离,1
+crime,criminal,derivation,WordNet 3.0,1
+criminal,critical,confusable,拼写编辑距离,1
+crisis,critical,derivation,WordNet 3.0,1
+crisp,sharp,synonym,WordNet 3.0,1
+criterion,standard,synonym,WordNet 3.0,1
+critic,critical,derivation,WordNet 3.0,1
+critic,criticize,derivation,WordNet 3.0,1
+critical,criticism,derivation,WordNet 3.0,1
+criticism,criticize,confusable,拼写编辑距离,1
+crop,crow,confusable,拼写编辑距离,1
+crop,harvest,synonym,WordNet 3.0,1
+cross,intersect,synonym,WordNet 3.0,1
+crow,crown,confusable,拼写编辑距离,1
+crowd,crown,confusable,拼写编辑距离,1
+crowd,gang,synonym,WordNet 3.0,1
+crowd,herd,synonym,WordNet 3.0,1
+crude,rude,confusable,拼写编辑距离,1
+cruel,savage,synonym,WordNet 3.0,1
+cruel,vicious,synonym,WordNet 3.0,1
+crush,crust,confusable,拼写编辑距离,1
+crush,oppress,synonym,WordNet 3.0,1
+crush,rush,confusable,拼写编辑距离,1
+crush,squeeze,synonym,WordNet 3.0,1
+crush,suppress,synonym,WordNet 3.0,1
+crust,rust,confusable,拼写编辑距离,1
+cube,cure,confusable,拼写编辑距离,1
+curb,cure,confusable,拼写编辑距离,1
+curb,curl,confusable,拼写编辑距离,1
+curb,inhibit,synonym,WordNet 3.0,1
+curb,suppress,synonym,WordNet 3.0,1
+cure,curl,confusable,拼写编辑距离,1
+cure,curse,confusable,拼写编辑距离,1
+cure,curve,confusable,拼写编辑距离,1
+cure,remedy,synonym,WordNet 3.0,1
+curiosity,curious,derivation,WordNet 3.0,1
+curious,funny,synonym,WordNet 3.0,1
+curious,furious,confusable,拼写编辑距离,1
+curious,peculiar,synonym,WordNet 3.0,1
+curious,queer,synonym,WordNet 3.0,1
+curious,singular,synonym,WordNet 3.0,1
+currency,current,derivation,WordNet 3.0,1
+curse,curve,confusable,拼写编辑距离,1
+curse,oath,synonym,WordNet 3.0,1
+curse,swear,synonym,WordNet 3.0,1
+curve,sheer,synonym,WordNet 3.0,1
+custom,customary,derivation,WordNet 3.0,1
+custom,tradition,synonym,WordNet 3.0,1
+custom,usage,synonym,WordNet 3.0,1
+customary,customer,confusable,拼写编辑距离,1
+daily,dairy,confusable,拼写编辑距离,1
+dairy,diary,confusable,拼写编辑距离,1
+damage,harm,synonym,WordNet 3.0,1
+damn,damp,confusable,拼写编辑距离,1
+damn,dawn,confusable,拼写编辑距离,1
+damp,dump,confusable,拼写编辑距离,1
+damp,moist,synonym,WordNet 3.0,1
+danger,dangerous,derivation,WordNet 3.0,1
+danger,risk,synonym,WordNet 3.0,1
+dangerous,grave,synonym,WordNet 3.0,1
+darling,favorite,synonym,WordNet 3.0,1
+dash,smash,synonym,WordNet 3.0,1
+daylight,daytime,synonym,WordNet 3.0,1
+deadline,headline,confusable,拼写编辑距离,1
+deaf,deal,confusable,拼写编辑距离,1
+deaf,dean,confusable,拼写编辑距离,1
+deal,dealer,derivation,WordNet 3.0,1
+deal,dean,confusable,拼写编辑距离,1
+deal,dial,confusable,拼写编辑距离,1
+deal,ideal,confusable,拼写编辑距离,1
+death,depth,confusable,拼写编辑距离,1
+decay,delay,confusable,拼写编辑距离,1
+deceit,decent,confusable,拼写编辑距离,1
+decent,descent,confusable,拼写编辑距离,1
+decent,recent,confusable,拼写编辑距离,1
+decision,decisive,confusable,拼写编辑距离,1
+deck,dock,confusable,拼写编辑距离,1
+deck,duck,confusable,拼写编辑距离,1
+declaration,declare,derivation,WordNet 3.0,1
+decline,refuse,synonym,WordNet 3.0,1
+decline,reject,synonym,WordNet 3.0,1
+decorate,grace,synonym,WordNet 3.0,1
+decorate,ornament,synonym,WordNet 3.0,1
+decrease,diminish,synonym,WordNet 3.0,1
+dedicate,delicate,confusable,拼写编辑距离,1
+dedicate,devote,synonym,WordNet 3.0,1
+deduce,deduct,confusable,拼写编辑距离,1
+deduce,derive,synonym,WordNet 3.0,1
+deduce,infer,synonym,WordNet 3.0,1
+deduce,reduce,confusable,拼写编辑距离,1
+deduct,subtract,synonym,WordNet 3.0,1
+deduct,withhold,synonym,WordNet 3.0,1
+deed,deem,confusable,拼写编辑距离,1
+deed,deer,confusable,拼写编辑距离,1
+deem,deer,confusable,拼写编辑距离,1
+defeat,defect,confusable,拼写编辑距离,1
+defeat,kill,synonym,WordNet 3.0,1
+defeat,overcome,synonym,WordNet 3.0,1
+defect,detect,confusable,拼写编辑距离,1
+defence,defend,derivation,WordNet 3.0,1
+defend,depend,confusable,拼写编辑距离,1
+deficiency,lack,synonym,WordNet 3.0,1
+deficit,shortage,synonym,WordNet 3.0,1
+define,definition,derivation,WordNet 3.0,1
+define,refine,confusable,拼写编辑距离,1
+deform,reform,confusable,拼写编辑距离,1
+defy,deny,confusable,拼写编辑距离,1
+defy,resist,synonym,WordNet 3.0,1
+defy,withstand,synonym,WordNet 3.0,1
+degenerate,regenerate,confusable,拼写编辑距离,1
+degree,level,synonym,WordNet 3.0,1
+degree,stage,synonym,WordNet 3.0,1
+delegate,delicate,confusable,拼写编辑距离,1
+delegate,designate,synonym,WordNet 3.0,1
+deliver,delivery,derivation,WordNet 3.0,1
+demand,necessitate,synonym,WordNet 3.0,1
+demand,require,synonym,WordNet 3.0,1
+democracy,democratic,derivation,WordNet 3.0,1
+democracy,republic,synonym,WordNet 3.0,1
+demonstrate,prove,synonym,WordNet 3.0,1
+denial,dental,confusable,拼写编辑距离,1
+denial,deny,derivation,WordNet 3.0,1
+denote,devote,confusable,拼写编辑距离,1
+dense,density,derivation,WordNet 3.0,1
+dental,mental,confusable,拼写编辑距离,1
+depart,departure,derivation,WordNet 3.0,1
+depart,deviate,synonym,WordNet 3.0,1
+depart,vary,synonym,WordNet 3.0,1
+departure,difference,synonym,WordNet 3.0,1
+depend,dependent,derivation,WordNet 3.0,1
+depict,describe,synonym,WordNet 3.0,1
+deposit,lodge,synonym,WordNet 3.0,1
+deposit,stick,synonym,WordNet 3.0,1
+deposit,wedge,synonym,WordNet 3.0,1
+depress,depression,derivation,WordNet 3.0,1
+depress,repress,confusable,拼写编辑距离,1
+depression,repression,confusable,拼写编辑距离,1
+deprive,derive,confusable,拼写编辑距离,1
+deprive,strip,synonym,WordNet 3.0,1
+deride,derive,confusable,拼写编辑距离,1
+derive,gain,synonym,WordNet 3.0,1
+derive,infer,synonym,WordNet 3.0,1
+descend,descendant,derivation,WordNet 3.0,1
+descend,descent,confusable,拼写编辑距离,1
+descend,descent,derivation,WordNet 3.0,1
+descent,origin,synonym,WordNet 3.0,1
+describe,description,derivation,WordNet 3.0,1
+desert,dessert,confusable,拼写编辑距离,1
+deserve,merit,synonym,WordNet 3.0,1
+deserve,reserve,confusable,拼写编辑距离,1
+design,resign,confusable,拼写编辑距离,1
+despair,desperate,derivation,WordNet 3.0,1
+despise,despite,confusable,拼写编辑距离,1
+despise,disdain,synonym,WordNet 3.0,1
+despise,scorn,synonym,WordNet 3.0,1
+destination,goal,synonym,WordNet 3.0,1
+destiny,fate,synonym,WordNet 3.0,1
+destroy,destruction,derivation,WordNet 3.0,1
+destroy,destructive,derivation,WordNet 3.0,1
+destroy,ruin,synonym,WordNet 3.0,1
+destruction,destructive,confusable,拼写编辑距离,1
+detail,detain,confusable,拼写编辑距离,1
+detail,item,synonym,WordNet 3.0,1
+detail,retail,confusable,拼写编辑距离,1
+detain,retain,confusable,拼写编辑距离,1
+detect,detector,derivation,WordNet 3.0,1
+detect,discover,synonym,WordNet 3.0,1
+detect,notice,synonym,WordNet 3.0,1
+detect,observe,synonym,WordNet 3.0,1
+determine,influence,synonym,WordNet 3.0,1
+determine,shape,synonym,WordNet 3.0,1
+deviate,divert,synonym,WordNet 3.0,1
+deviate,vary,synonym,WordNet 3.0,1
+device,devise,confusable,拼写编辑距离,1
+devil,evil,confusable,拼写编辑距离,1
+devise,formulate,synonym,WordNet 3.0,1
+devise,invent,synonym,WordNet 3.0,1
+devise,revise,confusable,拼写编辑距离,1
+diagram,plot,synonym,WordNet 3.0,1
+dialect,idiom,synonym,WordNet 3.0,1
+diary,journal,synonym,WordNet 3.0,1
+dictate,dictation,derivation,WordNet 3.0,1
+dictate,prescribe,synonym,WordNet 3.0,1
+diet,dirt,confusable,拼写编辑距离,1
+differ,difference,derivation,WordNet 3.0,1
+difference,differentiate,derivation,WordNet 3.0,1
+differentiate,distinguish,synonym,WordNet 3.0,1
+diffuse,permeate,synonym,WordNet 3.0,1
+diligent,industry,derivation,WordNet 3.0,1
+dim,faint,synonym,WordNet 3.0,1
+dine,dive,confusable,拼写编辑距离,1
+diploma,diplomat,confusable,拼写编辑距离,1
+diplomat,diplomatic,confusable,拼写编辑距离,1
+direct,director,derivation,WordNet 3.0,1
+direction,director,confusable,拼写编辑距离,1
+directly,director,confusable,拼写编辑距离,1
+directly,directory,confusable,拼写编辑距离,1
+dirt,soil,synonym,WordNet 3.0,1
+disappear,vanish,synonym,WordNet 3.0,1
+disaster,disastrous,derivation,WordNet 3.0,1
+disaster,tragedy,synonym,WordNet 3.0,1
+disc,record,synonym,WordNet 3.0,1
+discard,dispose,synonym,WordNet 3.0,1
+discern,distinguish,synonym,WordNet 3.0,1
+disclose,expose,synonym,WordNet 3.0,1
+disclose,reveal,synonym,WordNet 3.0,1
+discount,dismiss,synonym,WordNet 3.0,1
+discount,disregard,synonym,WordNet 3.0,1
+discount,ignore,synonym,WordNet 3.0,1
+discourage,discourse,confusable,拼写编辑距离,1
+discover,discovery,derivation,WordNet 3.0,1
+discover,notice,synonym,WordNet 3.0,1
+discover,observe,synonym,WordNet 3.0,1
+discriminate,discrimination,derivation,WordNet 3.0,1
+disdain,scorn,synonym,WordNet 3.0,1
+disgrace,displace,confusable,拼写编辑距离,1
+disgrace,distract,confusable,拼写编辑距离,1
+disgrace,shame,synonym,WordNet 3.0,1
+dismiss,disregard,synonym,WordNet 3.0,1
+dismiss,ignore,synonym,WordNet 3.0,1
+disperse,dissipate,synonym,WordNet 3.0,1
+disperse,scatter,synonym,WordNet 3.0,1
+disperse,sprinkle,synonym,WordNet 3.0,1
+display,exhibit,synonym,WordNet 3.0,1
+disposal,dispose,derivation,WordNet 3.0,1
+dispose,disposition,derivation,WordNet 3.0,1
+disposition,temperament,synonym,WordNet 3.0,1
+dispute,quarrel,synonym,WordNet 3.0,1
+disregard,ignore,synonym,WordNet 3.0,1
+disregard,neglect,synonym,WordNet 3.0,1
+disrupt,interrupt,synonym,WordNet 3.0,1
+dissipate,scatter,synonym,WordNet 3.0,1
+distance,distant,derivation,WordNet 3.0,1
+distance,distinct,confusable,拼写编辑距离,1
+distill,purify,synonym,WordNet 3.0,1
+distinct,distract,confusable,拼写编辑距离,1
+distinct,district,confusable,拼写编辑距离,1
+distinction,distinguish,derivation,WordNet 3.0,1
+distract,district,confusable,拼写编辑距离,1
+distress,hurt,synonym,WordNet 3.0,1
+distress,mistress,confusable,拼写编辑距离,1
+distribute,spread,synonym,WordNet 3.0,1
+district,territory,synonym,WordNet 3.0,1
+disturb,disturbance,derivation,WordNet 3.0,1
+disturbance,upset,synonym,WordNet 3.0,1
+dive,plunge,synonym,WordNet 3.0,1
+diversion,divert,derivation,WordNet 3.0,1
+diversion,division,confusable,拼写编辑距离,1
+diversion,recreation,synonym,WordNet 3.0,1
+divide,divine,confusable,拼写编辑距离,1
+divide,division,derivation,WordNet 3.0,1
+divide,split,synonym,WordNet 3.0,1
+divine,lord,synonym,WordNet 3.0,1
+dizzy,silly,synonym,WordNet 3.0,1
+dock,duck,confusable,拼写编辑距离,1
+document,documentary,derivation,WordNet 3.0,1
+doll,dull,confusable,拼写编辑距离,1
+domain,orbit,synonym,WordNet 3.0,1
+domain,sphere,synonym,WordNet 3.0,1
+dome,dose,confusable,拼写编辑距离,1
+dome,dove,confusable,拼写编辑距离,1
+dome,doze,confusable,拼写编辑距离,1
+dominant,dominate,derivation,WordNet 3.0,1
+dominate,nominate,confusable,拼写编辑距离,1
+dominate,prevail,synonym,WordNet 3.0,1
+dominate,reign,synonym,WordNet 3.0,1
+donkey,monkey,confusable,拼写编辑距离,1
+doom,dorm,confusable,拼写编辑距离,1
+dose,dove,confusable,拼写编辑距离,1
+dose,doze,confusable,拼写编辑距离,1
+dove,doze,confusable,拼写编辑距离,1
+doze,dozen,confusable,拼写编辑距离,1
+draft,drift,confusable,拼写编辑距离,1
+drag,drug,confusable,拼写编辑距离,1
+drag,haul,synonym,WordNet 3.0,1
+drama,dramatic,derivation,WordNet 3.0,1
+drama,dramatize,derivation,WordNet 3.0,1
+dramatic,dramatize,confusable,拼写编辑距离,1
+dramatic,spectacular,synonym,WordNet 3.0,1
+dramatic,striking,synonym,WordNet 3.0,1
+dread,dream,confusable,拼写编辑距离,1
+dread,fear,synonym,WordNet 3.0,1
+drift,float,synonym,WordNet 3.0,1
+drift,impetus,synonym,WordNet 3.0,1
+drip,drop,confusable,拼写编辑距离,1
+drown,submerge,synonym,WordNet 3.0,1
+drug,drum,confusable,拼写编辑距离,1
+duck,dusk,confusable,拼写编辑距离,1
+dumb,dump,confusable,拼写编辑距离,1
+duplicate,repeat,synonym,WordNet 3.0,1
+dusk,dust,confusable,拼写编辑距离,1
+dust,junk,synonym,WordNet 3.0,1
+duty,obligation,synonym,WordNet 3.0,1
+duty,responsibility,synonym,WordNet 3.0,1
+dwell,dwelling,derivation,WordNet 3.0,1
+ease,erase,confusable,拼写编辑距离,1
+ease,lease,confusable,拼写编辑距离,1
+ease,tease,confusable,拼写编辑距离,1
+economic,economical,confusable,拼写编辑距离,1
+economic,economical,synonym,WordNet 3.0,1
+economic,economy,derivation,WordNet 3.0,1
+economical,economics,confusable,拼写编辑距离,1
+economical,economy,derivation,WordNet 3.0,1
+edge,hedge,confusable,拼写编辑距离,1
+edge,inch,synonym,WordNet 3.0,1
+edge,wedge,confusable,拼写编辑距离,1
+edit,editor,derivation,WordNet 3.0,1
+edit,emit,confusable,拼写编辑距离,1
+edit,exit,confusable,拼写编辑距离,1
+editor,editorial,derivation,WordNet 3.0,1
+educate,education,derivation,WordNet 3.0,1
+education,instruction,synonym,WordNet 3.0,1
+effect,effective,derivation,WordNet 3.0,1
+effect,impression,synonym,WordNet 3.0,1
+effect,outcome,synonym,WordNet 3.0,1
+effect,result,synonym,WordNet 3.0,1
+effective,efficient,synonym,WordNet 3.0,1
+efficiency,efficient,derivation,WordNet 3.0,1
+effort,endeavor,synonym,WordNet 3.0,1
+ego,self,synonym,WordNet 3.0,1
+eject,elect,confusable,拼写编辑距离,1
+eject,erect,confusable,拼写编辑距离,1
+eject,reject,confusable,拼写编辑距离,1
+elapse,lapse,confusable,拼写编辑距离,1
+elastic,plastic,confusable,拼写编辑距离,1
+elect,eligible,derivation,WordNet 3.0,1
+elect,erect,confusable,拼写编辑距离,1
+elect,select,confusable,拼写编辑距离,1
+electric,electrical,confusable,拼写编辑距离,1
+electric,electricity,derivation,WordNet 3.0,1
+electric,electron,confusable,拼写编辑距离,1
+electric,electronic,confusable,拼写编辑距离,1
+electrical,electrician,confusable,拼写编辑距离,1
+electrician,electricity,confusable,拼写编辑距离,1
+electron,electronic,confusable,拼写编辑距离,1
+element,elementary,derivation,WordNet 3.0,1
+element,factor,synonym,WordNet 3.0,1
+element,ingredient,synonym,WordNet 3.0,1
+elevate,elevator,derivation,WordNet 3.0,1
+elevate,lift,synonym,WordNet 3.0,1
+elevate,promote,synonym,WordNet 3.0,1
+embrace,hug,synonym,WordNet 3.0,1
+emerge,merge,confusable,拼写编辑距离,1
+emigrate,migrate,confusable,拼写编辑距离,1
+emit,exit,confusable,拼写编辑距离,1
+emotion,motion,confusable,拼写编辑距离,1
+emperor,imperial,derivation,WordNet 3.0,1
+emphasis,emphasize,derivation,WordNet 3.0,1
+emphasize,stress,synonym,WordNet 3.0,1
+emphasize,underline,synonym,WordNet 3.0,1
+empire,expire,confusable,拼写编辑距离,1
+empire,imperial,derivation,WordNet 3.0,1
+employ,employee,derivation,WordNet 3.0,1
+employ,employer,derivation,WordNet 3.0,1
+employ,employment,derivation,WordNet 3.0,1
+employ,employment,synonym,WordNet 3.0,1
+employ,hire,synonym,WordNet 3.0,1
+employ,utilize,synonym,WordNet 3.0,1
+employee,employer,confusable,拼写编辑距离,1
+enclose,enclosure,derivation,WordNet 3.0,1
+encourage,further,synonym,WordNet 3.0,1
+encourage,promote,synonym,WordNet 3.0,1
+endeavor,enterprise,synonym,WordNet 3.0,1
+endeavor,strive,synonym,WordNet 3.0,1
+endow,invest,synonym,WordNet 3.0,1
+endurance,endure,derivation,WordNet 3.0,1
+endure,ensure,confusable,拼写编辑距离,1
+endure,tolerate,synonym,WordNet 3.0,1
+energetic,energy,derivation,WordNet 3.0,1
+energy,vigor,synonym,WordNet 3.0,1
+enforce,implement,synonym,WordNet 3.0,1
+enforce,impose,synonym,WordNet 3.0,1
+engage,engagement,derivation,WordNet 3.0,1
+engage,pursue,synonym,WordNet 3.0,1
+engagement,fight,synonym,WordNet 3.0,1
+engine,engineer,derivation,WordNet 3.0,1
+engineer,engineering,derivation,WordNet 3.0,1
+engineering,technology,synonym,WordNet 3.0,1
+enormous,tremendous,synonym,WordNet 3.0,1
+enroll,recruit,synonym,WordNet 3.0,1
+ensure,guarantee,synonym,WordNet 3.0,1
+ensure,insure,confusable,拼写编辑距离,1
+ensure,insure,synonym,WordNet 3.0,1
+enter,entrance,derivation,WordNet 3.0,1
+enter,entry,derivation,WordNet 3.0,1
+enter,participate,synonym,WordNet 3.0,1
+entertain,entertainment,derivation,WordNet 3.0,1
+enthusiasm,enthusiastic,derivation,WordNet 3.0,1
+entire,intact,synonym,WordNet 3.0,1
+entire,integral,synonym,WordNet 3.0,1
+entire,total,synonym,WordNet 3.0,1
+entitle,title,synonym,WordNet 3.0,1
+entry,introduction,synonym,WordNet 3.0,1
+environment,surroundings,synonym,WordNet 3.0,1
+envisage,imagine,synonym,WordNet 3.0,1
+epoch,era,synonym,WordNet 3.0,1
+equal,equality,derivation,WordNet 3.0,1
+equal,peer,synonym,WordNet 3.0,1
+equal,rival,synonym,WordNet 3.0,1
+equality,quality,confusable,拼写编辑距离,1
+equip,equipment,derivation,WordNet 3.0,1
+error,fault,synonym,WordNet 3.0,1
+error,terror,confusable,拼写编辑距离,1
+essence,essential,derivation,WordNet 3.0,1
+essence,substance,synonym,WordNet 3.0,1
+essential,indispensable,synonym,WordNet 3.0,1
+essential,necessity,synonym,WordNet 3.0,1
+essential,requirement,synonym,WordNet 3.0,1
+establish,establishment,derivation,WordNet 3.0,1
+establish,found,synonym,WordNet 3.0,1
+establish,institute,synonym,WordNet 3.0,1
+establish,launch,synonym,WordNet 3.0,1
+establishment,institution,synonym,WordNet 3.0,1
+estate,state,confusable,拼写编辑距离,1
+esteem,respect,synonym,WordNet 3.0,1
+estimate,figure,synonym,WordNet 3.0,1
+estimate,forecast,synonym,WordNet 3.0,1
+estimate,gauge,synonym,WordNet 3.0,1
+estimate,reckon,synonym,WordNet 3.0,1
+eternal,external,confusable,拼写编辑距离,1
+eternal,perpetual,synonym,WordNet 3.0,1
+evacuate,evaluate,confusable,拼写编辑距离,1
+evade,hedge,synonym,WordNet 3.0,1
+evaluate,value,derivation,WordNet 3.0,1
+eventually,finally,synonym,WordNet 3.0,1
+everyday,routine,synonym,WordNet 3.0,1
+evidence,evident,derivation,WordNet 3.0,1
+evidence,manifest,synonym,WordNet 3.0,1
+evidence,testify,synonym,WordNet 3.0,1
+evident,plain,synonym,WordNet 3.0,1
+evil,veil,confusable,拼写编辑距离,1
+evil,vicious,synonym,WordNet 3.0,1
+evoke,provoke,synonym,WordNet 3.0,1
+evolution,evolve,derivation,WordNet 3.0,1
+evolution,revolution,confusable,拼写编辑距离,1
+evolve,revolve,confusable,拼写编辑距离,1
+exact,precise,synonym,WordNet 3.0,1
+exaggerate,magnify,synonym,WordNet 3.0,1
+exceed,excessive,derivation,WordNet 3.0,1
+exceed,top,synonym,WordNet 3.0,1
+exceed,transcend,synonym,WordNet 3.0,1
+exceedingly,super,synonym,WordNet 3.0,1
+excel,excellent,derivation,WordNet 3.0,1
+excel,expel,confusable,拼写编辑距离,1
+excel,surpass,synonym,WordNet 3.0,1
+exception,exceptional,derivation,WordNet 3.0,1
+excess,extra,synonym,WordNet 3.0,1
+excess,redundant,synonym,WordNet 3.0,1
+excess,surplus,synonym,WordNet 3.0,1
+excessive,exclusive,confusable,拼写编辑距离,1
+excite,excitement,derivation,WordNet 3.0,1
+excite,stimulate,synonym,WordNet 3.0,1
+exclaim,proclaim,synonym,WordNet 3.0,1
+exclude,exclusive,derivation,WordNet 3.0,1
+exclude,omit,synonym,WordNet 3.0,1
+exclusive,sole,synonym,WordNet 3.0,1
+excursion,outing,synonym,WordNet 3.0,1
+execute,executive,derivation,WordNet 3.0,1
+exemplify,illustrate,synonym,WordNet 3.0,1
+exert,expert,confusable,拼写编辑距离,1
+exhibit,exhibition,derivation,WordNet 3.0,1
+exist,existence,derivation,WordNet 3.0,1
+exist,exit,confusable,拼写编辑距离,1
+existence,universe,synonym,WordNet 3.0,1
+expand,expansion,derivation,WordNet 3.0,1
+expand,expend,confusable,拼写编辑距离,1
+expansion,explosion,confusable,拼写编辑距离,1
+expectation,outlook,synonym,WordNet 3.0,1
+expectation,prospect,synonym,WordNet 3.0,1
+expend,expenditure,derivation,WordNet 3.0,1
+expend,extend,confusable,拼写编辑距离,1
+experiment,experimental,confusable,拼写编辑距离,1
+expert,expertise,derivation,WordNet 3.0,1
+expert,export,confusable,拼写编辑距离,1
+expert,skillful,synonym,WordNet 3.0,1
+expire,perish,synonym,WordNet 3.0,1
+explain,explanation,derivation,WordNet 3.0,1
+explode,explore,confusable,拼写编辑距离,1
+explode,explosion,derivation,WordNet 3.0,1
+exploit,exploitation,derivation,WordNet 3.0,1
+exploit,feat,synonym,WordNet 3.0,1
+explosion,explosive,confusable,拼写编辑距离,1
+expose,exposure,derivation,WordNet 3.0,1
+expose,reveal,synonym,WordNet 3.0,1
+express,expression,derivation,WordNet 3.0,1
+express,utter,synonym,WordNet 3.0,1
+extend,extension,derivation,WordNet 3.0,1
+extend,extensive,derivation,WordNet 3.0,1
+extend,extent,confusable,拼写编辑距离,1
+extend,extent,derivation,WordNet 3.0,1
+extension,extensive,confusable,拼写编辑距离,1
+extra,redundant,synonym,WordNet 3.0,1
+extra,surplus,synonym,WordNet 3.0,1
+extreme,utmost,synonym,WordNet 3.0,1
+fable,fabulous,derivation,WordNet 3.0,1
+fabric,framework,synonym,WordNet 3.0,1
+fabric,textile,synonym,WordNet 3.0,1
+facility,installation,synonym,WordNet 3.0,1
+factor,ingredient,synonym,WordNet 3.0,1
+faculty,faulty,confusable,拼写编辑距离,1
+fade,fake,confusable,拼写编辑距离,1
+fade,fame,confusable,拼写编辑距离,1
+fade,fare,confusable,拼写编辑距离,1
+fade,fate,confusable,拼写编辑距离,1
+fair,reasonable,synonym,WordNet 3.0,1
+fairly,fairy,confusable,拼写编辑距离,1
+fairly,pretty,synonym,WordNet 3.0,1
+fairly,somewhat,synonym,WordNet 3.0,1
+faith,religion,synonym,WordNet 3.0,1
+fake,fame,confusable,拼写编辑距离,1
+fake,fare,confusable,拼写编辑距离,1
+fake,fate,confusable,拼写编辑距离,1
+fake,forge,synonym,WordNet 3.0,1
+fake,sham,synonym,WordNet 3.0,1
+falter,filter,confusable,拼写编辑距离,1
+fame,fare,confusable,拼写编辑距离,1
+fame,fate,confusable,拼写编辑距离,1
+fame,flame,confusable,拼写编辑距离,1
+fame,frame,confusable,拼写编辑距离,1
+fame,fume,confusable,拼写编辑距离,1
+fancy,illusion,synonym,WordNet 3.0,1
+fantastic,fantasy,derivation,WordNet 3.0,1
+fantastic,marvelous,synonym,WordNet 3.0,1
+fantastic,terrific,synonym,WordNet 3.0,1
+fantastic,tremendous,synonym,WordNet 3.0,1
+fantastic,wonderful,synonym,WordNet 3.0,1
+fare,fate,confusable,拼写编辑距离,1
+fare,flare,confusable,拼写编辑距离,1
+fare,fore,confusable,拼写编辑距离,1
+farmer,former,confusable,拼写编辑距离,1
+farther,further,confusable,拼写编辑距离,1
+farther,further,synonym,WordNet 3.0,1
+fascinate,intrigue,synonym,WordNet 3.0,1
+fashion,manner,synonym,WordNet 3.0,1
+fashion,mode,synonym,WordNet 3.0,1
+fashion,style,synonym,WordNet 3.0,1
+fasten,fix,synonym,WordNet 3.0,1
+fasten,secure,synonym,WordNet 3.0,1
+fault,faulty,derivation,WordNet 3.0,1
+fault,flaw,synonym,WordNet 3.0,1
+favor,flavor,confusable,拼写编辑距离,1
+fear,feat,confusable,拼写编辑距离,1
+fear,fright,synonym,WordNet 3.0,1
+fearful,terrible,synonym,WordNet 3.0,1
+feast,feat,confusable,拼写编辑距离,1
+feat,flat,confusable,拼写编辑距离,1
+feather,leather,confusable,拼写编辑距离,1
+feeling,impression,synonym,WordNet 3.0,1
+feeling,notion,synonym,WordNet 3.0,1
+fellow,fellowship,derivation,WordNet 3.0,1
+fellow,follow,confusable,拼写编辑距离,1
+fellow,lad,synonym,WordNet 3.0,1
+fiction,friction,confusable,拼写编辑距离,1
+fierce,furious,synonym,WordNet 3.0,1
+fierce,pierce,confusable,拼写编辑距离,1
+fight,fright,confusable,拼写编辑距离,1
+fight,oppose,synonym,WordNet 3.0,1
+figure,flesh,synonym,WordNet 3.0,1
+figure,forecast,synonym,WordNet 3.0,1
+figure,reckon,synonym,WordNet 3.0,1
+file,register,synonym,WordNet 3.0,1
+final,net,synonym,WordNet 3.0,1
+finance,financial,derivation,WordNet 3.0,1
+finger,linger,confusable,拼写编辑距离,1
+fix,fixture,derivation,WordNet 3.0,1
+fix,mess,synonym,WordNet 3.0,1
+fix,repair,synonym,WordNet 3.0,1
+fix,secure,synonym,WordNet 3.0,1
+fixture,mixture,confusable,拼写编辑距离,1
+flag,flap,confusable,拼写编辑距离,1
+flag,flat,confusable,拼写编辑距离,1
+flag,flaw,confusable,拼写编辑距离,1
+flame,flare,confusable,拼写编辑距离,1
+flame,frame,confusable,拼写编辑距离,1
+flame,lame,confusable,拼写编辑距离,1
+flap,flat,confusable,拼写编辑距离,1
+flap,flaw,confusable,拼写编辑距离,1
+flash,flesh,confusable,拼写编辑距离,1
+flash,flush,confusable,拼写编辑距离,1
+flash,lash,confusable,拼写编辑距离,1
+flash,twinkle,synonym,WordNet 3.0,1
+flash,wink,synonym,WordNet 3.0,1
+flat,flaw,confusable,拼写编辑距离,1
+flat,float,confusable,拼写编辑距离,1
+flat,level,synonym,WordNet 3.0,1
+flatter,latter,confusable,拼写编辑距离,1
+flavor,spirit,synonym,WordNet 3.0,1
+flaw,flow,confusable,拼写编辑距离,1
+flee,fleet,confusable,拼写编辑距离,1
+fleet,swift,synonym,WordNet 3.0,1
+flesh,flush,confusable,拼写编辑距离,1
+flesh,fresh,confusable,拼写编辑距离,1
+flock,lock,confusable,拼写编辑距离,1
+flood,swamp,synonym,WordNet 3.0,1
+flourish,prosper,synonym,WordNet 3.0,1
+flourish,thrive,synonym,WordNet 3.0,1
+flush,peak,synonym,WordNet 3.0,1
+fold,folk,confusable,拼写编辑距离,1
+fold,fond,confusable,拼写编辑距离,1
+folk,fork,confusable,拼写编辑距离,1
+follow,following,derivation,WordNet 3.0,1
+follow,hollow,confusable,拼写编辑距离,1
+fond,found,confusable,拼写编辑距离,1
+fond,fund,confusable,拼写编辑距离,1
+fool,foul,confusable,拼写编辑距离,1
+forbid,preclude,synonym,WordNet 3.0,1
+forbid,prevent,synonym,WordNet 3.0,1
+forbid,prohibit,synonym,WordNet 3.0,1
+forbid,veto,synonym,WordNet 3.0,1
+force,fore,confusable,拼写编辑距离,1
+force,forge,confusable,拼写编辑距离,1
+force,pressure,synonym,WordNet 3.0,1
+fore,forge,confusable,拼写编辑距离,1
+fore,fork,confusable,拼写编辑距离,1
+forecast,foremost,confusable,拼写编辑距离,1
+forecast,reckon,synonym,WordNet 3.0,1
+forest,wood,synonym,WordNet 3.0,1
+formal,format,confusable,拼写编辑距离,1
+formal,normal,confusable,拼写编辑距离,1
+formation,formulation,confusable,拼写编辑距离,1
+formula,formulate,derivation,WordNet 3.0,1
+formulate,formulation,derivation,WordNet 3.0,1
+formulate,fortunate,confusable,拼写编辑距离,1
+formulate,invent,synonym,WordNet 3.0,1
+formulation,preparation,synonym,WordNet 3.0,1
+fortune,hazard,synonym,WordNet 3.0,1
+fortune,luck,synonym,WordNet 3.0,1
+foster,further,synonym,WordNet 3.0,1
+foster,poster,confusable,拼写编辑距离,1
+found,foundation,derivation,WordNet 3.0,1
+found,fund,confusable,拼写编辑距离,1
+found,institute,synonym,WordNet 3.0,1
+found,launch,synonym,WordNet 3.0,1
+fraction,friction,confusable,拼写编辑距离,1
+fragment,fragrant,confusable,拼写编辑距离,1
+framework,model,synonym,WordNet 3.0,1
+frank,rank,confusable,拼写编辑距离,1
+freight,fright,confusable,拼写编辑距离,1
+freight,shipment,synonym,WordNet 3.0,1
+frequency,frequent,derivation,WordNet 3.0,1
+fridge,fringe,confusable,拼写编辑距离,1
+fridge,ridge,confusable,拼写编辑距离,1
+frighten,scare,synonym,WordNet 3.0,1
+fulfill,satisfy,synonym,WordNet 3.0,1
+fume,fuse,confusable,拼写编辑距离,1
+function,junction,confusable,拼写编辑距离,1
+function,operate,synonym,WordNet 3.0,1
+function,purpose,synonym,WordNet 3.0,1
+funny,peculiar,synonym,WordNet 3.0,1
+funny,queer,synonym,WordNet 3.0,1
+funny,singular,synonym,WordNet 3.0,1
+furious,fury,derivation,WordNet 3.0,1
+furnish,furniture,derivation,WordNet 3.0,1
+furnish,provide,synonym,WordNet 3.0,1
+furnish,render,synonym,WordNet 3.0,1
+furnish,supply,synonym,WordNet 3.0,1
+further,promote,synonym,WordNet 3.0,1
+furthermore,moreover,synonym,WordNet 3.0,1
+fury,rage,synonym,WordNet 3.0,1
+fuse,fuss,confusable,拼写编辑距离,1
+fuse,merge,synonym,WordNet 3.0,1
+fuse,mix,synonym,WordNet 3.0,1
+futile,futility,derivation,WordNet 3.0,1
+futile,vain,synonym,WordNet 3.0,1
+gain,grain,confusable,拼写编辑距离,1
+gain,grin,confusable,拼写编辑距离,1
+gain,increase,synonym,WordNet 3.0,1
+gain,profit,synonym,WordNet 3.0,1
+gain,win,synonym,WordNet 3.0,1
+gallon,gallop,confusable,拼写编辑距离,1
+gamble,risk,synonym,WordNet 3.0,1
+gaol,goal,confusable,拼写编辑距离,1
+gap,opening,synonym,WordNet 3.0,1
+gap,spread,synonym,WordNet 3.0,1
+garage,garbage,confusable,拼写编辑距离,1
+garbage,refuse,synonym,WordNet 3.0,1
+gasp,grasp,confusable,拼写编辑距离,1
+gasp,pant,synonym,WordNet 3.0,1
+gather,rather,confusable,拼写编辑距离,1
+gay,jolly,synonym,WordNet 3.0,1
+gay,merry,synonym,WordNet 3.0,1
+gaze,graze,confusable,拼写编辑距离,1
+gaze,stare,synonym,WordNet 3.0,1
+gender,render,confusable,拼写编辑距离,1
+gender,tender,confusable,拼写编辑距离,1
+gene,genetic,derivation,WordNet 3.0,1
+generalize,infer,synonym,WordNet 3.0,1
+generate,generation,derivation,WordNet 3.0,1
+generate,generator,derivation,WordNet 3.0,1
+generation,generator,confusable,拼写编辑距离,1
+gentle,gently,confusable,拼写编辑距离,1
+gesture,motion,synonym,WordNet 3.0,1
+ghost,host,confusable,拼写编辑距离,1
+giant,gigantic,derivation,WordNet 3.0,1
+giant,grant,confusable,拼写编辑距离,1
+glamor,glamour,confusable,拼写编辑距离,1
+glance,glimpse,synonym,WordNet 3.0,1
+glide,guide,confusable,拼写编辑距离,1
+glitter,litter,confusable,拼写编辑距离,1
+global,globe,derivation,WordNet 3.0,1
+globe,glove,confusable,拼写编辑距离,1
+glorious,glory,derivation,WordNet 3.0,1
+glue,paste,synonym,WordNet 3.0,1
+goal,goat,confusable,拼写编辑距离,1
+gold,golden,synonym,WordNet 3.0,1
+gold,golf,confusable,拼写编辑距离,1
+golf,gulf,confusable,拼写编辑距离,1
+govern,government,derivation,WordNet 3.0,1
+govern,governor,derivation,WordNet 3.0,1
+govern,regulate,synonym,WordNet 3.0,1
+government,regime,synonym,WordNet 3.0,1
+grace,gracious,derivation,WordNet 3.0,1
+grace,grape,confusable,拼写编辑距离,1
+grace,grave,confusable,拼写编辑距离,1
+grace,graze,confusable,拼写编辑距离,1
+grace,ornament,synonym,WordNet 3.0,1
+grace,race,confusable,拼写编辑距离,1
+graceful,grateful,confusable,拼写编辑距离,1
+grain,grin,confusable,拼写编辑距离,1
+grand,grant,confusable,拼写编辑距离,1
+grand,grind,confusable,拼写编辑距离,1
+grape,graph,confusable,拼写编辑距离,1
+grape,grave,confusable,拼写编辑距离,1
+grape,graze,confusable,拼写编辑距离,1
+grape,grope,confusable,拼写编辑距离,1
+grape,rape,confusable,拼写编辑距离,1
+grave,gravity,derivation,WordNet 3.0,1
+grave,graze,confusable,拼写编辑距离,1
+grave,sober,synonym,WordNet 3.0,1
+grave,solemn,synonym,WordNet 3.0,1
+grave,tomb,synonym,WordNet 3.0,1
+greet,greeting,derivation,WordNet 3.0,1
+grim,grin,confusable,拼写编辑距离,1
+grim,grip,confusable,拼写编辑距离,1
+grim,stern,synonym,WordNet 3.0,1
+grin,grip,confusable,拼写编辑距离,1
+grip,handle,synonym,WordNet 3.0,1
+groan,moan,synonym,WordNet 3.0,1
+grope,rope,confusable,拼写编辑距离,1
+guarantee,insure,synonym,WordNet 3.0,1
+guidance,guide,derivation,WordNet 3.0,1
+guide,lead,synonym,WordNet 3.0,1
+guide,maneuver,synonym,WordNet 3.0,1
+guide,steer,synonym,WordNet 3.0,1
+guilt,guilty,derivation,WordNet 3.0,1
+hail,hall,confusable,拼写编辑距离,1
+hail,haul,confusable,拼写编辑距离,1
+hall,halt,confusable,拼写编辑距离,1
+hall,haul,confusable,拼写编辑距离,1
+hall,hell,confusable,拼写编辑距离,1
+hall,lobby,synonym,WordNet 3.0,1
+hammer,hamper,confusable,拼写编辑距离,1
+handle,manage,synonym,WordNet 3.0,1
+handle,treat,synonym,WordNet 3.0,1
+happen,occur,synonym,WordNet 3.0,1
+harass,harassment,derivation,WordNet 3.0,1
+hardly,scarce,synonym,WordNet 3.0,1
+hardly,scarcely,synonym,WordNet 3.0,1
+harm,hurt,synonym,WordNet 3.0,1
+harm,injury,synonym,WordNet 3.0,1
+harvest,reap,synonym,WordNet 3.0,1
+haste,hasty,confusable,拼写编辑距离,1
+haste,hasty,derivation,WordNet 3.0,1
+haste,hate,confusable,拼写编辑距离,1
+haste,rush,synonym,WordNet 3.0,1
+hate,hatred,synonym,WordNet 3.0,1
+hazard,luck,synonym,WordNet 3.0,1
+hazard,risk,synonym,WordNet 3.0,1
+hazard,venture,synonym,WordNet 3.0,1
+heading,hearing,confusable,拼写编辑距离,1
+heading,leading,confusable,拼写编辑距离,1
+heading,reading,confusable,拼写编辑距离,1
+heal,heap,confusable,拼写编辑距离,1
+heal,heat,confusable,拼写编辑距离,1
+heal,heel,confusable,拼写编辑距离,1
+heal,hell,confusable,拼写编辑距离,1
+heap,heat,confusable,拼写编辑距离,1
+heap,mass,synonym,WordNet 3.0,1
+heap,pile,synonym,WordNet 3.0,1
+heap,plenty,synonym,WordNet 3.0,1
+heat,wheat,confusable,拼写编辑距离,1
+heave,heaven,confusable,拼写编辑距离,1
+heel,hell,confusable,拼写编辑距离,1
+heel,wheel,confusable,拼写编辑距离,1
+hell,shell,confusable,拼写编辑距离,1
+hence,therefore,synonym,WordNet 3.0,1
+hence,thus,synonym,WordNet 3.0,1
+herb,herd,confusable,拼写编辑距离,1
+herb,hero,confusable,拼写编辑距离,1
+herd,hero,confusable,拼写编辑距离,1
+heroic,heroin,confusable,拼写编辑距离,1
+heroin,heroine,confusable,拼写编辑距离,1
+hesitate,pause,synonym,WordNet 3.0,1
+hide,hike,confusable,拼写编辑距离,1
+hide,hire,confusable,拼写编辑距离,1
+hike,hire,confusable,拼写编辑距离,1
+hinder,obstruct,synonym,WordNet 3.0,1
+hint,hunt,confusable,拼写编辑距离,1
+historian,historic,confusable,拼写编辑距离,1
+historian,historical,confusable,拼写编辑距离,1
+historic,historical,confusable,拼写编辑距离,1
+historic,history,derivation,WordNet 3.0,1
+historical,history,derivation,WordNet 3.0,1
+hoist,host,confusable,拼写编辑距离,1
+hole,holy,confusable,拼写编辑距离,1
+hole,hose,confusable,拼写编辑距离,1
+hole,whole,confusable,拼写编辑距离,1
+honest,honorable,synonym,WordNet 3.0,1
+honor,honorable,derivation,WordNet 3.0,1
+honor,respect,synonym,WordNet 3.0,1
+honor,reward,synonym,WordNet 3.0,1
+hook,rob,synonym,WordNet 3.0,1
+hook,soak,synonym,WordNet 3.0,1
+hopeful,promising,synonym,WordNet 3.0,1
+horn,thorn,confusable,拼写编辑距离,1
+hose,host,confusable,拼写编辑距离,1
+hostage,postage,confusable,拼写编辑距离,1
+however,nevertheless,synonym,WordNet 3.0,1
+however,nonetheless,synonym,WordNet 3.0,1
+however,notwithstanding,synonym,WordNet 3.0,1
+huge,immense,synonym,WordNet 3.0,1
+huge,vast,synonym,WordNet 3.0,1
+human,humanity,derivation,WordNet 3.0,1
+humanity,humidity,confusable,拼写编辑距离,1
+humble,humiliate,synonym,WordNet 3.0,1
+humble,tumble,confusable,拼写编辑距离,1
+humid,humidity,derivation,WordNet 3.0,1
+humor,humorous,derivation,WordNet 3.0,1
+humor,wit,synonym,WordNet 3.0,1
+hunger,thirst,synonym,WordNet 3.0,1
+hunt,hurt,confusable,拼写编辑距离,1
+hurl,hurt,confusable,拼写编辑距离,1
+hurt,injury,synonym,WordNet 3.0,1
+hurt,smart,synonym,WordNet 3.0,1
+hypothesis,theory,synonym,WordNet 3.0,1
+identical,identity,derivation,WordNet 3.0,1
+identification,identify,derivation,WordNet 3.0,1
+identify,identity,confusable,拼写编辑距离,1
+identify,identity,derivation,WordNet 3.0,1
+idiom,idiot,confusable,拼写编辑距离,1
+idle,isle,confusable,拼写编辑距离,1
+ignorance,ignorant,derivation,WordNet 3.0,1
+ignorance,ignore,derivation,WordNet 3.0,1
+ignorant,illiterate,synonym,WordNet 3.0,1
+illustrate,illustration,derivation,WordNet 3.0,1
+imagination,imaginative,confusable,拼写编辑距离,1
+imagination,imagine,derivation,WordNet 3.0,1
+imaginative,imagine,derivation,WordNet 3.0,1
+imagine,reckon,synonym,WordNet 3.0,1
+imagine,suppose,synonym,WordNet 3.0,1
+imitate,imitation,derivation,WordNet 3.0,1
+imitate,simulate,synonym,WordNet 3.0,1
+imitation,limitation,confusable,拼写编辑距离,1
+immense,immerse,confusable,拼写编辑距离,1
+immense,vast,synonym,WordNet 3.0,1
+immerse,plunge,synonym,WordNet 3.0,1
+immerse,steep,synonym,WordNet 3.0,1
+impact,impart,confusable,拼写编辑距离,1
+impart,import,confusable,拼写编辑距离,1
+impartial,imperial,confusable,拼写编辑距离,1
+implication,imply,derivation,WordNet 3.0,1
+implication,significance,synonym,WordNet 3.0,1
+impress,impression,derivation,WordNet 3.0,1
+impress,impressive,derivation,WordNet 3.0,1
+impress,strike,synonym,WordNet 3.0,1
+impression,impressive,confusable,拼写编辑距离,1
+impression,notion,synonym,WordNet 3.0,1
+improve,improvement,derivation,WordNet 3.0,1
+impulse,urge,synonym,WordNet 3.0,1
+inch,pinch,confusable,拼写编辑距离,1
+incidence,incident,derivation,WordNet 3.0,1
+incline,slope,synonym,WordNet 3.0,1
+incline,tend,synonym,WordNet 3.0,1
+include,inclusive,derivation,WordNet 3.0,1
+incorporate,integrate,synonym,WordNet 3.0,1
+independence,independent,derivation,WordNet 3.0,1
+independent,sovereign,synonym,WordNet 3.0,1
+indicate,indication,derivation,WordNet 3.0,1
+indicate,indicative,derivation,WordNet 3.0,1
+indicate,point,synonym,WordNet 3.0,1
+indicate,signal,synonym,WordNet 3.0,1
+indication,indicative,confusable,拼写编辑距离,1
+indication,indignation,confusable,拼写编辑距离,1
+indignation,outrage,synonym,WordNet 3.0,1
+individual,mortal,synonym,WordNet 3.0,1
+individual,soul,synonym,WordNet 3.0,1
+induce,stimulate,synonym,WordNet 3.0,1
+industry,manufacture,synonym,WordNet 3.0,1
+infancy,infant,derivation,WordNet 3.0,1
+infect,infection,derivation,WordNet 3.0,1
+infect,inject,confusable,拼写编辑距离,1
+infect,insect,confusable,拼写编辑距离,1
+infection,infectious,derivation,WordNet 3.0,1
+infection,inflation,confusable,拼写编辑距离,1
+infer,inference,derivation,WordNet 3.0,1
+infer,inner,confusable,拼写编辑距离,1
+inference,influence,confusable,拼写编辑距离,1
+inferior,interior,confusable,拼写编辑距离,1
+influence,influential,derivation,WordNet 3.0,1
+influence,shape,synonym,WordNet 3.0,1
+inhabit,inhabitant,derivation,WordNet 3.0,1
+inhabit,inhibit,confusable,拼写编辑距离,1
+inherent,integral,synonym,WordNet 3.0,1
+inhibit,suppress,synonym,WordNet 3.0,1
+initiate,initiative,derivation,WordNet 3.0,1
+initiate,originate,synonym,WordNet 3.0,1
+inject,insect,confusable,拼写编辑距离,1
+injure,injury,confusable,拼写编辑距离,1
+injure,injury,derivation,WordNet 3.0,1
+injure,insure,confusable,拼写编辑距离,1
+injure,wound,synonym,WordNet 3.0,1
+inland,island,confusable,拼写编辑距离,1
+innovate,innovation,derivation,WordNet 3.0,1
+innovate,introduce,synonym,WordNet 3.0,1
+innovation,invention,synonym,WordNet 3.0,1
+inquiry,research,synonym,WordNet 3.0,1
+insect,insert,confusable,拼写编辑距离,1
+insect,inspect,confusable,拼写编辑距离,1
+insert,invert,confusable,拼写编辑距离,1
+inside,interior,synonym,WordNet 3.0,1
+inside,within,synonym,WordNet 3.0,1
+inspiration,inspire,derivation,WordNet 3.0,1
+install,installation,derivation,WordNet 3.0,1
+install,installment,derivation,WordNet 3.0,1
+instance,instinct,confusable,拼写编辑距离,1
+instance,insurance,confusable,拼写编辑距离,1
+instant,instantaneous,derivation,WordNet 3.0,1
+instant,instantaneous,synonym,WordNet 3.0,1
+instant,wink,synonym,WordNet 3.0,1
+instinct,instruct,confusable,拼写编辑距离,1
+institute,institution,derivation,WordNet 3.0,1
+instruct,instruction,derivation,WordNet 3.0,1
+instrument,instrumental,derivation,WordNet 3.0,1
+instrument,instrumentalist,derivation,WordNet 3.0,1
+instrument,tool,synonym,WordNet 3.0,1
+instrumentalist,musician,synonym,WordNet 3.0,1
+insulate,isolate,synonym,WordNet 3.0,1
+insurance,insure,derivation,WordNet 3.0,1
+intact,integral,synonym,WordNet 3.0,1
+integral,integrate,derivation,WordNet 3.0,1
+integral,internal,confusable,拼写编辑距离,1
+integral,interval,confusable,拼写编辑距离,1
+integrate,integrity,confusable,拼写编辑距离,1
+integrate,mix,synonym,WordNet 3.0,1
+integrity,intensity,confusable,拼写编辑距离,1
+integrity,unity,synonym,WordNet 3.0,1
+intellectual,rational,synonym,WordNet 3.0,1
+intelligence,intelligent,derivation,WordNet 3.0,1
+intend,intention,derivation,WordNet 3.0,1
+intense,intensity,derivation,WordNet 3.0,1
+intensity,intensive,confusable,拼写编辑距离,1
+intensive,intrusive,confusable,拼写编辑距离,1
+intention,intuition,confusable,拼写编辑距离,1
+intention,invention,confusable,拼写编辑距离,1
+intention,purpose,synonym,WordNet 3.0,1
+interact,interest,confusable,拼写编辑距离,1
+interact,interface,confusable,拼写编辑距离,1
+interact,intersect,confusable,拼写编辑距离,1
+interest,intersect,confusable,拼写编辑距离,1
+interest,sake,synonym,WordNet 3.0,1
+interface,interfere,confusable,拼写编辑距离,1
+interfere,interference,derivation,WordNet 3.0,1
+interfere,intervene,confusable,拼写编辑距离,1
+interfere,intervene,synonym,WordNet 3.0,1
+intermediate,medium,synonym,WordNet 3.0,1
+internal,interval,confusable,拼写编辑距离,1
+intersect,intersection,derivation,WordNet 3.0,1
+intimate,intimidate,confusable,拼写编辑距离,1
+intimate,intricate,confusable,拼写编辑距离,1
+introduce,introduction,derivation,WordNet 3.0,1
+intrude,intrusive,derivation,WordNet 3.0,1
+intuition,suspicion,synonym,WordNet 3.0,1
+invade,invasion,derivation,WordNet 3.0,1
+invaluable,invariable,confusable,拼写编辑距离,1
+invariable,invariably,confusable,拼写编辑距离,1
+invent,invention,derivation,WordNet 3.0,1
+invent,invert,confusable,拼写编辑距离,1
+invent,invest,confusable,拼写编辑距离,1
+invent,manufacture,synonym,WordNet 3.0,1
+inventory,stock,synonym,WordNet 3.0,1
+invert,invest,confusable,拼写编辑距离,1
+invest,investment,derivation,WordNet 3.0,1
+invitation,invite,derivation,WordNet 3.0,1
+ironic,irony,derivation,WordNet 3.0,1
+irony,sarcasm,synonym,WordNet 3.0,1
+irony,satire,synonym,WordNet 3.0,1
+irrespective,regardless,synonym,WordNet 3.0,1
+irrigate,irritate,confusable,拼写编辑距离,1
+issue,publish,synonym,WordNet 3.0,1
+issue,supply,synonym,WordNet 3.0,1
+issue,tissue,confusable,拼写编辑距离,1
+jacket,packet,confusable,拼写编辑距离,1
+jacket,racket,confusable,拼写编辑距离,1
+jam,pile,synonym,WordNet 3.0,1
+jewel,jewelry,derivation,WordNet 3.0,1
+jolly,merry,synonym,WordNet 3.0,1
+judge,judicial,derivation,WordNet 3.0,1
+juggle,jungle,confusable,拼写编辑距离,1
+junk,scrap,synonym,WordNet 3.0,1
+justify,warrant,synonym,WordNet 3.0,1
+kettle,settle,confusable,拼写编辑距离,1
+kick,thrill,synonym,WordNet 3.0,1
+kid,minor,synonym,WordNet 3.0,1
+kid,youngster,synonym,WordNet 3.0,1
+kill,kilo,confusable,拼写编辑距离,1
+kill,skill,confusable,拼写编辑距离,1
+kin,kinship,derivation,WordNet 3.0,1
+king,kingdom,derivation,WordNet 3.0,1
+kingdom,realm,synonym,WordNet 3.0,1
+knee,kneel,confusable,拼写编辑距离,1
+knit,knot,confusable,拼写编辑距离,1
+knob,knot,confusable,拼写编辑距离,1
+label,mark,synonym,WordNet 3.0,1
+label,tag,synonym,WordNet 3.0,1
+lace,lack,confusable,拼写编辑距离,1
+lace,lame,confusable,拼写编辑距离,1
+lace,lane,confusable,拼写编辑距离,1
+lack,lick,confusable,拼写编辑距离,1
+lack,lock,confusable,拼写编辑距离,1
+lack,luck,confusable,拼写编辑距离,1
+lack,slack,confusable,拼写编辑距离,1
+lady,lazy,confusable,拼写编辑距离,1
+lamb,lame,confusable,拼写编辑距离,1
+lamb,lamp,confusable,拼写编辑距离,1
+lamb,limb,confusable,拼写编辑距离,1
+lame,lamp,confusable,拼写编辑距离,1
+lame,lane,confusable,拼写编辑距离,1
+lamp,limp,confusable,拼写编辑距离,1
+lamp,lump,confusable,拼写编辑距离,1
+lane,line,confusable,拼写编辑距离,1
+lap,lick,synonym,WordNet 3.0,1
+largely,mostly,synonym,WordNet 3.0,1
+laser,later,confusable,拼写编辑距离,1
+laser,layer,confusable,拼写编辑距离,1
+lash,whip,synonym,WordNet 3.0,1
+latent,patent,confusable,拼写编辑距离,1
+later,latter,confusable,拼写编辑距离,1
+later,layer,confusable,拼写编辑距离,1
+latter,litter,confusable,拼写编辑距离,1
+laughter,slaughter,confusable,拼写编辑距离,1
+lavatory,toilet,synonym,WordNet 3.0,1
+law,lawyer,derivation,WordNet 3.0,1
+lawyer,layer,confusable,拼写编辑距离,1
+lay,layer,derivation,WordNet 3.0,1
+lay,position,synonym,WordNet 3.0,1
+lead,leaf,confusable,拼写编辑距离,1
+lead,leak,confusable,拼写编辑距离,1
+lead,lean,confusable,拼写编辑距离,1
+lead,leap,confusable,拼写编辑距离,1
+lead,load,confusable,拼写编辑距离,1
+lead,plead,confusable,拼写编辑距离,1
+lead,result,synonym,WordNet 3.0,1
+leading,reading,confusable,拼写编辑距离,1
+leaf,leaflet,derivation,WordNet 3.0,1
+leaf,leak,confusable,拼写编辑距离,1
+leaf,lean,confusable,拼写编辑距离,1
+leaf,leap,confusable,拼写编辑距离,1
+leaf,loaf,confusable,拼写编辑距离,1
+leak,lean,confusable,拼写编辑距离,1
+leak,leap,confusable,拼写编辑距离,1
+lean,leap,confusable,拼写编辑距离,1
+lean,loan,confusable,拼写编辑距离,1
+lean,tilt,synonym,WordNet 3.0,1
+learning,scholarship,synonym,WordNet 3.0,1
+lease,least,confusable,拼写编辑距离,1
+lease,rent,synonym,WordNet 3.0,1
+least,lest,confusable,拼写编辑距离,1
+lecture,scold,synonym,WordNet 3.0,1
+legitimate,logical,synonym,WordNet 3.0,1
+lens,less,confusable,拼写编辑距离,1
+less,lest,confusable,拼写编辑距离,1
+less,loss,confusable,拼写编辑距离,1
+lest,list,confusable,拼写编辑距离,1
+level,lever,confusable,拼写编辑距离,1
+lever,liver,confusable,拼写编辑距离,1
+lever,lover,confusable,拼写编辑距离,1
+liability,liable,derivation,WordNet 3.0,1
+liberate,liberty,derivation,WordNet 3.0,1
+liberate,literate,confusable,拼写编辑距离,1
+liberate,loose,synonym,WordNet 3.0,1
+liberate,release,synonym,WordNet 3.0,1
+license,permit,synonym,WordNet 3.0,1
+lick,link,confusable,拼写编辑距离,1
+lick,lock,confusable,拼写编辑距离,1
+lick,luck,confusable,拼写编辑距离,1
+lift,list,confusable,拼写编辑距离,1
+likely,lively,confusable,拼写编辑距离,1
+likely,probable,synonym,WordNet 3.0,1
+limb,limp,confusable,拼写编辑距离,1
+limit,limitation,derivation,WordNet 3.0,1
+limit,restrain,synonym,WordNet 3.0,1
+limp,lump,confusable,拼写编辑距离,1
+line,linen,confusable,拼写编辑距离,1
+line,liner,derivation,WordNet 3.0,1
+line,link,confusable,拼写编辑距离,1
+linear,liner,confusable,拼写编辑距离,1
+linen,liner,confusable,拼写编辑距离,1
+liner,linger,confusable,拼写编辑距离,1
+liner,liver,confusable,拼写编辑距离,1
+link,relate,synonym,WordNet 3.0,1
+literacy,literally,confusable,拼写编辑距离,1
+literacy,literary,confusable,拼写编辑距离,1
+literacy,literate,confusable,拼写编辑距离,1
+literally,literary,confusable,拼写编辑距离,1
+literary,literate,confusable,拼写编辑距离,1
+literary,literature,derivation,WordNet 3.0,1
+literate,literature,confusable,拼写编辑距离,1
+liver,lover,confusable,拼写编辑距离,1
+load,loaf,confusable,拼写编辑距离,1
+load,loan,confusable,拼写编辑距离,1
+load,lord,confusable,拼写编辑距离,1
+load,loud,confusable,拼写编辑距离,1
+loaf,loan,confusable,拼写编辑距离,1
+local,locality,derivation,WordNet 3.0,1
+local,loyal,confusable,拼写编辑距离,1
+locality,neighborhood,synonym,WordNet 3.0,1
+locality,vicinity,synonym,WordNet 3.0,1
+locate,location,derivation,WordNet 3.0,1
+location,vocation,confusable,拼写编辑距离,1
+lock,locker,derivation,WordNet 3.0,1
+lock,luck,confusable,拼写编辑距离,1
+lodge,stick,synonym,WordNet 3.0,1
+lodge,wedge,synonym,WordNet 3.0,1
+loom,loop,confusable,拼写编辑距离,1
+loom,tower,synonym,WordNet 3.0,1
+loose,loosen,confusable,拼写编辑距离,1
+loose,lose,confusable,拼写编辑距离,1
+loose,release,synonym,WordNet 3.0,1
+lord,loud,confusable,拼写编辑距离,1
+lord,master,synonym,WordNet 3.0,1
+lose,loss,confusable,拼写编辑距离,1
+loudspeaker,speaker,synonym,WordNet 3.0,1
+lover,lower,confusable,拼写编辑距离,1
+loyalty,royalty,confusable,拼写编辑距离,1
+luck,lucky,derivation,WordNet 3.0,1
+lumber,plumber,confusable,拼写编辑距离,1
+lumber,timber,synonym,WordNet 3.0,1
+lure,tempt,synonym,WordNet 3.0,1
+magnet,magnetic,derivation,WordNet 3.0,1
+magnify,magnitude,derivation,WordNet 3.0,1
+maid,main,confusable,拼写编辑距离,1
+main,principal,synonym,WordNet 3.0,1
+maintain,maintenance,derivation,WordNet 3.0,1
+maintain,preserve,synonym,WordNet 3.0,1
+major,majority,derivation,WordNet 3.0,1
+major,mayor,confusable,拼写编辑距离,1
+male,mate,confusable,拼写编辑距离,1
+male,mile,confusable,拼写编辑距离,1
+manage,management,derivation,WordNet 3.0,1
+maneuver,manoeuvre,confusable,拼写编辑距离,1
+maneuver,steer,synonym,WordNet 3.0,1
+manner,mode,synonym,WordNet 3.0,1
+manner,style,synonym,WordNet 3.0,1
+margin,marginal,derivation,WordNet 3.0,1
+mark,mask,confusable,拼写编辑距离,1
+mark,score,synonym,WordNet 3.0,1
+mark,tag,synonym,WordNet 3.0,1
+marriage,marry,derivation,WordNet 3.0,1
+married,marry,derivation,WordNet 3.0,1
+marry,merry,confusable,拼写编辑距离,1
+marvelous,terrific,synonym,WordNet 3.0,1
+marvelous,tremendous,synonym,WordNet 3.0,1
+marvelous,wonderful,synonym,WordNet 3.0,1
+mask,mass,confusable,拼写编辑距离,1
+mass,mess,confusable,拼写编辑距离,1
+mass,moss,confusable,拼写编辑距离,1
+mass,pile,synonym,WordNet 3.0,1
+mass,plenty,synonym,WordNet 3.0,1
+massacre,slaughter,synonym,WordNet 3.0,1
+massive,passive,confusable,拼写编辑距离,1
+master,overcome,synonym,WordNet 3.0,1
+mate,mute,confusable,拼写编辑距离,1
+material,stuff,synonym,WordNet 3.0,1
+mature,nature,confusable,拼写编辑距离,1
+maximum,utmost,synonym,WordNet 3.0,1
+measure,quantity,synonym,WordNet 3.0,1
+measure,step,synonym,WordNet 3.0,1
+mechanic,mechanical,confusable,拼写编辑距离,1
+mechanic,mechanism,confusable,拼写编辑距离,1
+mechanical,mechanism,derivation,WordNet 3.0,1
+medal,metal,confusable,拼写编辑距离,1
+meditate,meditation,derivation,WordNet 3.0,1
+meditate,ponder,synonym,WordNet 3.0,1
+meditate,reflect,synonym,WordNet 3.0,1
+melody,tune,synonym,WordNet 3.0,1
+menace,threat,synonym,WordNet 3.0,1
+menace,threaten,synonym,WordNet 3.0,1
+mental,metal,confusable,拼写编辑距离,1
+merchandise,product,synonym,WordNet 3.0,1
+merchandise,trade,synonym,WordNet 3.0,1
+mercy,merry,confusable,拼写编辑距离,1
+mere,merge,confusable,拼写编辑距离,1
+mere,metre,confusable,拼写编辑距离,1
+merge,merger,derivation,WordNet 3.0,1
+merge,mix,synonym,WordNet 3.0,1
+merge,unify,synonym,WordNet 3.0,1
+merge,unite,synonym,WordNet 3.0,1
+merit,virtue,synonym,WordNet 3.0,1
+mess,moss,confusable,拼写编辑距离,1
+midst,mist,confusable,拼写编辑距离,1
+midst,thick,synonym,WordNet 3.0,1
+mild,mile,confusable,拼写编辑距离,1
+mild,mill,confusable,拼写编辑距离,1
+mile,mill,confusable,拼写编辑距离,1
+militant,military,confusable,拼写编辑距离,1
+mingle,unify,synonym,WordNet 3.0,1
+minimize,minimum,derivation,WordNet 3.0,1
+minister,ministry,confusable,拼写编辑距离,1
+minor,minority,derivation,WordNet 3.0,1
+minor,youngster,synonym,WordNet 3.0,1
+miserable,pathetic,synonym,WordNet 3.0,1
+mist,moist,confusable,拼写编辑距离,1
+mix,mixture,derivation,WordNet 3.0,1
+mobilize,rally,synonym,WordNet 3.0,1
+mode,model,confusable,拼写编辑距离,1
+mode,style,synonym,WordNet 3.0,1
+model,motel,confusable,拼写编辑距离,1
+model,mould,synonym,WordNet 3.0,1
+model,pattern,synonym,WordNet 3.0,1
+monarch,sovereign,synonym,WordNet 3.0,1
+mood,temper,synonym,WordNet 3.0,1
+moral,morality,derivation,WordNet 3.0,1
+moral,mortal,confusable,拼写编辑距离,1
+moral,oral,confusable,拼写编辑距离,1
+morality,mortality,confusable,拼写编辑距离,1
+mortal,mortality,derivation,WordNet 3.0,1
+mortal,soul,synonym,WordNet 3.0,1
+motion,notion,confusable,拼写编辑距离,1
+motivate,motive,derivation,WordNet 3.0,1
+motivate,prompt,synonym,WordNet 3.0,1
+mount,wax,synonym,WordNet 3.0,1
+multiple,multiply,confusable,拼写编辑距离,1
+multitude,pack,synonym,WordNet 3.0,1
+muscle,muscular,derivation,WordNet 3.0,1
+mutter,utter,confusable,拼写编辑距离,1
+mysterious,mystery,derivation,WordNet 3.0,1
+naive,native,confusable,拼写编辑距离,1
+narrate,narrative,derivation,WordNet 3.0,1
+narrative,tale,synonym,WordNet 3.0,1
+nation,notion,confusable,拼写编辑距离,1
+national,nationality,derivation,WordNet 3.0,1
+national,rational,confusable,拼写编辑距离,1
+naval,navy,derivation,WordNet 3.0,1
+neat,nest,confusable,拼写编辑距离,1
+necessitate,necessity,derivation,WordNet 3.0,1
+necessitate,require,synonym,WordNet 3.0,1
+necessity,requirement,synonym,WordNet 3.0,1
+neglect,negligent,derivation,WordNet 3.0,1
+neighbor,neighborhood,derivation,WordNet 3.0,1
+neighborhood,vicinity,synonym,WordNet 3.0,1
+nerve,nervous,derivation,WordNet 3.0,1
+nevertheless,nonetheless,synonym,WordNet 3.0,1
+nevertheless,notwithstanding,synonym,WordNet 3.0,1
+nonetheless,notwithstanding,synonym,WordNet 3.0,1
+northeast,northwest,confusable,拼写编辑距离,1
+notable,noteworthy,synonym,WordNet 3.0,1
+notice,noticeable,derivation,WordNet 3.0,1
+notice,notify,derivation,WordNet 3.0,1
+notice,observe,synonym,WordNet 3.0,1
+obedience,obedient,derivation,WordNet 3.0,1
+obedience,obey,derivation,WordNet 3.0,1
+obedient,obey,derivation,WordNet 3.0,1
+object,objection,derivation,WordNet 3.0,1
+object,objective,synonym,WordNet 3.0,1
+objection,objective,confusable,拼写编辑距离,1
+obligation,oblige,derivation,WordNet 3.0,1
+obligation,responsibility,synonym,WordNet 3.0,1
+obscure,vague,synonym,WordNet 3.0,1
+observation,observe,derivation,WordNet 3.0,1
+observe,remark,synonym,WordNet 3.0,1
+obsess,obsession,derivation,WordNet 3.0,1
+obstruct,obstruction,derivation,WordNet 3.0,1
+occasion,occasional,confusable,拼写编辑距离,1
+occupation,occupy,derivation,WordNet 3.0,1
+offence,offend,derivation,WordNet 3.0,1
+offence,offensive,synonym,WordNet 3.0,1
+offend,offensive,derivation,WordNet 3.0,1
+operate,operation,derivation,WordNet 3.0,1
+operate,operator,derivation,WordNet 3.0,1
+operation,operational,confusable,拼写编辑距离,1
+operation,operator,confusable,拼写编辑距离,1
+opinion,sentiment,synonym,WordNet 3.0,1
+opponent,oppose,derivation,WordNet 3.0,1
+opposite,reverse,synonym,WordNet 3.0,1
+oppress,suppress,synonym,WordNet 3.0,1
+opt,option,derivation,WordNet 3.0,1
+optical,visual,synonym,WordNet 3.0,1
+optimize,optimum,derivation,WordNet 3.0,1
+oral,oval,confusable,拼写编辑距离,1
+orbit,revolve,synonym,WordNet 3.0,1
+orbit,sphere,synonym,WordNet 3.0,1
+organ,organic,derivation,WordNet 3.0,1
+organic,organism,derivation,WordNet 3.0,1
+organism,organize,confusable,拼写编辑距离,1
+organization,organize,derivation,WordNet 3.0,1
+orient,oriental,derivation,WordNet 3.0,1
+orient,point,synonym,WordNet 3.0,1
+origin,originate,derivation,WordNet 3.0,1
+origin,root,synonym,WordNet 3.0,1
+origin,source,synonym,WordNet 3.0,1
+original,originate,confusable,拼写编辑距离,1
+outcome,result,synonym,WordNet 3.0,1
+outlet,outset,confusable,拼写编辑距离,1
+outline,sketch,synonym,WordNet 3.0,1
+outlook,prospect,synonym,WordNet 3.0,1
+output,yield,synonym,WordNet 3.0,1
+outrage,shock,synonym,WordNet 3.0,1
+outstanding,prominent,synonym,WordNet 3.0,1
+overcoat,overcome,confusable,拼写编辑距离,1
+overcome,overtime,confusable,拼写编辑距离,1
+overhaul,overtake,synonym,WordNet 3.0,1
+overhead,overhear,confusable,拼写编辑距离,1
+overhead,overseas,confusable,拼写编辑距离,1
+overhear,overseas,confusable,拼写编辑距离,1
+overtake,overtime,confusable,拼写编辑距离,1
+owing,wing,confusable,拼写编辑距离,1
+owner,ownership,derivation,WordNet 3.0,1
+ownership,possession,synonym,WordNet 3.0,1
+ozone,zone,confusable,拼写编辑距离,1
+pace,pack,confusable,拼写编辑距离,1
+pace,pact,confusable,拼写编辑距离,1
+pace,pale,confusable,拼写编辑距离,1
+pace,pave,confusable,拼写编辑距离,1
+pace,peace,confusable,拼写编辑距离,1
+pace,space,confusable,拼写编辑距离,1
+pace,step,synonym,WordNet 3.0,1
+pace,stride,synonym,WordNet 3.0,1
+pack,package,derivation,WordNet 3.0,1
+pack,pact,confusable,拼写编辑距离,1
+package,packet,synonym,WordNet 3.0,1
+package,parcel,synonym,WordNet 3.0,1
+packet,pocket,confusable,拼写编辑距离,1
+packet,racket,confusable,拼写编辑距离,1
+pact,pant,confusable,拼写编辑距离,1
+pact,part,confusable,拼写编辑距离,1
+pact,treaty,synonym,WordNet 3.0,1
+paddle,saddle,confusable,拼写编辑距离,1
+pail,pain,confusable,拼写编辑距离,1
+pain,paint,confusable,拼写编辑距离,1
+pain,plain,confusable,拼写编辑距离,1
+painful,sore,synonym,WordNet 3.0,1
+paint,painter,derivation,WordNet 3.0,1
+paint,painting,derivation,WordNet 3.0,1
+paint,pant,confusable,拼写编辑距离,1
+paint,pint,confusable,拼写编辑距离,1
+paint,point,confusable,拼写编辑距离,1
+paint,print,confusable,拼写编辑距离,1
+pale,palm,confusable,拼写编辑距离,1
+pale,pave,confusable,拼写编辑距离,1
+pale,pile,confusable,拼写编辑距离,1
+panic,terror,synonym,WordNet 3.0,1
+pant,part,confusable,拼写编辑距离,1
+pant,pint,confusable,拼写编辑距离,1
+paradigm,prototype,synonym,WordNet 3.0,1
+paradox,paradoxical,derivation,WordNet 3.0,1
+part,partial,derivation,WordNet 3.0,1
+part,partly,synonym,WordNet 3.0,1
+part,port,confusable,拼写编辑距离,1
+part,portion,synonym,WordNet 3.0,1
+participant,participate,derivation,WordNet 3.0,1
+particular,peculiar,synonym,WordNet 3.0,1
+particular,special,synonym,WordNet 3.0,1
+partner,spouse,synonym,WordNet 3.0,1
+pasture,posture,confusable,拼写编辑距离,1
+patch,path,confusable,拼写编辑距离,1
+patch,pitch,confusable,拼写编辑距离,1
+patch,plot,synonym,WordNet 3.0,1
+patent,patient,confusable,拼写编辑距离,1
+patience,patient,derivation,WordNet 3.0,1
+patrol,patron,confusable,拼写编辑距离,1
+patrol,petrol,confusable,拼写编辑距离,1
+patrol,police,synonym,WordNet 3.0,1
+pave,pavement,derivation,WordNet 3.0,1
+peace,peach,confusable,拼写编辑距离,1
+peach,preach,confusable,拼写编辑距离,1
+peak,pear,confusable,拼写编辑距离,1
+pear,pearl,confusable,拼写编辑距离,1
+pear,peer,confusable,拼写编辑距离,1
+pear,spear,confusable,拼写编辑距离,1
+peasant,pleasant,confusable,拼写编辑距离,1
+peculiar,queer,synonym,WordNet 3.0,1
+peculiar,singular,synonym,WordNet 3.0,1
+peculiar,special,synonym,WordNet 3.0,1
+peel,peep,confusable,拼写编辑距离,1
+peel,peer,confusable,拼写编辑距离,1
+peep,peer,confusable,拼写编辑距离,1
+pension,tension,confusable,拼写编辑距离,1
+perceive,perception,derivation,WordNet 3.0,1
+percent,percentage,synonym,WordNet 3.0,1
+percentage,share,synonym,WordNet 3.0,1
+perception,perceptual,derivation,WordNet 3.0,1
+perception,perfection,confusable,拼写编辑距离,1
+perceptual,perpetual,confusable,拼写编辑距离,1
+perform,performance,derivation,WordNet 3.0,1
+perfume,scent,synonym,WordNet 3.0,1
+perhaps,possibly,synonym,WordNet 3.0,1
+period,periodical,derivation,WordNet 3.0,1
+permission,permit,derivation,WordNet 3.0,1
+permission,permit,synonym,WordNet 3.0,1
+perseverance,persevere,derivation,WordNet 3.0,1
+persevere,persist,synonym,WordNet 3.0,1
+personal,personality,derivation,WordNet 3.0,1
+personal,personnel,confusable,拼写编辑距离,1
+perspective,view,synonym,WordNet 3.0,1
+persuade,persuasion,derivation,WordNet 3.0,1
+petition,request,synonym,WordNet 3.0,1
+petty,pretty,confusable,拼写编辑距离,1
+phase,phrase,confusable,拼写编辑距离,1
+phase,stage,synonym,WordNet 3.0,1
+philosopher,philosophy,derivation,WordNet 3.0,1
+phone,prone,confusable,拼写编辑距离,1
+physical,physician,confusable,拼写编辑距离,1
+physical,physics,derivation,WordNet 3.0,1
+physician,physicist,confusable,拼写编辑距离,1
+physicist,physics,derivation,WordNet 3.0,1
+pile,pill,confusable,拼写编辑距离,1
+pile,pine,confusable,拼写编辑距离,1
+pile,pipe,confusable,拼写编辑距离,1
+pile,plenty,synonym,WordNet 3.0,1
+pill,poll,confusable,拼写编辑距离,1
+pill,spill,confusable,拼写编辑距离,1
+pilot,plot,confusable,拼写编辑距离,1
+pinch,pitch,confusable,拼写编辑距离,1
+pinch,punch,confusable,拼写编辑距离,1
+pine,pink,confusable,拼写编辑距离,1
+pine,pint,confusable,拼写编辑距离,1
+pine,pipe,confusable,拼写编辑距离,1
+pine,spine,confusable,拼写编辑距离,1
+pink,pint,confusable,拼写编辑距离,1
+pint,point,confusable,拼写编辑距离,1
+pint,print,confusable,拼写编辑距离,1
+pipe,pope,confusable,拼写编辑距离,1
+pistol,piston,confusable,拼写编辑距离,1
+pitch,toss,synonym,WordNet 3.0,1
+plight,slight,confusable,拼写编辑距离,1
+plug,plus,confusable,拼写编辑距离,1
+pocket,rocket,confusable,拼写编辑距离,1
+poem,poet,confusable,拼写编辑距离,1
+poet,port,confusable,拼写编辑距离,1
+poetry,verse,synonym,WordNet 3.0,1
+point,print,confusable,拼写编辑距离,1
+poison,poisonous,derivation,WordNet 3.0,1
+poison,prison,confusable,拼写编辑距离,1
+poke,pope,confusable,拼写编辑距离,1
+poke,pose,confusable,拼写编辑距离,1
+police,policy,confusable,拼写编辑距离,1
+political,politician,confusable,拼写编辑距离,1
+political,politics,derivation,WordNet 3.0,1
+politician,politics,derivation,WordNet 3.0,1
+poll,pool,confusable,拼写编辑距离,1
+pollute,pollution,derivation,WordNet 3.0,1
+pond,pool,synonym,WordNet 3.0,1
+pond,pound,confusable,拼写编辑距离,1
+ponder,powder,confusable,拼写编辑距离,1
+ponder,reflect,synonym,WordNet 3.0,1
+ponder,wonder,confusable,拼写编辑距离,1
+pope,pose,confusable,拼写编辑距离,1
+port,porter,derivation,WordNet 3.0,1
+porter,poster,confusable,拼写编辑距离,1
+portrait,portray,derivation,WordNet 3.0,1
+pose,prose,confusable,拼写编辑距离,1
+position,positive,confusable,拼写编辑距离,1
+possess,possession,derivation,WordNet 3.0,1
+pot,toilet,synonym,WordNet 3.0,1
+pour,swarm,synonym,WordNet 3.0,1
+powder,power,confusable,拼写编辑距离,1
+pray,prayer,derivation,WordNet 3.0,1
+pray,prey,confusable,拼写编辑距离,1
+pray,spray,confusable,拼写编辑距离,1
+preach,reach,confusable,拼写编辑距离,1
+precaution,safeguard,synonym,WordNet 3.0,1
+precede,precedent,derivation,WordNet 3.0,1
+precede,predecessor,derivation,WordNet 3.0,1
+precede,recede,confusable,拼写编辑距离,1
+precedent,preceding,confusable,拼写编辑距离,1
+precedent,president,confusable,拼写编辑距离,1
+precious,previous,confusable,拼写编辑距离,1
+precise,premise,confusable,拼写编辑距离,1
+preclude,prevent,synonym,WordNet 3.0,1
+prefer,preference,derivation,WordNet 3.0,1
+prefer,refer,confusable,拼写编辑距离,1
+preference,reference,confusable,拼写编辑距离,1
+preference,taste,synonym,WordNet 3.0,1
+premise,promise,confusable,拼写编辑距离,1
+preparation,prepare,derivation,WordNet 3.0,1
+preposition,proposition,confusable,拼写编辑距离,1
+prescribe,prescription,derivation,WordNet 3.0,1
+presence,preserve,confusable,拼写编辑距离,1
+presently,shortly,synonym,WordNet 3.0,1
+preserve,reserve,confusable,拼写编辑距离,1
+preserve,uphold,synonym,WordNet 3.0,1
+preside,president,derivation,WordNet 3.0,1
+president,resident,confusable,拼写编辑距离,1
+press,pressure,derivation,WordNet 3.0,1
+press,urge,synonym,WordNet 3.0,1
+prestige,prestigious,derivation,WordNet 3.0,1
+presume,resume,confusable,拼写编辑距离,1
+pretty,somewhat,synonym,WordNet 3.0,1
+prevail,prevalent,derivation,WordNet 3.0,1
+prevail,reign,synonym,WordNet 3.0,1
+prey,target,synonym,WordNet 3.0,1
+pride,prime,confusable,拼写编辑距离,1
+pride,prize,confusable,拼写编辑距离,1
+prime,prize,confusable,拼写编辑距离,1
+principal,principle,confusable,拼写编辑距离,1
+print,publish,synonym,WordNet 3.0,1
+prior,priority,derivation,WordNet 3.0,1
+prize,treasure,synonym,WordNet 3.0,1
+prize,value,synonym,WordNet 3.0,1
+probability,probable,derivation,WordNet 3.0,1
+probe,prone,confusable,拼写编辑距离,1
+probe,prose,confusable,拼写编辑距离,1
+probe,prove,confusable,拼写编辑距离,1
+probe,robe,confusable,拼写编辑距离,1
+procedure,proceed,derivation,WordNet 3.0,1
+procedure,process,synonym,WordNet 3.0,1
+proceed,proceeding,derivation,WordNet 3.0,1
+proceed,procession,derivation,WordNet 3.0,1
+process,treat,synonym,WordNet 3.0,1
+procession,profession,confusable,拼写编辑距离,1
+produce,product,confusable,拼写编辑距离,1
+produce,product,derivation,WordNet 3.0,1
+produce,production,derivation,WordNet 3.0,1
+production,productive,confusable,拼写编辑距离,1
+productive,productivity,derivation,WordNet 3.0,1
+profession,professional,confusable,拼写编辑距离,1
+profession,professor,confusable,拼写编辑距离,1
+prohibit,veto,synonym,WordNet 3.0,1
+project,projector,derivation,WordNet 3.0,1
+project,protect,confusable,拼写编辑距离,1
+project,task,synonym,WordNet 3.0,1
+projector,prosecutor,confusable,拼写编辑距离,1
+prone,prose,confusable,拼写编辑距离,1
+prone,prove,confusable,拼写编辑距离,1
+pronounce,pronunciation,derivation,WordNet 3.0,1
+proof,roof,confusable,拼写编辑距离,1
+propel,proper,confusable,拼写编辑距离,1
+proper,prosper,confusable,拼写编辑距离,1
+property,prosperity,confusable,拼写编辑距离,1
+proportion,proposition,confusable,拼写编辑距离,1
+proposal,propose,derivation,WordNet 3.0,1
+propose,proposition,derivation,WordNet 3.0,1
+prose,prove,confusable,拼写编辑距离,1
+prose,rose,confusable,拼写编辑距离,1
+prosecute,prosecutor,derivation,WordNet 3.0,1
+prosper,thrive,synonym,WordNet 3.0,1
+prosperity,prosperous,derivation,WordNet 3.0,1
+protect,protest,confusable,拼写编辑距离,1
+provide,provision,derivation,WordNet 3.0,1
+provide,render,synonym,WordNet 3.0,1
+provide,supply,synonym,WordNet 3.0,1
+province,responsibility,synonym,WordNet 3.0,1
+province,state,synonym,WordNet 3.0,1
+provocation,provocative,confusable,拼写编辑距离,1
+provocation,provoke,derivation,WordNet 3.0,1
+provocative,provoke,derivation,WordNet 3.0,1
+prudence,prudent,derivation,WordNet 3.0,1
+public,publicity,derivation,WordNet 3.0,1
+publication,publish,derivation,WordNet 3.0,1
+publicity,publicize,confusable,拼写编辑距离,1
+pulse,purse,confusable,拼写编辑距离,1
+pure,purse,confusable,拼写编辑距离,1
+pure,utter,synonym,WordNet 3.0,1
+purse,pursue,confusable,拼写编辑距离,1
+pursue,pursuit,derivation,WordNet 3.0,1
+pursuit,quest,synonym,WordNet 3.0,1
+qualification,qualify,derivation,WordNet 3.0,1
+qualify,quality,confusable,拼写编辑距离,1
+qualify,quality,derivation,WordNet 3.0,1
+qualitative,quantitative,confusable,拼写编辑距离,1
+quantify,quantity,confusable,拼写编辑距离,1
+quantify,quantity,derivation,WordNet 3.0,1
+quarrel,row,synonym,WordNet 3.0,1
+quart,quartz,confusable,拼写编辑距离,1
+queen,queer,confusable,拼写编辑距离,1
+queer,singular,synonym,WordNet 3.0,1
+quilt,quit,confusable,拼写编辑距离,1
+quit,quiz,confusable,拼写编辑距离,1
+quiver,thrill,synonym,WordNet 3.0,1
+quota,quote,confusable,拼写编辑距离,1
+race,racial,derivation,WordNet 3.0,1
+race,rack,confusable,拼写编辑距离,1
+race,rage,confusable,拼写编辑距离,1
+race,rake,confusable,拼写编辑距离,1
+race,rape,confusable,拼写编辑距离,1
+race,rare,confusable,拼写编辑距离,1
+race,rate,confusable,拼写编辑距离,1
+race,rush,synonym,WordNet 3.0,1
+race,speed,synonym,WordNet 3.0,1
+race,trace,confusable,拼写编辑距离,1
+rack,rank,confusable,拼写编辑距离,1
+rack,rock,confusable,拼写编辑距离,1
+rack,track,confusable,拼写编辑距离,1
+racket,rocket,confusable,拼写编辑距离,1
+radiant,radiate,derivation,WordNet 3.0,1
+radiate,radiation,derivation,WordNet 3.0,1
+radical,revolutionary,synonym,WordNet 3.0,1
+rage,rake,confusable,拼写编辑距离,1
+rage,range,confusable,拼写编辑距离,1
+rage,rape,confusable,拼写编辑距离,1
+rage,rare,confusable,拼写编辑距离,1
+rage,rate,confusable,拼写编辑距离,1
+rage,storm,synonym,WordNet 3.0,1
+raid,rail,confusable,拼写编辑距离,1
+raid,rapid,confusable,拼写编辑距离,1
+rail,trail,confusable,拼写编辑距离,1
+rake,rape,confusable,拼写编辑距离,1
+rake,rare,confusable,拼写编辑距离,1
+rake,rate,confusable,拼写编辑距离,1
+range,reach,synonym,WordNet 3.0,1
+range,scope,synonym,WordNet 3.0,1
+range,wander,synonym,WordNet 3.0,1
+rank,rate,synonym,WordNet 3.0,1
+rape,rare,confusable,拼写编辑距离,1
+rape,rate,confusable,拼写编辑距离,1
+rape,ripe,confusable,拼写编辑距离,1
+rape,rope,confusable,拼写编辑距离,1
+rare,rate,confusable,拼写编辑距离,1
+rarely,seldom,synonym,WordNet 3.0,1
+rash,rush,confusable,拼写编辑距离,1
+rash,trash,confusable,拼写编辑距离,1
+reach,react,confusable,拼写编辑距离,1
+reach,scope,synonym,WordNet 3.0,1
+react,respond,synonym,WordNet 3.0,1
+reader,render,confusable,拼写编辑距离,1
+real,reality,derivation,WordNet 3.0,1
+real,realm,confusable,拼写编辑距离,1
+real,reap,confusable,拼写编辑距离,1
+real,rear,confusable,拼写编辑距离,1
+real,reel,confusable,拼写编辑距离,1
+reap,rear,confusable,拼写编辑距离,1
+rear,roar,confusable,拼写编辑距离,1
+reasonable,sensible,synonym,WordNet 3.0,1
+reassurance,reassure,derivation,WordNet 3.0,1
+rebel,rebellion,derivation,WordNet 3.0,1
+rebel,reel,confusable,拼写编辑距离,1
+rebel,repel,confusable,拼写编辑距离,1
+rebellion,revolt,synonym,WordNet 3.0,1
+recall,recollect,synonym,WordNet 3.0,1
+recede,recession,derivation,WordNet 3.0,1
+recede,retreat,synonym,WordNet 3.0,1
+recede,withdraw,synonym,WordNet 3.0,1
+recent,repent,confusable,拼写编辑距离,1
+recent,resent,confusable,拼写编辑距离,1
+reception,recession,confusable,拼写编辑距离,1
+reception,recreation,confusable,拼写编辑距离,1
+recipe,recite,confusable,拼写编辑距离,1
+reckon,suppose,synonym,WordNet 3.0,1
+recognition,recognize,derivation,WordNet 3.0,1
+recommend,urge,synonym,WordNet 3.0,1
+record,recorder,derivation,WordNet 3.0,1
+recover,recovery,derivation,WordNet 3.0,1
+recover,retrieve,synonym,WordNet 3.0,1
+recur,recurrence,derivation,WordNet 3.0,1
+recur,recurrent,derivation,WordNet 3.0,1
+recurrence,recurrent,derivation,WordNet 3.0,1
+reduce,reduction,derivation,WordNet 3.0,1
+redundancy,redundant,derivation,WordNet 3.0,1
+redundant,surplus,synonym,WordNet 3.0,1
+reed,reel,confusable,拼写编辑距离,1
+reel,repel,confusable,拼写编辑距离,1
+reel,spin,synonym,WordNet 3.0,1
+reel,stagger,synonym,WordNet 3.0,1
+refer,referee,derivation,WordNet 3.0,1
+refer,reference,derivation,WordNet 3.0,1
+refer,relate,synonym,WordNet 3.0,1
+refresh,refreshment,derivation,WordNet 3.0,1
+refuge,refugee,confusable,拼写编辑距离,1
+refuge,refuse,confusable,拼写编辑距离,1
+refuge,refute,confusable,拼写编辑距离,1
+refund,repay,synonym,WordNet 3.0,1
+refusal,refuse,derivation,WordNet 3.0,1
+refuse,refute,confusable,拼写编辑距离,1
+refuse,reject,synonym,WordNet 3.0,1
+regard,respect,synonym,WordNet 3.0,1
+regard,reward,confusable,拼写编辑距离,1
+regard,view,synonym,WordNet 3.0,1
+regret,sorrow,synonym,WordNet 3.0,1
+regulate,regulation,derivation,WordNet 3.0,1
+regulation,rule,synonym,WordNet 3.0,1
+reign,rein,confusable,拼写编辑距离,1
+reign,resign,confusable,拼写编辑距离,1
+rein,ruin,confusable,拼写编辑距离,1
+reinforce,reward,synonym,WordNet 3.0,1
+relate,relation,derivation,WordNet 3.0,1
+relation,relationship,derivation,WordNet 3.0,1
+relation,relative,confusable,拼写编辑距离,1
+relation,religion,confusable,拼写编辑距离,1
+relative,relativity,derivation,WordNet 3.0,1
+relax,relay,confusable,拼写编辑距离,1
+relay,rely,confusable,拼写编辑距离,1
+relay,repay,confusable,拼写编辑距离,1
+reliable,reliance,confusable,拼写编辑距离,1
+reliance,rely,derivation,WordNet 3.0,1
+reliance,trust,synonym,WordNet 3.0,1
+religion,religious,derivation,WordNet 3.0,1
+religious,spiritual,synonym,WordNet 3.0,1
+rely,reply,confusable,拼写编辑距离,1
+rely,trust,synonym,WordNet 3.0,1
+remain,remainder,derivation,WordNet 3.0,1
+remain,remnant,derivation,WordNet 3.0,1
+remain,retain,confusable,拼写编辑距离,1
+remarkable,singular,synonym,WordNet 3.0,1
+remote,remove,confusable,拼写编辑距离,1
+removal,remove,derivation,WordNet 3.0,1
+render,supply,synonym,WordNet 3.0,1
+render,tender,confusable,拼写编辑距离,1
+rent,tear,synonym,WordNet 3.0,1
+repay,reply,confusable,拼写编辑距离,1
+repeat,repent,confusable,拼写编辑距离,1
+repeat,repetition,derivation,WordNet 3.0,1
+repeat,repetition,synonym,WordNet 3.0,1
+repent,resent,confusable,拼写编辑距离,1
+repetition,reputation,confusable,拼写编辑距离,1
+replace,replacement,derivation,WordNet 3.0,1
+reply,respond,synonym,WordNet 3.0,1
+represent,representative,derivation,WordNet 3.0,1
+repress,repression,derivation,WordNet 3.0,1
+repress,repressive,derivation,WordNet 3.0,1
+repression,repressive,confusable,拼写编辑距离,1
+republic,republican,confusable,拼写编辑距离,1
+require,requirement,derivation,WordNet 3.0,1
+rescue,saving,synonym,WordNet 3.0,1
+resemblance,resemble,derivation,WordNet 3.0,1
+reservation,reserve,derivation,WordNet 3.0,1
+residence,resident,derivation,WordNet 3.0,1
+resist,resistance,derivation,WordNet 3.0,1
+resist,resistant,derivation,WordNet 3.0,1
+resistance,resistant,derivation,WordNet 3.0,1
+resistant,resultant,confusable,拼写编辑距离,1
+resolution,resolve,derivation,WordNet 3.0,1
+resolution,revolution,confusable,拼写编辑距离,1
+resolve,revolve,confusable,拼写编辑距离,1
+resolve,settle,synonym,WordNet 3.0,1
+resort,retort,confusable,拼写编辑距离,1
+respective,various,synonym,WordNet 3.0,1
+responsibility,responsible,derivation,WordNet 3.0,1
+restrain,restraint,derivation,WordNet 3.0,1
+restraint,restrict,confusable,拼写编辑距离,1
+result,resultant,derivation,WordNet 3.0,1
+result,solution,synonym,WordNet 3.0,1
+resume,survey,synonym,WordNet 3.0,1
+retail,retain,confusable,拼写编辑距离,1
+retain,retention,derivation,WordNet 3.0,1
+retire,withdraw,synonym,WordNet 3.0,1
+retreat,withdraw,synonym,WordNet 3.0,1
+retrospect,retrospection,derivation,WordNet 3.0,1
+retrospect,retrospective,derivation,WordNet 3.0,1
+retrospection,retrospective,confusable,拼写编辑距离,1
+reveal,revelation,derivation,WordNet 3.0,1
+reveal,uncover,synonym,WordNet 3.0,1
+revelation,revolution,confusable,拼写编辑距离,1
+revenge,revenue,confusable,拼写编辑距离,1
+revise,revive,confusable,拼写编辑距离,1
+revolt,revolution,derivation,WordNet 3.0,1
+revolution,revolutionary,derivation,WordNet 3.0,1
+revolution,revolve,derivation,WordNet 3.0,1
+revolve,rotate,synonym,WordNet 3.0,1
+rifle,trifle,confusable,拼写编辑距离,1
+rigorous,strict,synonym,WordNet 3.0,1
+rigorous,vigorous,confusable,拼写编辑距离,1
+riot,root,confusable,拼写编辑距离,1
+ripe,rise,confusable,拼写编辑距离,1
+ripe,rope,confusable,拼写编辑距离,1
+rise,risk,confusable,拼写编辑距离,1
+roar,thunder,synonym,WordNet 3.0,1
+rob,soak,synonym,WordNet 3.0,1
+robe,role,confusable,拼写编辑距离,1
+robe,rope,confusable,拼写编辑距离,1
+robe,rose,confusable,拼写编辑距离,1
+robot,root,confusable,拼写编辑距离,1
+rock,stone,synonym,WordNet 3.0,1
+rock,sway,synonym,WordNet 3.0,1
+role,roll,confusable,拼写编辑距离,1
+role,rope,confusable,拼写编辑距离,1
+role,rose,confusable,拼写编辑距离,1
+role,rule,confusable,拼写编辑距离,1
+romance,romantic,derivation,WordNet 3.0,1
+roof,root,confusable,拼写编辑距离,1
+root,source,synonym,WordNet 3.0,1
+rope,rose,confusable,拼写编辑距离,1
+rose,rouse,confusable,拼写编辑距离,1
+rough,roughly,synonym,WordNet 3.0,1
+rouse,route,confusable,拼写编辑距离,1
+rub,scratch,synonym,WordNet 3.0,1
+rude,rule,confusable,拼写编辑距离,1
+rule,ruler,derivation,WordNet 3.0,1
+rush,rust,confusable,拼写编辑距离,1
+rush,speed,synonym,WordNet 3.0,1
+rush,surge,synonym,WordNet 3.0,1
+rust,trust,confusable,拼写编辑距离,1
+sack,slack,confusable,拼写编辑距离,1
+sack,snack,confusable,拼写编辑距离,1
+sack,sock,confusable,拼写编辑距离,1
+sack,stack,confusable,拼写编辑距离,1
+sack,suck,confusable,拼写编辑距离,1
+safe,sake,confusable,拼写编辑距离,1
+safe,sale,confusable,拼写编辑距离,1
+safe,sane,confusable,拼写编辑距离,1
+safe,save,confusable,拼写编辑距离,1
+sail,sailor,derivation,WordNet 3.0,1
+sail,soil,confusable,拼写编辑距离,1
+sail,sweep,synonym,WordNet 3.0,1
+sailor,tailor,confusable,拼写编辑距离,1
+sake,sale,confusable,拼写编辑距离,1
+sake,sane,confusable,拼写编辑距离,1
+sake,save,confusable,拼写编辑距离,1
+sake,shake,confusable,拼写编辑距离,1
+sake,snake,confusable,拼写编辑距离,1
+sake,stake,confusable,拼写编辑距离,1
+salary,wage,synonym,WordNet 3.0,1
+sale,salt,confusable,拼写编辑距离,1
+sale,sane,confusable,拼写编辑距离,1
+sale,save,confusable,拼写编辑距离,1
+sale,scale,confusable,拼写编辑距离,1
+sale,sole,confusable,拼写编辑距离,1
+sale,stale,confusable,拼写编辑距离,1
+salute,toast,synonym,WordNet 3.0,1
+sand,sane,confusable,拼写编辑距离,1
+sane,save,confusable,拼写编辑距离,1
+sarcasm,sarcastic,derivation,WordNet 3.0,1
+sarcasm,satire,synonym,WordNet 3.0,1
+satisfaction,satisfy,derivation,WordNet 3.0,1
+satisfactory,satisfy,derivation,WordNet 3.0,1
+savage,vicious,synonym,WordNet 3.0,1
+save,shave,confusable,拼写编辑距离,1
+save,slave,confusable,拼写编辑距离,1
+scale,scare,confusable,拼写编辑距离,1
+scale,stale,confusable,拼写编辑距离,1
+scan,scar,confusable,拼写编辑距离,1
+scan,span,confusable,拼写编辑距离,1
+scan,swan,confusable,拼写编辑距离,1
+scar,scare,confusable,拼写编辑距离,1
+scar,scarf,confusable,拼写编辑距离,1
+scar,soar,confusable,拼写编辑距离,1
+scarce,scarcely,synonym,WordNet 3.0,1
+scarce,scare,confusable,拼写编辑距离,1
+scare,scarf,confusable,拼写编辑距离,1
+scare,score,confusable,拼写编辑距离,1
+scare,share,confusable,拼写编辑距离,1
+scare,stare,confusable,拼写编辑距离,1
+scatter,shatter,confusable,拼写编辑距离,1
+scene,scent,confusable,拼写编辑距离,1
+sceptical,skeptical,confusable,拼写编辑距离,1
+scheme,strategy,synonym,WordNet 3.0,1
+scholar,scholarship,derivation,WordNet 3.0,1
+scope,score,confusable,拼写编辑距离,1
+scope,slope,confusable,拼写编辑距离,1
+score,scorn,confusable,拼写编辑距离,1
+score,shore,confusable,拼写编辑距离,1
+score,sore,confusable,拼写编辑距离,1
+scrap,scrape,confusable,拼写编辑距离,1
+scrap,strap,confusable,拼写编辑距离,1
+scream,stream,confusable,拼写编辑距离,1
+scream,yell,synonym,WordNet 3.0,1
+screen,test,synonym,WordNet 3.0,1
+scrutinize,scrutiny,derivation,WordNet 3.0,1
+seal,seam,confusable,拼写编辑距离,1
+seal,steal,confusable,拼写编辑距离,1
+seam,sham,confusable,拼写编辑距离,1
+seam,slam,confusable,拼写编辑距离,1
+seam,steam,confusable,拼写编辑距离,1
+search,seek,synonym,WordNet 3.0,1
+secure,security,derivation,WordNet 3.0,1
+seed,seek,confusable,拼写编辑距离,1
+seed,shed,confusable,拼写编辑距离,1
+seed,speed,confusable,拼写编辑距离,1
+select,selection,derivation,WordNet 3.0,1
+self,shelf,confusable,拼写编辑距离,1
+sensation,sense,derivation,WordNet 3.0,1
+sense,sensible,derivation,WordNet 3.0,1
+sense,sensitive,derivation,WordNet 3.0,1
+sentiment,sentimental,derivation,WordNet 3.0,1
+sequence,succession,synonym,WordNet 3.0,1
+serial,series,derivation,WordNet 3.0,1
+serial,successive,synonym,WordNet 3.0,1
+settle,settlement,derivation,WordNet 3.0,1
+sew,stitch,synonym,WordNet 3.0,1
+shade,shady,confusable,拼写编辑距离,1
+shade,shady,derivation,WordNet 3.0,1
+shade,shake,confusable,拼写编辑距离,1
+shade,shame,confusable,拼写编辑距离,1
+shade,shape,confusable,拼写编辑距离,1
+shade,share,confusable,拼写编辑距离,1
+shade,shave,confusable,拼写编辑距离,1
+shade,spade,confusable,拼写编辑距离,1
+shaft,shift,confusable,拼写编辑距离,1
+shake,shame,confusable,拼写编辑距离,1
+shake,shape,confusable,拼写编辑距离,1
+shake,share,confusable,拼写编辑距离,1
+shake,shave,confusable,拼写编辑距离,1
+shake,snake,confusable,拼写编辑距离,1
+shake,stake,confusable,拼写编辑距离,1
+shallow,swallow,confusable,拼写编辑距离,1
+sham,shame,confusable,拼写编辑距离,1
+sham,slam,confusable,拼写编辑距离,1
+shame,shape,confusable,拼写编辑距离,1
+shame,share,confusable,拼写编辑距离,1
+shame,shave,confusable,拼写编辑距离,1
+shape,share,confusable,拼写编辑距离,1
+shape,shave,confusable,拼写编辑距离,1
+share,shark,confusable,拼写编辑距离,1
+share,sharp,confusable,拼写编辑距离,1
+share,shave,confusable,拼写编辑距离,1
+share,shore,confusable,拼写编辑距离,1
+share,stare,confusable,拼写编辑距离,1
+shark,sharp,confusable,拼写编辑距离,1
+shark,spark,confusable,拼写编辑距离,1
+shatter,shutter,confusable,拼写编辑距离,1
+shave,shove,confusable,拼写编辑距离,1
+shave,slave,confusable,拼写编辑距离,1
+shear,sheer,confusable,拼写编辑距离,1
+shear,spear,confusable,拼写编辑距离,1
+shear,swear,confusable,拼写编辑距离,1
+sheer,sheet,confusable,拼写编辑距离,1
+sheer,steer,confusable,拼写编辑距离,1
+shelf,shell,confusable,拼写编辑距离,1
+shell,spell,confusable,拼写编辑距离,1
+shell,swell,confusable,拼写编辑距离,1
+shift,swift,confusable,拼写编辑距离,1
+shock,sock,confusable,拼写编辑距离,1
+shock,stock,confusable,拼写编辑距离,1
+shore,shove,confusable,拼写编辑距离,1
+shore,sore,confusable,拼写编辑距离,1
+shot,shut,confusable,拼写编辑距离,1
+shot,slot,confusable,拼写编辑距离,1
+shot,spot,confusable,拼写编辑距离,1
+shove,stove,confusable,拼写编辑距离,1
+shut,shutter,derivation,WordNet 3.0,1
+sigh,sight,confusable,拼写编辑距离,1
+sigh,sign,confusable,拼写编辑距离,1
+sight,slight,confusable,拼写编辑距离,1
+sign,signature,derivation,WordNet 3.0,1
+sign,signify,derivation,WordNet 3.0,1
+sign,subscribe,synonym,WordNet 3.0,1
+significance,significant,derivation,WordNet 3.0,1
+significance,signify,derivation,WordNet 3.0,1
+significant,signify,derivation,WordNet 3.0,1
+significant,substantial,synonym,WordNet 3.0,1
+silence,silent,derivation,WordNet 3.0,1
+simulate,stimulate,confusable,拼写编辑距离,1
+site,spite,confusable,拼写编辑距离,1
+site,suite,confusable,拼写编辑距离,1
+skate,state,confusable,拼写编辑距离,1
+skeptic,skeptical,derivation,WordNet 3.0,1
+skill,skull,confusable,拼写编辑距离,1
+skill,spill,confusable,拼写编辑距离,1
+skim,skin,confusable,拼写编辑距离,1
+skim,skip,confusable,拼写编辑距离,1
+skim,slim,confusable,拼写编辑距离,1
+skin,skip,confusable,拼写编辑距离,1
+skin,spin,confusable,拼写编辑距离,1
+skip,slip,confusable,拼写编辑距离,1
+slack,snack,confusable,拼写编辑距离,1
+slack,stack,confusable,拼写编辑距离,1
+slam,slap,confusable,拼写编辑距离,1
+slam,slim,confusable,拼写编辑距离,1
+slam,slum,confusable,拼写编辑距离,1
+slap,slip,confusable,拼写编辑距离,1
+slap,snap,confusable,拼写编辑距离,1
+slap,soap,confusable,拼写编辑距离,1
+slender,slim,synonym,WordNet 3.0,1
+slice,slide,confusable,拼写编辑距离,1
+slice,slit,synonym,WordNet 3.0,1
+slim,slip,confusable,拼写编辑距离,1
+slim,slit,confusable,拼写编辑距离,1
+slim,slum,confusable,拼写编辑距离,1
+slip,slit,confusable,拼写编辑距离,1
+slip,steal,synonym,WordNet 3.0,1
+slit,slot,confusable,拼写编辑距离,1
+slit,spit,confusable,拼写编辑距离,1
+slit,split,confusable,拼写编辑距离,1
+slit,suit,confusable,拼写编辑距离,1
+slot,spot,confusable,拼写编辑距离,1
+snack,stack,confusable,拼写编辑距离,1
+snake,stake,confusable,拼写编辑距离,1
+snap,soap,confusable,拼写编辑距离,1
+snap,tear,synonym,WordNet 3.0,1
+sneak,steak,confusable,拼写编辑距离,1
+sniff,stiff,confusable,拼写编辑距离,1
+soak,soap,confusable,拼写编辑距离,1
+soak,soar,confusable,拼写编辑距离,1
+soak,sock,confusable,拼写编辑距离,1
+soap,soar,confusable,拼写编辑距离,1
+soap,soup,confusable,拼写编辑距离,1
+soar,soaring,derivation,WordNet 3.0,1
+soar,solar,confusable,拼写编辑距离,1
+soar,sour,confusable,拼写编辑距离,1
+soar,surge,synonym,WordNet 3.0,1
+sober,solemn,synonym,WordNet 3.0,1
+sock,stock,confusable,拼写编辑距离,1
+sock,suck,confusable,拼写编辑距离,1
+soda,sofa,confusable,拼写编辑距离,1
+sofa,soft,confusable,拼写编辑距离,1
+soft,sort,confusable,拼写编辑距离,1
+soil,soul,confusable,拼写编辑距离,1
+soil,spoil,confusable,拼写编辑距离,1
+sole,solo,confusable,拼写编辑距离,1
+sole,solve,confusable,拼写编辑距离,1
+sole,sore,confusable,拼写编辑距离,1
+solution,solve,derivation,WordNet 3.0,1
+sore,sort,confusable,拼写编辑距离,1
+sore,tender,synonym,WordNet 3.0,1
+soul,soup,confusable,拼写编辑距离,1
+soul,sour,confusable,拼写编辑距离,1
+soup,sour,confusable,拼写编辑距离,1
+sour,spur,confusable,拼写编辑距离,1
+southeast,southwest,confusable,拼写编辑距离,1
+sovereign,supreme,synonym,WordNet 3.0,1
+space,spacious,derivation,WordNet 3.0,1
+space,spade,confusable,拼写编辑距离,1
+span,spin,confusable,拼写编辑距离,1
+span,swan,confusable,拼写编辑距离,1
+spark,sparkle,synonym,WordNet 3.0,1
+spark,trigger,synonym,WordNet 3.0,1
+spear,swear,confusable,拼写编辑距离,1
+special,speciality,derivation,WordNet 3.0,1
+specialist,speciality,confusable,拼写编辑距离,1
+specialist,specialize,derivation,WordNet 3.0,1
+speciality,specialize,confusable,拼写编辑距离,1
+specification,specify,derivation,WordNet 3.0,1
+spectacle,spectacular,derivation,WordNet 3.0,1
+spectacular,striking,synonym,WordNet 3.0,1
+spectator,witness,synonym,WordNet 3.0,1
+speed,velocity,synonym,WordNet 3.0,1
+spell,spelling,derivation,WordNet 3.0,1
+spell,spill,confusable,拼写编辑距离,1
+spell,swell,confusable,拼写编辑距离,1
+spell,tour,synonym,WordNet 3.0,1
+spin,spine,confusable,拼写编辑距离,1
+spin,spit,confusable,拼写编辑距离,1
+spine,spite,confusable,拼写编辑距离,1
+spirit,spiritual,derivation,WordNet 3.0,1
+spit,spite,confusable,拼写编辑距离,1
+spit,split,confusable,拼写编辑距离,1
+spit,spot,confusable,拼写编辑距离,1
+spit,suit,confusable,拼写编辑距离,1
+spite,suite,confusable,拼写编辑距离,1
+splash,sprinkle,synonym,WordNet 3.0,1
+spokesman,sportsman,confusable,拼写编辑距离,1
+spot,spy,synonym,WordNet 3.0,1
+stability,stable,derivation,WordNet 3.0,1
+stable,stale,confusable,拼写编辑距离,1
+stable,staple,confusable,拼写编辑距离,1
+stack,stalk,confusable,拼写编辑距离,1
+stack,stick,confusable,拼写编辑距离,1
+stack,stock,confusable,拼写编辑距离,1
+staff,stiff,confusable,拼写编辑距离,1
+staff,stuff,confusable,拼写编辑距离,1
+stage,stake,confusable,拼写编辑距离,1
+stage,stale,confusable,拼写编辑距离,1
+stage,stare,confusable,拼写编辑距离,1
+stage,state,confusable,拼写编辑距离,1
+stain,stair,confusable,拼写编辑距离,1
+stain,strain,confusable,拼写编辑距离,1
+stair,stir,confusable,拼写编辑距离,1
+stake,stale,confusable,拼写编辑距离,1
+stake,stare,confusable,拼写编辑距离,1
+stake,state,confusable,拼写编辑距离,1
+stale,stalk,confusable,拼写编辑距离,1
+stale,stall,confusable,拼写编辑距离,1
+stale,staple,confusable,拼写编辑距离,1
+stale,stare,confusable,拼写编辑距离,1
+stale,state,confusable,拼写编辑距离,1
+stale,style,confusable,拼写编辑距离,1
+stale,tale,confusable,拼写编辑距离,1
+stalk,stall,confusable,拼写编辑距离,1
+standpoint,viewpoint,synonym,WordNet 3.0,1
+stare,starve,confusable,拼写编辑距离,1
+stare,state,confusable,拼写编辑距离,1
+state,statement,derivation,WordNet 3.0,1
+state,statue,confusable,拼写编辑距离,1
+state,submit,synonym,WordNet 3.0,1
+stationary,stationery,confusable,拼写编辑距离,1
+statistical,statistics,derivation,WordNet 3.0,1
+statue,status,confusable,拼写编辑距离,1
+statue,statute,confusable,拼写编辑距离,1
+steak,steal,confusable,拼写编辑距离,1
+steak,steam,confusable,拼写编辑距离,1
+steal,steam,confusable,拼写编辑距离,1
+steal,steel,confusable,拼写编辑距离,1
+steam,steamer,derivation,WordNet 3.0,1
+steam,stem,confusable,拼写编辑距离,1
+steam,stream,confusable,拼写编辑距离,1
+steam,team,confusable,拼写编辑距离,1
+steel,steep,confusable,拼写编辑距离,1
+steel,steer,confusable,拼写编辑距离,1
+steel,sword,synonym,WordNet 3.0,1
+steep,steer,confusable,拼写编辑距离,1
+steep,step,confusable,拼写编辑距离,1
+steep,sweep,confusable,拼写编辑距离,1
+stem,step,confusable,拼写编辑距离,1
+step,stride,synonym,WordNet 3.0,1
+stick,stock,confusable,拼写编辑距离,1
+stick,tick,confusable,拼写编辑距离,1
+stick,wedge,synonym,WordNet 3.0,1
+stiff,stuff,confusable,拼写编辑距离,1
+sting,string,confusable,拼写编辑距离,1
+sting,swing,confusable,拼写编辑距离,1
+stitch,switch,confusable,拼写编辑距离,1
+stock,stocking,derivation,WordNet 3.0,1
+stone,stove,confusable,拼写编辑距离,1
+stone,tone,confusable,拼写编辑距离,1
+stool,stoop,confusable,拼写编辑距离,1
+stool,tool,confusable,拼写编辑距离,1
+strain,strenuous,derivation,WordNet 3.0,1
+strain,strive,synonym,WordNet 3.0,1
+strap,straw,confusable,拼写编辑距离,1
+strap,strip,confusable,拼写编辑距离,1
+strap,trap,confusable,拼写编辑距离,1
+strength,strengthen,confusable,拼写编辑距离,1
+stress,tension,synonym,WordNet 3.0,1
+stride,strife,confusable,拼写编辑距离,1
+stride,strike,confusable,拼写编辑距离,1
+stride,stripe,confusable,拼写编辑距离,1
+stride,strive,confusable,拼写编辑距离,1
+strife,strike,confusable,拼写编辑距离,1
+strife,stripe,confusable,拼写编辑距离,1
+strife,strive,confusable,拼写编辑距离,1
+strike,striking,derivation,WordNet 3.0,1
+strike,stripe,confusable,拼写编辑距离,1
+strike,strive,confusable,拼写编辑距离,1
+strike,stroke,confusable,拼写编辑距离,1
+strip,stripe,confusable,拼写编辑距离,1
+stripe,strive,confusable,拼写编辑距离,1
+stuff,thrust,synonym,WordNet 3.0,1
+stumble,tumble,confusable,拼写编辑距离,1
+submit,summit,confusable,拼写编辑距离,1
+subsidize,subsidy,derivation,WordNet 3.0,1
+substance,substantial,derivation,WordNet 3.0,1
+succeed,succession,derivation,WordNet 3.0,1
+succeed,successive,derivation,WordNet 3.0,1
+succeed,successor,derivation,WordNet 3.0,1
+succession,successive,confusable,拼写编辑距离,1
+succession,successor,confusable,拼写编辑距离,1
+sue,suit,derivation,WordNet 3.0,1
+suffer,sustain,synonym,WordNet 3.0,1
+suffice,sufficiency,derivation,WordNet 3.0,1
+suffice,sufficient,derivation,WordNet 3.0,1
+sufficiency,sufficient,derivation,WordNet 3.0,1
+suit,suite,confusable,拼写编辑距离,1
+sum,total,synonym,WordNet 3.0,1
+summarize,summary,derivation,WordNet 3.0,1
+super,superb,confusable,拼写编辑距离,1
+superior,superiority,derivation,WordNet 3.0,1
+superstition,superstitious,derivation,WordNet 3.0,1
+surge,urge,confusable,拼写编辑距离,1
+surround,surroundings,derivation,WordNet 3.0,1
+survival,survive,derivation,WordNet 3.0,1
+suspect,suspicion,derivation,WordNet 3.0,1
+suspect,suspicious,synonym,WordNet 3.0,1
+suspicion,suspicious,derivation,WordNet 3.0,1
+swan,sway,confusable,拼写编辑距离,1
+swan,swear,synonym,WordNet 3.0,1
+sway,swing,synonym,WordNet 3.0,1
+swear,sweat,confusable,拼写编辑距离,1
+sweat,sweater,derivation,WordNet 3.0,1
+sweep,weep,confusable,拼写编辑距离,1
+swing,wing,confusable,拼写编辑距离,1
+switch,witch,confusable,拼写编辑距离,1
+sympathetic,sympathy,derivation,WordNet 3.0,1
+sympathize,sympathy,derivation,WordNet 3.0,1
+synthesis,synthetic,derivation,WordNet 3.0,1
+system,systematic,derivation,WordNet 3.0,1
+tackle,undertake,synonym,WordNet 3.0,1
+tail,trail,confusable,拼写编辑距离,1
+tale,tame,confusable,拼写编辑距离,1
+tale,tape,confusable,拼写编辑距离,1
+tale,tile,confusable,拼写编辑距离,1
+tame,tape,confusable,拼写编辑距离,1
+tank,task,confusable,拼写编辑距离,1
+tape,type,confusable,拼写编辑距离,1
+team,tear,confusable,拼写编辑距离,1
+team,term,confusable,拼写编辑距离,1
+team,tram,confusable,拼写编辑距离,1
+tease,tense,confusable,拼写编辑距离,1
+technical,technician,confusable,拼写编辑距离,1
+technical,technique,derivation,WordNet 3.0,1
+technician,technique,derivation,WordNet 3.0,1
+tedious,tiresome,synonym,WordNet 3.0,1
+telegram,telegraph,confusable,拼写编辑距离,1
+telegraph,wire,synonym,WordNet 3.0,1
+temperament,temperamental,derivation,WordNet 3.0,1
+tempo,tempt,confusable,拼写编辑距离,1
+tempt,temptation,derivation,WordNet 3.0,1
+tend,tendency,derivation,WordNet 3.0,1
+tend,tender,derivation,WordNet 3.0,1
+tend,tent,confusable,拼写编辑距离,1
+tend,trend,confusable,拼写编辑距离,1
+tense,tension,derivation,WordNet 3.0,1
+tent,test,confusable,拼写编辑距离,1
+terminal,terminate,confusable,拼写编辑距离,1
+terrific,tremendous,synonym,WordNet 3.0,1
+terrific,wonderful,synonym,WordNet 3.0,1
+terrify,terror,derivation,WordNet 3.0,1
+test,trial,synonym,WordNet 3.0,1
+testify,testimony,derivation,WordNet 3.0,1
+theme,topic,synonym,WordNet 3.0,1
+therefore,thus,synonym,WordNet 3.0,1
+thick,tick,confusable,拼写编辑距离,1
+thick,trick,confusable,拼写编辑距离,1
+thread,threat,confusable,拼写编辑距离,1
+threat,throat,confusable,拼写编辑距离,1
+threat,treat,confusable,拼写编辑距离,1
+thrift,thrifty,derivation,WordNet 3.0,1
+thrust,trust,confusable,拼写编辑距离,1
+tick,trick,confusable,拼写编辑距离,1
+tick,tuck,confusable,拼写编辑距离,1
+tide,tidy,confusable,拼写编辑距离,1
+tide,tile,confusable,拼写编辑距离,1
+tide,tire,confusable,拼写编辑距离,1
+tidy,tiny,confusable,拼写编辑距离,1
+tile,tilt,confusable,拼写编辑距离,1
+tile,tire,confusable,拼写编辑距离,1
+tile,title,confusable,拼写编辑距离,1
+tire,weary,synonym,WordNet 3.0,1
+tolerance,tolerant,derivation,WordNet 3.0,1
+tolerance,tolerate,derivation,WordNet 3.0,1
+tolerant,tolerate,derivation,WordNet 3.0,1
+toll,tool,confusable,拼写编辑距离,1
+tone,tune,confusable,拼写编辑距离,1
+top,transcend,synonym,WordNet 3.0,1
+topic,toxic,confusable,拼写编辑距离,1
+topic,tropic,confusable,拼写编辑距离,1
+torch,touch,confusable,拼写编辑距离,1
+torment,torrent,confusable,拼写编辑距离,1
+torment,torture,synonym,WordNet 3.0,1
+touch,tough,confusable,拼写编辑距离,1
+tow,tower,derivation,WordNet 3.0,1
+towel,tower,confusable,拼写编辑距离,1
+trace,track,confusable,拼写编辑距离,1
+trace,trade,confusable,拼写编辑距离,1
+track,trick,confusable,拼写编辑距离,1
+track,truck,confusable,拼写编辑距离,1
+tractor,traitor,confusable,拼写编辑距离,1
+tradition,transition,confusable,拼写编辑距离,1
+tragedy,tragic,derivation,WordNet 3.0,1
+trail,trait,confusable,拼写编辑距离,1
+trail,trial,confusable,拼写编辑距离,1
+tram,tramp,confusable,拼写编辑距离,1
+tram,trap,confusable,拼写编辑距离,1
+tram,tray,confusable,拼写编辑距离,1
+tram,trim,confusable,拼写编辑距离,1
+tramp,trap,confusable,拼写编辑距离,1
+transaction,transition,confusable,拼写编辑距离,1
+transaction,translation,confusable,拼写编辑距离,1
+transcend,transcendent,derivation,WordNet 3.0,1
+transcend,transient,confusable,拼写编辑距离,1
+transcendent,transcendental,confusable,拼写编辑距离,1
+transfer,transform,confusable,拼写编辑距离,1
+transform,transport,confusable,拼写编辑距离,1
+transition,translation,confusable,拼写编辑距离,1
+translate,translation,derivation,WordNet 3.0,1
+transmission,transmit,derivation,WordNet 3.0,1
+trap,tray,confusable,拼写编辑距离,1
+treasure,value,synonym,WordNet 3.0,1
+tremendous,wonderful,synonym,WordNet 3.0,1
+trench,wrench,confusable,拼写编辑距离,1
+trick,truck,confusable,拼写编辑距离,1
+trifle,triple,confusable,拼写编辑距离,1
+triumph,victory,synonym,WordNet 3.0,1
+tropic,tropical,derivation,WordNet 3.0,1
+truck,trunk,confusable,拼写编辑距离,1
+truck,tuck,confusable,拼写编辑距离,1
+tube,tune,confusable,拼写编辑距离,1
+twinkle,wink,synonym,WordNet 3.0,1
+type,typist,derivation,WordNet 3.0,1
+underlie,underline,confusable,拼写编辑距离,1
+underlie,undermine,confusable,拼写编辑距离,1
+underline,underlying,confusable,拼写编辑距离,1
+underline,undermine,confusable,拼写编辑距离,1
+unify,unit,derivation,WordNet 3.0,1
+unify,unite,synonym,WordNet 3.0,1
+unify,unity,confusable,拼写编辑距离,1
+union,unite,derivation,WordNet 3.0,1
+unit,unite,confusable,拼写编辑距离,1
+unite,unity,confusable,拼写编辑距离,1
+universal,universe,derivation,WordNet 3.0,1
+urge,urgent,derivation,WordNet 3.0,1
+vacation,vocation,confusable,拼写编辑距离,1
+vague,value,confusable,拼写编辑距离,1
+vain,vanity,derivation,WordNet 3.0,1
+vain,vein,confusable,拼写编辑距离,1
+valuable,value,derivation,WordNet 3.0,1
+value,valve,confusable,拼写编辑距离,1
+variable,vary,derivation,WordNet 3.0,1
+variation,vary,derivation,WordNet 3.0,1
+vase,vast,confusable,拼写编辑距离,1
+vast,vest,confusable,拼写编辑距离,1
+vegetarian,vegetation,confusable,拼写编辑距离,1
+veil,vein,confusable,拼写编辑距离,1
+verb,verbal,derivation,WordNet 3.0,1
+verge,verse,confusable,拼写编辑距离,1
+vice,vicious,derivation,WordNet 3.0,1
+vice,voice,confusable,拼写编辑距离,1
+vigor,vigorous,derivation,WordNet 3.0,1
+violence,violent,derivation,WordNet 3.0,1
+violent,violet,confusable,拼写编辑距离,1
+voluntary,volunteer,derivation,WordNet 3.0,1
+wage,wave,confusable,拼写编辑距离,1
+waist,wrist,confusable,拼写编辑距离,1
+wander,wonder,confusable,拼写编辑距离,1
+war,warfare,synonym,WordNet 3.0,1
+ward,warn,confusable,拼写编辑距离,1
+wave,weave,confusable,拼写编辑距离,1
+wealth,wealthy,derivation,WordNet 3.0,1
+weed,weep,confusable,拼写编辑距离,1
+weed,weld,confusable,拼写编辑距离,1
+weld,wild,confusable,拼写编辑距离,1
+whale,whole,confusable,拼写编辑距离,1
+whatever,whatsoever,confusable,拼写编辑距离,1
+whenever,wherever,confusable,拼写编辑距离,1
+whole,wholly,synonym,WordNet 3.0,1
+wine,wing,confusable,拼写编辑距离,1
+wine,wink,confusable,拼写编辑距离,1
+wine,wipe,confusable,拼写编辑距离,1
+wine,wire,confusable,拼写编辑距离,1
+wine,wise,confusable,拼写编辑距离,1
+wing,wink,confusable,拼写编辑距离,1
+wipe,wire,confusable,拼写编辑距离,1
+wipe,wise,confusable,拼写编辑距离,1
+wire,wise,confusable,拼写编辑距离,1
+wood,wool,confusable,拼写编辑距离,1
+worse,worst,confusable,拼写编辑距离,1

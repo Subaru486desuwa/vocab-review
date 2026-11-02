@@ -1,4 +1,4 @@
-"""词表、词条、词义、例句与题目版本的读写；提交与回滚由调用方负责。"""
+"""词表、词条、词义、例句、题目版本与词对关系的读写；提交与回滚由调用方负责。"""
 
 
 def _all(conn, sql, params=()):
@@ -166,3 +166,23 @@ def retire_other_versions(conn, logical_key, keep_id):
             "UPDATE questions SET status = 'retired' WHERE logical_key = %s AND id <> %s AND status <> 'retired'",
             (logical_key, keep_id),
         )
+
+
+def load_relations(conn):
+    rows = _all(conn, "SELECT id, word_id_a, word_id_b, relation_type, source, is_active FROM word_relations")
+    return {(r["word_id_a"], r["word_id_b"], r["relation_type"]): r for r in rows}
+
+
+def insert_relation(conn, *, word_id_a, word_id_b, relation_type, source, is_active):
+    _execute(
+        conn,
+        "INSERT INTO word_relations (word_id_a, word_id_b, relation_type, source, is_active)"
+        " VALUES (%s, %s, %s, %s, %s)",
+        (word_id_a, word_id_b, relation_type, source, is_active),
+    )
+
+
+def update_relation(conn, relation_id, *, source, is_active):
+    _execute(
+        conn, "UPDATE word_relations SET source = %s, is_active = %s WHERE id = %s", (source, is_active, relation_id)
+    )

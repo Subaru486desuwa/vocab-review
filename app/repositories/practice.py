@@ -6,7 +6,7 @@
 
 _ITEM_COLUMNS = (
     "i.id, i.position, i.question_id, i.submitted_at, q.skill_type, q.prompt, q.options_json, q.answers_json,"
-    " q.grading_policy_json, q.sense_id, s.definition_zh, w.lemma,"
+    " q.grading_policy_json, q.sense_id, s.definition_zh, s.word_id, w.lemma,"
     " a.id AS attempt_id, a.normalized_answer, a.is_correct, a.error_type, a.submitted_at AS attempt_submitted_at"
 )
 _ITEM_JOINS = (

@@ -206,6 +206,35 @@ def insights_evidence():
     }
 
 
+# ---------------- 正式词表证据（#49 / ADR 0004） ----------------
+
+
+def wordbook_evidence():
+    """解析 evidence/exp02/import-ky.txt 与 wordbook-http.txt：导入计数、词对与成对练习实测。"""
+    imported = read("evidence/exp02/import-ky.txt")
+    count = lambda name: int(re.search(rf"^{name}：新增 (\d+)", imported, re.M).group(1))  # noqa: E731
+    http = read("evidence/exp02/wordbook-http.txt")
+    relations = dict((k, int(v)) for k, v in re.findall(r"^(confusable|derivation|synonym)\t(\d+)$", http, re.M))
+    wrong = re.search(r"^HTTP 200 (\S+)：✗ 词对：(.+)$", http, re.M)
+    pairs = re.search(r"^pairs (\S+) \S+：(.+?) sense_ids", http, re.M)
+    session = re.search(r"^items (\d+) reasons \['(\w+)'\]", http, re.M)
+    names = {"confusable": "形近", "synonym": "近义", "derivation": "同族", "untested": "未练", "tested": "已练"}
+    readable = lambda text: re.sub(r"[a-z]+", lambda m: names.get(m.group(0), m.group(0)), text)  # noqa: E731
+    return {
+        "book_words": count("memberships"),
+        "words": count("words"),
+        "senses": count("senses"),
+        "examples": count("examples"),
+        "questions": count("questions"),
+        "relations": relations,
+        "relations_total": sum(relations.values()),
+        "index_count": int(re.search(r"已构建索引：(\d+) 条例句", imported).group(1)),
+        "wrong_line": f"{wrong.group(1)} 答错，反馈列出词对：{readable(wrong.group(2))}",
+        "pairs_line": f"当前弱项 {pairs.group(1)}，词对：{readable(pairs.group(2))}",
+        "session_line": f"{session.group(1)} 题，选题理由均为定向练习（{session.group(2)}）",
+    }
+
+
 # ---------------- 实验二 ----------------
 
 
@@ -240,6 +269,7 @@ def report2():
     semantic_top, semantic_sim = diagnosis["semantic"][0] if diagnosis["semantic"] else ("—", "—")
     first_load = diagnosis["timings"][0][1] if diagnosis["timings"] else "—"
     warm_ms = round(float(diagnosis["timings"][1][1]) * 1000) if len(diagnosis["timings"]) > 1 else "—"
+    wordbook = wordbook_evidence()
     union_words = int(re.search(r"合计词条（共有词只计一次） (\d+)", review).group(1))
     per_book = dict(re.findall(r"(\S+-demo) 词条 (\d+) 已练习", review))
     shared_words = sum(int(v) for v in per_book.values()) - union_words
@@ -253,7 +283,7 @@ def report2():
         (
             "p",
             "项目数据库 vocab_review 运行于 MySQL 8.4（InnoDB 引擎、utf8mb4 字符集），表结构由按序编号的迁移脚本创建"
-            "（flask db upgrade），共 14 张业务表，涵盖账户、词表与词义、题目版本、练习与作答、学习状态及模型推理记录。"
+            "（flask db upgrade），共 15 张业务表，涵盖账户、词表与词义、词对、题目版本、练习与作答、学习状态及模型推理记录。"
             "本实验涉及的用户表结构如下（SHOW CREATE TABLE 实际输出）：",
         ),
         ("code", ["# evidence/exp02/schema.txt"] + ddl),
@@ -372,7 +402,53 @@ def report2():
             "由于模型在公开数据上训练、未在本系统用户上验证，页面只将其标注为参考，不改变组卷、复习安排与统计。",
         ),
         ("img", shot("e2_insights"), "图 8  学习诊断页：错误统计、遗忘风险与错题语义组（sim_trend，模拟演示数据）"),
-        ("h", "5. 探讨分析"),
+        ("h", "5. 诊断驱动练习、正式词表与成对记忆"),
+        (
+            "p",
+            "诊断不止于展示：系统按“词义 × 题型”从作答记录计算当前证据（ADR 0003），最近一次答错或最近 3 次中错 2 次记为当前弱项；"
+            "记忆强度沿用 Duolingo 半衰期回归的形式 p = 2^(−Δ/h)，系数为手工设定、未经训练，只用于排序与解释。组卷时，到期、错题与巩固项"
+            "按记忆强度从低到高出题，并为每题记录选题理由；用户可在诊断页对某个弱项发起定向练习，或按题型进行弱项专练。"
+            "模型输出仍只作参考，不进入组卷与复习安排。",
+        ),
+        (
+            "p",
+            f"演示词库学完后，系统接入正式的考研词表（ADR 0004）：取开源词典 ECDICT（MIT 许可）中标为考研的 {wordbook['book_words']} 个词条，"
+            f"中文释义按词性拆分为词义，例句取自 Tatoeba 中英句对（CC BY 2.0 FR），三类题目由规则生成。导入在一个事务内完成，"
+            f"新增 {wordbook['words']} 个词条、{wordbook['senses']} 个词义、{wordbook['examples']} 条例句与 {wordbook['questions']} 道题；"
+            f"已有的 {wordbook['book_words'] - wordbook['words']} 个演示词条沿用原有词义与题目，演示内容全部保持不变（evidence/exp02/import-ky.txt）。",
+        ),
+        (
+            "p",
+            f"为支持成对记忆，迁移 0003 新增 word_relations 表（两个外键均指向 words，约定 word_id_a < word_id_b，"
+            f"且 (word_id_a, word_id_b, relation_type) 唯一），共 {wordbook['relations_total']} 个词对，其中"
+            + "、".join(
+                f"{name} {wordbook['relations'][key]} 对"
+                for key, name in (("synonym", "近义"), ("derivation", "同族"), ("confusable", "形近"))
+            )
+            + "。近义与同族关系取自 WordNet 3.0，形近关系按拼写编辑距离计算，并排除词形变化与前后缀变化。辨义题的干扰项优先选用形近词的释义，"
+            "答题反馈会列出该词的词对；诊断页为每个当前弱项列出目标词表内的词对及其当前证据，可一键将它们放进同一组定向练习。"
+            "实测结果见表 3（evidence/exp02/wordbook-http.txt）。",
+        ),
+        (
+            "table",
+            "表 3  正式词表与成对练习实测结果",
+            ["环节", "实测结果"],
+            [
+                ("新账户只选考研词表", f"考研词表（ECDICT）{wordbook['book_words']} 个词条"),
+                ("辨义 10 题，一题故意答错", wordbook["wrong_line"]),
+                ("诊断页成对复习", wordbook["pairs_line"]),
+                ("发起成对练习", wordbook["session_line"]),
+            ],
+            [1, 3],
+        ),
+        ("img", shot("e2_paired_feedback"), "图 9  拼写题把 adapt 写成形近词 adopt：反馈列出形近、近义词及释义"),
+        ("img", shot("e2_paired_insights"), "图 10  诊断页“成对复习”：弱项 adapt 与目标词表内的词对，可发起成对练习"),
+        (
+            "p",
+            "词对与题目均由规则生成，未经逐条人工复核；WordNet 的近义关系包含部分较宽的义项，因此页面称“词对”而不称“易混词”。"
+            "词对只影响展示和用户主动发起的练习，不改变默认组卷、复习规则与学习状态。",
+        ),
+        ("h", "6. 探讨分析"),
         (
             "p",
             "（1）密码存储：模板示例使用 SHA2(password, 256) 存储密码，相同密码得到相同哈希且计算很快，一旦数据泄露，容易被彩虹表或暴力破解。"
@@ -613,6 +689,12 @@ def report4():
             f"只将 safetensors 权重与分词器下载到本地并核对 SHA-256；Web 运行时离线加载，请求过程中不下载模型。"
             f"语料为数据库中启用的 {index['count']} 条演示例句（每个词义两条），编码为 {index['dimensions']} 维、经 L2 归一化的 float32 向量，"
             "因此查询向量与例句向量的点积即为余弦相似度。",
+        ),
+        (
+            "p",
+            "本报告的评价与指标均以上述 v2 演示语料为准。此后系统扩充到 v3 演示词库并接入正式考研词表（ECDICT，例句取自 Tatoeba），"
+            f"线上索引重建为 {wordbook_evidence()['index_count']} 条例句；由于新增例句没有相关性标注，这里不重新报告指标，"
+            "仅核对演示查询仍能命中 bank 的“银行”与“河岸”例句（evidence/exp02/import-ky.txt）。",
         ),
         ("h", "2. 实现"),
         (

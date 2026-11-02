@@ -35,10 +35,13 @@ SPECS = {
         ("logical_key", "version", "lemma_norm", "sense_key", "skill_type", "prompt", "answers", "grading_policy"),
         ("options", "status"),
     ),
+    "relations.csv": Spec(("lemma_norm_a", "lemma_norm_b", "relation_type", "source"), ("is_active",)),
 }
 EXAM_TYPES = ("cet6", "postgraduate", "ielts")
 CHOICE_SKILLS = ("recognition", "context")
 SKILL_TYPES = (*CHOICE_SKILLS, "spelling")
+# 词对关系（ADR 0004）：近义、派生、形近。
+RELATION_TYPES = ("synonym", "derivation", "confusable")
 _KEY = re.compile(r"[A-Za-z0-9_.-]+")
 
 
@@ -175,6 +178,7 @@ class _Batch:
             "memberships": repo.load_memberships(conn),
             "examples": repo.load_examples(conn),
             "questions": repo.load_question_versions(conn),
+            "relations": repo.load_relations(conn),
         }
         self.known_wordbooks = set(self.existing["wordbooks"])
         self.known_words = set(self.existing["words"])
@@ -185,6 +189,7 @@ class _Batch:
         self._validate_memberships()
         self._validate_examples()
         self._validate_questions()
+        self._validate_relations()
 
     def _text(self, row, field, max_length, required=True, pattern=None):
         value = row.data.get(field)
@@ -405,6 +410,24 @@ class _Batch:
         if version != expected:
             self.error(row, "version", f"题目 {logical_key} 下一版本应为 {expected}")
 
+    def _validate_relations(self):
+        seen = set()
+        for row in self.rows["relations.csv"]:
+            a = self._text(row, "lemma_norm_a", 100)
+            b = self._text(row, "lemma_norm_b", 100)
+            self._require_word(row, a)
+            self._require_word(row, b)
+            if a and a == b:
+                self.error(row, "lemma_norm_b", "词对的两个词条不能相同")
+            relation_type = self._text(row, "relation_type", 16)
+            if relation_type and relation_type not in RELATION_TYPES:
+                self.error(row, "relation_type", "relation_type 只能为 " + "/".join(RELATION_TYPES))
+            self._text(row, "source", 255)
+            row.data["is_active"] = self._flag(row)
+            # 词对不分先后：a—b 与 b—a 是同一行。
+            key = (*sorted((a, b)), relation_type)
+            self._unique(seen, key, row, "lemma_norm_b", f"重复词对：{key[0]}—{key[1]} {relation_type}")
+
     # ---- 写入 ----
 
     def write(self, now):
@@ -416,6 +439,7 @@ class _Batch:
         self._write_memberships(summary["memberships"])
         self._write_examples(summary["examples"])
         self._write_questions(summary["questions"])
+        self._write_relations(summary["relations"])
         return summary
 
     @staticmethod
@@ -539,6 +563,22 @@ class _Batch:
             elif same is versions[-1] and same["status"] != d["status"]:
                 # 只有最新版本可以改状态；被取代的旧版本保持停用。
                 repo.set_question_status(self.conn, same["id"], d["status"])
+                counts["updated"] += 1
+            else:
+                counts["unchanged"] += 1
+
+    def _write_relations(self, counts):
+        words = self.existing["words"]
+        for row in self.rows["relations.csv"]:
+            d = row.data
+            a, b = sorted((words[d["lemma_norm_a"]]["id"], words[d["lemma_norm_b"]]["id"]))
+            fields = {"source": d["source"], "is_active": d["is_active"]}
+            old = self.existing["relations"].get((a, b, d["relation_type"]))
+            if old is None:
+                repo.insert_relation(self.conn, word_id_a=a, word_id_b=b, relation_type=d["relation_type"], **fields)
+                counts["inserted"] += 1
+            elif self._changed(old, fields):
+                repo.update_relation(self.conn, old["id"], **fields)
                 counts["updated"] += 1
             else:
                 counts["unchanged"] += 1

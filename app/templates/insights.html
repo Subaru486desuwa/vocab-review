@@ -2,6 +2,7 @@
 {% block title %}学习诊断 · 词汇研习室{% endblock %}
 {% block content %}
 {% set r = data.rules %}
+{% set relation_names = {"confusable": "形近", "synonym": "近义", "derivation": "同族"} %}
 <section class="auth-page wide-page">
   <p class="eyebrow">学习诊断</p>
   <h1>做题反馈</h1>
@@ -41,6 +42,23 @@
             <td>{% include "_recent.html" %}</td>
             <td>{% if e.half_life_days < 1 %}约 {{ [1, (e.half_life_days * 24) | round | int] | max }} 小时{% else %}约 {{ "%.1f" | format(e.half_life_days) }} 天{% endif %}</td>
             <td><button class="link-button text-link" type="button" data-skill="{{ e.skill_type }}" data-senses="{{ e.sense_id }}" data-count="1">练这项</button></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+
+    {% if cur.pairs %}
+    {% set partner_names = {"weak": "弱项", "fading": "衰减", "tested": "已练", "untested": "未练"} %}
+    <table id="pairs" class="data-table">
+      <caption>成对复习：弱项与它的形近、近义、同族词</caption>
+      <thead><tr><th scope="col">弱项</th><th scope="col">词对</th><th scope="col"></th></tr></thead>
+      <tbody>
+        {% for p in cur.pairs %}
+          <tr>
+            <th scope="row">{{ p.lemma }} <span class="muted">{{ skill_names[p.skill_type] }}</span></th>
+            <td>{% for x in p.partners %}<span class="relation-tag">{% for t in x.types %}{{ relation_names[t] }}{% if not loop.last %}·{% endif %}{% endfor %}</span> {{ x.lemma }} <span class="muted">{{ x.definition_zh }}（{{ partner_names[x.status] }}）</span>{% if not loop.last %}<br>{% endif %}{% endfor %}</td>
+            <td><button class="link-button text-link" type="button" data-skill="{{ p.skill_type }}" data-senses="{{ p.sense_ids | join(',') }}" data-count="{{ p.sense_ids | length }}">成对练习</button></td>
           </tr>
         {% endfor %}
       </tbody>
@@ -113,7 +131,7 @@
           {% set s = sims.get(c.sense.sense_id ~ "|" ~ c.skill_type ~ "|" ~ c.chosen) %}
           <tr>
             <th scope="row">{{ c.sense.lemma }} <span class="muted">{{ skill_names[c.skill_type] }}</span></th>
-            <td>{{ c.correct }}</td><td>{{ c.chosen }}</td><td>{{ c.count }}</td>
+            <td>{{ c.correct }}</td><td>{{ c.chosen }}{% if c.relation %} <span class="tag">{% for t in c.relation %}{{ relation_names[t] }}词{% if not loop.last %}·{% endif %}{% endfor %}</span>{% endif %}</td><td>{{ c.count }}</td>
             <td>{% if s %}{{ "%.2f" | format(s.similarity) }}{% if s.similar %} <span class="tag">语义相近</span>{% endif %}{% else %}—{% endif %}</td>
           </tr>
         {% endfor %}
@@ -193,6 +211,7 @@
     <details class="about">
       <summary>方法说明</summary>
       <p>当前状态：只看当前目标词表内、有已发布题目的词义 × 题型（evidence_v1）。当前弱项为最近一次答错或最近 3 次错 2 次，按近期错误比例与半衰期（记忆强度降到 50% 所需时间）排序；已改善为曾答错、最近 3 次全对；记忆衰减为其余项中记忆强度低于 50%。记忆强度沿用 Duolingo 半衰期回归的形式 p = 2^(−距上次天数 / h)，h = 2^(−1.8 + 2√(1+答对) − √(1+答错)) 天；系数为手工设定、未经训练，只用于排序与选题，不是掌握度。“专练”先出当前弱项，再出记忆衰减项。</p>
+      <p>成对复习：词对来自词表内容（ADR 0004）——近义与同族取 WordNet 3.0，形近按拼写编辑距离；“成对练习”把弱项与目标范围内的词对放进一组定向练习，不改变默认组卷与复习安排。</p>
       <p>{{ data.granularity }}</p>
       <p>遗忘风险：实验三随机森林（{% if ml.model %}{{ ml.model.model_code }} {{ ml.model.version }}{% else %}未加载{% endif %}）按距上次作答的间隔、作答次数与正确次数估计预期练习正确比例；模型在 Duolingo 公开记录上训练，在本系统用户上未经验证，不是掌握度。分组：对上述特征与估计值标准化后 KMeans（k=3，固定种子），按组内平均正确率从低到高命名为薄弱、一般、较稳。</p>
       <p>错题语义：实验四 all-MiniLM-L6-v2 编码“词条: 英文释义”，按余弦距离做平均链接层次聚类；组内与误选的相似度高于 {{ "%.2f" | format(dl.threshold or 0.45) }} 记为语义相近（约为演示词库两两相似度的第 99 百分位，未经标注评价）。拼写错法按与最接近的正确拼写的编辑距离分类。</p>

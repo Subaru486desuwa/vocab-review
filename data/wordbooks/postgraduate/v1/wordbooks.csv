@@ -1,0 +1,2 @@
+code,version,exam_type,name,source,is_active
+ky-ecdict,v1,postgraduate,考研词表（ECDICT）,ECDICT 考研标签（skywind3000/ECDICT，MIT）；词义按词性拆分，题目规则生成，未逐条复核,1

@@ -12,10 +12,12 @@ from app.repositories import db
 from app.repositories import insights as repo
 from app.repositories import progress as progress_repo
 from app.repositories import wordbooks as wordbook_repo
-from app.services import evidence, grading
+from app.services import evidence, grading, relations
 from app.services.content_import import SKILL_TYPES
 
 TOP = 10
+PAIR_PARTNERS = 4
+PAIR_SENSES = 8
 SPELLING_KINDS = ("missing_letter", "extra_letter", "wrong_letter", "transposition", "other", "unanswered")
 GRANULARITY = (
     "范围为该用户全部作答，不按目标词表过滤。规则统计直接来自作答事实；遗忘风险与分组是实验三模型的参考估计，"
@@ -240,6 +242,21 @@ def dl_analysis(model, wrong_ids, texts, pairs):
     return {"groups": clusters, "cohesion": cohesion, "pair_similarity": similarity}, elapsed
 
 
+def mark_confusion_relations(conn, rule_result, senses):
+    """误选的选项若是正确词的词对（形近、近义、同族），在 relation 中记下关系类型，否则为 None。"""
+    word_of = {s["sense_id"]: s["word_id"] for s in senses}
+    pairs = {
+        (word_of[c["sense"]["sense_id"]], word_of[c["chosen_sense"]["sense_id"]])
+        for c in rule_result["confusions"]
+        if c["chosen_sense"]
+    }
+    with db.transaction(conn):
+        found = relations.pair_types(conn, pairs) if pairs else {}
+    for c in rule_result["confusions"]:
+        key = (word_of[c["sense"]["sense_id"]], word_of[c["chosen_sense"]["sense_id"]]) if c["chosen_sense"] else None
+        c["relation"] = found.get(key)
+
+
 # ---- 当前证据：只看当前目标词表内、有已发布题目的 词义 × 题型 ----
 
 
@@ -307,3 +324,62 @@ def current_view(found, senses):
         "improved": [_entry(i, senses) for i in improved[:TOP]],
         "skill_gaps": gaps[:TOP],
     }
+
+
+def _partner_status(sense_ids, skill, found):
+    """词对在该题型上的当前证据：任一词义为弱项即 weak，其次 fading，已作答为 tested，否则 untested。"""
+    statuses = {found[(s, skill)]["status"] for s in sense_ids if (s, skill) in found}
+    for status in ("weak", "fading"):
+        if status in statuses:
+            return status
+    return "tested" if statuses else "untested"
+
+
+def pair_view(conn, found, senses):
+    """成对复习建议（ADR 0004）：当前弱项在目标范围内的形近、近义、同族词及其当前证据。
+
+    每个词义只列一次（取排序最靠前的弱项题型）；sense_ids 为该词义加词对的词义，供用户发起定向练习。
+    """
+    weak = sorted((i for i in found.values() if i["status"] == "weak"), key=evidence.weak_order)
+    by_word = defaultdict(list)
+    for s in senses.values():
+        by_word[s["word_id"]].append(s)
+    first = {}
+    for item in weak:
+        first.setdefault(item["sense_id"], item)
+    with db.transaction(conn):
+        related = relations.related(conn, {senses[s]["word_id"] for s in first}, limit=None)
+    result = []
+    for sense_id, item in first.items():
+        sense = senses[sense_id]
+        partners = []
+        for entry in related.get(sense["word_id"], []):
+            in_scope = by_word.get(entry["word_id"])
+            if not in_scope:
+                continue
+            ids = [s["sense_id"] for s in in_scope]
+            partners.append(
+                {
+                    "lemma": entry["lemma"],
+                    "types": entry["types"],
+                    "definition_zh": "；".join(s["definition_zh"] for s in in_scope[:2]),
+                    "status": _partner_status(ids, item["skill_type"], found),
+                    "sense_ids": ids,
+                }
+            )
+        if not partners:
+            continue
+        partners = partners[:PAIR_PARTNERS]
+        sense_ids = [sense_id, *(i for p in partners for i in p["sense_ids"] if i != sense_id)][:PAIR_SENSES]
+        result.append(
+            {
+                "sense_id": sense_id,
+                **{k: sense[k] for k in ("lemma", "part_of_speech", "definition_zh")},
+                "skill_type": item["skill_type"],
+                "partners": [{k: v for k, v in p.items() if k != "sense_ids"} for p in partners],
+                "sense_ids": sense_ids,
+            }
+        )
+        if len(result) == TOP:
+            break
+    return result

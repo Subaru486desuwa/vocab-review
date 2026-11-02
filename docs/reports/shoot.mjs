@@ -80,6 +80,32 @@ await go("/dashboard"); await until("document.querySelector('table.trend') !== n
 await shotElement("e2_trend", "table.trend");
 await go("/insights"); await until("document.querySelector('.stat-grid') !== null"); await shot("e2_insights", 4200);
 
+// 正式考研词表与成对记忆（#49）：报告专用账户 report_ky（不存在时注册，密码同 DEMO_USER_PASSWORD），只选考研词表；
+// 对 KY_SENSE（adapt 的词义 id，由调用方查好传入）发起拼写定向练习，故意写成形近词 adopt。
+await evaluate("document.querySelector('form[action=\"/auth/logout\"]').requestSubmit()");
+await sleep(500);
+await go("/login");
+await evaluate(fill("input[name=username]", "report_ky")); await evaluate(fill("input[name=password]", env.DEMO_USER_PASSWORD));
+await submitAndWait("document.querySelector('form.auth-form').submit()");
+if (!(await evaluate("document.querySelector('form[action=\"/auth/logout\"]') !== null"))) {
+  await go("/register");
+  await evaluate(fill("input[name=username]", "report_ky")); await evaluate(fill("input[name=password]", env.DEMO_USER_PASSWORD));
+  await submitAndWait("document.querySelector('form.auth-form').submit()");
+}
+const api = (method, path, body) => `(async () => { const r = await fetch(${JSON.stringify(path)}, { method: ${JSON.stringify(method)},
+  headers: { "Content-Type": "application/json", "X-CSRFToken": document.querySelector('meta[name="csrf-token"]').content },
+  body: ${body ? JSON.stringify(JSON.stringify(body)) : "undefined"} }); return (await r.json()).data; })()`;
+const books = await evaluate(api("GET", "/api/v1/wordbooks?exam_type=postgraduate"));
+const ky = books.items.find((b) => b.code === "ky-ecdict").id;
+await evaluate(api("PUT", "/api/v1/me/wordbooks", { wordbook_ids: [ky] }));
+await go("/wordbooks"); await until("document.querySelectorAll('#wordbook-list input').length > 0"); await shot("e2_wordbooks_ky");
+const session = await evaluate(api("POST", "/api/v1/practice/sessions", { skill_type: "spelling", count: 1, sense_ids: [Number(process.env.KY_SENSE)] }));
+await go(`/practice?session=${session.id}`); await until("!document.querySelector('#practice').hidden");
+await evaluate(fill("#answer-area input", "adopt"));
+await evaluate("document.querySelector('#answer-form').requestSubmit()"); await until("!document.querySelector('#feedback').hidden");
+await shot("e2_paired_feedback", 900);
+await go("/insights"); await until("document.querySelector('#pairs') !== null"); await shotElement("e2_paired_insights", "#pairs");
+
 async function submitAndWaitResult(form, result, again = false) {
   if (again) await evaluate(`document.querySelector('${result}').hidden = true`);
   await evaluate(`document.querySelector('${form}').requestSubmit()`);
